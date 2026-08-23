@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="theme-color"
+    content="#05070d"
+>
+
+<title>Sentinels — Hub</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+}
+
+body {
+
+    background: #05070d;
+
+    color: #ffffff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    min-height: 100vh;
+
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+
+    height: 78px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    background:
+        rgba(5, 7, 13, 0.92);
+
+    backdrop-filter:
+        blur(14px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.08);
+
+}
+
+.logo {
+
+    font-size: 23px;
+
+    font-weight: 900;
+
+    letter-spacing: 5px;
+
+}
+
+.back {
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.55;
+
+    transition:
+        opacity 0.25s ease;
+
+}
+
+.back:hover {
+
+    opacity: 1;
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    padding:
+        120px 7% 80px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(0, 120, 255, 0.15),
+            transparent 45%
+        );
+
+}
+
+.kicker {
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    opacity: 0.4;
+
+    margin-bottom: 20px;
+
+}
+
+.hero h1 {
+
+    font-size:
+        clamp(60px, 10vw, 120px);
+
+    line-height: 0.9;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 30px;
+
+}
+
+.hero p {
+
+    max-width: 650px;
+
+    line-height: 1.8;
+
+    color:
+        rgba(255,255,255,0.55);
+
+}
+
+
+/* =========================
+   HUB
+========================= */
+
+.hub {
+
+    padding:
+        30px 7% 120px;
+
+}
+
+.section-label {
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    opacity: 0.4;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =========================
+   FEATURE
+========================= */
+
+.feature {
+
+    padding: 35px;
+
+    margin-bottom: 20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.045),
+            rgba(255,255,255,0.015)
+        );
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+.feature::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+
+    height: 260px;
+
+    border-radius: 50%;
+
+    right: -100px;
+
+    top: -100px;
+
+    background: #087cff;
+
+    filter: blur(100px);
+
+    opacity: 0.16;
+
+}
+
+.feature-content {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+.feature-label {
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    opacity: 0.4;
+
+    margin-bottom: 15px;
+
+}
+
+.feature h2 {
+
+    font-size: 34px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+
+}
+
+.feature p {
+
+    max-width: 650px;
+
+    color:
+        rgba(255,255,255,0.5);
+
+    line-height: 1.7;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================
+   COMMUNITY GRID
+========================= */
+
+.community-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+
+}
+
+.community-card {
+
+    min-height: 280px;
+
+    padding: 35px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    background: #090c14;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+
+}
+
+.community-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    border-color:
+        rgba(255,255,255,0.3);
+
+}
+
+.card-number {
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    opacity: 0.35;
+
+}
+
+.icon {
+
+    font-size: 28px;
+
+    margin-bottom: 20px;
+
+}
+
+.community-card h2 {
+
+    font-size: 30px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+
+}
+
+.community-card p {
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    color:
+        rgba(255,255,255,0.5);
+
+}
+
+.card-link {
+
+    display: inline-block;
+
+    margin-top: 25px;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: bold;
+
+    opacity: 0.65;
+
+}
+
+.community-card:hover .card-link {
+
+    opacity: 1;
+
+}
+
+
+/* =========================
+   COMING SOON
+========================= */
+
+.coming {
+
+    margin-top: 20px;
+
+    padding: 25px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    background:
+        rgba(255,255,255,0.02);
+
+    color:
+        rgba(255,255,255,0.45);
+
+    line-height: 1.7;
+
+    font-size: 13px;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    padding:
+        50px 7%;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+}
+
+footer p {
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    opacity: 0.4;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 750px) {
+
+    .community-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .community-card {
+
+        min-height: 250px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+        SENTINELS
+    </a>
+
+    <a
+        href="index.html"
+        class="back"
+    >
+        ← BACK HOME
+    </a>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero">
+
+    <div class="kicker">
+        THE SENTINELS COMMUNITY
+    </div>
+
+    <h1>
+        SENTINELS<br>
+        HUB.
+    </h1>
+
+    <p>
+
+        The place for readers to talk about
+        the story, share theories, leave reviews
+        and explore the Sentinels universe
+        together.
+
+    </p>
+
+</header>
+
+
+<!-- =========================
+     HUB
+========================= -->
+
+<main class="hub">
+
+
+    <div class="section-label">
+        COMMUNITY
+    </div>
+
+
+    <!-- FEATURE -->
+
+    <section class="feature">
+
+        <div class="feature-content">
+
+            <div class="feature-label">
+                LATEST
+            </div>
+
+            <h2>
+                THE SENTINELS COMMUNITY IS GROWING.
+            </h2>
+
+            <p>
+
+                Read the latest volumes, share your
+                thoughts and become part of the
+                Sentinels universe.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMMUNITY OPTIONS -->
+
+    <section class="community-grid">
+
+
+        <!-- DISCUSSIONS -->
+
+        <article class="community-card">
+
+            <div>
+
+                <div class="card-number">
+                    01
+                </div>
+
+                <div class="icon">
+                    💬
+                </div>
+
+                <h2>
+                    DISCUSSIONS
+                </h2>
+
+                <p>
+
+                    Talk about the latest events,
+                    characters and moments from
+                    the Sentinels story.
+
+                </p>
+
+            </div>
+
+            <a
+                href="#discussions"
+                class="card-link"
+            >
+                ENTER DISCUSSIONS →
+            </a>
+
+        </article>
+
+
+        <!-- REVIEWS -->
+
+        <article class="community-card">
+
+            <div>
+
+                <div class="card-number">
+                    02
+                </div>
+
+                <div class="icon">
+                    ⭐
+                </div>
+
+                <h2>
+                    REVIEWS
+                </h2>
+
+                <p>
+
+                    Tell other readers what you
+                    thought about each volume.
+
+                </p>
+
+            </div>
+
+            <a
+                href="#reviews"
+                class="card-link"
+            >
+                VIEW REVIEWS →
+            </a>
+
+        </article>
+
+
+        <!-- THEORIES -->
+
+        <article class="community-card">
+
+            <div>
+
+                <div class="card-number">
+                    03
+                </div>
+
+                <div class="icon">
+                    🧠
+                </div>
+
+                <h2>
+                    THEORIES
+                </h2>
+
+                <p>
+
+                    Have a theory about Vorax,
+                    the Sentinels or what's coming
+                    next?
+
+                    Put it on the table.
+
+                </p>
+
+            </div>
+
+            <a
+                href="#theories"
+                class="card-link"
+            >
+                EXPLORE THEORIES →
+            </a>
+
+        </article>
+
+
+        <!-- QUESTIONS -->
+
+        <article class="community-card">
+
+            <div>
+
+                <div class="card-number">
+                    04
+                </div>
+
+                <div class="icon">
+                    ❓
+                </div>
+
+                <h2>
+                    QUESTIONS
+                </h2>
+
+                <p>
+
+                    Ask questions about the story,
+                    characters and universe.
+
+                </p>
+
+            </div>
+
+            <a
+                href="#questions"
+                class="card-link"
+            >
+                ASK A QUESTION →
+            </a>
+
+        </article>
+
+
+    </section>
+
+
+    <!-- COMING SOON -->
+
+    <section class="coming">
+
+        <strong>
+            COMMUNITY FEATURES ARE COMING.
+        </strong>
+
+        <br><br>
+
+        The first version of the Hub is being
+        prepared.
+
+        Discussions, reviews, theories and
+        questions will become interactive
+        community features in a later update.
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    <div class="logo">
+        SENTINELS
+    </div>
+
+    <p>
+        THE SENTINELS UNIVERSE
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
