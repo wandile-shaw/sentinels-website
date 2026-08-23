@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>Sentinels — The Team</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+background:#05070d;
+color:white;
+
+font-family:
+Arial,
+Helvetica,
+sans-serif;
+
+min-height:100vh;
+
+}
+
+a{
+color:inherit;
+text-decoration:none;
+}
+
+
+/* NAVIGATION */
+
+nav{
+
+height:78px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 6%;
+
+position:sticky;
+
+top:0;
+
+z-index:100;
+
+background:
+rgba(5,7,13,.92);
+
+backdrop-filter:blur(14px);
+
+border-bottom:
+1px solid
+rgba(255,255,255,.08);
+
+}
+
+.logo{
+
+font-size:23px;
+
+font-weight:900;
+
+letter-spacing:5px;
+
+}
+
+.back{
+
+font-size:11px;
+
+letter-spacing:2px;
+
+opacity:.55;
+
+transition:.3s;
+
+}
+
+.back:hover{
+opacity:1;
+}
+
+
+/* HERO */
+
+.hero{
+
+padding:
+120px 7% 80px;
+
+background:
+radial-gradient(
+circle at 50% 0%,
+rgba(0,110,255,.18),
+transparent 42%
+);
+
+}
+
+.kicker{
+
+font-size:11px;
+
+letter-spacing:5px;
+
+opacity:.4;
+
+margin-bottom:20px;
+
+}
+
+.hero h1{
+
+font-size:
+clamp(60px,10vw,120px);
+
+line-height:.9;
+
+letter-spacing:4px;
+
+margin-bottom:30px;
+
+}
+
+.hero p{
+
+max-width:650px;
+
+line-height:1.8;
+
+color:
+rgba(255,255,255,.55);
+
+}
+
+
+/* TEAM */
+
+.team{
+
+padding:
+30px 7% 120px;
+
+}
+
+.team-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:20px;
+
+}
+
+
+/* CHARACTER CARD */
+
+.card{
+
+min-height:650px;
+
+position:relative;
+
+overflow:hidden;
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+background:#090c14;
+
+display:flex;
+
+align-items:flex-end;
+
+transition:.35s;
+
+}
+
+.card:hover{
+
+transform:translateY(-7px);
+
+border-color:
+rgba(255,255,255,.3);
+
+}
+
+
+/* GLOW */
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+width:420px;
+
+height:420px;
+
+border-radius:50%;
+
+left:50%;
+
+top:25%;
+
+transform:
+translate(-50%,-50%);
+
+filter:blur(80px);
+
+opacity:.25;
+
+}
+
+.wandile::before{
+background:#087cff;
+}
+
+.xavier::before{
+background:#e3262e;
+}
+
+.kyla::before{
+background:#ff5ca8;
+}
+
+.cee::before{
+background:#26d96d;
+}
+
+
+/* CHARACTER SILHOUETTE */
+
+.character-art{
+
+position:absolute;
+
+inset:0;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:90px;
+
+font-weight:900;
+
+letter-spacing:4px;
+
+opacity:.09;
+
+}
+
+
+/* INFORMATION */
+
+.card-content{
+
+position:relative;
+
+z-index:2;
+
+width:100%;
+
+padding:35px;
+
+background:
+linear-gradient(
+transparent,
+rgba(0,0,0,.95)
+);
+
+}
+
+.number{
+
+font-size:10px;
+
+letter-spacing:4px;
+
+opacity:.45;
+
+margin-bottom:10px;
+
+}
+
+.card h2{
+
+font-size:48px;
+
+letter-spacing:2px;
+
+margin-bottom:8px;
+
+}
+
+.power{
+
+font-size:13px;
+
+letter-spacing:2px;
+
+margin-bottom:20px;
+
+opacity:.65;
+
+}
+
+.description{
+
+max-width:500px;
+
+line-height:1.7;
+
+font-size:14px;
+
+color:
+rgba(255,255,255,.55);
+
+}
+
+
+/* FOOTER */
+
+footer{
+
+padding:
+50px 7%;
+
+border-top:
+1px solid
+rgba(255,255,255,.08);
+
+display:flex;
+
+justify-content:space-between;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+}
+
+footer p{
+
+font-size:10px;
+
+letter-spacing:1px;
+
+color:
+rgba(255,255,255,.4);
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+.team-grid{
+grid-template-columns:1fr;
+}
+
+.card{
+min-height:560px;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+<a
+href="index.html"
+class="logo"
+>
+SENTINELS
+</a>
+
+<a
+href="index.html"
+class="back"
+>
+← BACK HOME
+</a>
+
+</nav>
+
+
+<header class="hero">
+
+<div class="kicker">
+THE SENTINELS
+</div>
+
+<h1>
+FOUR<br>
+SENTINELS.
+</h1>
+
+<p>
+
+Four people.
+
+Four powers.
+
+One universe.
+
+Meet the Sentinels.
+
+</p>
+
+</header>
+
+
+<main class="team">
+
+<div class="team-grid">
+
+
+<!-- WANDILE -->
+
+<article class="card wandile">
+
+<div class="character-art">
+W
+</div>
+
+<div class="card-content">
+
+<div class="number">
+THE FOURTH SENTINEL
+</div>
+
+<h2>
+WANDILE
+</h2>
+
+<div class="power">
+STRENGTH • SPEED • FLIGHT
+</div>
+
+<p class="description">
+
+The fourth Sentinel.
+
+His armour provides a balanced combination
+of strength, speed and flight, supported by
+advanced Sentinel technology.
+
+</p>
+
+</div>
+
+</article>
+
+
+<!-- XAVIER -->
+
+<article class="card xavier">
+
+<div class="character-art">
+X
+</div>
+
+<div class="card-content">
+
+<div class="number">
+THE FIRST SENTINEL
+</div>
+
+<h2>
+XAVIER
+</h2>
+
+<div class="power">
+STRENGTH
+</div>
+
+<p class="description">
+
+The powerhouse of the team.
+
+Xavier's Sentinel armour amplifies his
+physical strength, making him the team's
+front-line force.
+
+</p>
+
+</div>
+
+</article>
+
+
+<!-- KYLA -->
+
+<article class="card kyla">
+
+<div class="character-art">
+K
+</div>
+
+<div class="card-content">
+
+<div class="number">
+THE SECOND SENTINEL
+</div>
+
+<h2>
+KYLA
+</h2>
+
+<div class="power">
+SPEED
+</div>
+
+<p class="description">
+
+The fastest Sentinel.
+
+Kyla's armour gives her extraordinary
+speed and allows her to move faster
+than the others can react.
+
+</p>
+
+</div>
+
+</article>
+
+
+<!-- CEE -->
+
+<article class="card cee">
+
+<div class="character-art">
+C
+</div>
+
+<div class="card-content">
+
+<div class="number">
+THE THIRD SENTINEL
+</div>
+
+<h2>
+CEE
+</h2>
+
+<div class="power">
+FLIGHT • ENERGY BLASTS
+</div>
+
+<p class="description">
+
+Cee takes to the sky with retractable wings
+and can unleash powerful energy blasts
+from her hands both in the air and on
+the ground.
+
+</p>
+
+</div>
+
+</article>
+
+
+</div>
+
+</main>
+
+
+<footer>
+
+<div class="logo">
+SENTINELS
+</div>
+
+<p>
+THE SENTINELS UNIVERSE
+</p>
+
+</footer>
+
+
+</body>
+
+</html>
