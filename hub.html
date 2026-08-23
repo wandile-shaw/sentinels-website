@@ -56,11 +56,8 @@
 
 
         a {
-
             color: inherit;
-
             text-decoration: none;
-
         }
 
 
@@ -129,8 +126,6 @@
             border-radius: 50%;
 
             opacity: .7;
-
-            filter: blur(.2px);
 
             box-shadow:
                 0 0 25px currentColor;
@@ -210,24 +205,18 @@
         @keyframes drift {
 
             0% {
-
                 transform:
                     translate3d(-30px, 20px, 0);
-
             }
 
             50% {
-
                 transform:
                     translate3d(100px, -70px, 0);
-
             }
 
             100% {
-
                 transform:
                     translate3d(-30px, 20px, 0);
-
             }
 
         }
@@ -294,9 +283,7 @@
 
 
         .back:hover {
-
             opacity: 1;
-
         }
 
 
@@ -324,9 +311,7 @@
 
 
         .hero-inner {
-
             max-width: 850px;
-
         }
 
 
@@ -389,16 +374,12 @@
 
 
         .section-heading {
-
             margin-bottom: 40px;
-
         }
 
 
         .section-heading .eyebrow {
-
             margin-bottom: 12px;
-
         }
 
 
@@ -509,13 +490,197 @@
         }
 
 
+        /* =====================================
+           BUTTONS
+        ===================================== */
+
+        .hub-button {
+
+            display: inline-block;
+
+            margin-top: 25px;
+
+            padding:
+                12px 18px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.22);
+
+            background:
+                transparent;
+
+            color: white;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition:
+                .25s ease;
+
+        }
+
+
+        .hub-button:hover {
+
+            background: white;
+
+            color: #03050a;
+
+            border-color: white;
+
+        }
+
+
+        /* =====================================
+           FORMS
+        ===================================== */
+
+        .form-panel {
+
+            display: none;
+
+            margin-top: 25px;
+
+            padding-top: 25px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.08);
+
+        }
+
+
+        .form-panel.open {
+            display: block;
+        }
+
+
+        .form-panel label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+            opacity: .5;
+
+        }
+
+
+        .form-panel input,
+        .form-panel textarea,
+        .form-panel select {
+
+            width: 100%;
+
+            margin-bottom: 16px;
+
+            padding: 13px 14px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            background:
+                rgba(0,0,0,.35);
+
+            color: white;
+
+            font-family: inherit;
+
+            outline: none;
+
+        }
+
+
+        .form-panel input:focus,
+        .form-panel textarea:focus,
+        .form-panel select:focus {
+
+            border-color:
+                rgba(255,255,255,.4);
+
+        }
+
+
+        .form-panel textarea {
+
+            min-height: 120px;
+
+            resize: vertical;
+
+            line-height: 1.6;
+
+        }
+
+
+        .form-panel option {
+
+            background: #090c15;
+
+            color: white;
+
+        }
+
+
+        .submit-button {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid white;
+
+            background: white;
+
+            color: #03050a;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+        }
+
+
+        .submit-button:hover {
+            opacity: .85;
+        }
+
+
+        .form-message {
+
+            margin-top: 12px;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+            color:
+                rgba(255,255,255,.55);
+
+        }
+
+
         .card-status {
 
             position: absolute;
 
             right: 25px;
 
-            bottom: 25px;
+            top: 25px;
 
             font-size: 8px;
 
@@ -527,12 +692,169 @@
 
 
         /* =====================================
+           COMMUNITY FEED
+        ===================================== */
+
+        .community-feed {
+
+            margin-top: 70px;
+
+        }
+
+
+        .feed-heading {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .feed-heading h2 {
+
+            font-size:
+                clamp(
+                    30px,
+                    5vw,
+                    55px
+                );
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .feed-tabs {
+
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .feed-tab {
+
+            padding:
+                10px 14px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            background:
+                transparent;
+
+            color: white;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+        }
+
+
+        .feed-tab.active {
+
+            background: white;
+
+            color: #03050a;
+
+        }
+
+
+        .feed-list {
+
+            display: grid;
+
+            gap: 12px;
+
+        }
+
+
+        .feed-item {
+
+            padding: 25px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.08);
+
+            background:
+                rgba(255,255,255,.025);
+
+        }
+
+
+        .feed-meta {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 12px;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+            opacity: .4;
+
+        }
+
+
+        .feed-item p {
+
+            color:
+                rgba(255,255,255,.65);
+
+            line-height: 1.7;
+
+            font-size: 14px;
+
+            white-space: pre-wrap;
+
+        }
+
+
+        .empty-feed {
+
+            padding:
+                35px 20px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.08);
+
+            text-align: center;
+
+            color:
+                rgba(255,255,255,.35);
+
+            font-size: 12px;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        /* =====================================
            THEORY FEATURE
         ===================================== */
 
         .theory-feature {
 
-            margin-top: 18px;
+            margin-top: 70px;
 
             padding:
                 50px 35px;
@@ -677,9 +999,7 @@
         @media (max-width: 700px) {
 
             nav {
-
                 height: 65px;
-
             }
 
 
@@ -723,23 +1043,15 @@
         }
 
 
-        /* =====================================
-           REDUCED MOTION
-        ===================================== */
-
         @media (prefers-reduced-motion: reduce) {
 
             .orb {
-
                 animation: none;
-
             }
 
 
             .hub-card {
-
                 transition: none;
-
             }
 
         }
@@ -760,11 +1072,8 @@
     >
 
         <div class="orb blue"></div>
-
         <div class="orb red"></div>
-
         <div class="orb green"></div>
-
         <div class="orb pink"></div>
 
     </div>
@@ -857,6 +1166,10 @@
                     01
                 </div>
 
+                <div class="card-status">
+                    LIVE
+                </div>
+
 
                 <h3>
                     REVIEWS
@@ -872,9 +1185,87 @@
                 </p>
 
 
-                <div class="card-status">
-                    COMING SOON
-                </div>
+                <button
+                    class="hub-button"
+                    onclick="toggleForm('reviewForm')"
+                >
+                    WRITE A REVIEW
+                </button>
+
+
+                <form
+                    id="reviewForm"
+                    class="form-panel"
+                    onsubmit="submitReview(event)"
+                >
+
+                    <label for="reviewName">
+                        YOUR NAME
+                    </label>
+
+                    <input
+                        id="reviewName"
+                        type="text"
+                        maxlength="80"
+                        required
+                        placeholder="Your name"
+                    >
+
+
+                    <label for="reviewVolume">
+                        VOLUME
+                    </label>
+
+                    <select
+                        id="reviewVolume"
+                        required
+                    >
+
+                        <option value="">
+                            Select a volume
+                        </option>
+
+                        <option value="Volume 1">
+                            Volume 1
+                        </option>
+
+                        <option value="Volume 2">
+                            Volume 2
+                        </option>
+
+                        <option value="Volume 3">
+                            Volume 3
+                        </option>
+
+                    </select>
+
+
+                    <label for="reviewText">
+                        YOUR REVIEW
+                    </label>
+
+                    <textarea
+                        id="reviewText"
+                        maxlength="2000"
+                        required
+                        placeholder="Tell us what you thought..."
+                    ></textarea>
+
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                    >
+                        POST REVIEW
+                    </button>
+
+
+                    <div
+                        id="reviewMessage"
+                        class="form-message"
+                    ></div>
+
+                </form>
 
             </article>
 
@@ -886,6 +1277,10 @@
 
                 <div class="card-number">
                     02
+                </div>
+
+                <div class="card-status">
+                    LIVE
                 </div>
 
 
@@ -903,9 +1298,59 @@
                 </p>
 
 
-                <div class="card-status">
-                    COMING SOON
-                </div>
+                <button
+                    class="hub-button"
+                    onclick="toggleForm('questionForm')"
+                >
+                    ASK A QUESTION
+                </button>
+
+
+                <form
+                    id="questionForm"
+                    class="form-panel"
+                    onsubmit="submitQuestion(event)"
+                >
+
+                    <label for="questionName">
+                        YOUR NAME
+                    </label>
+
+                    <input
+                        id="questionName"
+                        type="text"
+                        maxlength="80"
+                        required
+                        placeholder="Your name"
+                    >
+
+
+                    <label for="questionText">
+                        YOUR QUESTION
+                    </label>
+
+                    <textarea
+                        id="questionText"
+                        maxlength="2000"
+                        required
+                        placeholder="Ask your question..."
+                    ></textarea>
+
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                    >
+                        SUBMIT QUESTION
+                    </button>
+
+
+                    <div
+                        id="questionMessage"
+                        class="form-message"
+                    ></div>
+
+                </form>
 
             </article>
 
@@ -917,6 +1362,10 @@
 
                 <div class="card-number">
                     03
+                </div>
+
+                <div class="card-status">
+                    LIVE
                 </div>
 
 
@@ -935,9 +1384,59 @@
                 </p>
 
 
-                <div class="card-status">
-                    COMING SOON
-                </div>
+                <button
+                    class="hub-button"
+                    onclick="toggleForm('theoryForm')"
+                >
+                    SHARE YOUR THEORY
+                </button>
+
+
+                <form
+                    id="theoryForm"
+                    class="form-panel"
+                    onsubmit="submitTheory(event)"
+                >
+
+                    <label for="theoryName">
+                        YOUR NAME
+                    </label>
+
+                    <input
+                        id="theoryName"
+                        type="text"
+                        maxlength="80"
+                        required
+                        placeholder="Your name"
+                    >
+
+
+                    <label for="theoryText">
+                        YOUR THEORY
+                    </label>
+
+                    <textarea
+                        id="theoryText"
+                        maxlength="3000"
+                        required
+                        placeholder="Tell us what you think is really happening..."
+                    ></textarea>
+
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                    >
+                        POST THEORY
+                    </button>
+
+
+                    <div
+                        id="theoryMessage"
+                        class="form-message"
+                    ></div>
+
+                </form>
 
             </article>
 
@@ -949,6 +1448,10 @@
 
                 <div class="card-number">
                     04
+                </div>
+
+                <div class="card-status">
+                    OFFICIAL
                 </div>
 
 
@@ -965,15 +1468,75 @@
 
                 </p>
 
-
-                <div class="card-status">
-                    COMING SOON
-                </div>
+                <a
+                    href="index.html#story"
+                    class="hub-button"
+                >
+                    EXPLORE SENTINELS
+                </a>
 
             </article>
 
 
         </div>
+
+
+
+        <!-- COMMUNITY FEED -->
+
+        <section class="community-feed">
+
+            <div class="feed-heading">
+
+                <div class="eyebrow">
+                    THE COMMUNITY
+                </div>
+
+                <h2>
+                    RECENT TRANSMISSIONS.
+                </h2>
+
+            </div>
+
+
+            <div class="feed-tabs">
+
+                <button
+                    class="feed-tab active"
+                    onclick="loadFeed('reviews', this)"
+                >
+                    REVIEWS
+                </button>
+
+                <button
+                    class="feed-tab"
+                    onclick="loadFeed('questions', this)"
+                >
+                    QUESTIONS
+                </button>
+
+                <button
+                    class="feed-tab"
+                    onclick="loadFeed('theories', this)"
+                >
+                    THEORIES
+                </button>
+
+            </div>
+
+
+            <div
+                id="feedList"
+                class="feed-list"
+            >
+
+                <div class="empty-feed">
+                    LOADING COMMUNITY TRANSMISSIONS...
+                </div>
+
+            </div>
+
+        </section>
 
 
 
@@ -1050,6 +1613,477 @@
         </p>
 
     </footer>
+
+
+    <!-- =====================================
+         SUPABASE
+    ===================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <script>
+
+        /* =====================================
+           SENTINELS SUPABASE CONNECTION
+        ===================================== */
+
+        const SUPABASE_URL =
+            "https://xoalbbgonrdcurcqnhrg.supabase.co";
+
+
+        /*
+         * PASTE YOUR SUPABASE PUBLISHABLE KEY
+         * BETWEEN THE QUOTATION MARKS BELOW.
+         *
+         * DO NOT USE A SECRET / SERVICE ROLE KEY.
+         */
+
+        const SUPABASE_KEY =
+            "sb_publishable_oVi0PtSGcSOJQcKDRDOgTQ_LRqu3jLb";
+
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+
+        /* =====================================
+           FORM TOGGLE
+        ===================================== */
+
+        function toggleForm(id) {
+
+            const form =
+                document.getElementById(id);
+
+            form.classList.toggle("open");
+
+        }
+
+
+
+        /* =====================================
+           SUBMIT REVIEW
+        ===================================== */
+
+        async function submitReview(event) {
+
+            event.preventDefault();
+
+
+            const message =
+                document.getElementById(
+                    "reviewMessage"
+                );
+
+
+            message.textContent =
+                "TRANSMITTING REVIEW...";
+
+
+            const name =
+                document.getElementById(
+                    "reviewName"
+                ).value.trim();
+
+
+            const volume =
+                document.getElementById(
+                    "reviewVolume"
+                ).value;
+
+
+            const review =
+                document.getElementById(
+                    "reviewText"
+                ).value.trim();
+
+
+            const { error } =
+                await supabaseClient
+                    .from("reviews")
+                    .insert([
+                        {
+                            name: name,
+                            volume: volume,
+                            review: review
+                        }
+                    ]);
+
+
+            if (error) {
+
+                console.error(error);
+
+                message.textContent =
+                    "TRANSMISSION FAILED. PLEASE TRY AGAIN.";
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "REVIEW TRANSMITTED. THANK YOU.";
+
+
+            document
+                .getElementById("reviewForm")
+                .reset();
+
+
+            loadFeed("reviews");
+
+        }
+
+
+
+        /* =====================================
+           SUBMIT QUESTION
+        ===================================== */
+
+        async function submitQuestion(event) {
+
+            event.preventDefault();
+
+
+            const message =
+                document.getElementById(
+                    "questionMessage"
+                );
+
+
+            message.textContent =
+                "TRANSMITTING QUESTION...";
+
+
+            const name =
+                document.getElementById(
+                    "questionName"
+                ).value.trim();
+
+
+            const question =
+                document.getElementById(
+                    "questionText"
+                ).value.trim();
+
+
+            const { error } =
+                await supabaseClient
+                    .from("questions")
+                    .insert([
+                        {
+                            name: name,
+                            question: question
+                        }
+                    ]);
+
+
+            if (error) {
+
+                console.error(error);
+
+                message.textContent =
+                    "TRANSMISSION FAILED. PLEASE TRY AGAIN.";
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "QUESTION TRANSMITTED. THANK YOU.";
+
+
+            document
+                .getElementById("questionForm")
+                .reset();
+
+
+            loadFeed("questions");
+
+        }
+
+
+
+        /* =====================================
+           SUBMIT THEORY
+        ===================================== */
+
+        async function submitTheory(event) {
+
+            event.preventDefault();
+
+
+            const message =
+                document.getElementById(
+                    "theoryMessage"
+                );
+
+
+            message.textContent =
+                "TRANSMITTING THEORY...";
+
+
+            const name =
+                document.getElementById(
+                    "theoryName"
+                ).value.trim();
+
+
+            const theory =
+                document.getElementById(
+                    "theoryText"
+                ).value.trim();
+
+
+            const { error } =
+                await supabaseClient
+                    .from("theories")
+                    .insert([
+                        {
+                            name: name,
+                            theory: theory
+                        }
+                    ]);
+
+
+            if (error) {
+
+                console.error(error);
+
+                message.textContent =
+                    "TRANSMISSION FAILED. PLEASE TRY AGAIN.";
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "THEORY TRANSMITTED. THANK YOU.";
+
+
+            document
+                .getElementById("theoryForm")
+                .reset();
+
+
+            loadFeed("theories");
+
+        }
+
+
+
+        /* =====================================
+           COMMUNITY FEED
+        ===================================== */
+
+        async function loadFeed(
+            table,
+            clickedButton = null
+        ) {
+
+
+            if (clickedButton) {
+
+                document
+                    .querySelectorAll(".feed-tab")
+                    .forEach(
+                        button =>
+                            button.classList
+                                .remove("active")
+                    );
+
+
+                clickedButton.classList
+                    .add("active");
+
+            }
+
+
+            const feed =
+                document.getElementById(
+                    "feedList"
+                );
+
+
+            feed.innerHTML = `
+                <div class="empty-feed">
+                    SCANNING TRANSMISSIONS...
+                </div>
+            `;
+
+
+            const { data, error } =
+                await supabaseClient
+                    .from(table)
+                    .select("*")
+                    .order(
+                        "created_at",
+                        {
+                            ascending: false
+                        }
+                    )
+                    .limit(20);
+
+
+            if (error) {
+
+                console.error(error);
+
+                feed.innerHTML = `
+                    <div class="empty-feed">
+                        UNABLE TO ACCESS TRANSMISSIONS.
+                    </div>
+                `;
+
+                return;
+
+            }
+
+
+            if (!data || data.length === 0) {
+
+                feed.innerHTML = `
+                    <div class="empty-feed">
+                        NO TRANSMISSIONS YET.
+                        BE THE FIRST.
+                    </div>
+                `;
+
+                return;
+
+            }
+
+
+            feed.innerHTML =
+                data
+                    .map(item => {
+
+                        let text = "";
+                        let extra = "";
+
+
+                        if (table === "reviews") {
+
+                            text =
+                                item.review || "";
+
+                            extra =
+                                item.volume || "";
+
+                        }
+
+
+                        if (table === "questions") {
+
+                            text =
+                                item.question || "";
+
+                        }
+
+
+                        if (table === "theories") {
+
+                            text =
+                                item.theory || "";
+
+                        }
+
+
+                        const date =
+                            item.created_at
+                                ? new Date(
+                                    item.created_at
+                                ).toLocaleDateString()
+                                : "";
+
+
+                        return `
+
+                            <article class="feed-item">
+
+                                <div class="feed-meta">
+
+                                    <span>
+                                        ${escapeHtml(
+                                            item.name || "Anonymous"
+                                        )}
+                                    </span>
+
+                                    <span>
+                                        ${
+                                            escapeHtml(extra)
+                                        }
+                                    </span>
+
+                                    <span>
+                                        ${date}
+                                    </span>
+
+                                </div>
+
+
+                                <p>
+                                    ${escapeHtml(text)}
+                                </p>
+
+                            </article>
+
+                        `;
+
+                    })
+                    .join("");
+
+        }
+
+
+
+        /* =====================================
+           BASIC HTML ESCAPING
+        ===================================== */
+
+        function escapeHtml(value) {
+
+            return String(value)
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+
+        /* =====================================
+           INITIAL FEED
+        ===================================== */
+
+        loadFeed("reviews");
+
+    </script>
 
 
 </body>
