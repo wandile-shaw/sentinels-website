@@ -22,9 +22,15 @@
 
     <style>
 
-        /* =========================================
+        /* =====================================================
+           SENTINELS HOMEPAGE
+           Homepage layout + responsive artwork system
+        ===================================================== */
+
+
+        /* =====================================================
            SPACE ENVIRONMENT
-        ========================================= */
+        ===================================================== */
 
         .space-background {
 
@@ -55,8 +61,6 @@
                 #03050a;
         }
 
-
-        /* Stars */
 
         .space-background::before {
 
@@ -92,8 +96,6 @@
         }
 
 
-        /* Softer second star layer */
-
         .space-background::after {
 
             content: "";
@@ -126,9 +128,9 @@
         }
 
 
-        /* =========================================
+        /* =====================================================
            ASTEROIDS
-        ========================================= */
+        ===================================================== */
 
         .asteroid {
 
@@ -317,9 +319,9 @@
         }
 
 
-        /* =========================================
+        /* =====================================================
            ENTER THE UNIVERSE BUTTON
-        ========================================= */
+        ===================================================== */
 
         .universe-button {
 
@@ -363,9 +365,9 @@
         }
 
 
-        /* =========================================
+        /* =====================================================
            CREATOR / APPRENTICE
-        ========================================= */
+        ===================================================== */
 
         .creator-credit {
 
@@ -464,15 +466,31 @@
         }
 
 
-        /* =========================================
-           SENTINEL CHARACTER IMAGE SYSTEM
-        ========================================= */
+        /* =====================================================
+           SENTINEL CHARACTER CARDS
+        ===================================================== */
+
+        .character-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 28px;
+
+            margin-top: 45px;
+
+        }
+
 
         .character {
 
             min-width: 0;
 
             overflow: hidden;
+
+            position: relative;
 
         }
 
@@ -483,7 +501,7 @@
 
             width: 100%;
 
-            height: 260px;
+            height: 280px;
 
             object-fit: contain;
 
@@ -494,12 +512,6 @@
         }
 
 
-        /*
-           Keep every character image contained
-           inside its card without stretching or
-           unnecessary cropping.
-        */
-
         .character img {
 
             max-width: 100%;
@@ -507,9 +519,9 @@
         }
 
 
-        /* =========================================
+        /* =====================================================
            UNIVERSE / LORE CARDS
-        ========================================= */
+        ===================================================== */
 
         .lore-grid {
 
@@ -518,7 +530,7 @@
             grid-template-columns:
                 repeat(4, minmax(0, 1fr));
 
-            gap: 25px;
+            gap: 28px;
 
             margin-top: 45px;
 
@@ -531,13 +543,13 @@
 
             min-width: 0;
 
-            min-height: 360px;
+            min-height: 390px;
 
             overflow: hidden;
 
             border:
                 1px solid
-                rgba(255,255,255,.12);
+                rgba(255,255,255,.14);
 
             background:
                 rgba(255,255,255,.035);
@@ -562,7 +574,7 @@
                 translateY(-7px);
 
             border-color:
-                rgba(255,255,255,.30);
+                rgba(255,255,255,.35);
 
             box-shadow:
                 0 20px 50px
@@ -570,6 +582,13 @@
 
         }
 
+
+        /*
+           IMPORTANT:
+           CONTAIN keeps the COMPLETE artwork visible.
+           The old COVER treatment was causing the
+           artwork to look zoomed/cropped on phones.
+        */
 
         .lore-card-image {
 
@@ -581,11 +600,13 @@
 
             height: 100%;
 
-            object-fit: cover;
+            object-fit: contain;
 
             object-position: center;
 
-            opacity: .72;
+            padding: 18px;
+
+            opacity: .82;
 
             transition:
                 transform .5s ease,
@@ -597,9 +618,32 @@
         .lore-card:hover .lore-card-image {
 
             transform:
-                scale(1.035);
+                scale(1.025);
 
-            opacity: .82;
+            opacity: .95;
+
+        }
+
+
+        .lore-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 30%,
+                    rgba(30,130,255,.12),
+                    transparent 55%
+                );
+
+            pointer-events: none;
+
+            z-index: 1;
 
         }
 
@@ -616,13 +660,16 @@
 
                 linear-gradient(
                     to top,
-                    rgba(3,5,10,.98) 0%,
-                    rgba(3,5,10,.78) 38%,
-                    rgba(3,5,10,.20) 72%,
-                    rgba(3,5,10,.05) 100%
+                    rgba(3,5,10,.99) 0%,
+                    rgba(3,5,10,.86) 25%,
+                    rgba(3,5,10,.35) 48%,
+                    rgba(3,5,10,.05) 75%,
+                    rgba(3,5,10,.02) 100%
                 );
 
             pointer-events: none;
+
+            z-index: 1;
 
         }
 
@@ -635,6 +682,8 @@
 
             padding: 25px;
 
+            margin-top: auto;
+
         }
 
 
@@ -646,7 +695,7 @@
 
             letter-spacing: 4px;
 
-            opacity: .45;
+            opacity: .48;
 
             margin-bottom: 10px;
 
@@ -655,7 +704,8 @@
 
         .lore-card h3 {
 
-            margin-bottom: 8px;
+            margin:
+                0 0 8px;
 
             font-size: 22px;
 
@@ -669,7 +719,7 @@
             margin: 0;
 
             color:
-                rgba(255,255,255,.58);
+                rgba(255,255,255,.60);
 
             line-height: 1.6;
 
@@ -678,9 +728,43 @@
         }
 
 
-        /* =========================================
+        /* Individual lore identities */
+
+        .lore-card:nth-child(1) {
+
+            border-color:
+                rgba(80,160,255,.22);
+
+        }
+
+
+        .lore-card:nth-child(2) {
+
+            border-color:
+                rgba(80,210,255,.22);
+
+        }
+
+
+        .lore-card:nth-child(3) {
+
+            border-color:
+                rgba(255,55,75,.24);
+
+        }
+
+
+        .lore-card:nth-child(4) {
+
+            border-color:
+                rgba(160,70,255,.24);
+
+        }
+
+
+        /* =====================================================
            GALLERY CARDS
-        ========================================= */
+        ===================================================== */
 
         .gallery-placeholder {
 
@@ -689,7 +773,7 @@
             grid-template-columns:
                 repeat(3, minmax(0, 1fr));
 
-            gap: 24px;
+            gap: 28px;
 
             margin-top: 45px;
 
@@ -700,7 +784,9 @@
 
             position: relative;
 
-            min-height: 300px;
+            min-width: 0;
+
+            min-height: 330px;
 
             overflow: hidden;
 
@@ -709,11 +795,7 @@
                 rgba(255,255,255,.14);
 
             background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.07),
-                    rgba(0,70,150,.09)
-                );
+                #080d17;
 
             display: flex;
 
@@ -721,9 +803,13 @@
 
             justify-content: flex-end;
 
-            padding: 30px;
+            padding: 34px;
 
             text-align: left;
+
+            text-decoration: none;
+
+            color: #ffffff;
 
             transition:
                 transform .3s ease,
@@ -739,14 +825,16 @@
                 translateY(-8px);
 
             border-color:
-                rgba(255,255,255,.35);
+                rgba(255,255,255,.40);
 
             box-shadow:
                 0 25px 60px
-                rgba(0,0,0,.38);
+                rgba(0,0,0,.42);
 
         }
 
+
+        /* Decorative glow */
 
         .gallery-card::before {
 
@@ -754,23 +842,21 @@
 
             position: absolute;
 
-            width: 190px;
+            width: 220px;
 
-            height: 190px;
+            height: 220px;
 
             border-radius: 50%;
 
-            right: -60px;
+            right: -70px;
 
-            top: -60px;
+            top: -75px;
 
-            background:
-                rgba(30,130,255,.10);
-
-            filter: blur(3px);
+            filter: blur(4px);
 
             transition:
-                transform .5s ease;
+                transform .5s ease,
+                opacity .5s ease;
 
         }
 
@@ -792,10 +878,13 @@
             inset: 0;
 
             background:
+
                 linear-gradient(
                     to top,
-                    rgba(3,5,10,.98),
-                    rgba(3,5,10,.15)
+                    rgba(3,5,10,.99) 0%,
+                    rgba(3,5,10,.86) 34%,
+                    rgba(3,5,10,.32) 72%,
+                    rgba(3,5,10,.05) 100%
                 );
 
             pointer-events: none;
@@ -814,24 +903,30 @@
 
         .gallery-card-label {
 
+            display: inline-block;
+
             font-size: 8px;
 
-            letter-spacing: 4px;
+            letter-spacing: 3px;
 
-            opacity: .45;
+            opacity: .62;
 
-            margin-bottom: 10px;
+            margin-bottom: 13px;
 
         }
 
 
         .gallery-card h3 {
 
-            font-size: 25px;
+            font-size:
+                clamp(24px, 3vw, 32px);
+
+            line-height: 1.05;
 
             letter-spacing: 2px;
 
-            margin-bottom: 10px;
+            margin:
+                0 0 14px;
 
         }
 
@@ -840,21 +935,26 @@
 
             font-size: 11px;
 
-            line-height: 1.7;
+            line-height: 1.75;
 
             color:
-                rgba(255,255,255,.52);
+                rgba(255,255,255,.60);
 
-            margin-bottom: 20px;
+            margin:
+                0 0 24px;
 
-            max-width: 280px;
+            max-width: 330px;
 
         }
 
 
         .gallery-card-link {
 
-            display: inline-block;
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
 
             font-size: 9px;
 
@@ -867,68 +967,173 @@
         }
 
 
-        /* Different visual identities */
+        /* =====================================================
+           GALLERY — COMIC
+        ===================================================== */
 
         .gallery-card.comic {
 
+            border-color:
+                rgba(70,150,255,.30);
+
             background:
 
                 radial-gradient(
                     circle at 80% 20%,
-                    rgba(255,255,255,.10),
-                    transparent 30%
+                    rgba(60,150,255,.22),
+                    transparent 35%
                 ),
 
                 linear-gradient(
                     145deg,
-                    rgba(30,80,150,.18),
-                    rgba(255,255,255,.035)
+                    rgba(20,70,145,.30),
+                    rgba(4,10,20,.98)
                 );
 
         }
 
+
+        .gallery-card.comic::before {
+
+            background:
+                rgba(50,140,255,.20);
+
+        }
+
+
+        .gallery-card.comic .gallery-card-label {
+
+            color:
+                #65aaff;
+
+        }
+
+
+        /* =====================================================
+           GALLERY — CHARACTER ART
+        ===================================================== */
 
         .gallery-card.character-art {
 
+            border-color:
+                rgba(255,75,145,.30);
+
             background:
 
                 radial-gradient(
                     circle at 80% 20%,
-                    rgba(255,40,110,.12),
-                    transparent 30%
+                    rgba(255,65,140,.22),
+                    transparent 35%
                 ),
 
                 linear-gradient(
                     145deg,
-                    rgba(255,70,130,.10),
-                    rgba(0,70,150,.08)
+                    rgba(120,30,75,.25),
+                    rgba(4,10,20,.98)
                 );
 
         }
 
+
+        .gallery-card.character-art::before {
+
+            background:
+                rgba(255,55,135,.18);
+
+        }
+
+
+        .gallery-card.character-art .gallery-card-label {
+
+            color:
+                #ff79b9;
+
+        }
+
+
+        /* =====================================================
+           GALLERY — CONCEPT ART
+        ===================================================== */
 
         .gallery-card.concept-art {
 
+            border-color:
+                rgba(50,230,155,.30);
+
             background:
 
                 radial-gradient(
                     circle at 80% 20%,
-                    rgba(40,255,160,.10),
-                    transparent 30%
+                    rgba(35,230,150,.20),
+                    transparent 35%
                 ),
 
                 linear-gradient(
                     145deg,
-                    rgba(0,110,100,.12),
-                    rgba(255,255,255,.035)
+                    rgba(10,100,80,.24),
+                    rgba(4,10,20,.98)
                 );
 
         }
 
 
-        /* =========================================
+        .gallery-card.concept-art::before {
+
+            background:
+                rgba(30,220,145,.17);
+
+        }
+
+
+        .gallery-card.concept-art .gallery-card-label {
+
+            color:
+                #54e6ae;
+
+        }
+
+
+        /* =====================================================
+           GALLERY ICON / SYMBOL
+        ===================================================== */
+
+        .gallery-card-symbol {
+
+            position: absolute;
+
+            top: 28px;
+
+            left: 30px;
+
+            width: 44px;
+
+            height: 44px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border:
+                1px solid
+                rgba(255,255,255,.18);
+
+            background:
+                rgba(255,255,255,.045);
+
+            font-size: 17px;
+
+            font-weight: 900;
+
+            z-index: 2;
+
+        }
+
+
+        /* =====================================================
            HUB PREVIEW
-        ========================================= */
+        ===================================================== */
 
         .hub-preview {
 
@@ -1114,15 +1319,16 @@
         }
 
 
-        /* =========================================
-           HERO SPACE DEPTH
-        ========================================= */
+        /* =====================================================
+           HERO
+        ===================================================== */
 
         .hero {
 
             position: relative;
 
             isolation: isolate;
+
         }
 
 
@@ -1131,19 +1337,123 @@
             position: relative;
 
             z-index: 2;
+
         }
 
 
-        /* =========================================
-           MOBILE
-        ========================================= */
+        /* =====================================================
+           TABLET
+        ===================================================== */
 
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
+
+            .character-grid {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+                gap: 25px;
+
+            }
+
 
             .lore-grid {
 
                 grid-template-columns:
                     repeat(2, minmax(0, 1fr));
+
+                gap: 25px;
+
+            }
+
+
+            .gallery-placeholder {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+            }
+
+
+            .gallery-card:last-child {
+
+                grid-column:
+                    1 / -1;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           PHONE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .character-grid {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 32px;
+
+                margin-top: 35px;
+
+            }
+
+
+            .character {
+
+                padding:
+                    0 5px;
+
+            }
+
+
+            .character-image {
+
+                width: 100%;
+
+                height: 300px;
+
+                object-fit: contain;
+
+            }
+
+
+            .lore-grid {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 24px;
+
+                margin-top: 35px;
+
+            }
+
+
+            .lore-card {
+
+                min-height:
+                    400px;
+
+            }
+
+
+            .lore-card-image {
+
+                padding:
+                    20px;
+
+            }
+
+
+            .lore-card-content {
+
+                padding:
+                    24px;
 
             }
 
@@ -1153,19 +1463,63 @@
                 grid-template-columns:
                     1fr;
 
-            }
+                gap: 22px;
 
-
-            .gallery-card {
-
-                min-height: 250px;
+                margin-top: 35px;
 
             }
 
-        }
+
+            .gallery-card,
+            .gallery-card:last-child {
+
+                grid-column:
+                    auto;
+
+                min-height:
+                    315px;
+
+                padding:
+                    30px 25px;
+
+            }
 
 
-        @media (max-width: 750px) {
+            .gallery-card-symbol {
+
+                top:
+                    22px;
+
+                left:
+                    23px;
+
+            }
+
+
+            .gallery-card h3 {
+
+                font-size:
+                    28px;
+
+                margin-bottom:
+                    13px;
+
+            }
+
+
+            .gallery-card p {
+
+                font-size:
+                    11px;
+
+                line-height:
+                    1.75;
+
+                margin-bottom:
+                    22px;
+
+            }
+
 
             .hub-preview {
 
@@ -1196,22 +1550,19 @@
 
             }
 
+        }
+
+
+        /* =====================================================
+           SMALL PHONES
+        ===================================================== */
+
+        @media (max-width: 390px) {
 
             .character-image {
 
                 height:
-                    260px;
-
-            }
-
-
-            .lore-grid {
-
-                grid-template-columns:
-                    1fr;
-
-                gap:
-                    20px;
+                    270px;
 
             }
 
@@ -1219,35 +1570,44 @@
             .lore-card {
 
                 min-height:
-                    340px;
+                    370px;
 
             }
 
 
-            .gallery-placeholder {
-
-                gap:
-                    18px;
-
-            }
-
-
-            .gallery-card {
+            .gallery-card,
+            .gallery-card:last-child {
 
                 min-height:
-                    240px;
+                    300px;
 
                 padding:
+                    27px 22px;
+
+            }
+
+
+            .gallery-card h3 {
+
+                font-size:
                     25px;
+
+            }
+
+
+            .gallery-card p {
+
+                max-width:
+                    100%;
 
             }
 
         }
 
 
-        /* =========================================
+        /* =====================================================
            ACCESSIBILITY
-        ========================================= */
+        ===================================================== */
 
         @media (prefers-reduced-motion: reduce) {
 
@@ -1278,9 +1638,9 @@
 <body>
 
 
-    <!-- =========================================
+    <!-- =====================================================
          SPACE BACKGROUND
-    ========================================= -->
+    ===================================================== -->
 
     <div
         class="space-background"
@@ -1300,9 +1660,9 @@
     </div>
 
 
-    <!-- =========================================
+    <!-- =====================================================
          NAVIGATION
-    ========================================= -->
+    ===================================================== -->
 
     <header class="navbar">
 
@@ -1349,9 +1709,9 @@
     <main>
 
 
-        <!-- =====================================
+        <!-- =================================================
              HERO
-        ====================================== -->
+        ================================================== -->
 
         <section
             id="home"
@@ -1359,7 +1719,6 @@
         >
 
             <div class="hero-content">
-
 
                 <p class="eyebrow">
                     THE OFFICIAL COMIC UNIVERSE
@@ -1385,16 +1744,14 @@
                     ENTER THE UNIVERSE
                 </a>
 
-
             </div>
 
         </section>
 
 
-
-        <!-- =====================================
+        <!-- =================================================
              STORY
-        ====================================== -->
+        ================================================== -->
 
         <section
             id="story"
@@ -1430,10 +1787,9 @@
         </section>
 
 
-
-        <!-- =====================================
+        <!-- =================================================
              SENTINELS
-        ====================================== -->
+        ================================================== -->
 
         <section
             id="sentinels"
@@ -1482,7 +1838,6 @@
                 </article>
 
 
-
                 <!-- XAVIER -->
 
                 <article class="character xavier">
@@ -1512,7 +1867,6 @@
                 </article>
 
 
-
                 <!-- KYLA -->
 
                 <article class="character kyla">
@@ -1540,7 +1894,6 @@
                     </small>
 
                 </article>
-
 
 
                 <!-- CEE -->
@@ -1577,10 +1930,9 @@
         </section>
 
 
-
-        <!-- =====================================
+        <!-- =================================================
              UNIVERSE
-        ====================================== -->
+        ================================================== -->
 
         <section
             id="universe"
@@ -1637,7 +1989,6 @@
                 </article>
 
 
-
                 <!-- ZYRON -->
 
                 <article class="lore-card">
@@ -1667,7 +2018,6 @@
                 </article>
 
 
-
                 <!-- COMMANDER VORAX -->
 
                 <article class="lore-card">
@@ -1695,7 +2045,6 @@
                     </div>
 
                 </article>
-
 
 
                 <!-- VORAX -->
@@ -1732,10 +2081,9 @@
         </section>
 
 
-
-        <!-- =====================================
+        <!-- =================================================
              GALLERY
-        ====================================== -->
+        ================================================== -->
 
         <section
             id="gallery"
@@ -1757,7 +2105,15 @@
 
                 <!-- COMIC ART -->
 
-                <article class="gallery-card comic">
+                <a
+                    href="gallery.html"
+                    class="gallery-card comic"
+                >
+
+                    <div class="gallery-card-symbol">
+                        ▣
+                    </div>
+
 
                     <div class="gallery-card-content">
 
@@ -1765,14 +2121,18 @@
                             THE FINISHED STORY
                         </div>
 
+
                         <h3>
                             COMIC ART
                         </h3>
 
+
                         <p>
                             Finished pages, memorable scenes
-                            and artwork from the Sentinels story.
+                            and artwork taken directly from
+                            the Sentinels story.
                         </p>
+
 
                         <span class="gallery-card-link">
                             COMING WITH THE FINISHED PAGES →
@@ -1780,15 +2140,20 @@
 
                     </div>
 
-                </article>
-
+                </a>
 
 
                 <!-- CHARACTER ART -->
 
-                <article
+                <a
+                    href="characters.html"
                     class="gallery-card character-art"
                 >
+
+                    <div class="gallery-card-symbol">
+                        ◈
+                    </div>
+
 
                     <div class="gallery-card-content">
 
@@ -1796,15 +2161,18 @@
                             THE FACES OF THE UNIVERSE
                         </div>
 
+
                         <h3>
                             CHARACTER ART
                         </h3>
 
+
                         <p>
-                            Portraits, character artwork,
-                            Sentinel designs and the people
-                            who shape the universe.
+                            Character portraits, Sentinel
+                            designs, villains and the people
+                            who bring the universe to life.
                         </p>
+
 
                         <span class="gallery-card-link">
                             EXPLORE CHARACTER ART →
@@ -1812,15 +2180,20 @@
 
                     </div>
 
-                </article>
-
+                </a>
 
 
                 <!-- CONCEPT ART -->
 
-                <article
+                <a
+                    href="concept-art.html"
                     class="gallery-card concept-art"
                 >
+
+                    <div class="gallery-card-symbol">
+                        ✦
+                    </div>
+
 
                     <div class="gallery-card-content">
 
@@ -1828,15 +2201,18 @@
                             THE MAKING OF SENTINELS
                         </div>
 
+
                         <h3>
                             CONCEPT ART
                         </h3>
 
+
                         <p>
                             Early sketches, first designs,
-                            discarded ideas and the evolution
+                            logo ideas and the evolution
                             behind the final universe.
                         </p>
+
 
                         <span class="gallery-card-link">
                             EXPLORE CONCEPT ART →
@@ -1844,7 +2220,7 @@
 
                     </div>
 
-                </article>
+                </a>
 
 
             </div>
@@ -1852,10 +2228,9 @@
         </section>
 
 
-
-        <!-- =====================================
+        <!-- =================================================
              SENTINELS HUB
-        ====================================== -->
+        ================================================== -->
 
         <section
             class="hub-preview"
@@ -1890,10 +2265,9 @@
         </section>
 
 
-
-        <!-- =====================================
+        <!-- =================================================
              ABOUT / CREATOR
-        ====================================== -->
+        ================================================== -->
 
         <section
             id="about"
@@ -1918,8 +2292,6 @@
             </p>
 
 
-            <!-- CREATOR CREDIT -->
-
             <div class="creator-credit">
 
                 <div class="creator-label">
@@ -1936,8 +2308,6 @@
                     CREATOR • WRITER • WORLD BUILDER
                 </div>
 
-
-                <!-- LILLIAN -->
 
                 <div class="apprentice-credit">
 
@@ -1965,10 +2335,9 @@
     </main>
 
 
-
-    <!-- =========================================
+    <!-- =====================================================
          FOOTER
-    ========================================= -->
+    ===================================================== -->
 
     <footer>
 
@@ -1982,7 +2351,6 @@
         </p>
 
     </footer>
-
 
 
     <script src="script.js"></script>
