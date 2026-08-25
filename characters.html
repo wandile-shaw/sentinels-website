@@ -1,1 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#03050a"
+    >
+
+    <title>CHARACTER ARCHIVE • SENTINELS</title>
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+
+        /* =========================================
+           CHARACTER ARCHIVE
+        ========================================= */
+
+        .character-archive {
+
+            padding:
+                120px 7% 100px;
+
+            max-width:
+                1400px;
+
+            margin:
+                0 auto;
+
+        }
+
+
+        .archive-intro {
+
+            max-width:
+                750px;
+
+            margin-bottom:
+                70px;
+
+        }
+
+
+        .archive-intro h1 {
+
+            font-size:
+                clamp(45px, 8vw, 90px);
+
+            letter-spacing:
+                4px;
+
+            line-height:
+                .95;
+
+            margin:
+                15px 0 25px;
+
+        }
+
+
+        .archive-intro p {
+
+            max-width:
+                650px;
+
+            color:
+                rgba(255,255,255,.55);
+
+            line-height:
+                1.8;
+
+        }
+
+
+        /* =========================================
+           CHARACTER SECTIONS
+        ========================================= */
+
+        .character-section {
+
+            margin-bottom:
+                100px;
+
+        }
+
+
+        .character-section-heading {
+
+            display:
+                flex;
+
+            align-items:
+                flex-end;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+
+            margin-bottom:
+                28px;
+
+            padding-bottom:
+                15px;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.10);
+
+        }
+
+
+        .character-section-heading span {
+
+            font-size:
+                8px;
+
+            letter-spacing:
+                4px;
+
+            opacity:
+                .4;
+
+        }
+
+
+        .character-section-heading h2 {
+
+            margin:
+                0;
+
+            font-size:
+                clamp(25px, 4vw, 42px);
+
+            letter-spacing:
+                3px;
+
+        }
+
+
+        /* =========================================
+           CHARACTER CARDS
+        ========================================= */
+
+        .character-archive-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap:
+                28px;
+
+        }
+
+
+        .archive-character {
+
+            position:
+                relative;
+
+            min-width:
+                0;
+
+            min-height:
+                580px;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            background:
+                rgba(255,255,255,.035);
+
+            transition:
+                transform .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease;
+
+        }
+
+
+        .archive-character:hover {
+
+            transform:
+                translateY(-7px);
+
+            border-color:
+                rgba(255,255,255,.30);
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,.40);
+
+        }
+
+
+        /* =========================================
+           ARTWORK
+        ========================================= */
+
+        .archive-character-image {
+
+            display:
+                block;
+
+            width:
+                100%;
+
+            height:
+                430px;
+
+            object-fit:
+                contain;
+
+            object-position:
+                center;
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(30,100,190,.14),
+                    transparent 60%
+                );
+
+        }
+
+
+        /* =========================================
+           CARD INFORMATION
+        ========================================= */
+
+        .archive-character-info {
+
+            padding:
+                25px 28px 30px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.08);
+
+        }
+
+
+        .archive-character-number {
+
+            display:
+                block;
+
+            font-size:
+                8px;
+
+            letter-spacing:
+                4px;
+
+            opacity:
+                .38;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .archive-character-info h3 {
+
+            margin:
+                0 0 7px;
+
+            font-size:
+                27px;
+
+            letter-spacing:
+                3px;
+
+        }
+
+
+        .archive-character-role {
+
+            margin:
+                0 0 14px;
+
+            font-size:
+                10px;
+
+            letter-spacing:
+                2px;
+
+            opacity:
+                .45;
+
+        }
+
+
+        .archive-character-info p {
+
+            margin:
+                0;
+
+            color:
+                rgba(255,255,255,.52);
+
+            line-height:
+                1.7;
+
+            font-size:
+                11px;
+
+        }
+
+
+        .power-tag {
+
+            display:
+                inline-block;
+
+            margin-top:
+                18px;
+
+            padding:
+                8px 11px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.14);
+
+            background:
+                rgba(255,255,255,.035);
+
+            font-size:
+                8px;
+
+            letter-spacing:
+                2px;
+
+        }
+
+
+        /* =========================================
+           CHARACTER COLOUR IDENTITIES
+        ========================================= */
+
+        .archive-character.wandile {
+
+            border-color:
+                rgba(30,135,255,.20);
+
+        }
+
+
+        .archive-character.wandile
+        .archive-character-image {
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(30,135,255,.18),
+                    transparent 62%
+                );
+
+        }
+
+
+        .archive-character.xavier {
+
+            border-color:
+                rgba(255,48,69,.20);
+
+        }
+
+
+        .archive-character.xavier
+        .archive-character-image {
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(255,48,69,.16),
+                    transparent 62%
+                );
+
+        }
+
+
+        .archive-character.kyla {
+
+            border-color:
+                rgba(255,110,181,.20);
+
+        }
+
+
+        .archive-character.kyla
+        .archive-character-image {
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(255,110,181,.16),
+                    transparent 62%
+                );
+
+        }
+
+
+        .archive-character.cee {
+
+            border-color:
+                rgba(37,232,121,.20);
+
+        }
+
+
+        .archive-character.cee
+        .archive-character-image {
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(37,232,121,.15),
+                    transparent 62%
+                );
+
+        }
+
+
+        /* =========================================
+           OTHER CHARACTERS
+        ========================================= */
+
+        .archive-character.vorax {
+
+            border-color:
+                rgba(255,75,45,.18);
+
+        }
+
+
+        .archive-character.vaelor {
+
+            border-color:
+                rgba(120,180,255,.18);
+
+        }
+
+
+        .archive-character.zyron {
+
+            border-color:
+                rgba(150,220,255,.18);
+
+        }
+
+
+        /* =========================================
+           BACK BUTTON
+        ========================================= */
+
+        .archive-back {
+
+            display:
+                inline-block;
+
+            margin-bottom:
+                45px;
+
+            padding:
+                11px 16px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.16);
+
+            color:
+                #ffffff;
+
+            text-decoration:
+                none;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                2px;
+
+            transition:
+                background .25s ease,
+                color .25s ease;
+
+        }
+
+
+        .archive-back:hover {
+
+            background:
+                #ffffff;
+
+            color:
+                #03050a;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 800px) {
+
+            .character-archive {
+
+                padding:
+                    100px 5% 70px;
+
+            }
+
+
+            .character-archive-grid {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    22px;
+
+            }
+
+
+            .archive-character {
+
+                min-height:
+                    auto;
+
+            }
+
+
+            .archive-character-image {
+
+                height:
+                    390px;
+
+            }
+
+
+            .character-section-heading {
+
+                display:
+                    block;
+
+            }
+
+
+            .character-section-heading h2 {
+
+                margin-top:
+                    8px;
+
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .archive-character-image {
+
+                height:
+                    330px;
+
+            }
+
+
+            .archive-character-info {
+
+                padding:
+                    22px;
+
+            }
+
+
+            .archive-character-info h3 {
+
+                font-size:
+                    24px;
+
+            }
+
+        }
+
+
+        /* =========================================
+           ACCESSIBILITY
+        ========================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .archive-character {
+
+                transition:
+                    none;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         SPACE BACKGROUND
+    ========================================= -->
+
+    <div
+        class="space-background"
+        aria-hidden="true"
+    >
+
+        <div class="asteroid blue one"></div>
+
+        <div class="asteroid red two"></div>
+
+        <div class="asteroid green three"></div>
+
+        <div class="asteroid white four"></div>
+
+        <div class="asteroid pink five"></div>
+
+    </div>
+
+
+    <!-- =========================================
+         NAVIGATION
+    ========================================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            SENTINELS
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                HOME
+            </a>
+
+            <a href="sentinels.html">
+                SENTINELS
+            </a>
+
+            <a href="archive.html">
+                READ
+            </a>
+
+            <a href="universe.html">
+                UNIVERSE
+            </a>
+
+            <a href="gallery.html">
+                GALLERY
+            </a>
+
+            <a href="hub.html">
+                HUB
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="character-archive">
+
+
+            <a
+                href="index.html"
+                class="archive-back"
+            >
+                ← BACK TO HOME
+            </a>
+
+
+            <div class="archive-intro">
+
+                <p class="eyebrow">
+                    THE FACES OF THE UNIVERSE
+                </p>
+
+
+                <h1>
+                    CHARACTER<br>
+                    ARCHIVE.
+                </h1>
+
+
+                <p>
+
+                    Meet the people, survivors and enemies
+                    who shape the Sentinels universe.
+
+                    This archive collects the artwork behind
+                    the characters and gives each one a place
+                    beyond the homepage.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- =====================================
+                 THE SENTINELS
+            ====================================== -->
+
+            <section class="character-section">
+
+
+                <div class="character-section-heading">
+
+                    <h2>
+                        THE SENTINELS
+                    </h2>
+
+                    <span>
+                        FOUR. ONE MISSION.
+                    </span>
+
+                </div>
+
+
+                <div class="character-archive-grid">
+
+
+                    <!-- WANDILE -->
+
+                    <article class="archive-character wandile">
+
+                        <img
+                            src="Wandile character art.jpeg"
+                            alt="Wandile character art"
+                            class="archive-character-image"
+                        >
+
+                        <div class="archive-character-info">
+
+                            <span class="archive-character-number">
+                                01 • FOURTH SENTINEL
+                            </span>
+
+                            <h3>
+                                WANDILE
+                            </h3>
+
+                            <p class="archive-character-role">
+                                THE FOURTH SENTINEL
+                            </p>
+
+                            <p>
+                                The balanced Sentinel.
+                                His armour gives him strength,
+                                speed and flight, supported by
+                                advanced Sentinel technology.
+                            </p>
+
+                            <span class="power-tag">
+                                BLUE • STRENGTH • SPEED • FLIGHT
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- XAVIER -->
+
+                    <article class="archive-character xavier">
+
+                        <img
+                            src="Xavier character art final.jpeg"
+                            alt="Xavier character art"
+                            class="archive-character-image"
+                        >
+
+                        <div class="archive-character-info">
+
+                            <span class="archive-character-number">
+                                02 • THE POWERHOUSE
+                            </span>
+
+                            <h3>
+                                XAVIER
+                            </h3>
+
+                            <p class="archive-character-role">
+                                THE POWERHOUSE
+                            </p>
+
+                            <p>
+                                The strongest of the Sentinels,
+                                Xavier carries the power of
+                                immense physical strength.
+                            </p>
+
+                            <span class="power-tag">
+                                RED • STRENGTH
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- KYLA -->
+
+                    <article class="archive-character kyla">
+
+                        <img
+                            src="Kyla character art final 1.jpeg"
+                            alt="Kyla character art"
+                            class="archive-character-image"
+                        >
+
+                        <div class="archive-character-info">
+
+                            <span class="archive-character-number">
+                                03 • THE SPEEDSTER
+                            </span>
+
+                            <h3>
+                                KYLA
+                            </h3>
+
+                            <p class="archive-character-role">
+                                THE SPEEDSTER
+                            </p>
+
+                            <p>
+                                Kyla is the fastest Sentinel,
+                                moving with incredible speed
+                                and precision.
+                            </p>
+
+                            <span class="power-tag">
+                                PINK + WHITE • SPEED
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- CEE -->
+
+                    <article class="archive-character cee">
+
+                        <img
+                            src="Cee character art.jpeg"
+                            alt="Cee character art"
+                            class="archive-character-image"
+                        >
+
+                        <div class="archive-character-info">
+
+                            <span class="archive-character-number">
+                                04 • THE AERIAL SENTINEL
+                            </span>
+
+                            <h3>
+                                CEE
+                            </h3>
+
+                            <p class="archive-character-role">
+                                THE AERIAL SENTINEL
+                            </p>
+
+                            <p>
+                                Cee commands the skies with
+                                retractable wings and can unleash
+                                powerful energy blasts.
+                            </p>
+
+                            <span class="power-tag">
+                                GREEN • FLIGHT • ENERGY BLASTS
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 SURVIVORS
+            ====================================== -->
+
+            <section class="character-section">
+
+
+                <div class="character-section-heading">
+
+                    <h2>
+                        THE SURVIVORS
+                    </h2>
+
+                    <span>
+                        ANCIENT SENTINEL KNOWLEDGE
+                    </span>
+
+                </div>
+
+
+                <div class="character-archive-grid">
+
+
+                    <!-- VAELOR -->
+
+                    <article class="archive-character vaelor">
+
+                        <img
+                            src="Vaelor character art final.jpeg"
+                            alt="Vaelor character art"
+                            class="archive-character-image"
+                        >
+
+                        <div class="archive-character-info">
+
+                            <span class="archive-character-number">
+                                05 • THE KEEPER
+                            </span>
+
+                            <h3>
+                                VAELOR
+                            </h3>
+
+                            <p class="archive-character-role">
+                                KEEPER OF SENTINEL KNOWLEDGE
+                            </p>
+
+                            <p>
+                                One of the surviving wise aliens
+                                connected to the ancient history
+                                of the Sentinels.
+                            </p>
+
+                            <span class="power-tag">
+                                SURVIVOR • MENTOR • KEEPER
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- ZYRON -->
+
+                    <article class="archive-character zyron">
+
+                        <img
+                            src="Zyron character art final.jpeg"
+                            alt="Zyron character art"
+                            class="archive-character-image"
+                        >
+
+                        <div class="archive-character-info">
+
+                            <span class="archive-character-number">
+                                06 • THE GUARDIAN
+                            </span>
+
+                            <h3>
+                                ZYRON
+                            </h3>
+
+                            <p class="archive-character-role">
+                                GUARDIAN & SURVIVOR
+                            </p>
+
+                            <p>
+                                A survivor who carries knowledge
+                                of the Sentinel legacy and helps
+                                guide those who inherit it.
+                            </p>
+
+                            <span class="power-tag">
+                                SURVIVOR • GUARDIAN • MENTOR
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 THE ENEMY
+            ====================================== -->
+
+            <section class="character-section">
+
+
+                <div class="character-section-heading">
+
+                    <h2>
+                        THE ENEMY
+                    </h2>
+
+                    <span>
+                        THE THREAT
+                    </span>
+
+                </div>
+
+
+                <div class="character-archive-grid">
+
+
+                    <!-- COMMANDER VORAX -->
+
+                    <article class="archive-character vorax">
+
+                        <img
+                            src="Commander vorax character art final.jpeg"
+                            alt="Commander Vorax character art"
+                            class="archive-character-image"
+                        >
+
+                        <div class="archive-character-info">
+
+                            <span class="archive-character-number">
+                                07 • COMMANDER
+                            </span>
+
+                            <h3>
+                                COMMANDER VORAX
+                            </h3>
+
+                            <p class="archive-character-role">
+                                THE HUNTER
+                            </p>
+
+                            <p>
+                                The commander leading the hunt
+                                for the Sentinels and the power
+                                hidden within them.
+                            </p>
+
+                            <span class="power-tag">
+                                ENEMY • COMMANDER • HUNTER
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- VORAX -->
+
+                    <article class="archive-character vorax">
+
+                        <img
+                            src="Vorax character art final 1.jpeg"
+                            alt="Vorax character art"
+                            class="archive-character-image"
+                        >
+
+                        <div class="archive-character-info">
+
+                            <span class="archive-character-number">
+                                08 • THE MUTATED
+                            </span>
+
+                            <h3>
+                                VORAX
+                            </h3>
+
+                            <p class="archive-character-role">
+                                MUTATED FORCE
+                            </p>
+
+                            <p>
+                                A dangerous mutated creature
+                                created by the enemy and used
+                                as a weapon against the Sentinels.
+                            </p>
+
+                            <span class="power-tag">
+                                MUTATED • ENEMY • THREAT
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </section>
+
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <div class="logo">
+            SENTINELS
+        </div>
+
+        <p>
+            ©️ 2026 Sentinels. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
