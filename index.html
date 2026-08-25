@@ -15,7 +15,12 @@
         content="#03050a"
     >
 
-    <title>SENTINELS</title>
+    <meta
+        name="description"
+        content="SENTINELS — The official comic universe created by Wandile Shaw."
+    >
+
+    <title>SENTINELS — Official Comic Universe</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -24,7 +29,7 @@
 
         /* =====================================================
            SENTINELS HOMEPAGE
-           Homepage layout + responsive artwork system
+           Complete homepage layout + artwork system
         ===================================================== */
 
 
@@ -59,6 +64,7 @@
                 ),
 
                 #03050a;
+
         }
 
 
@@ -93,6 +99,7 @@
                 55px 85px;
 
             opacity: .35;
+
         }
 
 
@@ -125,6 +132,7 @@
                 );
 
             opacity: .35;
+
         }
 
 
@@ -149,6 +157,7 @@
                 sentinel-drift
                 linear
                 infinite;
+
         }
 
 
@@ -172,6 +181,7 @@
                 rgba(255,255,255,.35);
 
             filter: blur(2px);
+
         }
 
 
@@ -180,6 +190,7 @@
             background: #1687ff;
 
             color: #1687ff;
+
         }
 
 
@@ -188,6 +199,7 @@
             background: #ff3045;
 
             color: #ff3045;
+
         }
 
 
@@ -196,6 +208,7 @@
             background: #25e879;
 
             color: #25e879;
+
         }
 
 
@@ -204,6 +217,7 @@
             background: #ffffff;
 
             color: #ffffff;
+
         }
 
 
@@ -212,6 +226,7 @@
             background: #ff6eb5;
 
             color: #ff6eb5;
+
         }
 
 
@@ -226,6 +241,7 @@
             top: 23%;
 
             animation-duration: 29s;
+
         }
 
 
@@ -242,6 +258,7 @@
             animation-duration: 38s;
 
             animation-delay: -12s;
+
         }
 
 
@@ -258,6 +275,7 @@
             animation-duration: 32s;
 
             animation-delay: -8s;
+
         }
 
 
@@ -274,6 +292,7 @@
             animation-duration: 41s;
 
             animation-delay: -19s;
+
         }
 
 
@@ -290,6 +309,7 @@
             animation-duration: 27s;
 
             animation-delay: -10s;
+
         }
 
 
@@ -300,6 +320,7 @@
                 transform:
                     translate3d(-35px, 25px, 0)
                     rotate(0deg);
+
             }
 
             50% {
@@ -307,6 +328,7 @@
                 transform:
                     translate3d(120px, -75px, 0)
                     rotate(180deg);
+
             }
 
             100% {
@@ -314,6 +336,7 @@
                 transform:
                     translate3d(-35px, 25px, 0)
                     rotate(360deg);
+
             }
 
         }
@@ -351,6 +374,7 @@
             transition:
                 transform .25s ease,
                 box-shadow .25s ease;
+
         }
 
 
@@ -362,39 +386,145 @@
             box-shadow:
                 0 14px 38px
                 rgba(255,255,255,.20);
+
         }
 
 
         /* =====================================================
            CREATOR / APPRENTICE
+           SOLID BOLD CARDS
         ===================================================== */
 
         .creator-credit {
 
             margin-top: 35px;
 
-            max-width: 560px;
+            max-width: 720px;
 
-            padding: 25px;
+            display: grid;
 
-            border-left:
-                2px solid
-                rgba(255,255,255,.7);
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 20px;
+
+            padding: 0;
+
+            border: none;
+
+            background: transparent;
+
+        }
+
+
+        .creator-card {
+
+            position: relative;
+
+            min-height: 190px;
+
+            padding: 30px;
+
+            overflow: hidden;
+
+            border:
+                1px solid
+                rgba(255,255,255,.20);
 
             background:
-                rgba(255,255,255,.035);
+                #080d17;
+
+            box-shadow:
+                0 20px 55px
+                rgba(0,0,0,.35);
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: flex-end;
+
+            transition:
+                transform .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease;
+
+        }
+
+
+        .creator-card:hover {
+
+            transform:
+                translateY(-7px);
+
+            border-color:
+                rgba(255,255,255,.45);
+
+            box-shadow:
+                0 28px 70px
+                rgba(0,0,0,.48);
+
+        }
+
+
+        .creator-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 190px;
+
+            height: 190px;
+
+            right: -75px;
+
+            top: -80px;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            filter: blur(3px);
+
+        }
+
+
+        .creator-card.creator::before {
+
+            background:
+                rgba(60,145,255,.18);
+
+        }
+
+
+        .creator-card.apprentice::before {
+
+            background:
+                rgba(255,80,165,.17);
+
+        }
+
+
+        .creator-card-content {
+
+            position: relative;
+
+            z-index: 2;
+
         }
 
 
         .creator-label {
 
-            font-size: 9px;
+            font-size: 8px;
 
             letter-spacing: 4px;
 
-            opacity: .4;
+            opacity: .48;
 
-            margin-bottom: 9px;
+            margin-bottom: 10px;
+
         }
 
 
@@ -406,29 +536,20 @@
 
             letter-spacing: 2px;
 
-            margin-bottom: 5px;
+            margin-bottom: 7px;
+
         }
 
 
         .creator-role {
 
-            font-size: 11px;
+            font-size: 10px;
 
             letter-spacing: 1.5px;
 
-            opacity: .5;
-        }
+            color:
+                rgba(255,255,255,.55);
 
-
-        .apprentice-credit {
-
-            margin-top: 18px;
-
-            padding-top: 18px;
-
-            border-top:
-                1px solid
-                rgba(255,255,255,.10);
         }
 
 
@@ -438,21 +559,23 @@
 
             letter-spacing: 3px;
 
-            opacity: .35;
+            opacity: .42;
 
-            margin-bottom: 7px;
+            margin-bottom: 10px;
+
         }
 
 
         .apprentice-name {
 
-            font-size: 21px;
+            font-size: 25px;
 
-            font-weight: 700;
+            font-weight: 800;
 
-            letter-spacing: 1px;
+            letter-spacing: 2px;
 
-            margin-bottom: 4px;
+            margin-bottom: 7px;
+
         }
 
 
@@ -462,7 +585,9 @@
 
             letter-spacing: 1px;
 
-            opacity: .45;
+            color:
+                rgba(255,255,255,.55);
+
         }
 
 
@@ -492,6 +617,40 @@
 
             position: relative;
 
+            padding:
+                18px 18px 25px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.14);
+
+            background:
+                #080d17;
+
+            box-shadow:
+                0 20px 50px
+                rgba(0,0,0,.28);
+
+            transition:
+                transform .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease;
+
+        }
+
+
+        .character:hover {
+
+            transform:
+                translateY(-7px);
+
+            border-color:
+                rgba(255,255,255,.38);
+
+            box-shadow:
+                0 25px 65px
+                rgba(0,0,0,.42);
+
         }
 
 
@@ -507,7 +666,10 @@
 
             object-position: center;
 
-            margin: 0 auto;
+            margin: 0 auto 20px;
+
+            background:
+                #050912;
 
         }
 
@@ -519,9 +681,68 @@
         }
 
 
+        .character span {
+
+            display: block;
+
+            font-size: 8px;
+
+            letter-spacing: 4px;
+
+            opacity: .45;
+
+            margin-bottom: 9px;
+
+        }
+
+
+        .character h3 {
+
+            margin:
+                0 0 7px;
+
+            font-size: 22px;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .character p {
+
+            margin:
+                0 0 8px;
+
+            font-size: 10px;
+
+            letter-spacing: 1.5px;
+
+            opacity: .60;
+
+        }
+
+
+        .character small {
+
+            font-size: 8px;
+
+            letter-spacing: 1px;
+
+            color:
+                rgba(255,255,255,.45);
+
+            line-height: 1.6;
+
+        }
+
+
         /* =====================================================
            UNIVERSE / LORE CARDS
-           IMAGE ABOVE — SOLID INFORMATION BELOW
+
+           IMPORTANT:
+           These are now SOLID cards.
+           Artwork sits above the text instead of
+           having text painted over the artwork.
         ===================================================== */
 
         .lore-grid {
@@ -546,20 +767,16 @@
 
             overflow: hidden;
 
-            display: flex;
-
-            flex-direction: column;
+            border:
+                1px solid
+                rgba(255,255,255,.14);
 
             background:
                 #080d17;
 
-            border:
-                1px solid
-                rgba(255,255,255,.16);
+            display: flex;
 
-            box-shadow:
-                0 18px 45px
-                rgba(0,0,0,.35);
+            flex-direction: column;
 
             transition:
                 transform .3s ease,
@@ -575,19 +792,14 @@
                 translateY(-7px);
 
             border-color:
-                rgba(255,255,255,.38);
+                rgba(255,255,255,.35);
 
             box-shadow:
-                0 25px 60px
-                rgba(0,0,0,.48);
+                0 20px 50px
+                rgba(0,0,0,.42);
 
         }
 
-
-        /* =====================================================
-           LORE ARTWORK
-           COMPLETE IMAGE — NO TEXT OVERLAY
-        ===================================================== */
 
         .lore-card-image {
 
@@ -597,7 +809,7 @@
 
             width: 100%;
 
-            height: 330px;
+            height: 320px;
 
             object-fit: contain;
 
@@ -606,12 +818,10 @@
             padding: 18px;
 
             background:
-                #03050a;
-
-            opacity: 1;
+                #050912;
 
             transition:
-                transform .45s ease;
+                transform .5s ease;
 
         }
 
@@ -624,7 +834,7 @@
         }
 
 
-        /* Completely remove the old overlay system */
+        /* No overlay on artwork */
 
         .lore-card::before,
         .lore-card::after {
@@ -634,28 +844,16 @@
         }
 
 
-        /* =====================================================
-           LORE INFORMATION
-           SOLID CARD BODY
-        ===================================================== */
-
         .lore-card-content {
 
             position: relative;
 
             z-index: 2;
 
-            margin-top: 0;
-
-            padding:
-                24px 24px 26px;
+            padding: 25px;
 
             background:
                 #080d17;
-
-            border-top:
-                1px solid
-                rgba(255,255,255,.10);
 
         }
 
@@ -668,8 +866,7 @@
 
             letter-spacing: 4px;
 
-            color:
-                rgba(255,255,255,.48);
+            opacity: .48;
 
             margin-bottom: 10px;
 
@@ -679,16 +876,11 @@
         .lore-card h3 {
 
             margin:
-                0 0 9px;
+                0 0 8px;
 
-            font-size:
-                22px;
+            font-size: 22px;
 
-            line-height:
-                1.1;
-
-            letter-spacing:
-                2px;
+            letter-spacing: 2px;
 
         }
 
@@ -707,14 +899,12 @@
         }
 
 
-        /* =====================================================
-           INDIVIDUAL LORE IDENTITIES
-        ===================================================== */
+        /* Individual lore identities */
 
         .lore-card:nth-child(1) {
 
             border-color:
-                rgba(80,160,255,.30);
+                rgba(80,160,255,.28);
 
         }
 
@@ -722,7 +912,7 @@
         .lore-card:nth-child(2) {
 
             border-color:
-                rgba(80,210,255,.30);
+                rgba(80,210,255,.28);
 
         }
 
@@ -730,7 +920,7 @@
         .lore-card:nth-child(3) {
 
             border-color:
-                rgba(255,55,75,.32);
+                rgba(255,55,75,.30);
 
         }
 
@@ -738,14 +928,15 @@
         .lore-card:nth-child(4) {
 
             border-color:
-                rgba(160,70,255,.32);
+                rgba(160,70,255,.30);
 
         }
 
 
         /* =====================================================
            GALLERY CARDS
-           BOLD SOLID DESIGN
+
+           Solid, bold, independent cards.
         ===================================================== */
 
         .gallery-placeholder {
@@ -772,6 +963,13 @@
 
             overflow: hidden;
 
+            border:
+                1px solid
+                rgba(255,255,255,.18);
+
+            background:
+                #080d17;
+
             display: flex;
 
             flex-direction: column;
@@ -786,16 +984,9 @@
 
             color: #ffffff;
 
-            border:
-                1px solid
-                rgba(255,255,255,.18);
-
-            background:
-                #080d17;
-
             box-shadow:
-                0 18px 45px
-                rgba(0,0,0,.38);
+                0 20px 55px
+                rgba(0,0,0,.30);
 
             transition:
                 transform .3s ease,
@@ -811,18 +1002,48 @@
                 translateY(-8px);
 
             border-color:
-                rgba(255,255,255,.45);
+                rgba(255,255,255,.40);
 
             box-shadow:
-                0 28px 65px
-                rgba(0,0,0,.52);
+                0 25px 60px
+                rgba(0,0,0,.48);
 
         }
 
 
-        /* No glass overlays */
+        .gallery-card::before {
 
-        .gallery-card::before,
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+
+            height: 220px;
+
+            border-radius: 50%;
+
+            right: -70px;
+
+            top: -75px;
+
+            filter: blur(4px);
+
+            transition:
+                transform .5s ease,
+                opacity .5s ease;
+
+        }
+
+
+        .gallery-card:hover::before {
+
+            transform:
+                scale(1.25);
+
+        }
+
+
         .gallery-card::after {
 
             display: none;
@@ -839,10 +1060,6 @@
         }
 
 
-        /* =====================================================
-           GALLERY LABEL
-        ===================================================== */
-
         .gallery-card-label {
 
             display: inline-block;
@@ -851,29 +1068,21 @@
 
             letter-spacing: 3px;
 
+            opacity: .62;
+
             margin-bottom: 13px;
-
-            font-weight: 800;
-
-            opacity: .68;
 
         }
 
 
-        /* =====================================================
-           GALLERY TITLE
-        ===================================================== */
-
         .gallery-card h3 {
 
             font-size:
-                clamp(25px, 3vw, 34px);
+                clamp(24px, 3vw, 32px);
 
-            line-height:
-                1.05;
+            line-height: 1.05;
 
-            letter-spacing:
-                2px;
+            letter-spacing: 2px;
 
             margin:
                 0 0 14px;
@@ -881,33 +1090,22 @@
         }
 
 
-        /* =====================================================
-           GALLERY DESCRIPTION
-        ===================================================== */
-
         .gallery-card p {
 
-            font-size:
-                11px;
+            font-size: 11px;
 
-            line-height:
-                1.75;
+            line-height: 1.75;
 
             color:
-                rgba(255,255,255,.65);
+                rgba(255,255,255,.60);
 
             margin:
                 0 0 24px;
 
-            max-width:
-                330px;
+            max-width: 330px;
 
         }
 
-
-        /* =====================================================
-           GALLERY LINK
-        ===================================================== */
 
         .gallery-card-link {
 
@@ -921,31 +1119,43 @@
 
             letter-spacing: 2px;
 
-            font-weight: 900;
+            font-weight: 800;
 
-            color:
-                #ffffff;
+            color: #ffffff;
 
         }
 
 
         /* =====================================================
-           COMIC ART
+           GALLERY — COMIC
         ===================================================== */
 
         .gallery-card.comic {
 
+            border-color:
+                rgba(70,150,255,.30);
+
             background:
+
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(60,150,255,.22),
+                    transparent 35%
+                ),
 
                 linear-gradient(
                     145deg,
-                    #123d78 0%,
-                    #071426 55%,
-                    #030812 100%
+                    rgba(20,70,145,.30),
+                    rgba(4,10,20,.98)
                 );
 
-            border-color:
-                rgba(70,150,255,.45);
+        }
+
+
+        .gallery-card.comic::before {
+
+            background:
+                rgba(50,140,255,.20);
 
         }
 
@@ -953,28 +1163,41 @@
         .gallery-card.comic .gallery-card-label {
 
             color:
-                #75b5ff;
+                #65aaff;
 
         }
 
 
         /* =====================================================
-           CHARACTER ART
+           GALLERY — CHARACTER ART
         ===================================================== */
 
         .gallery-card.character-art {
 
+            border-color:
+                rgba(255,75,145,.30);
+
             background:
+
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(255,65,140,.22),
+                    transparent 35%
+                ),
 
                 linear-gradient(
                     145deg,
-                    #6b1745 0%,
-                    #260b1d 55%,
-                    #09030a 100%
+                    rgba(120,30,75,.25),
+                    rgba(4,10,20,.98)
                 );
 
-            border-color:
-                rgba(255,75,145,.45);
+        }
+
+
+        .gallery-card.character-art::before {
+
+            background:
+                rgba(255,55,135,.18);
 
         }
 
@@ -982,28 +1205,41 @@
         .gallery-card.character-art .gallery-card-label {
 
             color:
-                #ff8bc4;
+                #ff79b9;
 
         }
 
 
         /* =====================================================
-           CONCEPT ART
+           GALLERY — CONCEPT ART
         ===================================================== */
 
         .gallery-card.concept-art {
 
+            border-color:
+                rgba(50,230,155,.30);
+
             background:
+
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(35,230,150,.20),
+                    transparent 35%
+                ),
 
                 linear-gradient(
                     145deg,
-                    #12654f 0%,
-                    #092d25 55%,
-                    #03100d 100%
+                    rgba(10,100,80,.24),
+                    rgba(4,10,20,.98)
                 );
 
-            border-color:
-                rgba(50,230,155,.45);
+        }
+
+
+        .gallery-card.concept-art::before {
+
+            background:
+                rgba(30,220,145,.17);
 
         }
 
@@ -1011,7 +1247,7 @@
         .gallery-card.concept-art .gallery-card-label {
 
             color:
-                #6ff0bd;
+                #54e6ae;
 
         }
 
@@ -1028,9 +1264,9 @@
 
             left: 30px;
 
-            width: 46px;
+            width: 44px;
 
-            height: 46px;
+            height: 44px;
 
             display: flex;
 
@@ -1040,19 +1276,16 @@
 
             border:
                 1px solid
-                rgba(255,255,255,.28);
+                rgba(255,255,255,.18);
 
             background:
-                rgba(0,0,0,.20);
+                rgba(255,255,255,.045);
 
-            font-size:
-                17px;
+            font-size: 17px;
 
-            font-weight:
-                900;
+            font-weight: 900;
 
-            z-index:
-                2;
+            z-index: 2;
 
         }
 
@@ -1322,7 +1555,7 @@
                 grid-template-columns:
                     1fr;
 
-                gap: 32px;
+                gap: 24px;
 
                 margin-top: 35px;
 
@@ -1332,7 +1565,7 @@
             .character {
 
                 padding:
-                    0 5px;
+                    15px 15px 23px;
 
             }
 
@@ -1341,7 +1574,7 @@
 
                 width: 100%;
 
-                height: 300px;
+                height: 320px;
 
                 object-fit: contain;
 
@@ -1362,11 +1595,10 @@
 
             .lore-card-image {
 
-                height:
-                    340px;
+                height: 330px;
 
                 padding:
-                    18px;
+                    20px;
 
             }
 
@@ -1374,7 +1606,28 @@
             .lore-card-content {
 
                 padding:
-                    23px 22px 25px;
+                    24px;
+
+            }
+
+
+            .creator-credit {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 18px;
+
+            }
+
+
+            .creator-card {
+
+                min-height:
+                    175px;
+
+                padding:
+                    27px;
 
             }
 
@@ -1384,11 +1637,9 @@
                 grid-template-columns:
                     1fr;
 
-                gap:
-                    22px;
+                gap: 22px;
 
-                margin-top:
-                    35px;
+                margin-top: 35px;
 
             }
 
@@ -1455,14 +1706,6 @@
             }
 
 
-            .creator-credit {
-
-                padding:
-                    20px;
-
-            }
-
-
             .universe-button {
 
                 margin-top:
@@ -1485,7 +1728,7 @@
             .character-image {
 
                 height:
-                    270px;
+                    285px;
 
             }
 
@@ -1493,10 +1736,34 @@
             .lore-card-image {
 
                 height:
-                    315px;
+                    300px;
+
+            }
+
+
+            .creator-card {
+
+                min-height:
+                    165px;
 
                 padding:
-                    15px;
+                    24px;
+
+            }
+
+
+            .creator-name {
+
+                font-size:
+                    23px;
+
+            }
+
+
+            .apprentice-name {
+
+                font-size:
+                    22px;
 
             }
 
@@ -1548,7 +1815,8 @@
             .hub-button,
             .character,
             .lore-card,
-            .gallery-card {
+            .gallery-card,
+            .creator-card {
 
                 transition: none;
 
@@ -2218,40 +2486,60 @@
             </p>
 
 
+            <!-- CREATOR CARDS -->
+
             <div class="creator-credit">
 
-                <div class="creator-label">
-                    CREATED BY
-                </div>
+
+                <!-- WANDILE -->
+
+                <div class="creator-card creator">
+
+                    <div class="creator-card-content">
+
+                        <div class="creator-label">
+                            CREATED BY
+                        </div>
 
 
-                <div class="creator-name">
-                    WANDILE SHAW
-                </div>
+                        <div class="creator-name">
+                            WANDILE SHAW
+                        </div>
 
 
-                <div class="creator-role">
-                    CREATOR • WRITER • WORLD BUILDER
-                </div>
+                        <div class="creator-role">
+                            CREATOR • WRITER • WORLD BUILDER
+                        </div>
 
-
-                <div class="apprentice-credit">
-
-                    <div class="apprentice-label">
-                        SENTINELS APPRENTICE
-                    </div>
-
-
-                    <div class="apprentice-name">
-                        LILLIAN
-                    </div>
-
-
-                    <div class="apprentice-role">
-                        CREATIVE APPRENTICE
                     </div>
 
                 </div>
+
+
+                <!-- LILLIAN -->
+
+                <div class="creator-card apprentice">
+
+                    <div class="creator-card-content">
+
+                        <div class="apprentice-label">
+                            SENTINELS APPRENTICE
+                        </div>
+
+
+                        <div class="apprentice-name">
+                            LILLIAN
+                        </div>
+
+
+                        <div class="apprentice-role">
+                            CREATIVE APPRENTICE
+                        </div>
+
+                    </div>
+
+                </div>
+
 
             </div>
 
