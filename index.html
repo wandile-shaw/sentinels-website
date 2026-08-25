@@ -521,6 +521,7 @@
 
         /* =====================================================
            UNIVERSE / LORE CARDS
+           IMAGE ABOVE — SOLID INFORMATION BELOW
         ===================================================== */
 
         .lore-grid {
@@ -543,22 +544,22 @@
 
             min-width: 0;
 
-            min-height: 390px;
-
             overflow: hidden;
-
-            border:
-                1px solid
-                rgba(255,255,255,.14);
-
-            background:
-                rgba(255,255,255,.035);
 
             display: flex;
 
             flex-direction: column;
 
-            justify-content: flex-end;
+            background:
+                #080d17;
+
+            border:
+                1px solid
+                rgba(255,255,255,.16);
+
+            box-shadow:
+                0 18px 45px
+                rgba(0,0,0,.35);
 
             transition:
                 transform .3s ease,
@@ -574,31 +575,29 @@
                 translateY(-7px);
 
             border-color:
-                rgba(255,255,255,.35);
+                rgba(255,255,255,.38);
 
             box-shadow:
-                0 20px 50px
-                rgba(0,0,0,.35);
+                0 25px 60px
+                rgba(0,0,0,.48);
 
         }
 
 
-        /*
-           IMPORTANT:
-           CONTAIN keeps the COMPLETE artwork visible.
-           The old COVER treatment was causing the
-           artwork to look zoomed/cropped on phones.
-        */
+        /* =====================================================
+           LORE ARTWORK
+           COMPLETE IMAGE — NO TEXT OVERLAY
+        ===================================================== */
 
         .lore-card-image {
 
-            position: absolute;
+            position: relative;
 
-            inset: 0;
+            display: block;
 
             width: 100%;
 
-            height: 100%;
+            height: 330px;
 
             object-fit: contain;
 
@@ -606,11 +605,13 @@
 
             padding: 18px;
 
-            opacity: .82;
+            background:
+                #03050a;
+
+            opacity: 1;
 
             transition:
-                transform .5s ease,
-                opacity .5s ease;
+                transform .45s ease;
 
         }
 
@@ -620,59 +621,23 @@
             transform:
                 scale(1.025);
 
-            opacity: .95;
-
         }
 
 
-        .lore-card::before {
+        /* Completely remove the old overlay system */
 
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-
-                radial-gradient(
-                    circle at 50% 30%,
-                    rgba(30,130,255,.12),
-                    transparent 55%
-                );
-
-            pointer-events: none;
-
-            z-index: 1;
-
-        }
-
-
+        .lore-card::before,
         .lore-card::after {
 
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-
-                linear-gradient(
-                    to top,
-                    rgba(3,5,10,.99) 0%,
-                    rgba(3,5,10,.86) 25%,
-                    rgba(3,5,10,.35) 48%,
-                    rgba(3,5,10,.05) 75%,
-                    rgba(3,5,10,.02) 100%
-                );
-
-            pointer-events: none;
-
-            z-index: 1;
+            display: none;
 
         }
 
+
+        /* =====================================================
+           LORE INFORMATION
+           SOLID CARD BODY
+        ===================================================== */
 
         .lore-card-content {
 
@@ -680,9 +645,17 @@
 
             z-index: 2;
 
-            padding: 25px;
+            margin-top: 0;
 
-            margin-top: auto;
+            padding:
+                24px 24px 26px;
+
+            background:
+                #080d17;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.10);
 
         }
 
@@ -695,7 +668,8 @@
 
             letter-spacing: 4px;
 
-            opacity: .48;
+            color:
+                rgba(255,255,255,.48);
 
             margin-bottom: 10px;
 
@@ -705,11 +679,16 @@
         .lore-card h3 {
 
             margin:
-                0 0 8px;
+                0 0 9px;
 
-            font-size: 22px;
+            font-size:
+                22px;
 
-            letter-spacing: 2px;
+            line-height:
+                1.1;
+
+            letter-spacing:
+                2px;
 
         }
 
@@ -728,12 +707,14 @@
         }
 
 
-        /* Individual lore identities */
+        /* =====================================================
+           INDIVIDUAL LORE IDENTITIES
+        ===================================================== */
 
         .lore-card:nth-child(1) {
 
             border-color:
-                rgba(80,160,255,.22);
+                rgba(80,160,255,.30);
 
         }
 
@@ -741,7 +722,7 @@
         .lore-card:nth-child(2) {
 
             border-color:
-                rgba(80,210,255,.22);
+                rgba(80,210,255,.30);
 
         }
 
@@ -749,7 +730,7 @@
         .lore-card:nth-child(3) {
 
             border-color:
-                rgba(255,55,75,.24);
+                rgba(255,55,75,.32);
 
         }
 
@@ -757,13 +738,14 @@
         .lore-card:nth-child(4) {
 
             border-color:
-                rgba(160,70,255,.24);
+                rgba(160,70,255,.32);
 
         }
 
 
         /* =====================================================
            GALLERY CARDS
+           BOLD SOLID DESIGN
         ===================================================== */
 
         .gallery-placeholder {
@@ -790,13 +772,6 @@
 
             overflow: hidden;
 
-            border:
-                1px solid
-                rgba(255,255,255,.14);
-
-            background:
-                #080d17;
-
             display: flex;
 
             flex-direction: column;
@@ -810,6 +785,17 @@
             text-decoration: none;
 
             color: #ffffff;
+
+            border:
+                1px solid
+                rgba(255,255,255,.18);
+
+            background:
+                #080d17;
+
+            box-shadow:
+                0 18px 45px
+                rgba(0,0,0,.38);
 
             transition:
                 transform .3s ease,
@@ -825,69 +811,21 @@
                 translateY(-8px);
 
             border-color:
-                rgba(255,255,255,.40);
+                rgba(255,255,255,.45);
 
             box-shadow:
-                0 25px 60px
-                rgba(0,0,0,.42);
+                0 28px 65px
+                rgba(0,0,0,.52);
 
         }
 
 
-        /* Decorative glow */
+        /* No glass overlays */
 
-        .gallery-card::before {
-
-            content: "";
-
-            position: absolute;
-
-            width: 220px;
-
-            height: 220px;
-
-            border-radius: 50%;
-
-            right: -70px;
-
-            top: -75px;
-
-            filter: blur(4px);
-
-            transition:
-                transform .5s ease,
-                opacity .5s ease;
-
-        }
-
-
-        .gallery-card:hover::before {
-
-            transform:
-                scale(1.25);
-
-        }
-
-
+        .gallery-card::before,
         .gallery-card::after {
 
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-
-                linear-gradient(
-                    to top,
-                    rgba(3,5,10,.99) 0%,
-                    rgba(3,5,10,.86) 34%,
-                    rgba(3,5,10,.32) 72%,
-                    rgba(3,5,10,.05) 100%
-                );
-
-            pointer-events: none;
+            display: none;
 
         }
 
@@ -901,6 +839,10 @@
         }
 
 
+        /* =====================================================
+           GALLERY LABEL
+        ===================================================== */
+
         .gallery-card-label {
 
             display: inline-block;
@@ -909,21 +851,29 @@
 
             letter-spacing: 3px;
 
-            opacity: .62;
-
             margin-bottom: 13px;
+
+            font-weight: 800;
+
+            opacity: .68;
 
         }
 
 
+        /* =====================================================
+           GALLERY TITLE
+        ===================================================== */
+
         .gallery-card h3 {
 
             font-size:
-                clamp(24px, 3vw, 32px);
+                clamp(25px, 3vw, 34px);
 
-            line-height: 1.05;
+            line-height:
+                1.05;
 
-            letter-spacing: 2px;
+            letter-spacing:
+                2px;
 
             margin:
                 0 0 14px;
@@ -931,22 +881,33 @@
         }
 
 
+        /* =====================================================
+           GALLERY DESCRIPTION
+        ===================================================== */
+
         .gallery-card p {
 
-            font-size: 11px;
+            font-size:
+                11px;
 
-            line-height: 1.75;
+            line-height:
+                1.75;
 
             color:
-                rgba(255,255,255,.60);
+                rgba(255,255,255,.65);
 
             margin:
                 0 0 24px;
 
-            max-width: 330px;
+            max-width:
+                330px;
 
         }
 
+
+        /* =====================================================
+           GALLERY LINK
+        ===================================================== */
 
         .gallery-card-link {
 
@@ -960,43 +921,31 @@
 
             letter-spacing: 2px;
 
-            font-weight: 800;
+            font-weight: 900;
 
-            color: #ffffff;
+            color:
+                #ffffff;
 
         }
 
 
         /* =====================================================
-           GALLERY — COMIC
+           COMIC ART
         ===================================================== */
 
         .gallery-card.comic {
 
-            border-color:
-                rgba(70,150,255,.30);
-
             background:
-
-                radial-gradient(
-                    circle at 80% 20%,
-                    rgba(60,150,255,.22),
-                    transparent 35%
-                ),
 
                 linear-gradient(
                     145deg,
-                    rgba(20,70,145,.30),
-                    rgba(4,10,20,.98)
+                    #123d78 0%,
+                    #071426 55%,
+                    #030812 100%
                 );
 
-        }
-
-
-        .gallery-card.comic::before {
-
-            background:
-                rgba(50,140,255,.20);
+            border-color:
+                rgba(70,150,255,.45);
 
         }
 
@@ -1004,41 +953,28 @@
         .gallery-card.comic .gallery-card-label {
 
             color:
-                #65aaff;
+                #75b5ff;
 
         }
 
 
         /* =====================================================
-           GALLERY — CHARACTER ART
+           CHARACTER ART
         ===================================================== */
 
         .gallery-card.character-art {
 
-            border-color:
-                rgba(255,75,145,.30);
-
             background:
-
-                radial-gradient(
-                    circle at 80% 20%,
-                    rgba(255,65,140,.22),
-                    transparent 35%
-                ),
 
                 linear-gradient(
                     145deg,
-                    rgba(120,30,75,.25),
-                    rgba(4,10,20,.98)
+                    #6b1745 0%,
+                    #260b1d 55%,
+                    #09030a 100%
                 );
 
-        }
-
-
-        .gallery-card.character-art::before {
-
-            background:
-                rgba(255,55,135,.18);
+            border-color:
+                rgba(255,75,145,.45);
 
         }
 
@@ -1046,41 +982,28 @@
         .gallery-card.character-art .gallery-card-label {
 
             color:
-                #ff79b9;
+                #ff8bc4;
 
         }
 
 
         /* =====================================================
-           GALLERY — CONCEPT ART
+           CONCEPT ART
         ===================================================== */
 
         .gallery-card.concept-art {
 
-            border-color:
-                rgba(50,230,155,.30);
-
             background:
-
-                radial-gradient(
-                    circle at 80% 20%,
-                    rgba(35,230,150,.20),
-                    transparent 35%
-                ),
 
                 linear-gradient(
                     145deg,
-                    rgba(10,100,80,.24),
-                    rgba(4,10,20,.98)
+                    #12654f 0%,
+                    #092d25 55%,
+                    #03100d 100%
                 );
 
-        }
-
-
-        .gallery-card.concept-art::before {
-
-            background:
-                rgba(30,220,145,.17);
+            border-color:
+                rgba(50,230,155,.45);
 
         }
 
@@ -1088,7 +1011,7 @@
         .gallery-card.concept-art .gallery-card-label {
 
             color:
-                #54e6ae;
+                #6ff0bd;
 
         }
 
@@ -1105,9 +1028,9 @@
 
             left: 30px;
 
-            width: 44px;
+            width: 46px;
 
-            height: 44px;
+            height: 46px;
 
             display: flex;
 
@@ -1117,16 +1040,19 @@
 
             border:
                 1px solid
-                rgba(255,255,255,.18);
+                rgba(255,255,255,.28);
 
             background:
-                rgba(255,255,255,.045);
+                rgba(0,0,0,.20);
 
-            font-size: 17px;
+            font-size:
+                17px;
 
-            font-weight: 900;
+            font-weight:
+                900;
 
-            z-index: 2;
+            z-index:
+                2;
 
         }
 
@@ -1434,18 +1360,13 @@
             }
 
 
-            .lore-card {
-
-                min-height:
-                    400px;
-
-            }
-
-
             .lore-card-image {
 
+                height:
+                    340px;
+
                 padding:
-                    20px;
+                    18px;
 
             }
 
@@ -1453,7 +1374,7 @@
             .lore-card-content {
 
                 padding:
-                    24px;
+                    23px 22px 25px;
 
             }
 
@@ -1463,9 +1384,11 @@
                 grid-template-columns:
                     1fr;
 
-                gap: 22px;
+                gap:
+                    22px;
 
-                margin-top: 35px;
+                margin-top:
+                    35px;
 
             }
 
@@ -1567,10 +1490,13 @@
             }
 
 
-            .lore-card {
+            .lore-card-image {
 
-                min-height:
-                    370px;
+                height:
+                    315px;
+
+                padding:
+                    15px;
 
             }
 
@@ -1726,7 +1652,7 @@
 
 
                 <img
-                    src="Logo final.jpeg"
+                    src="Logo final.PNG"
                     alt="SENTINELS"
                     class="hero-logo"
                 >
@@ -1814,7 +1740,7 @@
                 <article class="character wandile">
 
                     <img
-                        src="Wandile character art.jpeg"
+                        src="Wandile character art.PNG"
                         alt="Wandile"
                         class="character-image"
                     >
@@ -1843,7 +1769,7 @@
                 <article class="character xavier">
 
                     <img
-                        src="Xavier character art final.jpeg"
+                        src="Xavier character art final.PNG"
                         alt="Xavier"
                         class="character-image"
                     >
@@ -1872,7 +1798,7 @@
                 <article class="character kyla">
 
                     <img
-                        src="Kyla character art final 1.jpeg"
+                        src="Kyla character art final 1.PNG"
                         alt="Kyla"
                         class="character-image"
                     >
@@ -1901,7 +1827,7 @@
                 <article class="character cee">
 
                     <img
-                        src="Cee character art.jpeg"
+                        src="Cee character art.PNG"
                         alt="Cee"
                         class="character-image"
                     >
@@ -1965,7 +1891,7 @@
                 <article class="lore-card">
 
                     <img
-                        src="Vaelor character art final.jpeg"
+                        src="Vaelor character art final.PNG"
                         alt="Vaelor"
                         class="lore-card-image"
                     >
@@ -1994,7 +1920,7 @@
                 <article class="lore-card">
 
                     <img
-                        src="Zyron character art final.jpeg"
+                        src="Zyron character art final.PNG"
                         alt="Zyron"
                         class="lore-card-image"
                     >
@@ -2023,7 +1949,7 @@
                 <article class="lore-card">
 
                     <img
-                        src="Commander vorax character art final.jpeg"
+                        src="Commander vorax character art final.PNG"
                         alt="Commander Vorax"
                         class="lore-card-image"
                     >
@@ -2052,7 +1978,7 @@
                 <article class="lore-card">
 
                     <img
-                        src="Vorax character art final 1.jpeg"
+                        src="Vorax character art final 1.PNG"
                         alt="Vorax mutant"
                         class="lore-card-image"
                     >
