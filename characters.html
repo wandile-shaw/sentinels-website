@@ -15,7 +15,7 @@
         content="#03050a"
     >
 
-    <title>CHARACTERS — SENTINELS</title>
+    <title>SENTINELS — CHARACTER ARCHIVE</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -23,43 +23,49 @@
     <style>
 
         /* =====================================================
-           SENTINELS — CHARACTER ARCHIVE
+           SENTINELS CHARACTER ARCHIVE
         ===================================================== */
 
         .character-page {
 
-            position: relative;
+            max-width: 1400px;
 
-            min-height: 100vh;
+            margin: 0 auto;
+
+            padding:
+                110px 5% 100px;
 
         }
 
 
-        .character-hero {
+        .archive-hero {
 
             text-align: center;
 
-            padding:
-                120px 7% 70px;
+            max-width: 800px;
+
+            margin:
+                0 auto 75px;
 
         }
 
 
-        .character-hero h1 {
+        .archive-hero h1 {
 
             font-size:
                 clamp(42px, 8vw, 88px);
 
-            letter-spacing:
-                5px;
+            line-height: .95;
+
+            letter-spacing: 4px;
 
             margin:
-                18px 0;
+                15px 0 25px;
 
         }
 
 
-        .character-hero p {
+        .archive-hero p {
 
             max-width: 650px;
 
@@ -69,42 +75,74 @@
             color:
                 rgba(255,255,255,.58);
 
-            line-height:
-                1.8;
+            line-height: 1.8;
+
+            font-size: 13px;
 
         }
 
 
-        .back-link {
+        /* =====================================================
+           SECTION HEADERS
+        ===================================================== */
 
-            display: inline-block;
+        .character-section {
 
-            margin-bottom: 25px;
+            margin-top: 85px;
 
-            color:
-                rgba(255,255,255,.55);
+        }
 
-            text-decoration: none;
 
-            font-size: 9px;
+        .character-section:first-of-type {
 
-            font-weight: 800;
+            margin-top: 0;
+
+        }
+
+
+        .character-section-heading {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+
+            padding-bottom: 15px;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.10);
+
+        }
+
+
+        .character-section-heading h2 {
+
+            margin: 0;
+
+            font-size:
+                clamp(24px, 4vw, 40px);
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .character-section-heading span {
+
+            font-size: 8px;
 
             letter-spacing: 3px;
 
-            transition:
-                color .25s ease,
-                transform .25s ease;
+            color:
+                rgba(255,255,255,.40);
 
-        }
-
-
-        .back-link:hover {
-
-            color: #ffffff;
-
-            transform:
-                translateX(-4px);
+            white-space: nowrap;
 
         }
 
@@ -113,88 +151,65 @@
            CHARACTER GRID
         ===================================================== */
 
-        .character-archive {
+        .character-gallery {
 
-            width:
-                min(1180px, 86%);
-
-            margin:
-                0 auto 100px;
-
-            display:
-                grid;
+            display: grid;
 
             grid-template-columns:
-                repeat(2, minmax(0, 1fr));
+                repeat(4, minmax(0, 1fr));
 
-            gap:
-                30px;
+            gap: 24px;
 
         }
 
 
-        /* =====================================================
-           CHARACTER CARD
-        ===================================================== */
-
-        .character-profile {
+        .character-card {
 
             position: relative;
 
             min-width: 0;
 
-            min-height: 590px;
-
             overflow: hidden;
+
+            min-height: 480px;
 
             border:
                 1px solid
                 rgba(255,255,255,.13);
 
             background:
-                #070b13;
+                rgba(255,255,255,.035);
 
-            display:
-                flex;
+            display: flex;
 
-            flex-direction:
-                column;
+            flex-direction: column;
 
-            justify-content:
-                flex-end;
-
-            text-decoration: none;
-
-            color: #ffffff;
+            justify-content: flex-end;
 
             transition:
-                transform .35s ease,
-                border-color .35s ease,
-                box-shadow .35s ease;
+                transform .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease;
 
         }
 
 
-        .character-profile:hover {
+        .character-card:hover {
 
             transform:
-                translateY(-8px);
+                translateY(-7px);
 
             border-color:
                 rgba(255,255,255,.35);
 
             box-shadow:
-                0 28px 70px
-                rgba(0,0,0,.45);
+                0 25px 60px
+                rgba(0,0,0,.40);
 
         }
 
 
-        /* =====================================================
-           ARTWORK
-        ===================================================== */
-
-        .character-profile-image {
+        .character-card-image {
 
             position: absolute;
 
@@ -208,18 +223,16 @@
 
             object-position: center;
 
-            padding:
-                22px;
+            padding: 18px;
 
             transition:
-                transform .6s ease,
-                opacity .5s ease;
+                transform .5s ease;
 
         }
 
 
-        .character-profile:hover
-        .character-profile-image {
+        .character-card:hover
+        .character-card-image {
 
             transform:
                 scale(1.035);
@@ -227,11 +240,7 @@
         }
 
 
-        /* =====================================================
-           OVERLAY
-        ===================================================== */
-
-        .character-profile::after {
+        .character-card::after {
 
             content: "";
 
@@ -243,569 +252,323 @@
 
                 linear-gradient(
                     to top,
-                    rgba(3,5,10,1) 0%,
-                    rgba(3,5,10,.94) 22%,
-                    rgba(3,5,10,.65) 42%,
-                    rgba(3,5,10,.18) 70%,
-                    rgba(3,5,10,.02) 100%
+                    rgba(3,5,10,.99) 0%,
+                    rgba(3,5,10,.90) 25%,
+                    rgba(3,5,10,.42) 53%,
+                    rgba(3,5,10,.08) 78%,
+                    transparent 100%
                 );
 
-            pointer-events:
-                none;
+            pointer-events: none;
 
         }
 
 
-        /* =====================================================
-           CARD CONTENT
-        ===================================================== */
+        .character-card-content {
 
-        .character-profile-content {
+            position: relative;
 
-            position:
-                relative;
+            z-index: 2;
 
-            z-index:
-                2;
-
-            padding:
-                30px;
+            padding: 25px;
 
         }
 
 
         .character-number {
 
-            display:
-                block;
+            display: block;
 
-            font-size:
-                8px;
+            margin-bottom: 8px;
 
-            letter-spacing:
-                4px;
+            font-size: 8px;
 
-            opacity:
-                .48;
-
-            margin-bottom:
-                10px;
-
-        }
-
-
-        .character-profile h2 {
-
-            margin:
-                0 0 7px;
-
-            font-size:
-                clamp(28px, 4vw, 42px);
-
-            letter-spacing:
-                3px;
-
-        }
-
-
-        .character-title {
-
-            margin:
-                0 0 18px;
-
-            font-size:
-                10px;
-
-            letter-spacing:
-                2px;
-
-            font-weight:
-                800;
-
-            opacity:
-                .58;
-
-        }
-
-
-        .character-description {
-
-            margin:
-                0 0 20px;
-
-            max-width:
-                500px;
-
-            font-size:
-                12px;
-
-            line-height:
-                1.75;
+            letter-spacing: 4px;
 
             color:
-                rgba(255,255,255,.60);
+                rgba(255,255,255,.42);
 
         }
 
 
-        .character-power {
-
-            display:
-                inline-block;
-
-            padding:
-                9px 12px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.15);
-
-            background:
-                rgba(255,255,255,.045);
-
-            font-size:
-                8px;
-
-            font-weight:
-                800;
-
-            letter-spacing:
-                2px;
-
-        }
-
-
-        /* =====================================================
-           SENTINEL COLOUR IDENTITIES
-        ===================================================== */
-
-        .wandile-card {
-
-            border-color:
-                rgba(35,135,255,.28);
-
-            background:
-
-                radial-gradient(
-                    circle at 70% 20%,
-                    rgba(30,130,255,.16),
-                    transparent 38%
-                ),
-
-                #050b16;
-
-        }
-
-
-        .wandile-card:hover {
-
-            border-color:
-                rgba(35,135,255,.65);
-
-            box-shadow:
-                0 28px 75px
-                rgba(0,100,255,.16);
-
-        }
-
-
-        .xavier-card {
-
-            border-color:
-                rgba(255,55,70,.28);
-
-            background:
-
-                radial-gradient(
-                    circle at 70% 20%,
-                    rgba(255,45,60,.15),
-                    transparent 38%
-                ),
-
-                #120609;
-
-        }
-
-
-        .xavier-card:hover {
-
-            border-color:
-                rgba(255,55,70,.65);
-
-            box-shadow:
-                0 28px 75px
-                rgba(255,40,50,.14);
-
-        }
-
-
-        .kyla-card {
-
-            border-color:
-                rgba(255,100,180,.28);
-
-            background:
-
-                radial-gradient(
-                    circle at 70% 20%,
-                    rgba(255,90,175,.16),
-                    transparent 38%
-                ),
-
-                #12070e;
-
-        }
-
-
-        .kyla-card:hover {
-
-            border-color:
-                rgba(255,100,180,.65);
-
-            box-shadow:
-                0 28px 75px
-                rgba(255,70,160,.14);
-
-        }
-
-
-        .cee-card {
-
-            border-color:
-                rgba(35,230,125,.28);
-
-            background:
-
-                radial-gradient(
-                    circle at 70% 20%,
-                    rgba(35,225,125,.15),
-                    transparent 38%
-                ),
-
-                #05120c;
-
-        }
-
-
-        .cee-card:hover {
-
-            border-color:
-                rgba(35,230,125,.65);
-
-            box-shadow:
-                0 28px 75px
-                rgba(20,220,120,.14);
-
-        }
-
-
-        .vaelor-card {
-
-            border-color:
-                rgba(80,160,255,.25);
-
-        }
-
-
-        .zyron-card {
-
-            border-color:
-                rgba(60,220,255,.25);
-
-        }
-
-
-        .commander-card {
-
-            border-color:
-                rgba(255,60,70,.25);
-
-        }
-
-
-        .vorax-card {
-
-            border-color:
-                rgba(170,70,255,.28);
-
-        }
-
-
-        /* =====================================================
-           SECONDARY CHARACTERS
-        ===================================================== */
-
-        .secondary-title {
-
-            width:
-                min(1180px, 86%);
-
-            margin:
-                0 auto 30px;
-
-        }
-
-
-        .secondary-title span {
-
-            font-size:
-                9px;
-
-            letter-spacing:
-                4px;
-
-            opacity:
-                .45;
-
-        }
-
-
-        .secondary-grid {
-
-            width:
-                min(1180px, 86%);
-
-            margin:
-                0 auto 110px;
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(4, minmax(0, 1fr));
-
-            gap:
-                22px;
-
-        }
-
-
-        .secondary-card {
-
-            min-width:
-                0;
-
-            border:
-                1px solid
-                rgba(255,255,255,.12);
-
-            background:
-                rgba(255,255,255,.035);
-
-            overflow:
-                hidden;
-
-            transition:
-                transform .3s ease,
-                border-color .3s ease;
-
-        }
-
-
-        .secondary-card:hover {
-
-            transform:
-                translateY(-6px);
-
-            border-color:
-                rgba(255,255,255,.3);
-
-        }
-
-
-        .secondary-image {
-
-            display:
-                block;
-
-            width:
-                100%;
-
-            height:
-                260px;
-
-            object-fit:
-                contain;
-
-            padding:
-                15px;
-
-        }
-
-
-        .secondary-content {
-
-            padding:
-                20px;
-
-        }
-
-
-        .secondary-content span {
-
-            display:
-                block;
-
-            font-size:
-                7px;
-
-            letter-spacing:
-                3px;
-
-            opacity:
-                .4;
-
-            margin-bottom:
-                8px;
-
-        }
-
-
-        .secondary-content h3 {
+        .character-card h3 {
 
             margin:
                 0 0 8px;
 
             font-size:
-                18px;
+                clamp(20px, 2.5vw, 28px);
 
-            letter-spacing:
-                1.5px;
+            letter-spacing: 2px;
 
         }
 
 
-        .secondary-content p {
+        .character-card p {
 
-            margin:
-                0;
-
-            font-size:
-                10px;
-
-            line-height:
-                1.65;
+            margin: 0;
 
             color:
-                rgba(255,255,255,.5);
+                rgba(255,255,255,.58);
+
+            font-size: 10px;
+
+            line-height: 1.6;
 
         }
 
 
         /* =====================================================
-           MOBILE
+           GROUP ART
         ===================================================== */
 
-        @media (max-width: 800px) {
+        .group-gallery {
 
-            .character-hero {
+            display: grid;
 
-                padding:
-                    100px 7% 55px;
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
 
-            }
+            gap: 24px;
 
-
-            .character-archive {
-
-                grid-template-columns:
-                    1fr;
-
-                width:
-                    90%;
-
-                gap:
-                    22px;
-
-            }
+        }
 
 
-            .character-profile {
+        .group-card {
 
-                min-height:
-                    570px;
+            position: relative;
 
-            }
+            overflow: hidden;
+
+            min-height: 340px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.14);
+
+            background:
+                rgba(255,255,255,.035);
+
+        }
 
 
-            .secondary-grid {
+        .group-card img {
+
+            display: block;
+
+            width: 100%;
+
+            height: 100%;
+
+            min-height: 340px;
+
+            object-fit: contain;
+
+            padding: 15px;
+
+            transition:
+                transform .5s ease;
+
+        }
+
+
+        .group-card:hover img {
+
+            transform:
+                scale(1.025);
+
+        }
+
+
+        .group-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(3,5,10,.72),
+                    transparent 45%
+                );
+
+            pointer-events: none;
+
+        }
+
+
+        .group-label {
+
+            position: absolute;
+
+            z-index: 2;
+
+            left: 20px;
+
+            bottom: 18px;
+
+            font-size: 8px;
+
+            letter-spacing: 3px;
+
+            color:
+                rgba(255,255,255,.65);
+
+        }
+
+
+        /* =====================================================
+           SPECIAL CHARACTER ART
+        ===================================================== */
+
+        .feature-gallery {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 24px;
+
+        }
+
+
+        .feature-card {
+
+            position: relative;
+
+            min-height: 470px;
+
+            overflow: hidden;
+
+            border:
+                1px solid
+                rgba(255,255,255,.13);
+
+            background:
+                rgba(255,255,255,.035);
+
+        }
+
+
+        .feature-card img {
+
+            width: 100%;
+
+            height: 100%;
+
+            min-height: 470px;
+
+            object-fit: contain;
+
+            padding: 20px;
+
+            display: block;
+
+        }
+
+
+        .feature-card-label {
+
+            position: absolute;
+
+            z-index: 3;
+
+            left: 25px;
+
+            bottom: 23px;
+
+            padding:
+                8px 12px;
+
+            background:
+                rgba(3,5,10,.75);
+
+            border:
+                1px solid
+                rgba(255,255,255,.14);
+
+            font-size: 8px;
+
+            letter-spacing: 3px;
+
+        }
+
+
+        /* =====================================================
+           BACK BUTTON
+        ===================================================== */
+
+        .back-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 80px;
+
+            padding:
+                13px 20px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.25);
+
+            color: #fff;
+
+            text-decoration: none;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            transition:
+                background .25s ease,
+                border-color .25s ease,
+                transform .25s ease;
+
+        }
+
+
+        .back-link:hover {
+
+            background:
+                rgba(255,255,255,.08);
+
+            border-color:
+                rgba(255,255,255,.55);
+
+            transform:
+                translateY(-3px);
+
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .character-gallery {
 
                 grid-template-columns:
                     repeat(2, minmax(0, 1fr));
 
-                width:
-                    90%;
-
             }
 
 
-            .secondary-title {
-
-                width:
-                    90%;
-
-            }
-
-        }
-
-
-        @media (max-width: 480px) {
-
-            .character-hero h1 {
-
-                letter-spacing:
-                    3px;
-
-            }
-
-
-            .character-profile {
-
-                min-height:
-                    500px;
-
-            }
-
-
-            .character-profile-image {
-
-                padding:
-                    12px;
-
-            }
-
-
-            .character-profile-content {
-
-                padding:
-                    24px;
-
-            }
-
-
-            .character-description {
-
-                font-size:
-                    11px;
-
-            }
-
-
-            .secondary-grid {
+            .group-gallery {
 
                 grid-template-columns:
-                    1fr;
-
-                gap:
-                    18px;
-
-            }
-
-
-            .secondary-image {
-
-                height:
-                    280px;
+                    repeat(2, minmax(0, 1fr));
 
             }
 
@@ -813,17 +576,133 @@
 
 
         /* =====================================================
-           ACCESSIBILITY
+           PHONE
         ===================================================== */
 
-        @media (prefers-reduced-motion: reduce) {
+        @media (max-width: 650px) {
 
-            .character-profile,
-            .secondary-card,
-            .back-link {
+            .character-page {
 
-                transition:
-                    none;
+                padding:
+                    90px 5% 70px;
+
+            }
+
+
+            .archive-hero {
+
+                margin-bottom:
+                    55px;
+
+            }
+
+
+            .archive-hero h1 {
+
+                letter-spacing:
+                    2px;
+
+            }
+
+
+            .character-section {
+
+                margin-top:
+                    60px;
+
+            }
+
+
+            .character-section-heading {
+
+                display: block;
+
+            }
+
+
+            .character-section-heading span {
+
+                display: block;
+
+                margin-top:
+                    8px;
+
+            }
+
+
+            .character-gallery {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    20px;
+
+            }
+
+
+            .character-card {
+
+                min-height:
+                    440px;
+
+            }
+
+
+            .group-gallery {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    20px;
+
+            }
+
+
+            .group-card,
+            .group-card img {
+
+                min-height:
+                    290px;
+
+            }
+
+
+            .feature-gallery {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .feature-card,
+            .feature-card img {
+
+                min-height:
+                    390px;
+
+            }
+
+        }
+
+
+        @media (max-width: 390px) {
+
+            .character-card {
+
+                min-height:
+                    410px;
+
+            }
+
+
+            .feature-card,
+            .feature-card img {
+
+                min-height:
+                    350px;
 
             }
 
@@ -837,409 +716,490 @@
 <body>
 
 
-    <header class="navbar">
-
-        <div class="logo">
-            SENTINELS
-        </div>
-
-
-        <nav>
-
-            <a href="index.html">
-                HOME
-            </a>
-
-            <a href="sentinels.html">
-                SENTINELS
-            </a>
-
-            <a href="archive.html">
-                READ
-            </a>
-
-            <a href="universe.html">
-                UNIVERSE
-            </a>
-
-            <a href="gallery.html">
-                GALLERY
-            </a>
-
-            <a href="hub.html">
-                HUB
-            </a>
-
-        </nav>
-
-    </header>
-
-
     <main class="character-page">
 
 
-        <section class="character-hero">
+        <!-- =================================================
+             HERO
+        ================================================== -->
 
-            <a
-                href="index.html"
-                class="back-link"
-            >
-                ← BACK TO SENTINELS
-            </a>
-
+        <header class="archive-hero">
 
             <p class="eyebrow">
-                THE FACES OF THE UNIVERSE
+                SENTINELS VISUAL ARCHIVE
             </p>
 
 
             <h1>
-                CHARACTERS
+                CHARACTER ART
             </h1>
 
 
             <p>
-                Meet the people, heroes and enemies who shape
-                the Sentinels universe — and discover the powers,
-                identities and stories behind them.
+                Meet the people, Sentinels, survivors and enemies
+                who shape the Sentinels universe.
             </p>
 
-        </section>
+        </header>
 
 
         <!-- =================================================
-             MAIN SENTINELS
+             SENTINELS
         ================================================== -->
 
-        <section class="character-archive">
+        <section class="character-section">
 
+            <div class="character-section-heading">
 
-            <article class="character-profile wandile-card">
+                <h2>
+                    THE SENTINELS
+                </h2>
 
-                <img
-                    src="Wandile character art.jpeg"
-                    alt="Wandile"
-                    class="character-profile-image"
-                >
+                <span>
+                    FOUR. ONE MISSION.
+                </span>
 
+            </div>
 
-                <div class="character-profile-content">
 
-                    <span class="character-number">
-                        01 • THE FOURTH SENTINEL
-                    </span>
+            <div class="character-gallery">
 
 
-                    <h2>
-                        WANDILE
-                    </h2>
+                <article class="character-card">
 
+                    <img
+                        src="Wandile character art.PNG"
+                        alt="Wandile character art"
+                        class="character-card-image"
+                    >
 
-                    <p class="character-title">
-                        THE BALANCED SENTINEL
-                    </p>
+                    <div class="character-card-content">
 
+                        <span class="character-number">
+                            01 • THE FOURTH SENTINEL
+                        </span>
 
-                    <p class="character-description">
-                        The fourth Sentinel, equipped with advanced
-                        technology that balances strength, speed and
-                        flight. His armour adapts to the battle and
-                        carries a powerful Sentinel intelligence.
-                    </p>
+                        <h3>
+                            WANDILE
+                        </h3>
 
+                        <p>
+                            Strength • Speed • Flight
+                        </p>
 
-                    <span class="character-power">
-                        BLUE • STRENGTH • SPEED • FLIGHT
-                    </span>
+                    </div>
 
-                </div>
+                </article>
 
-            </article>
 
+                <article class="character-card">
 
-            <article class="character-profile xavier-card">
+                    <img
+                        src="Xavier character art final.PNG"
+                        alt="Xavier character art"
+                        class="character-card-image"
+                    >
 
-                <img
-                    src="Xavier character art final.jpeg"
-                    alt="Xavier"
-                    class="character-profile-image"
-                >
+                    <div class="character-card-content">
 
+                        <span class="character-number">
+                            02 • THE POWERHOUSE
+                        </span>
 
-                <div class="character-profile-content">
+                        <h3>
+                            XAVIER
+                        </h3>
 
-                    <span class="character-number">
-                        02 • THE FIRST SENTINEL
-                    </span>
+                        <p>
+                            Strength • Red Sentinel
+                        </p>
 
+                    </div>
 
-                    <h2>
-                        XAVIER
-                    </h2>
+                </article>
 
 
-                    <p class="character-title">
-                        THE POWERHOUSE
-                    </p>
+                <article class="character-card">
 
+                    <img
+                        src="Kyla character art final 1.PNG"
+                        alt="Kyla character art"
+                        class="character-card-image"
+                    >
 
-                    <p class="character-description">
-                        A Sentinel built around raw physical power.
-                        Xavier becomes the team's force when the
-                        battle demands strength and determination.
-                    </p>
+                    <div class="character-card-content">
 
+                        <span class="character-number">
+                            03 • THE SPEEDSTER
+                        </span>
 
-                    <span class="character-power">
-                        RED • STRENGTH
-                    </span>
+                        <h3>
+                            KYLA
+                        </h3>
 
-                </div>
+                        <p>
+                            Speed • Pink + White Sentinel
+                        </p>
 
-            </article>
+                    </div>
 
+                </article>
 
-            <article class="character-profile kyla-card">
 
-                <img
-                    src="Kyla character art final 1.jpeg"
-                    alt="Kyla"
-                    class="character-profile-image"
-                >
+                <article class="character-card">
 
+                    <img
+                        src="Cee character art.PNG"
+                        alt="Cee character art"
+                        class="character-card-image"
+                    >
 
-                <div class="character-profile-content">
+                    <div class="character-card-content">
 
-                    <span class="character-number">
-                        03 • THE SECOND SENTINEL
-                    </span>
+                        <span class="character-number">
+                            04 • THE AERIAL SENTINEL
+                        </span>
 
+                        <h3>
+                            CEE
+                        </h3>
 
-                    <h2>
-                        KYLA
-                    </h2>
+                        <p>
+                            Flight • Energy Blasts • Green Sentinel
+                        </p>
 
+                    </div>
 
-                    <p class="character-title">
-                        THE SPEEDSTER
-                    </p>
+                </article>
 
 
-                    <p class="character-description">
-                        Kyla moves faster than the enemy can react.
-                        Her Sentinel power turns speed into both a
-                        weapon and a way to protect the team.
-                    </p>
-
-
-                    <span class="character-power">
-                        PINK + WHITE • SPEED
-                    </span>
-
-                </div>
-
-            </article>
-
-
-            <article class="character-profile cee-card">
-
-                <img
-                    src="Cee character art.jpeg"
-                    alt="Cee"
-                    class="character-profile-image"
-                >
-
-
-                <div class="character-profile-content">
-
-                    <span class="character-number">
-                        04 • THE THIRD SENTINEL
-                    </span>
-
-
-                    <h2>
-                        CEE
-                    </h2>
-
-
-                    <p class="character-title">
-                        THE AERIAL SENTINEL
-                    </p>
-
-
-                    <p class="character-description">
-                        Cee commands the skies with retractable
-                        wings and aerial mobility. She can also
-                        unleash powerful energy blasts from her hands.
-                    </p>
-
-
-                    <span class="character-power">
-                        GREEN • FLIGHT • ENERGY BLASTS
-                    </span>
-
-                </div>
-
-            </article>
-
+            </div>
 
         </section>
 
 
         <!-- =================================================
-             OTHER CHARACTERS
+             SENTINEL VARIATIONS
         ================================================== -->
 
-        <div class="secondary-title">
+        <section class="character-section">
 
-            <span>
-                THE REST OF THE UNIVERSE
-            </span>
+            <div class="character-section-heading">
 
-        </div>
+                <h2>
+                    CHARACTER VARIATIONS
+                </h2>
 
+                <span>
+                    ALTERNATE ARTWORK
+                </span>
 
-        <section class="secondary-grid">
-
-
-            <article class="secondary-card vaelor-card">
-
-                <img
-                    src="Vaelor character art final.jpeg"
-                    alt="Vaelor"
-                    class="secondary-image"
-                >
+            </div>
 
 
-                <div class="secondary-content">
+            <div class="feature-gallery">
 
-                    <span>
-                        THE SURVIVORS
+
+                <article class="feature-card">
+
+                    <img
+                        src="Xavier character art final 2.PNG"
+                        alt="Xavier alternate character art"
+                    >
+
+                    <span class="feature-card-label">
+                        XAVIER • ALTERNATE ART
                     </span>
 
-                    <h3>
-                        VAELOR
-                    </h3>
-
-                    <p>
-                        Keeper of ancient Sentinel knowledge and
-                        one of the survivors who understands what
-                        came before.
-                    </p>
-
-                </div>
-
-            </article>
+                </article>
 
 
-            <article class="secondary-card zyron-card">
+                <article class="feature-card">
 
-                <img
-                    src="Zyron character art final.jpeg"
-                    alt="Zyron"
-                    class="secondary-image"
-                >
+                    <img
+                        src="Kyla character art final 2.PNG"
+                        alt="Kyla alternate character art"
+                    >
 
-
-                <div class="secondary-content">
-
-                    <span>
-                        THE SURVIVORS
+                    <span class="feature-card-label">
+                        KYLA • ALTERNATE ART
                     </span>
 
-                    <h3>
-                        ZYRON
-                    </h3>
-
-                    <p>
-                        Guardian, mentor and survivor connected
-                        to the deeper history of the Sentinels.
-                    </p>
-
-                </div>
-
-            </article>
+                </article>
 
 
-            <article class="secondary-card commander-card">
-
-                <img
-                    src="Commander vorax character art final.jpeg"
-                    alt="Commander Vorax"
-                    class="secondary-image"
-                >
-
-
-                <div class="secondary-content">
-
-                    <span>
-                        THE ENEMY
-                    </span>
-
-                    <h3>
-                        COMMANDER VORAX
-                    </h3>
-
-                    <p>
-                        A commander determined to hunt the
-                        Sentinels and claim the power they possess.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="secondary-card vorax-card">
-
-                <img
-                    src="Vorax character art final 1.jpeg"
-                    alt="Vorax"
-                    class="secondary-image"
-                >
-
-
-                <div class="secondary-content">
-
-                    <span>
-                        THE MUTATED
-                    </span>
-
-                    <h3>
-                        VORAX
-                    </h3>
-
-                    <p>
-                        A mutated force created by the enemy,
-                        driven by a dangerous hunger for power.
-                    </p>
-
-                </div>
-
-            </article>
-
+            </div>
 
         </section>
+
+
+        <!-- =================================================
+             SURVIVORS
+        ================================================== -->
+
+        <section class="character-section">
+
+            <div class="character-section-heading">
+
+                <h2>
+                    THE SURVIVORS
+                </h2>
+
+                <span>
+                    ANCIENT SENTINEL KNOWLEDGE
+                </span>
+
+            </div>
+
+
+            <div class="character-gallery">
+
+
+                <article class="character-card">
+
+                    <img
+                        src="Vaelor character art final.PNG"
+                        alt="Vaelor character art"
+                        class="character-card-image"
+                    >
+
+                    <div class="character-card-content">
+
+                        <span class="character-number">
+                            THE SURVIVOR
+                        </span>
+
+                        <h3>
+                            VAELOR
+                        </h3>
+
+                        <p>
+                            Keeper of ancient Sentinel knowledge.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="character-card">
+
+                    <img
+                        src="Zyron character art final.PNG"
+                        alt="Zyron character art"
+                        class="character-card-image"
+                    >
+
+                    <div class="character-card-content">
+
+                        <span class="character-number">
+                            THE SURVIVOR
+                        </span>
+
+                        <h3>
+                            ZYRON
+                        </h3>
+
+                        <p>
+                            Guardian, mentor and survivor.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="character-card">
+
+                    <img
+                        src="Zyron and vaelor character art final.PNG"
+                        alt="Zyron and Vaelor character art"
+                        class="character-card-image"
+                    >
+
+                    <div class="character-card-content">
+
+                        <span class="character-number">
+                            THE SURVIVORS
+                        </span>
+
+                        <h3>
+                            VAELOR & ZYRON
+                        </h3>
+
+                        <p>
+                            Two survivors connected to the Sentinel legacy.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ENEMIES
+        ================================================== -->
+
+        <section class="character-section">
+
+            <div class="character-section-heading">
+
+                <h2>
+                    THE ENEMY
+                </h2>
+
+                <span>
+                    THREATS TO THE SENTINELS
+                </span>
+
+            </div>
+
+
+            <div class="character-gallery">
+
+
+                <article class="character-card">
+
+                    <img
+                        src="Commander vorax character art final.PNG"
+                        alt="Commander Vorax character art"
+                        class="character-card-image"
+                    >
+
+                    <div class="character-card-content">
+
+                        <span class="character-number">
+                            COMMANDER
+                        </span>
+
+                        <h3>
+                            COMMANDER VORAX
+                        </h3>
+
+                        <p>
+                            The enemy hunting the Sentinels.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="character-card">
+
+                    <img
+                        src="Vorax character art final 1.PNG"
+                        alt="Vorax character art"
+                        class="character-card-image"
+                    >
+
+                    <div class="character-card-content">
+
+                        <span class="character-number">
+                            THE MUTATED
+                        </span>
+
+                        <h3>
+                            VORAX
+                        </h3>
+
+                        <p>
+                            A mutated force created by the enemy.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             GROUP ART
+        ================================================== -->
+
+        <section class="character-section">
+
+            <div class="character-section-heading">
+
+                <h2>
+                    THE TEAM
+                </h2>
+
+                <span>
+                    GROUP ARTWORK
+                </span>
+
+            </div>
+
+
+            <div class="group-gallery">
+
+
+                <article class="group-card">
+
+                    <img
+                        src="Sentinels character art group pic 1.PNG"
+                        alt="Sentinels group character art 1"
+                    >
+
+                    <span class="group-label">
+                        SENTINELS • GROUP ART 01
+                    </span>
+
+                </article>
+
+
+                <article class="group-card">
+
+                    <img
+                        src="Sentinels character art group pic 2.PNG"
+                        alt="Sentinels group character art 2"
+                    >
+
+                    <span class="group-label">
+                        SENTINELS • GROUP ART 02
+                    </span>
+
+                </article>
+
+
+                <article class="group-card">
+
+                    <img
+                        src="Sentinels character art group pic 3.PNG"
+                        alt="Sentinels group character art 3"
+                    >
+
+                    <span class="group-label">
+                        SENTINELS • GROUP ART 03
+                    </span>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <a
+            href="index.html"
+            class="back-link"
+        >
+            ← BACK TO SENTINELS
+        </a>
 
 
     </main>
-
-
-    <footer>
-
-        <div class="logo">
-            SENTINELS
-        </div>
-
-
-        <p>
-            ©️ 2026 Sentinels. All rights reserved.
-        </p>
-
-    </footer>
-
-
-    <script src="script.js"></script>
 
 
 </body>
