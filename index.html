@@ -366,6 +366,43 @@
 
 
         /* =====================================================
+           STORY LINK
+        ===================================================== */
+
+        .text-link {
+
+            display: inline-block;
+
+            margin-top: 25px;
+
+            color: #ffffff;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            text-decoration: none;
+
+            opacity: .75;
+
+            transition:
+                opacity .25s ease,
+                transform .25s ease;
+        }
+
+
+        .text-link:hover {
+
+            opacity: 1;
+
+            transform:
+                translateX(5px);
+        }
+
+
+        /* =====================================================
            CREATOR / APPRENTICE
         ===================================================== */
 
@@ -480,7 +517,6 @@
             gap: 28px;
 
             margin-top: 45px;
-
         }
 
 
@@ -491,7 +527,6 @@
             overflow: hidden;
 
             position: relative;
-
         }
 
 
@@ -508,19 +543,20 @@
             object-position: center;
 
             margin: 0 auto;
-
         }
 
 
         .character img {
 
             max-width: 100%;
-
         }
 
 
         /* =====================================================
            UNIVERSE / LORE CARDS
+           
+           Artwork is kept fully visible.
+           Information sits underneath the artwork.
         ===================================================== */
 
         .lore-grid {
@@ -533,19 +569,16 @@
             gap: 28px;
 
             margin-top: 45px;
-
         }
 
 
         .lore-card {
 
-            position: relative;
-
             min-width: 0;
 
-            min-height: 390px;
-
             overflow: hidden;
+
+            position: relative;
 
             border:
                 1px solid
@@ -558,13 +591,10 @@
 
             flex-direction: column;
 
-            justify-content: flex-end;
-
             transition:
                 transform .3s ease,
                 border-color .3s ease,
                 box-shadow .3s ease;
-
         }
 
 
@@ -579,39 +609,37 @@
             box-shadow:
                 0 20px 50px
                 rgba(0,0,0,.35);
-
         }
 
 
-        /*
-           IMPORTANT:
-           CONTAIN keeps the COMPLETE artwork visible.
-           The old COVER treatment was causing the
-           artwork to look zoomed/cropped on phones.
-        */
+        /* =====================================================
+           LORE ARTWORK
+        ===================================================== */
 
         .lore-card-image {
 
-            position: absolute;
-
-            inset: 0;
+            display: block;
 
             width: 100%;
 
-            height: 100%;
+            height: 360px;
 
             object-fit: contain;
 
             object-position: center;
 
-            padding: 18px;
+            padding: 12px;
 
-            opacity: .82;
+            background:
+
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(30,130,255,.10),
+                    rgba(3,5,10,.92) 75%
+                );
 
             transition:
-                transform .5s ease,
-                opacity .5s ease;
-
+                transform .5s ease;
         }
 
 
@@ -619,71 +647,27 @@
 
             transform:
                 scale(1.025);
-
-            opacity: .95;
-
         }
 
 
-        .lore-card::before {
-
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-
-                radial-gradient(
-                    circle at 50% 30%,
-                    rgba(30,130,255,.12),
-                    transparent 55%
-                );
-
-            pointer-events: none;
-
-            z-index: 1;
-
-        }
-
-
-        .lore-card::after {
-
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-
-                linear-gradient(
-                    to top,
-                    rgba(3,5,10,.99) 0%,
-                    rgba(3,5,10,.86) 25%,
-                    rgba(3,5,10,.35) 48%,
-                    rgba(3,5,10,.05) 75%,
-                    rgba(3,5,10,.02) 100%
-                );
-
-            pointer-events: none;
-
-            z-index: 1;
-
-        }
-
+        /* =====================================================
+           LORE CARD CONTENT
+        ===================================================== */
 
         .lore-card-content {
 
             position: relative;
 
-            z-index: 2;
+            padding:
+                24px 25px 28px;
 
-            padding: 25px;
+            background:
 
-            margin-top: auto;
-
+                linear-gradient(
+                    to bottom,
+                    rgba(3,5,10,.92),
+                    rgba(3,5,10,1)
+                );
         }
 
 
@@ -698,7 +682,6 @@
             opacity: .48;
 
             margin-bottom: 10px;
-
         }
 
 
@@ -710,7 +693,6 @@
             font-size: 22px;
 
             letter-spacing: 2px;
-
         }
 
 
@@ -724,17 +706,17 @@
             line-height: 1.6;
 
             font-size: 11px;
-
         }
 
 
-        /* Individual lore identities */
+        /* =====================================================
+           INDIVIDUAL LORE IDENTITIES
+        ===================================================== */
 
         .lore-card:nth-child(1) {
 
             border-color:
                 rgba(80,160,255,.22);
-
         }
 
 
@@ -742,7 +724,6 @@
 
             border-color:
                 rgba(80,210,255,.22);
-
         }
 
 
@@ -750,7 +731,6 @@
 
             border-color:
                 rgba(255,55,75,.24);
-
         }
 
 
@@ -758,7 +738,6 @@
 
             border-color:
                 rgba(160,70,255,.24);
-
         }
 
 
@@ -776,7 +755,6 @@
             gap: 28px;
 
             margin-top: 45px;
-
         }
 
 
@@ -815,7 +793,6 @@
                 transform .3s ease,
                 border-color .3s ease,
                 box-shadow .3s ease;
-
         }
 
 
@@ -830,7 +807,6 @@
             box-shadow:
                 0 25px 60px
                 rgba(0,0,0,.42);
-
         }
 
 
@@ -857,7 +833,6 @@
             transition:
                 transform .5s ease,
                 opacity .5s ease;
-
         }
 
 
@@ -865,7 +840,6 @@
 
             transform:
                 scale(1.25);
-
         }
 
 
@@ -888,7 +862,6 @@
                 );
 
             pointer-events: none;
-
         }
 
 
@@ -897,7 +870,6 @@
             position: relative;
 
             z-index: 2;
-
         }
 
 
@@ -912,7 +884,6 @@
             opacity: .62;
 
             margin-bottom: 13px;
-
         }
 
 
@@ -927,7 +898,6 @@
 
             margin:
                 0 0 14px;
-
         }
 
 
@@ -944,7 +914,6 @@
                 0 0 24px;
 
             max-width: 330px;
-
         }
 
 
@@ -963,7 +932,6 @@
             font-weight: 800;
 
             color: #ffffff;
-
         }
 
 
@@ -989,7 +957,6 @@
                     rgba(20,70,145,.30),
                     rgba(4,10,20,.98)
                 );
-
         }
 
 
@@ -997,7 +964,6 @@
 
             background:
                 rgba(50,140,255,.20);
-
         }
 
 
@@ -1005,7 +971,6 @@
 
             color:
                 #65aaff;
-
         }
 
 
@@ -1031,7 +996,6 @@
                     rgba(120,30,75,.25),
                     rgba(4,10,20,.98)
                 );
-
         }
 
 
@@ -1039,7 +1003,6 @@
 
             background:
                 rgba(255,55,135,.18);
-
         }
 
 
@@ -1047,7 +1010,6 @@
 
             color:
                 #ff79b9;
-
         }
 
 
@@ -1073,7 +1035,6 @@
                     rgba(10,100,80,.24),
                     rgba(4,10,20,.98)
                 );
-
         }
 
 
@@ -1081,7 +1042,6 @@
 
             background:
                 rgba(30,220,145,.17);
-
         }
 
 
@@ -1089,7 +1049,6 @@
 
             color:
                 #54e6ae;
-
         }
 
 
@@ -1127,7 +1086,6 @@
             font-weight: 900;
 
             z-index: 2;
-
         }
 
 
@@ -1170,7 +1128,6 @@
             box-shadow:
                 0 25px 80px
                 rgba(0,0,0,.30);
-
         }
 
 
@@ -1187,7 +1144,6 @@
                 rgba(255,255,255,.055);
 
             pointer-events: none;
-
         }
 
 
@@ -1219,7 +1175,6 @@
                 0 0 0 70px rgba(40,130,255,.015);
 
             pointer-events: none;
-
         }
 
 
@@ -1228,7 +1183,6 @@
             position: relative;
 
             z-index: 2;
-
         }
 
 
@@ -1241,7 +1195,6 @@
             opacity: .5;
 
             margin-bottom: 15px;
-
         }
 
 
@@ -1253,7 +1206,6 @@
             letter-spacing: 3px;
 
             margin-bottom: 18px;
-
         }
 
 
@@ -1268,7 +1220,6 @@
                 rgba(255,255,255,.58);
 
             line-height: 1.8;
-
         }
 
 
@@ -1301,7 +1252,6 @@
                 color .25s ease,
                 border-color .25s ease,
                 transform .25s ease;
-
         }
 
 
@@ -1315,7 +1265,6 @@
 
             transform:
                 translateY(-3px);
-
         }
 
 
@@ -1328,7 +1277,6 @@
             position: relative;
 
             isolation: isolate;
-
         }
 
 
@@ -1337,7 +1285,6 @@
             position: relative;
 
             z-index: 2;
-
         }
 
 
@@ -1353,7 +1300,6 @@
                     repeat(2, minmax(0, 1fr));
 
                 gap: 25px;
-
             }
 
 
@@ -1363,7 +1309,6 @@
                     repeat(2, minmax(0, 1fr));
 
                 gap: 25px;
-
             }
 
 
@@ -1371,7 +1316,6 @@
 
                 grid-template-columns:
                     repeat(2, minmax(0, 1fr));
-
             }
 
 
@@ -1379,7 +1323,6 @@
 
                 grid-column:
                     1 / -1;
-
             }
 
         }
@@ -1399,7 +1342,6 @@
                 gap: 32px;
 
                 margin-top: 35px;
-
             }
 
 
@@ -1407,7 +1349,6 @@
 
                 padding:
                     0 5px;
-
             }
 
 
@@ -1418,7 +1359,6 @@
                 height: 300px;
 
                 object-fit: contain;
-
             }
 
 
@@ -1430,31 +1370,33 @@
                 gap: 24px;
 
                 margin-top: 35px;
-
             }
 
 
             .lore-card {
 
                 min-height:
-                    400px;
-
+                    0;
             }
 
 
             .lore-card-image {
 
-                padding:
-                    20px;
+                width: 100%;
 
+                height: 340px;
+
+                padding:
+                    10px;
+
+                object-fit: contain;
             }
 
 
             .lore-card-content {
 
                 padding:
-                    24px;
-
+                    22px 23px 25px;
             }
 
 
@@ -1466,7 +1408,6 @@
                 gap: 22px;
 
                 margin-top: 35px;
-
             }
 
 
@@ -1481,7 +1422,6 @@
 
                 padding:
                     30px 25px;
-
             }
 
 
@@ -1492,7 +1432,6 @@
 
                 left:
                     23px;
-
             }
 
 
@@ -1503,7 +1442,6 @@
 
                 margin-bottom:
                     13px;
-
             }
 
 
@@ -1517,7 +1455,6 @@
 
                 margin-bottom:
                     22px;
-
             }
 
 
@@ -1528,7 +1465,6 @@
 
                 padding:
                     55px 25px;
-
             }
 
 
@@ -1536,7 +1472,6 @@
 
                 padding:
                     20px;
-
             }
 
 
@@ -1547,7 +1482,6 @@
 
                 padding:
                     16px 25px;
-
             }
 
         }
@@ -1563,15 +1497,20 @@
 
                 height:
                     270px;
-
             }
 
 
             .lore-card {
 
                 min-height:
-                    370px;
+                    0;
+            }
 
+
+            .lore-card-image {
+
+                height:
+                    315px;
             }
 
 
@@ -1583,7 +1522,6 @@
 
                 padding:
                     27px 22px;
-
             }
 
 
@@ -1591,7 +1529,6 @@
 
                 font-size:
                     25px;
-
             }
 
 
@@ -1599,7 +1536,6 @@
 
                 max-width:
                     100%;
-
             }
 
         }
@@ -1614,7 +1550,6 @@
             .asteroid {
 
                 animation: none;
-
             }
 
 
@@ -1622,10 +1557,10 @@
             .hub-button,
             .character,
             .lore-card,
-            .gallery-card {
+            .gallery-card,
+            .text-link {
 
                 transition: none;
-
             }
 
         }
@@ -1778,7 +1713,7 @@
 
 
             <a
-                href="#gallery"
+                href="#universe"
                 class="text-link"
             >
                 EXPLORE THE STORY →
