@@ -1087,7 +1087,37 @@
             color:
                 #54e6ae;
         }
+        
+/* =====================================================
+   GALLERY CARD ARTWORK
+===================================================== */
 
+.gallery-card-image {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    z-index: 0;
+
+    transition:
+        transform .5s ease;
+}
+
+
+.gallery-card:hover .gallery-card-image {
+
+    transform:
+        scale(1.045);
+}
 
         /* =====================================================
            GALLERY ICON / SYMBOL
@@ -2081,7 +2111,12 @@
                     href="gallery.html"
                     class="gallery-card comic"
                 >
-
+                
+                <img
+    src="Comic art.png"
+    alt="Sentinels Comic Art"
+    class="gallery-card-image"
+>
                     <div class="gallery-card-symbol">
                         ▣
                     </div>
@@ -2121,6 +2156,12 @@
                     href="characters.html"
                     class="gallery-card character-art"
                 >
+                
+                <img
+    src="Character art.png"
+    alt="Sentinels Character Art"
+    class="gallery-card-image"
+>
 
                     <div class="gallery-card-symbol">
                         ◈
@@ -2161,6 +2202,12 @@
                     href="concept-art.html"
                     class="gallery-card concept-art"
                 >
+                
+                <img
+    src="Concept art.png"
+    alt="Sentinels Concept Art"
+    class="gallery-card-image"
+>
 
                     <div class="gallery-card-symbol">
                         ✦
