@@ -554,7 +554,7 @@
 
         /* =====================================================
            UNIVERSE / LORE CARDS
-           
+
            Artwork is kept fully visible.
            Information sits underneath the artwork.
         ===================================================== */
@@ -742,47 +742,10 @@
 
 
         /* =====================================================
-           GALLERY CARDS
+           GALLERY
         ===================================================== */
-/* =====================================================
-   GALLERY CARD IMAGE
-===================================================== */
 
-.gallery-card-image {
-
-    position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    object-position: center;
-
-    opacity: .82;
-
-    transition:
-        transform .5s ease,
-        opacity .5s ease;
-
-}
-
-
-/* Image zoom on hover */
-
-.gallery-card:hover .gallery-card-image {
-
-    transform:
-        scale(1.045);
-
-    opacity: .95;
-
-}
-
-                .gallery-placeholder {
+        .gallery-placeholder {
 
             display: grid;
 
@@ -794,6 +757,10 @@
             margin-top: 45px;
         }
 
+
+        /* =====================================================
+           GALLERY CARD
+        ===================================================== */
 
         .gallery-card {
 
@@ -847,7 +814,49 @@
         }
 
 
-        /* Decorative glow */
+        /* =====================================================
+           GALLERY CARD IMAGE
+
+           PNG artwork sits behind the content and
+           remains visible through the overlay.
+        ===================================================== */
+
+        .gallery-card-image {
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            object-position: center;
+
+            opacity: .82;
+
+            z-index: 0;
+
+            transition:
+                transform .5s ease,
+                opacity .5s ease;
+        }
+
+
+        .gallery-card:hover .gallery-card-image {
+
+            transform:
+                scale(1.045);
+
+            opacity: .95;
+        }
+
+
+        /* =====================================================
+           DECORATIVE GALLERY GLOW
+        ===================================================== */
 
         .gallery-card::before {
 
@@ -867,6 +876,10 @@
 
             filter: blur(4px);
 
+            z-index: 1;
+
+            pointer-events: none;
+
             transition:
                 transform .5s ease,
                 opacity .5s ease;
@@ -879,6 +892,12 @@
                 scale(1.25);
         }
 
+
+        /* =====================================================
+           GALLERY DARK OVERLAY
+
+           Keeps text readable without hiding the PNG.
+        ===================================================== */
 
         .gallery-card::after {
 
@@ -898,15 +917,21 @@
                     rgba(3,5,10,.05) 100%
                 );
 
+            z-index: 1;
+
             pointer-events: none;
         }
 
+
+        /* =====================================================
+           GALLERY CARD CONTENT
+        ===================================================== */
 
         .gallery-card-content {
 
             position: relative;
 
-            z-index: 2;
+            z-index: 3;
         }
 
 
@@ -1087,37 +1112,7 @@
             color:
                 #54e6ae;
         }
-        
-/* =====================================================
-   GALLERY CARD ARTWORK
-===================================================== */
 
-.gallery-card-image {
-
-    position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    object-position: center;
-
-    z-index: 0;
-
-    transition:
-        transform .5s ease;
-}
-
-
-.gallery-card:hover .gallery-card-image {
-
-    transform:
-        scale(1.045);
-}
 
         /* =====================================================
            GALLERY ICON / SYMBOL
@@ -1152,7 +1147,7 @@
 
             font-weight: 900;
 
-            z-index: 2;
+            z-index: 3;
         }
 
 
@@ -2105,18 +2100,22 @@
             <div class="gallery-placeholder">
 
 
-                <!-- COMIC ART -->
+                <!-- =================================================
+                     COMIC ART
+                ================================================== -->
 
                 <a
                     href="gallery.html"
                     class="gallery-card comic"
                 >
-                
-                <img
-    src="Comic art.png"
-    alt="Sentinels Comic Art"
-    class="gallery-card-image"
->
+
+                    <img
+                        src="Comic art.png"
+                        alt="Sentinels Comic Art"
+                        class="gallery-card-image"
+                    >
+
+
                     <div class="gallery-card-symbol">
                         ▣
                     </div>
@@ -2150,18 +2149,21 @@
                 </a>
 
 
-                <!-- CHARACTER ART -->
+                <!-- =================================================
+                     CHARACTER ART
+                ================================================== -->
 
                 <a
                     href="characters.html"
                     class="gallery-card character-art"
                 >
-                
-                <img
-    src="Character art.png"
-    alt="Sentinels Character Art"
-    class="gallery-card-image"
->
+
+                    <img
+                        src="Character art.png"
+                        alt="Sentinels Character Art"
+                        class="gallery-card-image"
+                    >
+
 
                     <div class="gallery-card-symbol">
                         ◈
@@ -2196,18 +2198,21 @@
                 </a>
 
 
-                <!-- CONCEPT ART -->
+                <!-- =================================================
+                     CONCEPT ART
+                ================================================== -->
 
                 <a
                     href="concept-art.html"
                     class="gallery-card concept-art"
                 >
-                
-                <img
-    src="Concept art.png"
-    alt="Sentinels Concept Art"
-    class="gallery-card-image"
->
+
+                    <img
+                        src="Concept art.png"
+                        alt="Sentinels Concept Art"
+                        class="gallery-card-image"
+                    >
+
 
                     <div class="gallery-card-symbol">
                         ✦
