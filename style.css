@@ -59,12 +59,12 @@ a {
     background-image:
         radial-gradient(
             circle,
-            rgba(255,255,255,.75) 1px,
+            rgba(255, 255, 255, .75) 1px,
             transparent 1.5px
         ),
         radial-gradient(
             circle,
-            rgba(255,255,255,.40) 1px,
+            rgba(255, 255, 255, .40) 1px,
             transparent 1.5px
         );
 
@@ -241,7 +241,6 @@ a {
     left: 0;
 
     width: 100%;
-
     z-index: 1000;
 
     display: flex;
@@ -303,7 +302,6 @@ a {
     text-align: center;
 
     position: relative;
-    isolation: isolate;
 
     background:
         radial-gradient(
@@ -325,8 +323,6 @@ a {
             rgba(0,0,0,.15),
             rgba(0,0,0,.75)
         );
-
-    z-index: -1;
 }
 
 .hero-content {
@@ -715,26 +711,6 @@ a {
     font-size: 11px;
 }
 
-.lore-card:nth-child(1) {
-    border-color:
-        rgba(80,160,255,.22);
-}
-
-.lore-card:nth-child(2) {
-    border-color:
-        rgba(80,210,255,.22);
-}
-
-.lore-card:nth-child(3) {
-    border-color:
-        rgba(255,55,75,.24);
-}
-
-.lore-card:nth-child(4) {
-    border-color:
-        rgba(160,70,255,.24);
-}
-
 
 /* =====================================================
    GALLERY
@@ -751,11 +727,16 @@ a {
     margin-top: 45px;
 }
 
+
+/* =====================================================
+   GALLERY CARDS
+   ===================================================== */
+
 .gallery-card {
     position: relative;
 
     min-width: 0;
-    min-height: 330px;
+    min-height: 360px;
 
     overflow: hidden;
 
@@ -772,8 +753,6 @@ a {
     padding: 34px;
 
     text-align: left;
-
-    text-decoration: none;
 
     color: #ffffff;
 
@@ -799,23 +778,29 @@ a {
 
 
 /* =====================================================
-   GALLERY IMAGES — FIXED
+   GALLERY COVER IMAGES
+   THIS IS THE IMPORTANT FIX
    ===================================================== */
 
 .gallery-card-image {
     position: absolute;
 
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
     width: 100%;
     height: 100%;
 
+    display: block;
+
     object-fit: cover;
     object-position: center;
 
-    z-index: -2;
+    z-index: 0;
 
-    opacity: .82;
+    opacity: .88;
 
     transition:
         transform .5s ease,
@@ -824,30 +809,35 @@ a {
 
 .gallery-card:hover .gallery-card-image {
     transform:
-        scale(1.045);
+        scale(1.06);
 
-    opacity: .95;
+    opacity: 1;
 }
 
 
-/* Dark overlay over image */
+/* =====================================================
+   DARK OVERLAY ABOVE THE IMAGE
+   ===================================================== */
 
 .gallery-card::after {
     content: "";
 
     position: absolute;
 
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
-    z-index: -1;
+    z-index: 1;
 
     background:
         linear-gradient(
             to top,
-            rgba(3,5,10,.99) 0%,
-            rgba(3,5,10,.86) 34%,
-            rgba(3,5,10,.32) 72%,
-            rgba(3,5,10,.05) 100%
+            rgba(3,5,10,1) 0%,
+            rgba(3,5,10,.94) 30%,
+            rgba(3,5,10,.55) 65%,
+            rgba(3,5,10,.15) 100%
         );
 
     pointer-events: none;
@@ -875,7 +865,7 @@ a {
 
     opacity: .7;
 
-    z-index: -1;
+    z-index: 2;
 
     transition:
         transform .5s ease;
@@ -904,7 +894,7 @@ a {
 
     letter-spacing: 3px;
 
-    opacity: .62;
+    opacity: .75;
 
     margin-bottom: 13px;
 }
@@ -927,7 +917,7 @@ a {
     line-height: 1.75;
 
     color:
-        rgba(255,255,255,.60);
+        rgba(255,255,255,.72);
 
     margin:
         0 0 24px;
@@ -953,75 +943,6 @@ a {
 
 
 /* =====================================================
-   GALLERY — COMIC
-   ===================================================== */
-
-.gallery-card.comic {
-    border-color:
-        rgba(70,150,255,.30);
-
-    background:
-        #080d17;
-}
-
-.gallery-card.comic::before {
-    background:
-        rgba(50,140,255,.20);
-}
-
-.gallery-card.comic .gallery-card-label {
-    color:
-        #65aaff;
-}
-
-
-/* =====================================================
-   GALLERY — CHARACTER ART
-   ===================================================== */
-
-.gallery-card.character-art {
-    border-color:
-        rgba(255,75,145,.30);
-
-    background:
-        #080d17;
-}
-
-.gallery-card.character-art::before {
-    background:
-        rgba(255,55,135,.18);
-}
-
-.gallery-card.character-art .gallery-card-label {
-    color:
-        #ff79b9;
-}
-
-
-/* =====================================================
-   GALLERY — CONCEPT ART
-   ===================================================== */
-
-.gallery-card.concept-art {
-    border-color:
-        rgba(50,230,155,.30);
-
-    background:
-        #080d17;
-}
-
-.gallery-card.concept-art::before {
-    background:
-        rgba(30,220,145,.17);
-}
-
-.gallery-card.concept-art .gallery-card-label {
-    color:
-        #54e6ae;
-}
-
-
-/* =====================================================
    GALLERY SYMBOL
    ===================================================== */
 
@@ -1040,15 +961,78 @@ a {
 
     border:
         1px solid
-        rgba(255,255,255,.18);
+        rgba(255,255,255,.22);
 
     background:
-        rgba(255,255,255,.045);
+        rgba(3,5,10,.40);
+
+    backdrop-filter:
+        blur(8px);
 
     font-size: 17px;
     font-weight: 900;
 
     z-index: 3;
+}
+
+
+/* =====================================================
+   COMIC CARD
+   ===================================================== */
+
+.gallery-card.comic {
+    border-color:
+        rgba(70,150,255,.35);
+}
+
+.gallery-card.comic::before {
+    background:
+        rgba(50,140,255,.20);
+}
+
+.gallery-card.comic .gallery-card-label {
+    color:
+        #65aaff;
+}
+
+
+/* =====================================================
+   CHARACTER ART CARD
+   ===================================================== */
+
+.gallery-card.character-art {
+    border-color:
+        rgba(255,75,145,.35);
+}
+
+.gallery-card.character-art::before {
+    background:
+        rgba(255,55,135,.18);
+}
+
+.gallery-card.character-art .gallery-card-label {
+    color:
+        #ff79b9;
+}
+
+
+/* =====================================================
+   CONCEPT ART CARD
+   ===================================================== */
+
+.gallery-card.concept-art {
+    border-color:
+        rgba(50,230,155,.35);
+}
+
+.gallery-card.concept-art::before {
+    background:
+        rgba(30,220,145,.17);
+}
+
+.gallery-card.concept-art .gallery-card-label {
+    color:
+        #54e6ae;
 }
 
 
@@ -1100,33 +1084,6 @@ a {
     border:
         1px solid
         rgba(255,255,255,.055);
-
-    pointer-events: none;
-}
-
-.hub-preview::after {
-    content: "";
-
-    position: absolute;
-
-    width: 280px;
-    height: 280px;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%,-50%);
-
-    border:
-        1px solid
-        rgba(60,150,255,.08);
-
-    border-radius: 50%;
-
-    box-shadow:
-        0 0 0 35px rgba(40,130,255,.025),
-        0 0 0 70px rgba(40,130,255,.015);
 
     pointer-events: none;
 }
@@ -1208,7 +1165,7 @@ a {
 
 
 /* =====================================================
-   CREATOR / APPRENTICE
+   CREATOR
    ===================================================== */
 
 .creator-credit {
@@ -1325,15 +1282,11 @@ footer p {
     .character-grid {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
-
-        gap: 25px;
     }
 
     .lore-grid {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
-
-        gap: 25px;
     }
 
     .gallery-placeholder {
@@ -1372,20 +1325,10 @@ footer p {
             1fr;
 
         gap: 32px;
-
-        margin-top: 35px;
-    }
-
-    .character {
-        padding:
-            0 5px;
     }
 
     .character-image {
-        width: 100%;
         height: 300px;
-
-        object-fit: contain;
     }
 
     .lore-grid {
@@ -1393,22 +1336,10 @@ footer p {
             1fr;
 
         gap: 24px;
-
-        margin-top: 35px;
     }
 
     .lore-card-image {
-        width: 100%;
         height: 340px;
-
-        padding: 10px;
-
-        object-fit: contain;
-    }
-
-    .lore-card-content {
-        padding:
-            22px 23px 25px;
     }
 
     .gallery-placeholder {
@@ -1416,15 +1347,13 @@ footer p {
             1fr;
 
         gap: 22px;
-
-        margin-top: 35px;
     }
 
     .gallery-card,
     .gallery-card:last-child {
         grid-column: auto;
 
-        min-height: 315px;
+        min-height: 340px;
 
         padding:
             30px 25px;
@@ -1435,69 +1364,12 @@ footer p {
         left: 23px;
     }
 
-    .gallery-card h3 {
-        font-size: 28px;
-
-        margin-bottom: 13px;
-    }
-
-    .gallery-card p {
-        font-size: 11px;
-
-        line-height: 1.75;
-
-        margin-bottom: 22px;
-    }
-
     .hub-preview {
         margin:
             70px 5%;
 
         padding:
             55px 25px;
-    }
-
-    .creator-credit {
-        padding: 20px;
-    }
-
-    .universe-button {
-        margin-top: 45px;
-
-        padding:
-            16px 25px;
-    }
-}
-
-
-/* =====================================================
-   SMALL PHONES
-   ===================================================== */
-
-@media (max-width: 390px) {
-
-    .character-image {
-        height: 270px;
-    }
-
-    .lore-card-image {
-        height: 315px;
-    }
-
-    .gallery-card,
-    .gallery-card:last-child {
-        min-height: 300px;
-
-        padding:
-            27px 22px;
-    }
-
-    .gallery-card h3 {
-        font-size: 25px;
-    }
-
-    .gallery-card p {
-        max-width: 100%;
     }
 }
 
