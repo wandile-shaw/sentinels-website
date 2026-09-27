@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030407">
     <title>Sentinels — Reader</title>
 
     <style>
@@ -12,10 +14,15 @@
             box-sizing: border-box;
         }
 
+        html,
         body {
+            min-height: 100%;
             background: #030407;
             color: white;
             font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
             min-height: 100vh;
         }
 
@@ -34,6 +41,7 @@
             padding: 0 25px;
             background: rgba(3, 4, 7, 0.9);
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
@@ -57,24 +65,29 @@
         }
 
         .control {
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            min-width: 38px;
+            min-height: 36px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
             background: transparent;
             color: white;
-            padding: 9px 13px;
+            padding: 8px 11px;
             cursor: pointer;
-            font-size: 11px;
-            transition: 0.25s ease;
+            font-size: 16px;
+            line-height: 1;
+            transition: border-color 0.2s ease, background 0.2s ease;
         }
 
         .control:hover {
-            border-color: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.06);
         }
 
-        /* READER */
+        /* READER AREA */
 
         .reader {
             min-height: 100vh;
-            padding: 90px 15px 50px;
+            min-height: 100dvh;
+            padding: 90px 15px 45px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -128,9 +141,9 @@
 
         .error-message {
             display: none;
-            text-align: center;
-            padding: 35px 25px;
             max-width: 550px;
+            padding: 35px 25px;
+            text-align: center;
             line-height: 1.7;
             color: rgba(255, 255, 255, 0.7);
         }
@@ -144,7 +157,7 @@
             overflow-wrap: anywhere;
         }
 
-        /* NAVIGATION */
+        /* PAGE NAVIGATION */
 
         .page-navigation {
             width: min(900px, 100%);
@@ -163,7 +176,7 @@
             cursor: pointer;
             letter-spacing: 2px;
             font-size: 11px;
-            transition: 0.25s ease;
+            transition: border-color 0.2s ease;
         }
 
         .nav-button:hover:not(:disabled) {
@@ -182,12 +195,65 @@
             text-align: center;
         }
 
-        /* MOBILE */
+        /* PHONE-FRIENDLY IMMERSIVE READING MODE */
+
+        body.reader-fullscreen {
+            overflow: hidden;
+            overscroll-behavior: none;
+        }
+
+        body.reader-fullscreen .reader {
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            min-height: 0;
+            padding: 0;
+            margin: 0;
+            justify-content: center;
+            background: #030407;
+        }
+
+        body.reader-fullscreen .page {
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            border: 0;
+            background: #030407;
+        }
+
+        body.reader-fullscreen .comic-image {
+            width: 100%;
+            height: 100%;
+            max-height: 100vh;
+            max-height: 100dvh;
+            object-fit: contain;
+        }
+
+        body.reader-fullscreen .page-navigation {
+            display: none;
+        }
+
+        body.reader-fullscreen .reader-bar {
+            height: 55px;
+            padding: 0 12px;
+            background: rgba(3, 4, 7, 0.6);
+            border-bottom: 0;
+        }
+
+        body.reader-fullscreen .reader-logo {
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        /* MOBILE LAYOUT */
 
         @media (max-width: 700px) {
             .reader-bar {
-                padding: 0 12px;
                 height: 58px;
+                padding: 0 12px;
             }
 
             .reader-logo {
@@ -200,6 +266,8 @@
             }
 
             .control {
+                min-width: 36px;
+                min-height: 36px;
                 padding: 8px 10px;
             }
 
@@ -209,10 +277,6 @@
 
             .page {
                 min-height: 200px;
-            }
-
-            .comic-image {
-                max-height: none;
             }
 
             .page-navigation {
@@ -231,12 +295,20 @@
                 letter-spacing: 1px;
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 
 <body>
-
-    <!-- TOP BAR -->
+    <!-- HEADER -->
 
     <header class="reader-bar">
         <a href="archive.html" class="reader-logo">
@@ -251,15 +323,17 @@
             <button
                 class="control"
                 id="fullscreenButton"
+                type="button"
                 onclick="toggleFullscreen()"
-                aria-label="Toggle fullscreen"
-                title="Toggle fullscreen"
+                aria-label="Enter fullscreen reading mode"
+                title="Fullscreen"
             >
                 ⛶
             </button>
 
             <button
                 class="control"
+                type="button"
                 onclick="goArchive()"
                 aria-label="Back to archive"
                 title="Back to archive"
@@ -271,10 +345,8 @@
 
     <!-- COMIC READER -->
 
-    <main class="reader">
-
+    <main class="reader" id="reader">
         <div class="page" id="comicPage">
-
             <img
                 id="comicImage"
                 class="comic-image"
@@ -283,40 +355,31 @@
             >
 
             <div class="message" id="volumeMessage" hidden>
-                <div class="message-label">
-                    SENTINELS
-                </div>
-
+                <div class="message-label">SENTINELS</div>
                 <h1>COMING SOON</h1>
-
-                <p>
-                    This volume is not available to read yet.
-                </p>
+                <p>This volume is not available to read yet.</p>
             </div>
 
             <div class="error-message" id="errorMessage">
                 <div class="message-label" id="errorPageLabel">
                     PAGE 01
                 </div>
-
                 <h2>PAGE NOT FOUND</h2>
-
                 <p>
-                    This page image could not be loaded.
-                    The reader checked the expected filenames
-                    inside the volume1 folder.
+                    The reader could not load this page.
+                    Please check the uploaded image filename
+                    and folder path.
                 </p>
             </div>
-
         </div>
 
         <!-- PAGE NAVIGATION -->
 
-        <div class="page-navigation">
-
+        <div class="page-navigation" id="pageNavigation">
             <button
                 class="nav-button"
                 id="previousButton"
+                type="button"
                 onclick="previousPage()"
             >
                 ← PREVIOUS
@@ -329,17 +392,16 @@
             <button
                 class="nav-button"
                 id="nextButton"
+                type="button"
                 onclick="nextPage()"
             >
                 NEXT →
             </button>
-
         </div>
-
     </main>
 
     <script>
-        /* GET VOLUME FROM URL */
+        /* READ VOLUME FROM URL */
 
         const params = new URLSearchParams(
             window.location.search
@@ -350,79 +412,44 @@
         /* VOLUME 1 SETTINGS */
 
         const totalPages = 25;
+        const volumeFolder = "volume1";
+
         let currentPage = 1;
         let currentFileIndex = 0;
 
-        /*
-          The reader will try these name patterns in order.
-          This supports names like:
-          Page-01.jpeg
-          page-01.jpeg
-          page01.jpg
-          page01.png
-        */
+        const extensions = ["jpeg", "jpg", "png"];
 
-        const volumeFolder = "volume1";
-
-        const volumeTitle = document.getElementById(
-            "volumeTitle"
-        );
-
-        const comicImage = document.getElementById(
-            "comicImage"
-        );
-
-        const volumeMessage = document.getElementById(
-            "volumeMessage"
-        );
-
-        const errorMessage = document.getElementById(
-            "errorMessage"
-        );
-
-        const errorPageLabel = document.getElementById(
-            "errorPageLabel"
-        );
-
-        const pageCount = document.getElementById(
-            "pageCount"
-        );
-
-        const previousButton = document.getElementById(
-            "previousButton"
-        );
-
-        const nextButton = document.getElementById(
-            "nextButton"
-        );
+        const volumeTitle = document.getElementById("volumeTitle");
+        const comicImage = document.getElementById("comicImage");
+        const volumeMessage = document.getElementById("volumeMessage");
+        const errorMessage = document.getElementById("errorMessage");
+        const errorPageLabel = document.getElementById("errorPageLabel");
+        const pageCount = document.getElementById("pageCount");
+        const previousButton = document.getElementById("previousButton");
+        const nextButton = document.getElementById("nextButton");
+        const fullscreenButton = document.getElementById("fullscreenButton");
 
         volumeTitle.textContent = "VOLUME " + volume;
 
-        /* MAKE POSSIBLE FILE NAMES FOR A PAGE */
+        /* BUILD THE FILENAME OPTIONS FOR EACH PAGE */
 
         function getPossibleFilenames(pageNumber) {
             const number = String(pageNumber).padStart(2, "0");
 
-            return [
-                "Page-" + number + ".jpeg",
-                "Page-" + number + ".jpg",
-                "Page-" + number + ".png",
+            const names = [];
 
-                "page-" + number + ".jpeg",
-                "page-" + number + ".jpg",
-                "page-" + number + ".png",
+            for (const prefix of ["Page-", "page-", "Page", "page"]) {
+                for (const extension of extensions) {
+                    names.push(
+                        prefix + number + "." + extension
+                    );
+                }
+            }
 
-                "Page" + number + ".jpeg",
-                "Page" + number + ".jpg",
-                "Page" + number + ".png",
-
-                "page" + number + ".jpeg",
-                "page" + number + ".jpg",
-                "page" + number + ".png"
-            ];
+            return names;
         }
 
-        /* UPDATE DISPLAYED PAGE */
+        /* LOAD THE CURRENT PAGE */
 
         function updatePage() {
             const number = String(currentPage).padStart(2, "0");
@@ -449,7 +476,7 @@
             tryNextFilename(number);
         }
 
-        /* TRY EACH SUPPORTED FILE NAME */
+        /* TRY POSSIBLE IMAGE NAMES UNTIL ONE LOADS */
 
         function tryNextFilename(number) {
             const filenames = getPossibleFilenames(currentPage);
@@ -470,8 +497,6 @@
                 volumeFolder + "/" + filename;
         }
 
-        /* IMAGE LOAD EVENTS */
-
         comicImage.onload = function () {
             comicImage.hidden = false;
             errorMessage.style.display = "none";
@@ -479,12 +504,13 @@
 
         comicImage.onerror = function () {
             currentFileIndex++;
+
             tryNextFilename(
                 String(currentPage).padStart(2, "0")
             );
         };
 
-        /* NEXT / PREVIOUS */
+        /* NEXT AND PREVIOUS PAGE */
 
         function nextPage() {
             if (currentPage < totalPages) {
@@ -508,28 +534,90 @@
             }
         }
 
-        /* BACK TO ARCHIVE */
+        /* RETURN TO ARCHIVE */
 
         function goArchive() {
             window.location.href = "archive.html";
         }
 
-        /* FULLSCREEN */
+        /* FULLSCREEN / IMMERSIVE MODE */
 
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                if (document.documentElement.requestFullscreen) {
-                    document.documentElement
-                        .requestFullscreen()
-                        .catch(function () {});
+        function setReaderFullscreen(enabled) {
+            document.body.classList.toggle(
+                "reader-fullscreen",
+                enabled
+            );
+
+            fullscreenButton.textContent =
+                enabled ? "×" : "⛶";
+
+            fullscreenButton.setAttribute(
+                "aria-label",
+                enabled
+                    ? "Exit fullscreen reading mode"
+                    : "Enter fullscreen reading mode"
+            );
+
+            fullscreenButton.setAttribute(
+                "title",
+                enabled ? "Exit fullscreen" : "Fullscreen"
+            );
+        }
+
+        async function toggleFullscreen() {
+            const currentlyImmersive =
+                document.body.classList.contains(
+                    "reader-fullscreen"
+                );
+
+            if (currentlyImmersive) {
+                setReaderFullscreen(false);
+
+                if (document.fullscreenElement) {
+                    try {
+                        await document.exitFullscreen();
+                    } catch (error) {
+                        /* CSS mode still exits if native exit is unavailable */
+                    }
                 }
-            } else if (document.exitFullscreen) {
-                document.exitFullscreen()
-                    .catch(function () {});
+
+                return;
+            }
+
+            /*
+              Use native fullscreen where supported.
+              iPhone Safari may not support fullscreen on the
+              entire document, so CSS immersive mode is used too.
+            */
+
+            setReaderFullscreen(true);
+
+            if (
+                document.documentElement.requestFullscreen &&
+                !document.fullscreenElement
+            ) {
+                try {
+                    await document.documentElement.requestFullscreen();
+                } catch (error) {
+                    /* The phone-friendly CSS mode remains active */
+                }
             }
         }
 
-        /* KEYBOARD PAGE CONTROLS */
+        /* KEEP BUTTON STATE IN SYNC IF NATIVE FULLSCREEN EXITS */
+
+        document.addEventListener("fullscreenchange", function () {
+            if (
+                !document.fullscreenElement &&
+                document.body.classList.contains(
+                    "reader-fullscreen"
+                )
+            ) {
+                setReaderFullscreen(false);
+            }
+        });
+
+        /* ESC KEY ON DESKTOP */
 
         document.addEventListener("keydown", function (event) {
             if (event.key === "ArrowRight") {
@@ -539,12 +627,20 @@
             if (event.key === "ArrowLeft") {
                 previousPage();
             }
+
+            if (
+                event.key === "Escape" &&
+                document.body.classList.contains(
+                    "reader-fullscreen"
+                )
+            ) {
+                setReaderFullscreen(false);
+            }
         });
 
-        /* LOAD FIRST PAGE */
+        /* INITIAL PAGE */
 
         updatePage();
     </script>
-
 </body>
 </html>
