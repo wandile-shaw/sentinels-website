@@ -1,32 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#03050a">
-    <title>SENTINELS</title>
-    <link rel="stylesheet" href="style.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#06152d"
+    >
+
+    <meta
+        name="description"
+        content="SENTINELS — The official comic universe created by Wandile Shaw."
+    >
+
+    <title>SENTINELS — The Official Comic Universe</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 </head>
+
+
 <body>
+
     <!-- =====================================================
          SPACE BACKGROUND
     ====================================================== -->
-    <div class="space-background" aria-hidden="true">
+
+    <div
+        class="space-background"
+        aria-hidden="true"
+    >
         <div class="asteroid blue one"></div>
         <div class="asteroid red two"></div>
         <div class="asteroid green three"></div>
         <div class="asteroid white four"></div>
         <div class="asteroid pink five"></div>
     </div>
+
+
     <!-- =====================================================
-         NAVIGATION
+         HEADER
     ====================================================== -->
-    <header class="navbar">
-        <div class="logo">
-            SENTINELS
-        </div>
+
+    <header class="site-header">
+
+        <a
+            href="index.html"
+            class="brand"
+            aria-label="Sentinels Home"
+        >
+            <span class="brand-main">
+                SENTINELS
+            </span>
+
+            <span class="brand-sub">
+                OFFICIAL UNIVERSE
+            </span>
+        </a>
+
+
         <button
             class="menu-toggle"
+            id="menuToggle"
             type="button"
             aria-label="Open navigation"
             aria-expanded="false"
@@ -35,437 +78,1199 @@
             <span></span>
             <span></span>
         </button>
-        <nav>
-            <a href="index.html" class="active">
+
+
+        <nav
+            class="main-nav"
+            id="mainNav"
+            aria-label="Main navigation"
+        >
+
+            <a
+                href="index.html"
+                class="active"
+            >
                 HOME
             </a>
+
             <a href="archive.html">
                 VOLUMES
             </a>
+
             <a href="sentinels.html">
                 CHARACTERS
             </a>
+
             <a href="quiz.html">
                 QUIZ
             </a>
+
             <a href="predictions.html">
                 PREDICTIONS
             </a>
+
             <a href="hub.html">
                 HUB
             </a>
+
             <a href="about.html">
                 ABOUT
             </a>
+
         </nav>
+
     </header>
+
+
     <main>
+
+
         <!-- =================================================
              HERO
         ================================================== -->
-        <section id="home" class="hero">
+
+        <section class="hero-section">
+
             <div class="hero-content">
+
                 <p class="eyebrow">
                     THE OFFICIAL COMIC UNIVERSE
                 </p>
+
+
                 <img
                     src="Logo final.jpeg"
                     alt="SENTINELS"
                     class="hero-logo"
                 >
-                <p class="tagline">
-                    FOUR. ONE MISSION.
+
+
+                <p class="hero-description">
+                    FOUR ORDINARY PEOPLE.
+                    <br>
+                    ONE EXTRAORDINARY MISSION.
                 </p>
-                <a
-                    href="archive.html"
-                    class="universe-button"
-                >
-                    ENTER THE UNIVERSE
-                </a>
+
+
+                <div class="hero-actions">
+
+                    <a
+                        href="archive.html"
+                        class="universe-button"
+                    >
+                        ENTER THE UNIVERSE
+                    </a>
+
+                    <a
+                        href="#sentinels"
+                        class="text-link"
+                    >
+                        MEET THE SENTINELS ↓
+                    </a>
+
+                </div>
+
+
+                <div class="hero-bottom-line">
+
+                    <span>
+                        04 SENTINELS
+                    </span>
+
+                    <span>
+                        01 ENEMY
+                    </span>
+
+                    <span>
+                        ANOTHER STORY BEGINS
+                    </span>
+
+                </div>
+
             </div>
+
         </section>
+
+
+
         <!-- =================================================
              STORY
         ================================================== -->
-        <section id="story" class="section story">
-            <p class="eyebrow">
-                THE STORY
-            </p>
-            <h2>
-                THEY WERE CHOSEN.
-            </h2>
-            <p>
-                Four ordinary people.
-                Four extraordinary powers.
-                One enemy that has been waiting for them.
-            </p>
-            <a
-                href="#universe"
-                class="text-link"
-            >
-                EXPLORE THE STORY →
-            </a>
-        </section>
-        <!-- =================================================
-             SENTINELS
-        ================================================== -->
-        <section id="sentinels" class="section">
-            <p class="eyebrow">
-                MEET THE TEAM
-            </p>
-            <h2>
-                THE SENTINELS
-            </h2>
-            <div class="character-grid">
-                <!-- WANDILE -->
-                <article class="character wandile">
-                    <img
-                        src="Wandile character art.jpeg"
-                        alt="Wandile"
-                        class="character-image"
+
+        <section class="section story">
+
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    THE STORY
+                </p>
+
+                <h2>
+                    THEY WERE CHOSEN.
+                </h2>
+
+            </div>
+
+
+            <div class="story-grid">
+
+                <div class="story-copy">
+
+                    <p>
+                        Four ordinary people.
+                        Four extraordinary powers.
+                        One enemy that has been waiting for them.
+                    </p>
+
+                    <p>
+                        The Sentinels are only beginning to
+                        discover what they have become — and
+                        why they were chosen.
+                    </p>
+
+                    <a
+                        href="archive.html"
+                        class="text-link"
                     >
-                    <span>
+                        DISCOVER THE STORY →
+                    </a>
+
+                </div>
+
+
+                <div class="story-panel">
+
+                    <div class="intel-line">
+                        <span>
+                            CLASSIFICATION
+                        </span>
+
+                        <strong>
+                            SENTINEL
+                        </strong>
+                    </div>
+
+
+                    <div class="intel-line">
+                        <span>
+                            ACTIVE MEMBERS
+                        </span>
+
+                        <strong>
+                            04
+                        </strong>
+                    </div>
+
+
+                    <div class="intel-line">
+                        <span>
+                            CURRENT THREAT
+                        </span>
+
+                        <strong>
+                            VORAX
+                        </strong>
+                    </div>
+
+
+                    <div class="intel-line">
+                        <span>
+                            STATUS
+                        </span>
+
+                        <strong>
+                            ACTIVE
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             THE SENTINELS
+        ================================================== -->
+
+        <section
+            class="section"
+            id="sentinels"
+        >
+
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    MEET THE SENTINELS
+                </p>
+
+                <h2>
+                    FOUR. ONE MISSION.
+                </h2>
+
+                <p>
+                    Get to know the people behind the powers.
+                </p>
+
+            </div>
+
+
+            <div class="sentinel-grid">
+
+
+                <!-- =========================================
+                     WANDILE
+                ========================================== -->
+
+                <article
+                    class="sentinel-card sentinel-blue"
+                    data-character="wandile"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Open Wandile dossier"
+                >
+
+                    <div class="card-top">
+
+                        <span class="card-number">
+                            01
+                        </span>
+
+                        <span class="card-status">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="character-image-wrap">
+
+                        <img
+                            src="Wandile character art.jpeg"
+                            alt="Wandile"
+                            class="character-image"
+                        >
+
+                    </div>
+
+
+                    <div class="character-info">
+
+                        <span class="character-colour">
+                            BLUE SENTINEL
+                        </span>
+
+                        <h3>
+                            WANDILE
+                        </h3>
+
+                        <p>
+                            STRENGTH • SPEED • FLIGHT
+                        </p>
+
+                        <span class="view-dossier">
+                            OPEN DOSSIER →
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =========================================
+                     XAVIER
+                ========================================== -->
+
+                <article
+                    class="sentinel-card sentinel-red"
+                    data-character="xavier"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Open Xavier dossier"
+                >
+
+                    <div class="card-top">
+
+                        <span class="card-number">
+                            02
+                        </span>
+
+                        <span class="card-status">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="character-image-wrap">
+
+                        <img
+                            src="Xavier character art final.jpeg"
+                            alt="Xavier"
+                            class="character-image"
+                        >
+
+                    </div>
+
+
+                    <div class="character-info">
+
+                        <span class="character-colour">
+                            RED SENTINEL
+                        </span>
+
+                        <h3>
+                            XAVIER
+                        </h3>
+
+                        <p>
+                            STRENGTH • POWER
+                        </p>
+
+                        <span class="view-dossier">
+                            OPEN DOSSIER →
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =========================================
+                     KYLA
+                ========================================== -->
+
+                <article
+                    class="sentinel-card sentinel-pink"
+                    data-character="kyla"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Open Kyla dossier"
+                >
+
+                    <div class="card-top">
+
+                        <span class="card-number">
+                            03
+                        </span>
+
+                        <span class="card-status">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="character-image-wrap">
+
+                        <img
+                            src="Kyla character art final 1.jpeg"
+                            alt="Kyla"
+                            class="character-image"
+                        >
+
+                    </div>
+
+
+                    <div class="character-info">
+
+                        <span class="character-colour">
+                            PINK + WHITE SENTINEL
+                        </span>
+
+                        <h3>
+                            KYLA
+                        </h3>
+
+                        <p>
+                            SPEED
+                        </p>
+
+                        <span class="view-dossier">
+                            OPEN DOSSIER →
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =========================================
+                     CEE
+                ========================================== -->
+
+                <article
+                    class="sentinel-card sentinel-green"
+                    data-character="cee"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Open Cee dossier"
+                >
+
+                    <div class="card-top">
+
+                        <span class="card-number">
+                            04
+                        </span>
+
+                        <span class="card-status">
+                            ACTIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="character-image-wrap">
+
+                        <img
+                            src="Cee character art.jpeg"
+                            alt="Cee"
+                            class="character-image"
+                        >
+
+                    </div>
+
+
+                    <div class="character-info">
+
+                        <span class="character-colour">
+                            GREEN SENTINEL
+                        </span>
+
+                        <h3>
+                            CEE
+                        </h3>
+
+                        <p>
+                            FLIGHT • ENERGY BLASTS
+                        </p>
+
+                        <span class="view-dossier">
+                            OPEN DOSSIER →
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <div class="section-footer-link">
+
+                <a
+                    href="sentinels.html"
+                    class="text-link"
+                >
+                    VIEW PERSONNEL DATABASE →
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             LATEST VOLUME
+        ================================================== -->
+
+        <section class="section latest-volume">
+
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    THE ARCHIVE
+                </p>
+
+                <h2>
+                    LATEST VOLUME
+                </h2>
+
+            </div>
+
+
+            <div class="volume-feature">
+
+                <div class="volume-number">
+                    VOL.
+                    <strong>
+                        01
+                    </strong>
+                </div>
+
+
+                <div class="volume-info">
+
+                    <span class="volume-status">
+                        COMPLETE • 25 PAGES
+                    </span>
+
+                    <h3>
+                        THE BEGINNING
+                    </h3>
+
+                    <p>
+                        Four people. Four powers.
+                        The beginning of the Sentinels.
+                    </p>
+
+                    <a
+                        href="reader.html?volume=1"
+                        class="universe-button"
+                    >
+                        READ VOLUME 01
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             EXPLORE
+        ================================================== -->
+
+        <section class="section explore">
+
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    EXPLORE
+                </p>
+
+                <h2>
+                    GO DEEPER.
+                </h2>
+
+            </div>
+
+
+            <div class="explore-grid">
+
+
+                <a
+                    href="archive.html"
+                    class="explore-card"
+                >
+
+                    <span class="explore-number">
                         01
                     </span>
+
+                    <span class="explore-label">
+                        THE ARCHIVE
+                    </span>
+
                     <h3>
-                        WANDILE
+                        VOLUMES
                     </h3>
+
                     <p>
-                        FOURTH SENTINEL
+                        Read the story and follow the
+                        Sentinels through every volume.
                     </p>
-                    <small>
-                        BLUE • STRENGTH • SPEED • FLIGHT
-                    </small>
-                </article>
-                <!-- XAVIER -->
-                <article class="character xavier">
-                    <img
-                        src="Xavier character art final.jpeg"
-                        alt="Xavier"
-                        class="character-image"
-                    >
-                    <span>
+
+                    <span class="explore-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+
+                <a
+                    href="quiz.html"
+                    class="explore-card"
+                >
+
+                    <span class="explore-number">
                         02
                     </span>
+
+                    <span class="explore-label">
+                        TEST YOURSELF
+                    </span>
+
                     <h3>
-                        XAVIER
+                        QUIZ
                     </h3>
+
                     <p>
-                        THE POWERHOUSE
+                        How well do you really know
+                        the Sentinels?
                     </p>
-                    <small>
-                        RED • STRENGTH
-                    </small>
-                </article>
-                <!-- KYLA -->
-                <article class="character kyla">
-                    <img
-                        src="Kyla character art final 1.jpeg"
-                        alt="Kyla"
-                        class="character-image"
-                    >
-                    <span>
+
+                    <span class="explore-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+
+                <a
+                    href="predictions.html"
+                    class="explore-card"
+                >
+
+                    <span class="explore-number">
                         03
                     </span>
-                    <h3>
-                        KYLA
-                    </h3>
-                    <p>
-                        THE SPEEDSTER
-                    </p>
-                    <small>
-                        PINK + WHITE • SPEED
-                    </small>
-                </article>
-                <!-- CEE -->
-                <article class="character cee">
-                    <img
-                        src="Cee character art.jpeg"
-                        alt="Cee"
-                        class="character-image"
-                    >
-                    <span>
-                        04
+
+                    <span class="explore-label">
+                        WHAT COMES NEXT?
                     </span>
+
                     <h3>
-                        CEE
+                        PREDICTIONS
                     </h3>
+
                     <p>
-                        THE AERIAL SENTINEL
+                        Make your prediction about
+                        what happens next.
                     </p>
-                    <small>
-                        GREEN • FLIGHT • ENERGY BLASTS
-                    </small>
-                </article>
-            </div>
-        </section>
-        <!-- =================================================
-             UNIVERSE
-        ================================================== -->
-        <section id="universe" class="section universe">
-            <p class="eyebrow">
-                THE WORLD
-            </p>
-            <h2>
-                THERE IS MORE TO THE STORY.
-            </h2>
-            <p>
-                Discover the characters, enemies and mysteries
-                surrounding the Sentinels.
-            </p>
-            <div class="lore-grid">
-                <!-- VAELOR -->
-                <article class="lore-card">
-                    <img
-                        src="Vaelor character art final.jpeg"
-                        alt="Vaelor"
-                        class="lore-card-image"
-                    >
-                    <div class="lore-card-content">
-                        <span class="lore-card-number">
-                            01 • THE SURVIVORS
-                        </span>
-                        <h3>
-                            VAELOR
-                        </h3>
-                        <p>
-                            Keeper of ancient Sentinel knowledge.
-                        </p>
-                    </div>
-                </article>
-                <!-- ZYRON -->
-                <article class="lore-card">
-                    <img
-                        src="Zyron character art final.jpeg"
-                        alt="Zyron"
-                        class="lore-card-image"
-                    >
-                    <div class="lore-card-content">
-                        <span class="lore-card-number">
-                            02 • THE SURVIVORS
-                        </span>
-                        <h3>
-                            ZYRON
-                        </h3>
-                        <p>
-                            Guardian, mentor and survivor.
-                        </p>
-                    </div>
-                </article>
-                <!-- COMMANDER VORAX -->
-                <article class="lore-card">
-                    <img
-                        src="Commander vorax character art final.jpeg"
-                        alt="Commander Vorax"
-                        class="lore-card-image"
-                    >
-                    <div class="lore-card-content">
-                        <span class="lore-card-number">
-                            03 • THE ENEMY
-                        </span>
-                        <h3>
-                            COMMANDER VORAX
-                        </h3>
-                        <p>
-                            The enemy hunting the Sentinels.
-                        </p>
-                    </div>
-                </article>
-                <!-- VORAX -->
-                <article class="lore-card">
-                    <img
-                        src="Vorax character art final 1.jpeg"
-                        alt="Vorax mutant"
-                        class="lore-card-image"
-                    >
-                    <div class="lore-card-content">
-                        <span class="lore-card-number">
-                            04 • THE MUTATED
-                        </span>
-                        <h3>
-                            VORAX
-                        </h3>
-                        <p>
-                            A mutated force created by the enemy.
-                        </p>
-                    </div>
-                </article>
-            </div>
-        </section>
-        <!-- =================================================
-             GALLERY
-        ================================================== -->
-        <section id="gallery" class="section gallery">
-            <p class="eyebrow">
-                VISUAL ARCHIVE
-            </p>
-            <h2>
-                THE GALLERY
-            </h2>
-            <div class="gallery-placeholder">
-                <!-- COMIC ART CARD -->
-                <a
-                    href="gallery.html"
-                    class="gallery-card comic"
-                >
-                    <img
-                        src="Comic art.PNG"
-                        alt="Sentinels Comic Art"
-                        class="gallery-card-image"
-                    >
-                    <div class="gallery-card-symbol">
-                        ▣
-                    </div>
-                    <div class="gallery-card-content">
-                        <div class="gallery-card-label">
-                            THE FINISHED STORY
-                        </div>
-                        <h3>
-                            COMIC ART
-                        </h3>
-                        <p>
-                            Finished pages, memorable scenes
-                            and artwork taken directly from
-                            the Sentinels story.
-                        </p>
-                        <span class="gallery-card-link">
-                            COMING WITH THE FINISHED PAGES →
-                        </span>
-                    </div>
+
+                    <span class="explore-arrow">
+                        →
+                    </span>
+
                 </a>
-                <!-- CHARACTER ART CARD -->
-                <a
-                    href="characters.html"
-                    class="gallery-card character-art"
-                >
-                    <img
-                        src="Character art.PNG"
-                        alt="Sentinels Character Art"
-                        class="gallery-card-image"
-                    >
-                    <div class="gallery-card-symbol">
-                        ◈
-                    </div>
-                    <div class="gallery-card-content">
-                        <div class="gallery-card-label">
-                            THE FACES OF THE UNIVERSE
-                        </div>
-                        <h3>
-                            CHARACTER ART
-                        </h3>
-                        <p>
-                            Character portraits, Sentinel
-                            designs, villains and the people
-                            who bring the universe to life.
-                        </p>
-                        <span class="gallery-card-link">
-                            EXPLORE CHARACTER ART →
-                        </span>
-                    </div>
-                </a>
-                <!-- CONCEPT ART CARD -->
-                <a
-                    href="concept-art.html"
-                    class="gallery-card concept-art"
-                >
-                    <img
-                        src="Concept art.PNG"
-                        alt="Sentinels Concept Art"
-                        class="gallery-card-image"
-                    >
-                    <div class="gallery-card-symbol">
-                        ✦
-                    </div>
-                    <div class="gallery-card-content">
-                        <div class="gallery-card-label">
-                            THE MAKING OF SENTINELS
-                        </div>
-                        <h3>
-                            CONCEPT ART
-                        </h3>
-                        <p>
-                            Early sketches, first designs,
-                            logo ideas and the evolution
-                            behind the final universe.
-                        </p>
-                        <span class="gallery-card-link">
-                            EXPLORE CONCEPT ART →
-                        </span>
-                    </div>
-                </a>
+
             </div>
+
         </section>
+
+
+
         <!-- =================================================
-             SENTINELS HUB
+             HUB
         ================================================== -->
+
         <section class="hub-preview">
+
             <div class="hub-preview-label">
                 THE COMMUNITY
             </div>
+
             <h2>
                 SENTINELS HUB
             </h2>
+
             <p>
                 The story doesn't end when the page does.
                 Share theories, discuss the universe,
                 leave reviews and talk about the Sentinels.
             </p>
+
             <a
                 href="hub.html"
                 class="hub-button"
             >
                 ENTER THE HUB →
             </a>
+
         </section>
+
+
+
         <!-- =================================================
              ABOUT
         ================================================== -->
-        <section id="about" class="section about">
-            <p class="eyebrow">
-                THE PROJECT
-            </p>
-            <h2>
-                THE STORY HAS ONLY JUST BEGUN.
-            </h2>
+
+        <section class="section about-preview">
+
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    THE PROJECT
+                </p>
+
+                <h2>
+                    THE STORY HAS ONLY JUST BEGUN.
+                </h2>
+
+            </div>
+
+
             <p>
                 Sentinels is an original comic universe
                 created by Wandile Shaw.
             </p>
+
+
             <div class="creator-credit">
+
                 <div class="creator-label">
                     CREATED BY
                 </div>
+
                 <div class="creator-name">
                     WANDILE SHAW
                 </div>
+
                 <div class="creator-role">
                     CREATOR • WRITER • WORLD BUILDER
                 </div>
+
+
                 <div class="apprentice-credit">
+
                     <div class="apprentice-label">
                         SENTINELS APPRENTICE
                     </div>
+
                     <div class="apprentice-name">
                         LILLIAN
                     </div>
+
                     <div class="apprentice-role">
                         CREATIVE APPRENTICE
                     </div>
+
                 </div>
+
             </div>
+
+
+            <a
+                href="about.html"
+                class="text-link"
+            >
+                ABOUT THE PROJECT →
+            </a>
+
         </section>
+
     </main>
+
+
+
+    <!-- =====================================================
+         DOSSIER OVERLAY
+    ====================================================== -->
+
+    <div
+        class="dossier-overlay"
+        id="dossierOverlay"
+        aria-hidden="true"
+    >
+
+        <div
+            class="dossier-backdrop"
+            id="dossierBackdrop"
+        ></div>
+
+
+        <div
+            class="dossier-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="dossierName"
+        >
+
+            <button
+                class="dossier-close"
+                id="dossierClose"
+                type="button"
+                aria-label="Close character dossier"
+            >
+                ×
+            </button>
+
+
+            <div class="dossier-visual">
+
+                <img
+                    id="dossierImage"
+                    src=""
+                    alt=""
+                    class="dossier-image"
+                >
+
+            </div>
+
+
+            <div class="dossier-content">
+
+                <span
+                    class="dossier-classification"
+                    id="dossierClassification"
+                >
+                    SENTINEL
+                </span>
+
+
+                <h2 id="dossierName">
+                    WANDILE
+                </h2>
+
+
+                <span
+                    class="dossier-role"
+                    id="dossierRole"
+                >
+                    FOURTH SENTINEL
+                </span>
+
+
+                <p
+                    class="dossier-description"
+                    id="dossierDescription"
+                >
+                    The fourth Sentinel.
+                </p>
+
+
+                <div class="dossier-abilities">
+
+                    <span class="dossier-abilities-label">
+                        ABILITIES
+                    </span>
+
+                    <div id="dossierAbilities">
+                    </div>
+
+                </div>
+
+
+                <div class="dossier-status">
+
+                    <span>
+                        STATUS
+                    </span>
+
+                    <strong>
+                        ACTIVE
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
     <!-- =====================================================
          FOOTER
     ====================================================== -->
+
     <footer>
+
         <div class="logo">
             SENTINELS
         </div>
+
         <p>
             © 2026 Sentinels. All rights reserved.
         </p>
+
     </footer>
+
+
+
+    <!-- =====================================================
+         DOSSIER DATA + HOME INTERACTION
+         Kept here so the Home page can work independently.
+    ====================================================== -->
+
+    <script>
+
+        const dossierData = {
+
+            wandile: {
+                name: "WANDILE",
+                classification: "BLUE SENTINEL",
+                role: "FOURTH SENTINEL",
+                image: "Wandile character art.jpeg",
+                description:
+                    "The fourth Sentinel, carrying immense strength while developing the speed and flight that come with his growing connection to the Sentinel power.",
+                abilities: [
+                    "Strength",
+                    "Speed",
+                    "Flight",
+                    "Retractable Wings",
+                    "Shield"
+                ]
+            },
+
+            xavier: {
+                name: "XAVIER",
+                classification: "RED SENTINEL",
+                role: "THE POWERHOUSE",
+                image: "Xavier character art final.jpeg",
+                description:
+                    "One of the original Sentinels and the team's powerhouse, built around raw strength and overwhelming physical power.",
+                abilities: [
+                    "Strength",
+                    "Power"
+                ]
+            },
+
+            kyla: {
+                name: "KYLA",
+                classification: "PINK + WHITE SENTINEL",
+                role: "THE SPEEDSTER",
+                image: "Kyla character art final 1.jpeg",
+                description:
+                    "The speedster of the team, capable of moving with incredible speed and precision.",
+                abilities: [
+                    "Speed"
+                ]
+            },
+
+            cee: {
+                name: "CEE",
+                classification: "GREEN SENTINEL",
+                role: "THE AERIAL SENTINEL",
+                image: "Cee character art.jpeg",
+                description:
+                    "The aerial Sentinel, taking to the sky with retractable wings while projecting powerful energy blasts from her hands.",
+                abilities: [
+                    "Flight",
+                    "Retractable Wings",
+                    "Hand Energy Blasts"
+                ]
+            }
+
+        };
+
+
+        const dossierOverlay =
+            document.getElementById("dossierOverlay");
+
+        const dossierBackdrop =
+            document.getElementById("dossierBackdrop");
+
+        const dossierClose =
+            document.getElementById("dossierClose");
+
+        const dossierImage =
+            document.getElementById("dossierImage");
+
+        const dossierName =
+            document.getElementById("dossierName");
+
+        const dossierClassification =
+            document.getElementById("dossierClassification");
+
+        const dossierRole =
+            document.getElementById("dossierRole");
+
+        const dossierDescription =
+            document.getElementById("dossierDescription");
+
+        const dossierAbilities =
+            document.getElementById("dossierAbilities");
+
+
+        let activeCard = null;
+
+
+        function openDossier(characterKey, card) {
+
+            const data =
+                dossierData[characterKey];
+
+            if (!data) {
+                return;
+            }
+
+
+            activeCard = card;
+
+
+            dossierImage.src = data.image;
+            dossierImage.alt = data.name;
+
+            dossierName.textContent =
+                data.name;
+
+            dossierClassification.textContent =
+                data.classification;
+
+            dossierRole.textContent =
+                data.role;
+
+            dossierDescription.textContent =
+                data.description;
+
+
+            dossierAbilities.innerHTML = "";
+
+            data.abilities.forEach(function (ability) {
+
+                const item =
+                    document.createElement("span");
+
+                item.textContent =
+                    ability;
+
+                dossierAbilities.appendChild(item);
+
+            });
+
+
+            /*
+             * Give the selected card a short cinematic
+             * transformation before the dossier appears.
+             */
+
+            if (card) {
+
+                card.classList.add(
+                    "dossier-opening"
+                );
+
+            }
+
+
+            document.body.classList.add(
+                "dossier-is-opening"
+            );
+
+
+            window.setTimeout(function () {
+
+                dossierOverlay.classList.add("open");
+
+                dossierOverlay.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
+
+                document.body.classList.add(
+                    "dossier-open"
+                );
+
+                dossierClose.focus();
+
+            }, 420);
+
+        }
+
+
+        function closeDossier() {
+
+            dossierOverlay.classList.remove(
+                "open"
+            );
+
+            dossierOverlay.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.classList.remove(
+                "dossier-open"
+            );
+
+
+            window.setTimeout(function () {
+
+                document.body.classList.remove(
+                    "dossier-is-opening"
+                );
+
+
+                if (activeCard) {
+
+                    activeCard.classList.remove(
+                        "dossier-opening"
+                    );
+
+                }
+
+            }, 420);
+
+        }
+
+
+        document
+            .querySelectorAll(".sentinel-card")
+            .forEach(function (card) {
+
+                card.addEventListener(
+                    "click",
+                    function () {
+
+                        openDossier(
+                            card.dataset.character,
+                            card
+                        );
+
+                    }
+                );
+
+
+                card.addEventListener(
+                    "keydown",
+                    function (event) {
+
+                        if (
+                            event.key === "Enter" ||
+                            event.key === " "
+                        ) {
+
+                            event.preventDefault();
+
+                            openDossier(
+                                card.dataset.character,
+                                card
+                            );
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+        dossierClose.addEventListener(
+            "click",
+            closeDossier
+        );
+
+
+        dossierBackdrop.addEventListener(
+            "click",
+            closeDossier
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape" &&
+                    dossierOverlay.classList.contains("open")
+                ) {
+
+                    closeDossier();
+
+                }
+
+            }
+        );
+
+    </script>
+
+
     <script src="script.js"></script>
+
 </body>
+
 </html>
