@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -9,1471 +8,2011 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Sentinels — Hub</title>
-
     <meta
         name="description"
-        content="The Sentinels Hub — the central space for the official archive."
+        content="Sentinels Hub — questions, reviews and theories from the community."
     >
 
-    <link rel="stylesheet" href="style.css">
+    <title>Sentinels — Hub</title>
 
     <style>
+        :root {
+            --black: #030406;
+            --panel: #0b0d11;
+            --panel-2: #11141a;
+            --border: rgba(255,255,255,.12);
+            --white: #f5f7fa;
+            --silver: #b8bec8;
+            --muted: #747b87;
 
-        /* =========================================================
-           SENTINELS HUB
-           SPACE / CONTROL ROOM ATMOSPHERE
-        ========================================================= */
+            --blue: #319cff;
+            --pink: #ff5bbd;
+            --red: #ff4545;
+            --green: #48e18a;
 
-        body.hub-page {
-            background: #02050a;
+            --shadow: 0 25px 70px rgba(0,0,0,.55);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            color: var(--white);
+            background:
+                radial-gradient(circle at 15% 15%, rgba(49,156,255,.08), transparent 28%),
+                radial-gradient(circle at 85% 30%, rgba(255,91,189,.06), transparent 25%),
+                radial-gradient(circle at 50% 85%, rgba(72,225,138,.045), transparent 28%),
+                #020305;
+            font-family: Arial, Helvetica, sans-serif;
             overflow-x: hidden;
         }
 
-        .hub-page {
-            position: relative;
-            min-height: 100vh;
-            background:
-                radial-gradient(
-                    ellipse at 50% 8%,
-                    rgba(27, 72, 120, 0.18),
-                    transparent 42%
-                ),
-                radial-gradient(
-                    ellipse at 10% 48%,
-                    rgba(27, 52, 105, 0.08),
-                    transparent 35%
-                ),
-                radial-gradient(
-                    ellipse at 90% 70%,
-                    rgba(20, 74, 104, 0.07),
-                    transparent 35%
-                ),
-                #02050a;
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
 
-        /* =========================================================
-           SPACE BACKGROUND
-        ========================================================= */
+        button {
+            cursor: pointer;
+        }
 
-        .hub-space {
+        /* =========================
+           SPACE
+        ========================== */
+
+        .space {
             position: fixed;
             inset: 0;
-            z-index: 0;
-            pointer-events: none;
+            z-index: -10;
             overflow: hidden;
+            background:
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,.025), transparent 42%),
+                #010204;
         }
 
-        .hub-space::before {
-            content: "";
+        .stars,
+        .stars::before,
+        .stars::after {
             position: absolute;
-            inset: 0;
-
+            inset: -20%;
+            content: "";
             background-image:
-                radial-gradient(
-                    1px 1px at 8% 17%,
-                    rgba(255,255,255,0.65),
-                    transparent
-                ),
-                radial-gradient(
-                    1px 1px at 17% 73%,
-                    rgba(170,215,255,0.55),
-                    transparent
-                ),
-                radial-gradient(
-                    1px 1px at 28% 32%,
-                    rgba(255,255,255,0.45),
-                    transparent
-                ),
-                radial-gradient(
-                    1px 1px at 37% 84%,
-                    rgba(130,195,255,0.5),
-                    transparent
-                ),
-                radial-gradient(
-                    1px 1px at 48% 21%,
-                    rgba(255,255,255,0.6),
-                    transparent
-                ),
-                radial-gradient(
-                    1px 1px at 59% 67%,
-                    rgba(150,210,255,0.4),
-                    transparent
-                ),
-                radial-gradient(
-                    1px 1px at 69% 14%,
-                    rgba(255,255,255,0.55),
-                    transparent
-                ),
-                radial-gradient(
-                    1px 1px at 78% 48%,
-                    rgba(150,205,255,0.45),
-                    transparent
-                ),
-                radial-gradient(
-                    1px 1px at 87% 81%,
-                    rgba(255,255,255,0.55),
-                    transparent
-                ),
-                radial-gradient(
-                    1px 1px at 94% 28%,
-                    rgba(130,190,255,0.45),
-                    transparent
-                );
-
+                radial-gradient(circle, rgba(255,255,255,.85) 0 1px, transparent 1.5px),
+                radial-gradient(circle, rgba(255,255,255,.5) 0 1px, transparent 1.5px),
+                radial-gradient(circle, rgba(255,255,255,.35) 0 1px, transparent 1.5px);
             background-size:
-                210px 190px,
-                250px 230px,
-                300px 270px,
-                350px 310px,
-                280px 250px,
-                330px 300px,
-                260px 240px,
-                390px 350px,
-                310px 290px,
-                430px 380px;
-
-            opacity: 0.75;
+                130px 130px,
+                190px 190px,
+                260px 260px;
+            background-position:
+                10px 20px,
+                70px 50px,
+                120px 100px;
+            opacity: .45;
         }
 
-        .hub-space::after {
-            content: "";
-            position: absolute;
-
-            width: 900px;
-            height: 500px;
-
-            top: 4%;
-            left: 50%;
-
-            transform:
-                translateX(-50%)
-                rotate(-12deg);
-
-            background:
-                radial-gradient(
-                    ellipse,
-                    rgba(25, 82, 135, 0.12),
-                    transparent 65%
-                );
-
-            filter: blur(20px);
+        .stars::before {
+            transform: scale(1.35);
+            opacity: .25;
         }
 
+        .stars::after {
+            transform: scale(.78);
+            opacity: .4;
+        }
 
-        /* =========================================================
-           ORBITAL LINES
-        ========================================================= */
-
-        .orbit {
+        .orb {
             position: absolute;
-            border: 1px solid rgba(70, 155, 220, 0.07);
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            transform: rotate(-18deg);
+            filter: blur(2px);
+            opacity: .17;
         }
 
-        .orbit-one {
-            width: 900px;
-            height: 340px;
-            top: 80px;
-            left: 50%;
-            transform:
-                translateX(-50%)
-                rotate(-14deg);
+        .orb.blue {
+            top: 16%;
+            left: 4%;
+            background: var(--blue);
+            box-shadow: 0 0 80px 30px rgba(49,156,255,.2);
+            animation: driftBlue 15s ease-in-out infinite;
         }
 
-        .orbit-two {
-            width: 1200px;
-            height: 450px;
-            top: 160px;
-            left: 50%;
-            transform:
-                translateX(-50%)
-                rotate(11deg);
-            border-color: rgba(110, 170, 220, 0.045);
+        .orb.pink {
+            top: 35%;
+            right: 2%;
+            background: var(--pink);
+            box-shadow: 0 0 80px 30px rgba(255,91,189,.18);
+            animation: driftPink 18s ease-in-out infinite;
         }
 
-        .orbit-three {
-            width: 620px;
-            height: 240px;
-            top: 280px;
-            left: 50%;
-            transform:
-                translateX(-50%)
-                rotate(28deg);
-            border-color: rgba(70, 135, 200, 0.05);
+        .orb.green {
+            bottom: 5%;
+            left: 38%;
+            width: 120px;
+            height: 120px;
+            background: var(--green);
+            box-shadow: 0 0 70px 25px rgba(72,225,138,.16);
+            animation: driftGreen 20s ease-in-out infinite;
         }
 
-
-        /* =========================================================
-           HEADER
-        ========================================================= */
-
-        .hub-hero {
-            position: relative;
-            z-index: 2;
-
-            min-height: 68vh;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            padding:
-                130px
-                24px
-                80px;
-
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .hub-hero-content {
-            position: relative;
-            z-index: 4;
-
-            width: min(850px, 100%);
-        }
-
-        .hub-system-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-
-            margin-bottom: 24px;
-
-            color: rgba(150, 210, 255, 0.62);
-
-            font-size: 0.67rem;
-            font-weight: 700;
-            letter-spacing: 0.28em;
-
-            text-transform: uppercase;
-        }
-
-        .hub-system-label::before,
-        .hub-system-label::after {
-            content: "";
-
-            width: 28px;
-            height: 1px;
-
-            background:
-                linear-gradient(
-                    to right,
-                    transparent,
-                    rgba(100, 190, 255, 0.5)
-                );
-        }
-
-        .hub-system-label::after {
-            background:
-                linear-gradient(
-                    to left,
-                    transparent,
-                    rgba(100, 190, 255, 0.5)
-                );
-        }
-
-        .hub-title {
-            margin: 0;
-
-            font-size:
-                clamp(
-                    4rem,
-                    12vw,
-                    9rem
-                );
-
-            line-height: 0.82;
-
-            letter-spacing: -0.07em;
-
-            font-weight: 900;
-
-            color: #eef7ff;
-
-            text-shadow:
-                0 0 35px rgba(65, 160, 230, 0.12);
-        }
-
-        .hub-subtitle {
-            max-width: 650px;
-
-            margin:
-                32px
-                auto
-                0;
-
-            color:
-                rgba(
-                    190,
-                    215,
-                    235,
-                    0.58
-                );
-
-            font-size: 1rem;
-            line-height: 1.8;
-        }
-
-
-        /* =========================================================
-           SYSTEM STATUS
-        ========================================================= */
-
-        .hub-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-
-            margin-top: 32px;
-
-            padding:
-                10px
-                15px;
-
-            border:
-                1px solid
-                rgba(90, 170, 225, 0.15);
-
-            background:
-                rgba(7, 19, 31, 0.7);
-
+        .asteroid {
+            position: absolute;
+            width: 70px;
+            height: 54px;
+            border-radius: 45% 55% 48% 52%;
+            background: #17191e;
             box-shadow:
-                inset 0 0 20px
-                rgba(40, 120, 180, 0.035);
-
-            color:
-                rgba(
-                    150,
-                    205,
-                    240,
-                    0.6
-                );
-
-            font-size: 0.64rem;
-            letter-spacing: 0.17em;
-            text-transform: uppercase;
+                inset -12px -8px 18px rgba(0,0,0,.7),
+                0 0 25px rgba(255,255,255,.03);
+            opacity: .8;
         }
 
-        .hub-status-dot {
+        .asteroid::before,
+        .asteroid::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            background: #090a0d;
+        }
+
+        .asteroid::before {
+            width: 12px;
+            height: 9px;
+            top: 12px;
+            left: 20px;
+        }
+
+        .asteroid::after {
+            width: 8px;
+            height: 7px;
+            bottom: 11px;
+            right: 16px;
+        }
+
+        .asteroid.a1 {
+            top: 21%;
+            right: 13%;
+            transform: rotate(25deg);
+            animation: asteroidFloat 19s linear infinite;
+        }
+
+        .asteroid.a2 {
+            top: 69%;
+            left: 7%;
+            width: 48px;
+            height: 40px;
+            transform: rotate(-18deg);
+            animation: asteroidFloat 23s linear infinite reverse;
+        }
+
+        .asteroid.a3 {
+            bottom: 12%;
+            right: 7%;
+            width: 55px;
+            height: 42px;
+            transform: rotate(40deg);
+            animation: asteroidFloat 17s linear infinite;
+        }
+
+        .fire-rock {
+            position: absolute;
+            width: 44px;
+            height: 31px;
+            border-radius: 50%;
+            background: #29231d;
+            box-shadow:
+                0 0 16px rgba(255,115,30,.35),
+                -35px 5px 20px rgba(255,74,20,.12);
+            opacity: .75;
+            animation: fireRock 11s linear infinite;
+        }
+
+        .fire-rock::before {
+            content: "";
+            position: absolute;
+            right: 100%;
+            top: 10px;
+            width: 60px;
+            height: 9px;
+            border-radius: 50%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,103,31,.12),
+                rgba(255,177,62,.3)
+            );
+            filter: blur(4px);
+        }
+
+        .fire-rock.r1 {
+            top: 12%;
+            left: -5%;
+        }
+
+        .fire-rock.r2 {
+            bottom: 24%;
+            right: -4%;
+            transform: scale(.7);
+            animation-delay: -4s;
+        }
+
+        .ship {
+            position: absolute;
+            width: 48px;
+            height: 11px;
+            border-radius: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.9));
+            box-shadow: 0 0 15px rgba(255,255,255,.45);
+            opacity: .3;
+        }
+
+        .ship::after {
+            content: "";
+            position: absolute;
+            right: 4px;
+            top: 3px;
             width: 6px;
             height: 6px;
-
             border-radius: 50%;
-
-            background: #66c8ff;
-
-            box-shadow:
-                0 0 8px rgba(75, 190, 255, 0.8),
-                0 0 18px rgba(50, 160, 255, 0.3);
+            background: #fff;
+            box-shadow: 0 0 10px 3px rgba(255,255,255,.5);
         }
 
-
-        /* =========================================================
-           CONTENT
-        ========================================================= */
-
-        .hub-content {
-            position: relative;
-            z-index: 3;
-
-            width:
-                min(
-                    1120px,
-                    calc(100% - 40px)
-                );
-
-            margin: 0 auto;
-
-            padding:
-                20px
-                0
-                110px;
+        .ship.s1 {
+            top: 27%;
+            left: -80px;
+            animation: shipFly 13s linear infinite;
         }
 
-        .hub-section {
-            margin-bottom: 100px;
+        .ship.s2 {
+            top: 63%;
+            left: -100px;
+            transform: scale(.65);
+            animation: shipFly 18s linear infinite;
+            animation-delay: -7s;
         }
 
-        .hub-section-heading {
-            margin-bottom: 30px;
+        .ship.s3 {
+            top: 83%;
+            left: -100px;
+            transform: scale(.45);
+            animation: shipFly 21s linear infinite;
+            animation-delay: -11s;
         }
 
-        .hub-section-label {
-            margin: 0 0 10px;
+        /* =========================
+           HEADER
+        ========================== */
 
-            color:
-                rgba(
-                    105,
-                    185,
-                    235,
-                    0.55
-                );
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(2,3,5,.9);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            backdrop-filter: blur(16px);
+        }
 
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.22em;
+        .nav {
+            width: min(1180px, calc(100% - 32px));
+            min-height: 74px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
 
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 900;
+            letter-spacing: .16em;
+            white-space: nowrap;
+        }
+
+        .brand-mark {
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(255,255,255,.45);
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            font-size: 12px;
+            color: #fff;
+            background: #080a0e;
+            box-shadow: inset 0 0 20px rgba(255,255,255,.04);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a {
+            padding: 10px 12px;
+            color: #aeb4be;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .1em;
+            transition: .2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+        }
+
+        .nav-links a.active {
+            border-bottom: 2px solid #fff;
+        }
+
+        .menu-btn {
+            display: none;
+            border: 1px solid var(--border);
+            background: #0a0c10;
+            color: #fff;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            width: min(1180px, calc(100% - 32px));
+            margin: auto;
+            padding: 105px 0 70px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            color: #9aa1ad;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: .28em;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(46px, 8vw, 94px);
+            line-height: .9;
+            letter-spacing: -.055em;
+            font-weight: 950;
             text-transform: uppercase;
         }
 
-        .hub-section-title {
-            margin: 0;
-
-            color: #edf5fb;
-
-            font-size:
-                clamp(
-                    1.9rem,
-                    4vw,
-                    3rem
-                );
-
-            letter-spacing: -0.04em;
+        .hero h1 span {
+            display: block;
+            color: #8d949f;
         }
 
-        .hub-section-description {
-            max-width: 680px;
-
-            margin: 13px 0 0;
-
-            color:
-                rgba(
-                    180,
-                    205,
-                    225,
-                    0.47
-                );
-
+        .hero p {
+            max-width: 660px;
+            margin: 28px auto 0;
+            color: #9ca3ae;
             line-height: 1.75;
+            font-size: 15px;
         }
 
+        .hero-line {
+            width: 90px;
+            height: 2px;
+            background: #fff;
+            margin: 32px auto 0;
+            opacity: .7;
+        }
 
-        /* =========================================================
-           HUB CARDS
-        ========================================================= */
+        /* =========================
+           CONTENT
+        ========================== */
 
-        .hub-grid {
+        main {
+            width: min(1180px, calc(100% - 32px));
+            margin: auto;
+            padding-bottom: 90px;
+        }
+
+        .section-heading {
+            margin-bottom: 28px;
+        }
+
+        .section-heading .label {
+            color: #8f96a1;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: .25em;
+            margin-bottom: 9px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(28px, 5vw, 48px);
+            letter-spacing: -.04em;
+        }
+
+        .section-heading p {
+            margin-top: 10px;
+            color: var(--muted);
+            max-width: 620px;
+            line-height: 1.65;
+            font-size: 14px;
+        }
+
+        .composer {
             display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0;
+            margin-bottom: 65px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
 
-            grid-template-columns:
-                repeat(
-                    3,
-                    1fr
-                );
+        .composer-side {
+            padding: 32px;
+            background: #080a0e;
+            border-right: 1px solid var(--border);
+        }
 
+        .composer-side h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .composer-side p {
+            color: #777f8a;
+            line-height: 1.65;
+            font-size: 13px;
+        }
+
+        .type-list {
+            display: grid;
+            gap: 8px;
+            margin-top: 28px;
+        }
+
+        .type-btn {
+            width: 100%;
+            text-align: left;
+            padding: 12px 14px;
+            border: 1px solid rgba(255,255,255,.08);
+            background: #0d1015;
+            color: #8d95a1;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: .08em;
+            transition: .2s ease;
+        }
+
+        .type-btn:hover,
+        .type-btn.selected {
+            color: #fff;
+            border-color: rgba(255,255,255,.3);
+            background: #161920;
+        }
+
+        .type-btn[data-type="question"].selected {
+            border-left: 3px solid var(--blue);
+        }
+
+        .type-btn[data-type="review"].selected {
+            border-left: 3px solid var(--pink);
+        }
+
+        .type-btn[data-type="theory"].selected {
+            border-left: 3px solid var(--green);
+        }
+
+        .composer-form {
+            padding: 32px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 16px;
         }
 
-        .hub-card {
-            position: relative;
-
-            min-height: 235px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            padding: 28px;
-
-            overflow: hidden;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(9, 20, 31, 0.98),
-                    rgba(3, 7, 12, 0.99)
-                );
-
-            border:
-                1px solid
-                rgba(100, 170, 215, 0.12);
-
-            box-shadow:
-                inset 0 1px 0
-                rgba(255,255,255,0.025);
-
-            color: inherit;
-            text-decoration: none;
-
-            transition:
-                transform 0.3s ease,
-                border-color 0.3s ease,
-                box-shadow 0.3s ease,
-                background 0.3s ease;
+        .field {
+            margin-bottom: 17px;
         }
 
-        .hub-card::before {
-            content: "";
-
-            position: absolute;
-
-            width: 170px;
-            height: 170px;
-
-            right: -80px;
-            bottom: -100px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(
-                    30,
-                    125,
-                    190,
-                    0.08
-                );
-
-            filter: blur(18px);
-        }
-
-        .hub-card::after {
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
-            width: 2px;
-            height: 0;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    #66c8ff,
-                    transparent
-                );
-
-            transition:
-                height 0.35s ease;
-        }
-
-        .hub-card:hover {
-            transform: translateY(-5px);
-
-            border-color:
-                rgba(
-                    100,
-                    190,
-                    240,
-                    0.3
-                );
-
-            box-shadow:
-                0 15px 45px
-                rgba(0,0,0,0.35),
-
-                inset 0 0 30px
-                rgba(30,110,170,0.035);
-        }
-
-        .hub-card:hover::after {
-            height: 70%;
-        }
-
-        .hub-card-number {
-            position: relative;
-            z-index: 2;
-
-            color:
-                rgba(
-                    105,
-                    185,
-                    235,
-                    0.5
-                );
-
-            font-size: 0.61rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-        }
-
-        .hub-card-body {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hub-card-title {
-            margin: 0;
-
-            color: #eaf4fb;
-
-            font-size: 1.35rem;
-            letter-spacing: -0.025em;
-        }
-
-        .hub-card-text {
-            margin: 10px 0 0;
-
-            color:
-                rgba(
-                    180,
-                    205,
-                    225,
-                    0.43
-                );
-
-            font-size: 0.87rem;
-            line-height: 1.65;
-        }
-
-        .hub-card-arrow {
-            margin-top: 20px;
-
-            color:
-                rgba(
-                    125,
-                    195,
-                    235,
-                    0.62
-                );
-
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-
+        .field label {
+            display: block;
+            margin-bottom: 8px;
+            color: #aeb4be;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: .12em;
             text-transform: uppercase;
         }
 
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            border: 1px solid rgba(255,255,255,.1);
+            background: #07090c;
+            color: #fff;
+            outline: none;
+            padding: 14px 15px;
+            border-radius: 0;
+            transition: .2s ease;
+        }
 
-        /* =========================================================
-           ARCHIVE FEATURE
-        ========================================================= */
+        .field textarea {
+            min-height: 150px;
+            resize: vertical;
+            line-height: 1.6;
+        }
 
-        .hub-feature {
-            position: relative;
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            border-color: rgba(255,255,255,.42);
+            box-shadow: 0 0 0 2px rgba(255,255,255,.035);
+        }
 
-            min-height: 300px;
+        .review-only {
+            display: none;
+        }
 
+        .submit-row {
             display: flex;
             align-items: center;
-
-            padding: 48px;
-
-            overflow: hidden;
-
-            background:
-                linear-gradient(
-                    110deg,
-                    rgba(8, 24, 39, 0.98),
-                    rgba(3, 8, 14, 0.99)
-                );
-
-            border:
-                1px solid
-                rgba(90, 170, 220, 0.15);
-
-            box-shadow:
-                inset 0 0 70px
-                rgba(30, 110, 170, 0.025);
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 8px;
         }
 
-        .hub-feature::before {
-            content: "";
-
-            position: absolute;
-
-            width: 560px;
-            height: 560px;
-
-            right: -230px;
-            top: -250px;
-
-            border-radius: 50%;
-
-            border:
-                1px solid
-                rgba(90, 180, 240, 0.08);
-
-            box-shadow:
-                0 0 0 35px
-                rgba(80,170,230,0.018),
-
-                0 0 0 70px
-                rgba(80,170,230,0.012);
-        }
-
-        .hub-feature::after {
-            content: "";
-
-            position: absolute;
-
-            width: 360px;
-            height: 360px;
-
-            right: 35px;
-            top: -80px;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(35,135,205,0.09),
-                    transparent 65%
-                );
-
-            filter: blur(18px);
-        }
-
-        .hub-feature-inner {
-            position: relative;
-            z-index: 3;
-
-            max-width: 690px;
-        }
-
-        .hub-feature-label {
-            margin-bottom: 13px;
-
-            color:
-                rgba(
-                    105,
-                    190,
-                    240,
-                    0.52
-                );
-
-            font-size: 0.63rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-
+        .submit-btn {
+            border: 0;
+            background: #fff;
+            color: #050608;
+            padding: 14px 22px;
+            font-size: 11px;
+            font-weight: 950;
+            letter-spacing: .12em;
             text-transform: uppercase;
+            transition: .2s ease;
         }
 
-        .hub-feature-title {
-            margin: 0;
-
-            color: #eff8ff;
-
-            font-size:
-                clamp(
-                    2.2rem,
-                    5vw,
-                    4rem
-                );
-
-            line-height: 0.95;
-
-            letter-spacing: -0.045em;
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255,255,255,.1);
         }
 
-        .hub-feature-text {
-            max-width: 620px;
-
-            margin: 18px 0 0;
-
-            color:
-                rgba(
-                    185,
-                    210,
-                    230,
-                    0.5
-                );
-
-            line-height: 1.8;
+        .submit-btn:disabled {
+            opacity: .5;
+            cursor: wait;
+            transform: none;
         }
 
-        .hub-feature-button {
-            display: inline-flex;
-
-            margin-top: 27px;
-
-            padding:
-                12px
-                18px;
-
-            border:
-                1px solid
-                rgba(100,190,240,0.2);
-
-            background:
-                rgba(20,80,120,0.08);
-
-            color:
-                rgba(
-                    170,
-                    220,
-                    250,
-                    0.78
-                );
-
-            text-decoration: none;
-
-            font-size: 0.66rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-
-            text-transform: uppercase;
-
-            transition:
-                background 0.25s ease,
-                border-color 0.25s ease;
+        .form-status {
+            color: #7f8792;
+            font-size: 12px;
+            line-height: 1.5;
         }
 
-        .hub-feature-button:hover {
-            background:
-                rgba(
-                    50,
-                    145,
-                    205,
-                    0.12
-                );
-
-            border-color:
-                rgba(
-                    110,
-                    200,
-                    245,
-                    0.38
-                );
+        .form-status.success {
+            color: var(--green);
         }
 
+        .form-status.error {
+            color: #ff7474;
+        }
 
-        /* =========================================================
-           ARCHIVE TRANSMISSION
-        ========================================================= */
+        /* =========================
+           FEED
+        ========================== */
 
-        .hub-transmission {
-            position: relative;
+        .feed-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
 
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .filter-btn {
+            border: 1px solid rgba(255,255,255,.1);
+            background: #080a0e;
+            color: #777f8a;
+            padding: 9px 12px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: .1em;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            color: #fff;
+            border-color: rgba(255,255,255,.3);
+        }
+
+        .feed {
             display: grid;
-
-            grid-template-columns:
-                0.7fr
-                1.3fr;
-
-            gap: 40px;
-
-            padding:
-                35px
-                0;
-
-            border-top:
-                1px solid
-                rgba(90,170,220,0.1);
-
-            border-bottom:
-                1px solid
-                rgba(90,170,220,0.1);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
         }
 
-        .hub-transmission-label {
-            color:
-                rgba(
-                    100,
-                    185,
-                    235,
-                    0.48
-                );
+        .post {
+            position: relative;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            padding: 26px;
+            box-shadow: 0 18px 50px rgba(0,0,0,.35);
+            overflow: hidden;
+        }
 
-            font-size: 0.62rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
+        .post::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #555;
+        }
 
+        .post.question::before {
+            background: var(--blue);
+        }
+
+        .post.review::before {
+            background: var(--pink);
+        }
+
+        .post.theory::before {
+            background: var(--green);
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .post-type {
+            font-size: 9px;
+            font-weight: 950;
+            letter-spacing: .18em;
+            color: #8c949f;
+        }
+
+        .post-date {
+            color: #5e6570;
+            font-size: 10px;
+        }
+
+        .post h3 {
+            font-size: 18px;
+            line-height: 1.35;
+            margin-bottom: 14px;
+        }
+
+        .post p {
+            color: #a0a7b1;
+            line-height: 1.7;
+            font-size: 13px;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .post-author {
+            margin-top: 22px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255,255,255,.07);
+            color: #707883;
+            font-size: 10px;
+            letter-spacing: .1em;
             text-transform: uppercase;
         }
 
-        .hub-transmission-text {
-            margin: 0;
-
-            color:
-                rgba(
-                    185,
-                    210,
-                    230,
-                    0.48
-                );
-
-            line-height: 1.8;
+        .post-author strong {
+            color: #c6cbd2;
         }
 
+        .volume-tag {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 5px 8px;
+            border: 1px solid rgba(255,255,255,.09);
+            color: #8c949f;
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: .1em;
+        }
 
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
-        .hub-footer {
-            position: relative;
-            z-index: 3;
-
-            border-top:
-                1px solid
-                rgba(90,170,220,0.08);
-
-            padding:
-                32px
-                20px
-                40px;
-
+        .loading,
+        .empty {
+            grid-column: 1 / -1;
+            padding: 60px 25px;
             text-align: center;
-
-            background:
-                rgba(1,4,8,0.65);
+            border: 1px dashed rgba(255,255,255,.1);
+            color: #656c77;
+            line-height: 1.7;
+            background: #07090c;
         }
 
-        .hub-footer-brand {
-            margin: 0;
-
-            color:
-                rgba(
-                    180,
-                    220,
-                    245,
-                    0.72
-                );
-
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 0.2em;
+        .loading::before {
+            content: "";
+            display: block;
+            width: 24px;
+            height: 24px;
+            margin: 0 auto 15px;
+            border: 2px solid rgba(255,255,255,.15);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
         }
 
-        .hub-footer-text {
-            margin: 9px 0 0;
-
-            color:
-                rgba(
-                    160,
-                    190,
-                    210,
-                    0.28
-                );
-
-            font-size: 0.63rem;
-            letter-spacing: 0.08em;
+        .error-box {
+            grid-column: 1 / -1;
+            padding: 25px;
+            border: 1px solid rgba(255,80,80,.22);
+            background: #10090b;
+            color: #d58b8b;
+            line-height: 1.6;
+            font-size: 13px;
         }
 
+        /* =========================
+           FOOTER
+        ========================== */
 
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
+        footer {
+            width: min(1180px, calc(100% - 32px));
+            margin: auto;
+            padding: 28px 0 40px;
+            border-top: 1px solid rgba(255,255,255,.08);
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            color: #5d646f;
+            font-size: 10px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        /* =========================
+           ANIMATIONS
+        ========================== */
+
+        @keyframes driftBlue {
+            0%,100% { transform: translate(0,0); }
+            50% { transform: translate(80px,40px); }
+        }
+
+        @keyframes driftPink {
+            0%,100% { transform: translate(0,0); }
+            50% { transform: translate(-70px,50px); }
+        }
+
+        @keyframes driftGreen {
+            0%,100% { transform: translate(0,0); }
+            50% { transform: translate(50px,-40px); }
+        }
+
+        @keyframes asteroidFloat {
+            0% { transform: translate(0,0) rotate(0deg); }
+            50% { transform: translate(35px,-25px) rotate(180deg); }
+            100% { transform: translate(0,0) rotate(360deg); }
+        }
+
+        @keyframes fireRock {
+            from {
+                transform: translateX(0) rotate(0deg);
+            }
+            to {
+                transform: translateX(120vw) rotate(360deg);
+            }
+        }
+
+        @keyframes shipFly {
+            from {
+                transform: translateX(0) scale(1);
+            }
+            to {
+                transform: translateX(120vw) scale(1);
+            }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* =========================
+           MOBILE
+        ========================== */
 
         @media (max-width: 850px) {
-
-            .hub-grid {
-                grid-template-columns: 1fr 1fr;
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 74px;
+                left: 16px;
+                right: 16px;
+                padding: 10px;
+                background: #080a0e;
+                border: 1px solid var(--border);
+                box-shadow: var(--shadow);
+                flex-direction: column;
+                align-items: stretch;
             }
 
-            .hub-card {
-                min-height: 210px;
+            .nav-links.open {
+                display: flex;
             }
 
-            .hub-transmission {
+            .nav-links a {
+                padding: 14px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .composer {
                 grid-template-columns: 1fr;
-                gap: 15px;
             }
 
-        }
+            .composer-side {
+                border-right: 0;
+                border-bottom: 1px solid var(--border);
+            }
 
+            .type-list {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .feed {
+                grid-template-columns: 1fr;
+            }
+        }
 
         @media (max-width: 600px) {
-
-            .hub-hero {
-                min-height: 62vh;
-
-                padding:
-                    110px
-                    20px
-                    65px;
+            .hero {
+                padding-top: 75px;
             }
 
-            .hub-title {
-                font-size:
-                    clamp(
-                        3.8rem,
-                        19vw,
-                        6rem
-                    );
+            .hero h1 {
+                font-size: clamp(43px, 14vw, 70px);
             }
 
-            .hub-subtitle {
-                font-size: 0.88rem;
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
             }
 
-            .hub-content {
-                width:
-                    calc(100% - 28px);
-
-                padding-bottom: 80px;
+            .composer-side,
+            .composer-form {
+                padding: 22px;
             }
 
-            .hub-section {
-                margin-bottom: 70px;
-            }
-
-            .hub-grid {
+            .type-list {
                 grid-template-columns: 1fr;
             }
 
-            .hub-card {
-                min-height: 190px;
+            .feed-head {
+                align-items: start;
+                flex-direction: column;
             }
 
-            .hub-feature {
-                min-height: 300px;
-                padding: 32px 25px;
+            .submit-row {
+                align-items: stretch;
+                flex-direction: column;
             }
 
-            .orbit-one {
-                width: 650px;
+            .submit-btn {
+                width: 100%;
             }
 
-            .orbit-two {
-                width: 800px;
+            footer {
+                flex-direction: column;
             }
 
-            .orbit-three {
-                width: 500px;
+            .asteroid.a1 {
+                right: -8%;
             }
-
         }
-
     </style>
-
 </head>
 
+<body>
 
-<body class="hub-page">
+    <!-- =========================
+         SPACE ENVIRONMENT
+    ========================== -->
 
+    <div class="space" aria-hidden="true">
+        <div class="stars"></div>
 
-    <!-- =========================================================
-         SPACE ATMOSPHERE
-    ========================================================== -->
+        <div class="orb blue"></div>
+        <div class="orb pink"></div>
+        <div class="orb green"></div>
 
-    <div class="hub-space" aria-hidden="true">
+        <div class="asteroid a1"></div>
+        <div class="asteroid a2"></div>
+        <div class="asteroid a3"></div>
 
-        <div class="orbit orbit-one"></div>
+        <div class="fire-rock r1"></div>
+        <div class="fire-rock r2"></div>
 
-        <div class="orbit orbit-two"></div>
-
-        <div class="orbit orbit-three"></div>
-
+        <div class="ship s1"></div>
+        <div class="ship s2"></div>
+        <div class="ship s3"></div>
     </div>
 
 
-    <!-- =========================================================
-         HEADER
-    ========================================================== -->
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
 
-    <header class="site-header">
+    <header>
+        <div class="nav">
 
-        <div class="site-header-inner">
-
-            <a
-                href="index.html"
-                class="site-brand"
-            >
+            <a class="brand" href="index.html">
+                <span class="brand-mark">S</span>
                 <span>SENTINELS</span>
-                <small>OFFICIAL ARCHIVE</small>
             </a>
 
-
             <button
-                class="mobile-menu-toggle"
+                class="menu-btn"
+                id="menuBtn"
                 type="button"
                 aria-label="Open navigation"
                 aria-expanded="false"
             >
-
-                <span></span>
-                <span></span>
-                <span></span>
-
+                ☰
             </button>
 
-
-            <nav
-                class="site-nav"
-                aria-label="Main navigation"
-            >
-
-                <a href="index.html">
-                    HOME
-                </a>
-
-                <a href="archive.html">
-                    VOLUMES
-                </a>
-
-                <a href="sentinels.html">
-                    CHARACTERS
-                </a>
-
-                <a href="quiz.html">
-                    QUIZ
-                </a>
-
-                <a href="predictions.html">
-                    PREDICTIONS
-                </a>
-
-                <a
-                    href="hub.html"
-                    class="active"
-                >
-                    HUB
-                </a>
-
-                <a href="about.html">
-                    ABOUT
-                </a>
-
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">HOME</a>
+                <a href="archive.html">VOLUMES</a>
+                <a href="characters.html">CHARACTERS</a>
+                <a href="quiz.html">QUIZ</a>
+                <a href="predictions.html">PREDICTIONS</a>
+                <a class="active" href="hub.html">HUB</a>
+                <a href="about.html">ABOUT</a>
             </nav>
 
         </div>
-
     </header>
 
 
-    <!-- =========================================================
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="eyebrow">SENTINELS — COMMUNITY</div>
+
+        <h1>
+            SENTINELS
+            <span>HUB</span>
+        </h1>
+
+        <p>
+            The story doesn't end when the page does.
+            Ask questions, share theories, leave reviews,
+            and talk about the universe with the people following it.
+        </p>
+
+        <div class="hero-line"></div>
+
+    </section>
+
+
+    <!-- =========================
          MAIN
-    ========================================================== -->
+    ========================== -->
 
     <main>
 
+        <section>
 
-        <!-- =====================================================
-             HERO
-        ====================================================== -->
-
-        <section class="hub-hero">
-
-            <div class="hub-hero-content">
-
-                <div class="hub-system-label">
-                    SENTINELS // CENTRAL SYSTEM
-                </div>
-
-
-                <h1 class="hub-title">
-                    THE HUB
-                </h1>
-
-
-                <p class="hub-subtitle">
-                    The central space for everything surrounding
-                    the Sentinels story. Enter the archive, access
-                    the personnel files, test your knowledge and
-                    decide what you think happens next.
+            <div class="section-heading">
+                <div class="label">JOIN THE CONVERSATION</div>
+                <h2>Leave something behind.</h2>
+                <p>
+                    Choose what you want to contribute, add your name,
+                    and send it into the Hub.
                 </p>
+            </div>
 
 
-                <div class="hub-status">
+            <div class="composer">
 
-                    <span class="hub-status-dot"></span>
+                <aside class="composer-side">
 
-                    ARCHIVE SYSTEM ONLINE
+                    <h3>Your contribution</h3>
 
-                </div>
+                    <p>
+                        Questions, reviews and theories are kept
+                        separate so the community can find exactly
+                        what they're looking for.
+                    </p>
+
+                    <div class="type-list">
+
+                        <button
+                            class="type-btn selected"
+                            data-type="question"
+                            type="button"
+                        >
+                            QUESTION
+                        </button>
+
+                        <button
+                            class="type-btn"
+                            data-type="review"
+                            type="button"
+                        >
+                            REVIEW
+                        </button>
+
+                        <button
+                            class="type-btn"
+                            data-type="theory"
+                            type="button"
+                        >
+                            THEORY
+                        </button>
+
+                    </div>
+
+                </aside>
+
+
+                <form class="composer-form" id="hubForm">
+
+                    <div class="form-row">
+
+                        <div class="field">
+                            <label for="name">Name</label>
+
+                            <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                maxlength="50"
+                                placeholder="Your name"
+                                required
+                            >
+                        </div>
+
+
+                        <div
+                            class="field review-only"
+                            id="volumeField"
+                        >
+                            <label for="volume">Volume</label>
+
+                            <select id="volume" name="volume">
+                                <option value="Volume 1 — The Beginning">
+                                    Volume 1 — The Beginning
+                                </option>
+
+                                <option value="Volume 2 — The Fourth">
+                                    Volume 2 — The Fourth
+                                </option>
+
+                                <option value="General">
+                                    General
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label
+                            for="message"
+                            id="messageLabel"
+                        >
+                            Question
+                        </label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            maxlength="2000"
+                            placeholder="Ask something about the Sentinels..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="submit-row">
+
+                        <div
+                            class="form-status"
+                            id="formStatus"
+                            aria-live="polite"
+                        >
+                            Your contribution will be added to the Hub.
+                        </div>
+
+                        <button
+                            class="submit-btn"
+                            id="submitBtn"
+                            type="submit"
+                        >
+                            POST TO HUB
+                        </button>
+
+                    </div>
+
+                </form>
 
             </div>
 
         </section>
 
 
-        <!-- =====================================================
-             CONTENT
-        ====================================================== -->
+        <!-- =========================
+             COMMUNITY FEED
+        ========================== -->
 
-        <div class="hub-content">
+        <section>
 
+            <div class="feed-head">
 
-            <!-- =================================================
-                 ACCESS
-            ================================================== -->
+                <div class="section-heading" style="margin-bottom:0;">
+                    <div class="label">COMMUNITY FEED</div>
+                    <h2>What people are saying.</h2>
+                </div>
 
-            <section class="hub-section">
+                <div class="filters">
 
-                <div class="hub-section-heading">
+                    <button
+                        class="filter-btn active"
+                        data-filter="all"
+                        type="button"
+                    >
+                        ALL
+                    </button>
 
-                    <p class="hub-section-label">
-                        SYSTEM ACCESS
-                    </p>
+                    <button
+                        class="filter-btn"
+                        data-filter="question"
+                        type="button"
+                    >
+                        QUESTIONS
+                    </button>
 
-                    <h2 class="hub-section-title">
-                        Choose your destination.
-                    </h2>
+                    <button
+                        class="filter-btn"
+                        data-filter="review"
+                        type="button"
+                    >
+                        REVIEWS
+                    </button>
 
-                    <p class="hub-section-description">
-                        Everything around the Sentinels story,
-                        collected in one place.
-                    </p>
+                    <button
+                        class="filter-btn"
+                        data-filter="theory"
+                        type="button"
+                    >
+                        THEORIES
+                    </button>
 
                 </div>
 
-
-                <div class="hub-grid">
-
-
-                    <a
-                        href="archive.html"
-                        class="hub-card"
-                    >
-
-                        <span class="hub-card-number">
-                            01 // STORY
-                        </span>
-
-                        <div class="hub-card-body">
-
-                            <h3 class="hub-card-title">
-                                Volumes
-                            </h3>
-
-                            <p class="hub-card-text">
-                                Enter the official archive and
-                                read the Sentinels story.
-                            </p>
-
-                            <div class="hub-card-arrow">
-                                Open archive →
-                            </div>
-
-                        </div>
-
-                    </a>
+            </div>
 
 
-                    <a
-                        href="sentinels.html"
-                        class="hub-card"
-                    >
-
-                        <span class="hub-card-number">
-                            02 // PERSONNEL
-                        </span>
-
-                        <div class="hub-card-body">
-
-                            <h3 class="hub-card-title">
-                                Characters
-                            </h3>
-
-                            <p class="hub-card-text">
-                                Access the personnel database
-                                and learn about the four Sentinels.
-                            </p>
-
-                            <div class="hub-card-arrow">
-                                Open database →
-                            </div>
-
-                        </div>
-
-                    </a>
-
-
-                    <a
-                        href="quiz.html"
-                        class="hub-card"
-                    >
-
-                        <span class="hub-card-number">
-                            03 // TEST
-                        </span>
-
-                        <div class="hub-card-body">
-
-                            <h3 class="hub-card-title">
-                                Sentinel Quiz
-                            </h3>
-
-                            <p class="hub-card-text">
-                                Think you know the team?
-                                Put your knowledge to the test.
-                            </p>
-
-                            <div class="hub-card-arrow">
-                                Begin test →
-                            </div>
-
-                        </div>
-
-                    </a>
-
-
-                    <a
-                        href="predictions.html"
-                        class="hub-card"
-                    >
-
-                        <span class="hub-card-number">
-                            04 // THEORY
-                        </span>
-
-                        <div class="hub-card-body">
-
-                            <h3 class="hub-card-title">
-                                Predictions
-                            </h3>
-
-                            <p class="hub-card-text">
-                                The story is still moving.
-                                What do you think happens next?
-                            </p>
-
-                            <div class="hub-card-arrow">
-                                Make prediction →
-                            </div>
-
-                        </div>
-
-                    </a>
-
-
-                    <a
-                        href="index.html#sentinels"
-                        class="hub-card"
-                    >
-
-                        <span class="hub-card-number">
-                            05 // TEAM
-                        </span>
-
-                        <div class="hub-card-body">
-
-                            <h3 class="hub-card-title">
-                                The Sentinels
-                            </h3>
-
-                            <p class="hub-card-text">
-                                Meet Wandile, Xavier, Kyla
-                                and Cee from the main archive.
-                            </p>
-
-                            <div class="hub-card-arrow">
-                                Meet the team →
-                            </div>
-
-                        </div>
-
-                    </a>
-
-
-                    <a
-                        href="about.html"
-                        class="hub-card"
-                    >
-
-                        <span class="hub-card-number">
-                            06 // PROJECT
-                        </span>
-
-                        <div class="hub-card-body">
-
-                            <h3 class="hub-card-title">
-                                About
-                            </h3>
-
-                            <p class="hub-card-text">
-                                Learn more about the Sentinels
-                                project and the archive.
-                            </p>
-
-                            <div class="hub-card-arrow">
-                                About the project →
-                            </div>
-
-                        </div>
-
-                    </a>
-
+            <div
+                class="feed"
+                id="feed"
+            >
+                <div class="loading">
+                    Connecting to the Hub...
                 </div>
+            </div>
 
-            </section>
-
-
-            <!-- =================================================
-                 FEATURED VOLUME
-            ================================================== -->
-
-            <section class="hub-section">
-
-                <div class="hub-feature">
-
-                    <div class="hub-feature-inner">
-
-                        <div class="hub-feature-label">
-                            CURRENT ARCHIVE // VOLUME 01
-                        </div>
-
-
-                        <h2 class="hub-feature-title">
-                            THE BEGINNING
-                        </h2>
-
-
-                        <p class="hub-feature-text">
-                            The first chapter of the Sentinels story
-                            is available now. Enter the reader and
-                            experience the beginning.
-                        </p>
-
-
-                        <a
-                            href="reader.html?volume=1"
-                            class="hub-feature-button"
-                        >
-                            Read Volume 1 →
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================================
-                 TRANSMISSION
-            ================================================== -->
-
-            <section class="hub-section">
-
-                <div class="hub-transmission">
-
-                    <div class="hub-transmission-label">
-                        ARCHIVE TRANSMISSION
-                    </div>
-
-
-                    <p class="hub-transmission-text">
-                        The Hub is the central space around the
-                        Sentinels archive. As the project grows,
-                        new volumes, characters and features can
-                        be accessed from here.
-                    </p>
-
-                </div>
-
-            </section>
-
-
-        </div>
+        </section>
 
     </main>
 
 
-    <!-- =========================================================
+    <!-- =========================
          FOOTER
-    ========================================================== -->
+    ========================== -->
 
-    <footer class="hub-footer">
+    <footer>
 
-        <p class="hub-footer-brand">
-            SENTINELS
-        </p>
+        <div>
+            © 2026 Sentinels
+        </div>
 
-        <p class="hub-footer-text">
-            OFFICIAL ARCHIVE • CREATED BY WANDILE SHAW
-        </p>
+        <div>
+            Four. One Mission.
+        </div>
 
     </footer>
 
 
-    <script src="script.js"></script>
+    <!-- =========================
+         SUPABASE
+    ========================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+
+        /*
+         * =========================================================
+         * SUPABASE CONNECTION
+         * =========================================================
+         *
+         * PASTE YOUR EXISTING SUPABASE VALUES BELOW.
+         *
+         * IMPORTANT:
+         * Use ONLY the public/anon/publishable key.
+         * NEVER put the service_role or secret key here.
+         */
+
+        const SUPABASE_URL = https://xoalbbgonrdcurcqnhrg.supabase.co/rest/v1/
+        const SUPABASE_KEY = "PASTE_YOUR_PUBLIC_ANON_OR_PUBLISHABLE_KEY_HERE";
+
+
+        const { createClient } = supabase;
+
+        const db = createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+        /*
+         * =========================================================
+         * ELEMENTS
+         * =========================================================
+         */
+
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        const hubForm = document.getElementById("hubForm");
+        const nameInput = document.getElementById("name");
+        const messageInput = document.getElementById("message");
+        const messageLabel = document.getElementById("messageLabel");
+
+        const volumeField = document.getElementById("volumeField");
+        const volumeSelect = document.getElementById("volume");
+
+        const submitBtn = document.getElementById("submitBtn");
+        const formStatus = document.getElementById("formStatus");
+
+        const feed = document.getElementById("feed");
+
+        const typeButtons =
+            document.querySelectorAll(".type-btn");
+
+        const filterButtons =
+            document.querySelectorAll(".filter-btn");
+
+
+        let currentType = "question";
+        let currentFilter = "all";
+
+        let communityPosts = [];
+
+
+        /*
+         * =========================================================
+         * MOBILE MENU
+         * =========================================================
+         */
+
+        menuBtn.addEventListener("click", () => {
+
+            const isOpen =
+                navLinks.classList.toggle("open");
+
+            menuBtn.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+        });
+
+
+        navLinks.querySelectorAll("a").forEach(link => {
+
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("open");
+                menuBtn.setAttribute("aria-expanded", "false");
+            });
+
+        });
+
+
+        /*
+         * =========================================================
+         * TYPE SELECTOR
+         * =========================================================
+         */
+
+        typeButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                typeButtons.forEach(btn => {
+                    btn.classList.remove("selected");
+                });
+
+                button.classList.add("selected");
+
+                currentType =
+                    button.dataset.type;
+
+                updateComposer();
+
+            });
+
+        });
+
+
+        function updateComposer() {
+
+            if (currentType === "question") {
+
+                messageLabel.textContent =
+                    "Question";
+
+                messageInput.placeholder =
+                    "Ask something about the Sentinels...";
+
+                volumeField.style.display =
+                    "none";
+
+            }
+
+            else if (currentType === "review") {
+
+                messageLabel.textContent =
+                    "Review";
+
+                messageInput.placeholder =
+                    "What did you think about the volume?";
+
+                volumeField.style.display =
+                    "block";
+
+            }
+
+            else if (currentType === "theory") {
+
+                messageLabel.textContent =
+                    "Theory";
+
+                messageInput.placeholder =
+                    "Tell the community what you think is really happening...";
+
+                volumeField.style.display =
+                    "none";
+
+            }
+
+        }
+
+
+        /*
+         * =========================================================
+         * FILTERS
+         * =========================================================
+         */
+
+        filterButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                filterButtons.forEach(btn => {
+                    btn.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                currentFilter =
+                    button.dataset.filter;
+
+                renderFeed();
+
+            });
+
+        });
+
+
+        /*
+         * =========================================================
+         * DATE FORMAT
+         * =========================================================
+         */
+
+        function formatDate(dateString) {
+
+            if (!dateString) {
+                return "";
+            }
+
+            const date =
+                new Date(dateString);
+
+            if (Number.isNaN(date.getTime())) {
+                return "";
+            }
+
+            return date.toLocaleDateString(
+                undefined,
+                {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric"
+                }
+            );
+
+        }
+
+
+        /*
+         * =========================================================
+         * ESCAPE USER CONTENT
+         * =========================================================
+         *
+         * This prevents submitted text from being interpreted
+         * as HTML when it is displayed in the feed.
+         */
+
+        function escapeHTML(value) {
+
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /*
+         * =========================================================
+         * NORMALIZE DATABASE POSTS
+         * =========================================================
+         */
+
+        function normalizeQuestion(row) {
+
+            return {
+                type: "question",
+                id: row.id,
+                name: row.name,
+                text: row.question,
+                volume: "",
+                created_at: row.created_at
+            };
+
+        }
+
+
+        function normalizeReview(row) {
+
+            return {
+                type: "review",
+                id: row.id,
+                name: row.name,
+                text: row.review,
+                volume: row.volume,
+                created_at: row.created_at
+            };
+
+        }
+
+
+        function normalizeTheory(row) {
+
+            return {
+                type: "theory",
+                id: row.id,
+                name: row.name,
+                text: row.theory,
+                volume: "",
+                created_at: row.created_at
+            };
+
+        }
+
+
+        /*
+         * =========================================================
+         * LOAD ALL COMMUNITY CONTENT
+         * =========================================================
+         */
+
+        async function loadCommunityPosts() {
+
+            feed.innerHTML = `
+                <div class="loading">
+                    Connecting to the Hub...
+                </div>
+            `;
+
+            try {
+
+                const [
+                    questionsResult,
+                    reviewsResult,
+                    theoriesResult
+                ] = await Promise.all([
+
+                    db
+                        .from("questions")
+                        .select("id,name,question,created_at")
+                        .order("created_at", {
+                            ascending: false
+                        }),
+
+                    db
+                        .from("reviews")
+                        .select("id,name,volume,review,created_at")
+                        .order("created_at", {
+                            ascending: false
+                        }),
+
+                    db
+                        .from("theories")
+                        .select("id,name,theory,created_at")
+                        .order("created_at", {
+                            ascending: false
+                        })
+
+                ]);
+
+
+                if (questionsResult.error) {
+                    throw new Error(
+                        "Questions: " +
+                        questionsResult.error.message
+                    );
+                }
+
+                if (reviewsResult.error) {
+                    throw new Error(
+                        "Reviews: " +
+                        reviewsResult.error.message
+                    );
+                }
+
+                if (theoriesResult.error) {
+                    throw new Error(
+                        "Theories: " +
+                        theoriesResult.error.message
+                    );
+                }
+
+
+                communityPosts = [
+
+                    ...(questionsResult.data || [])
+                        .map(normalizeQuestion),
+
+                    ...(reviewsResult.data || [])
+                        .map(normalizeReview),
+
+                    ...(theoriesResult.data || [])
+                        .map(normalizeTheory)
+
+                ];
+
+
+                communityPosts.sort(
+                    (a, b) =>
+                        new Date(b.created_at) -
+                        new Date(a.created_at)
+                );
+
+
+                renderFeed();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Sentinels Hub error:",
+                    error
+                );
+
+                feed.innerHTML = `
+                    <div class="error-box">
+                        <strong>The Hub could not connect.</strong><br><br>
+                        ${escapeHTML(error.message)}
+                        <br><br>
+                        Check that the Supabase Project URL and
+                        public/anon/publishable key in this file
+                        are correct, then make sure the existing
+                        Supabase tables allow the website to read
+                        their data.
+                    </div>
+                `;
+
+            }
+
+        }
+
+
+        /*
+         * =========================================================
+         * RENDER FEED
+         * =========================================================
+         */
+
+        function renderFeed() {
+
+            let posts =
+                [...communityPosts];
+
+            if (currentFilter !== "all") {
+
+                posts =
+                    posts.filter(
+                        post =>
+                            post.type === currentFilter
+                    );
+
+            }
+
+
+            if (!posts.length) {
+
+                feed.innerHTML = `
+                    <div class="empty">
+                        Nothing here yet.<br>
+                        Be the first person to leave something
+                        in the Hub.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            feed.innerHTML =
+                posts.map(createPostHTML).join("");
+
+        }
+
+
+        /*
+         * =========================================================
+         * CREATE POST HTML
+         * =========================================================
+         */
+
+        function createPostHTML(post) {
+
+            const typeLabel = {
+
+                question: "QUESTION",
+                review: "REVIEW",
+                theory: "THEORY"
+
+            }[post.type];
+
+
+            const heading = {
+
+                question: "Community Question",
+                review: "Volume Review",
+                theory: "Fan Theory"
+
+            }[post.type];
+
+
+            const safeName =
+                escapeHTML(post.name || "Anonymous");
+
+            const safeText =
+                escapeHTML(post.text || "");
+
+            const safeVolume =
+                escapeHTML(post.volume || "");
+
+
+            return `
+                <article class="post ${post.type}">
+
+                    <div class="post-meta">
+
+                        <span class="post-type">
+                            ${typeLabel}
+                        </span>
+
+                        <span class="post-date">
+                            ${formatDate(post.created_at)}
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        ${heading}
+                    </h3>
+
+                    <p>
+                        ${safeText}
+                    </p>
+
+                    ${
+                        post.type === "review" && post.volume
+                        ?
+                        `<span class="volume-tag">
+                            ${safeVolume}
+                        </span>`
+                        :
+                        ""
+                    }
+
+                    <div class="post-author">
+                        BY <strong>${safeName}</strong>
+                    </div>
+
+                </article>
+            `;
+
+        }
+
+
+        /*
+         * =========================================================
+         * FORM STATUS
+         * =========================================================
+         */
+
+        function setStatus(
+            message,
+            type = ""
+        ) {
+
+            formStatus.textContent =
+                message;
+
+            formStatus.className =
+                "form-status " + type;
+
+        }
+
+
+        /*
+         * =========================================================
+         * SUBMIT
+         * =========================================================
+         */
+
+        hubForm.addEventListener(
+            "submit",
+            async event => {
+
+                event.preventDefault();
+
+
+                const name =
+                    nameInput.value.trim();
+
+                const message =
+                    messageInput.value.trim();
+
+
+                if (!name || !message) {
+
+                    setStatus(
+                        "Please complete the required fields.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                submitBtn.disabled = true;
+
+                submitBtn.textContent =
+                    "POSTING...";
+
+                setStatus(
+                    "Sending your contribution..."
+                );
+
+
+                try {
+
+                    let result;
+
+
+                    if (currentType === "question") {
+
+                        result =
+                            await db
+                                .from("questions")
+                                .insert([
+                                    {
+                                        name: name,
+                                        question: message
+                                    }
+                                ])
+                                .select()
+                                .single();
+
+                    }
+
+
+                    else if (currentType === "review") {
+
+                        result =
+                            await db
+                                .from("reviews")
+                                .insert([
+                                    {
+                                        name: name,
+                                        volume: volumeSelect.value,
+                                        review: message
+                                    }
+                                ])
+                                .select()
+                                .single();
+
+                    }
+
+
+                    else if (currentType === "theory") {
+
+                        result =
+                            await db
+                                .from("theories")
+                                .insert([
+                                    {
+                                        name: name,
+                                        theory: message
+                                    }
+                                ])
+                                .select()
+                                .single();
+
+                    }
+
+
+                    if (result.error) {
+                        throw new Error(
+                            result.error.message
+                        );
+                    }
+
+
+                    setStatus(
+                        "Posted successfully. Welcome to the Hub.",
+                        "success"
+                    );
+
+
+                    /*
+                     * Add the newly-created post immediately
+                     * so the user sees it without refreshing.
+                     */
+
+                    if (result.data) {
+
+                        let newPost;
+
+
+                        if (currentType === "question") {
+                            newPost =
+                                normalizeQuestion(
+                                    result.data
+                                );
+                        }
+
+                        else if (currentType === "review") {
+                            newPost =
+                                normalizeReview(
+                                    result.data
+                                );
+                        }
+
+                        else {
+                            newPost =
+                                normalizeTheory(
+                                    result.data
+                                );
+                        }
+
+
+                        communityPosts.unshift(
+                            newPost
+                        );
+
+                        renderFeed();
+
+                    }
+
+
+                    messageInput.value = "";
+
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Post error:",
+                        error
+                    );
+
+                    setStatus(
+                        "Your post could not be submitted: " +
+                        error.message,
+                        "error"
+                    );
+
+                }
+
+                finally {
+
+                    submitBtn.disabled = false;
+
+                    submitBtn.textContent =
+                        "POST TO HUB";
+
+                }
+
+            }
+        );
+
+
+        /*
+         * =========================================================
+         * START
+         * =========================================================
+         */
+
+        updateComposer();
+
+        loadCommunityPosts();
+
+    </script>
 
 </body>
 </html>
