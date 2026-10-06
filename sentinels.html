@@ -3,398 +3,1050 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>Sentinels — The Team</title>
+    <meta
+        name="theme-color"
+        content="#03050a"
+    >
 
-<style>
+    <meta
+        name="description"
+        content="The official Sentinels character database."
+    >
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+    <title>SENTINELS — DATABASE</title>
 
-html{
-scroll-behavior:smooth;
-}
 
-body{
+    <style>
 
-background:#05070d;
-color:white;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-font-family:
-Arial,
-Helvetica,
-sans-serif;
 
-min-height:100vh;
+        html {
+            scroll-behavior: smooth;
+        }
 
-}
 
-a{
-color:inherit;
-text-decoration:none;
-}
+        body {
 
+            background: #03050a;
 
-/* NAVIGATION */
+            color: #ffffff;
 
-nav{
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-height:78px;
+            min-height: 100vh;
 
-display:flex;
+            overflow-x: hidden;
 
-align-items:center;
+        }
 
-justify-content:space-between;
 
-padding:0 6%;
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-position:sticky;
 
-top:0;
+        /* =====================================================
+           BACKGROUND
+        ====================================================== */
 
-z-index:100;
+        .space {
 
-background:
-rgba(5,7,13,.92);
+            position: fixed;
 
-backdrop-filter:blur(14px);
+            inset: 0;
 
-border-bottom:
-1px solid
-rgba(255,255,255,.08);
+            z-index: -10;
 
-}
+            overflow: hidden;
 
-.logo{
+            background:
 
-font-size:23px;
+                radial-gradient(
+                    circle at 50% 10%,
+                    rgba(0,94,255,0.13),
+                    transparent 32%
+                ),
 
-font-weight:900;
+                radial-gradient(
+                    circle at 10% 70%,
+                    rgba(0,119,255,0.06),
+                    transparent 30%
+                ),
 
-letter-spacing:5px;
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(255,60,157,0.04),
+                    transparent 30%
+                ),
 
-}
+                #03050a;
 
-.back{
+        }
 
-font-size:11px;
 
-letter-spacing:2px;
+        .stars {
 
-opacity:.55;
+            position: absolute;
 
-transition:.3s;
+            inset: 0;
 
-}
+            opacity: 0.65;
 
-.back:hover{
-opacity:1;
-}
+            background-image:
 
+                radial-gradient(
+                    1px 1px at 15% 20%,
+                    rgba(255,255,255,0.7),
+                    transparent
+                ),
 
-/* HERO */
+                radial-gradient(
+                    1px 1px at 80% 15%,
+                    rgba(255,255,255,0.5),
+                    transparent
+                ),
 
-.hero{
+                radial-gradient(
+                    1px 1px at 65% 35%,
+                    rgba(255,255,255,0.55),
+                    transparent
+                ),
 
-padding:
-120px 7% 80px;
+                radial-gradient(
+                    1px 1px at 30% 60%,
+                    rgba(255,255,255,0.4),
+                    transparent
+                ),
 
-background:
-radial-gradient(
-circle at 50% 0%,
-rgba(0,110,255,.18),
-transparent 42%
-);
+                radial-gradient(
+                    1px 1px at 90% 65%,
+                    rgba(255,255,255,0.45),
+                    transparent
+                );
 
-}
+        }
 
-.kicker{
 
-font-size:11px;
+        .glow {
 
-letter-spacing:5px;
+            position: absolute;
 
-opacity:.4;
+            width: 520px;
 
-margin-bottom:20px;
+            height: 520px;
 
-}
+            border-radius: 50%;
 
-.hero h1{
+            background:
+                rgba(0,119,255,0.08);
 
-font-size:
-clamp(60px,10vw,120px);
+            filter: blur(100px);
 
-line-height:.9;
+            top: 250px;
 
-letter-spacing:4px;
+            left: 50%;
 
-margin-bottom:30px;
+            transform:
+                translateX(-50%);
 
-}
+        }
 
-.hero p{
 
-max-width:650px;
+        /* =====================================================
+           NAVIGATION
+        ====================================================== */
 
-line-height:1.8;
+        .navbar {
 
-color:
-rgba(255,255,255,.55);
+            position: sticky;
 
-}
+            top: 0;
 
+            z-index: 100;
 
-/* TEAM */
+            height: 72px;
 
-.team{
+            display: flex;
 
-padding:
-30px 7% 120px;
+            align-items: center;
 
-}
+            justify-content: space-between;
 
-.team-grid{
+            padding:
+                0 clamp(18px,5vw,70px);
 
-display:grid;
+            background:
+                rgba(3,5,10,0.82);
 
-grid-template-columns:
-repeat(2,1fr);
+            backdrop-filter:
+                blur(18px);
 
-gap:20px;
+            -webkit-backdrop-filter:
+                blur(18px);
 
-}
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.08);
 
+        }
 
-/* CHARACTER CARD */
 
-.card{
+        .logo {
 
-min-height:650px;
+            font-size: 19px;
 
-position:relative;
+            font-weight: 900;
 
-overflow:hidden;
+            letter-spacing: 5px;
 
-border:
-1px solid
-rgba(255,255,255,.1);
+        }
 
-background:#090c14;
 
-display:flex;
+        .nav-right {
 
-align-items:flex-end;
+            display: flex;
 
-transition:.35s;
+            align-items: center;
 
-}
+            gap: 25px;
 
-.card:hover{
+        }
 
-transform:translateY(-7px);
 
-border-color:
-rgba(255,255,255,.3);
+        .nav-link {
 
-}
+            font-size: 10px;
 
+            letter-spacing: 2px;
 
-/* GLOW */
+            opacity: 0.55;
 
-.card::before{
+            transition:
+                opacity 0.25s ease;
 
-content:"";
+        }
 
-position:absolute;
 
-width:420px;
+        .nav-link:hover,
+        .nav-link.active {
 
-height:420px;
+            opacity: 1;
 
-border-radius:50%;
+        }
 
-left:50%;
 
-top:25%;
+        /* =====================================================
+           HERO
+        ====================================================== */
 
-transform:
-translate(-50%,-50%);
+        .database-hero {
 
-filter:blur(80px);
+            position: relative;
 
-opacity:.25;
+            min-height: 460px;
 
-}
+            padding:
+                110px
+                clamp(20px,7vw,100px)
+                80px;
 
-.wandile::before{
-background:#087cff;
-}
+            display: flex;
 
-.xavier::before{
-background:#e3262e;
-}
+            align-items: flex-end;
 
-.kyla::before{
-background:#ff5ca8;
-}
+            overflow: hidden;
 
-.cee::before{
-background:#26d96d;
-}
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.07);
 
+        }
 
-/* CHARACTER SILHOUETTE */
 
-.character-art{
+        .hero-line {
 
-position:absolute;
+            position: absolute;
 
-inset:0;
+            top: 0;
 
-display:flex;
+            left: 7%;
 
-align-items:center;
+            width: 1px;
 
-justify-content:center;
+            height: 100%;
 
-font-size:90px;
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent,
+                    rgba(0,119,255,0.45),
+                    transparent
+                );
 
-font-weight:900;
+        }
 
-letter-spacing:4px;
 
-opacity:.09;
+        .hero-orbit {
 
-}
+            position: absolute;
 
+            width: 620px;
 
-/* INFORMATION */
+            height: 620px;
 
-.card-content{
+            right: -240px;
 
-position:relative;
+            top: -210px;
 
-z-index:2;
+            border:
+                1px solid
+                rgba(0,119,255,0.12);
 
-width:100%;
+            border-radius: 50%;
 
-padding:35px;
+        }
 
-background:
-linear-gradient(
-transparent,
-rgba(0,0,0,.95)
-);
 
-}
+        .hero-orbit::before {
 
-.number{
+            content: "";
 
-font-size:10px;
+            position: absolute;
 
-letter-spacing:4px;
+            inset: 80px;
 
-opacity:.45;
+            border:
+                1px solid
+                rgba(0,119,255,0.08);
 
-margin-bottom:10px;
+            border-radius: 50%;
 
-}
+        }
 
-.card h2{
 
-font-size:48px;
+        .hero-content {
 
-letter-spacing:2px;
+            position: relative;
 
-margin-bottom:8px;
+            z-index: 2;
 
-}
+            max-width: 900px;
 
-.power{
+        }
 
-font-size:13px;
 
-letter-spacing:2px;
+        .eyebrow {
 
-margin-bottom:20px;
+            font-size: 10px;
 
-opacity:.65;
+            letter-spacing: 5px;
 
-}
+            color:
+                rgba(255,255,255,0.45);
 
-.description{
+            margin-bottom: 22px;
 
-max-width:500px;
+        }
 
-line-height:1.7;
 
-font-size:14px;
+        .hero-title {
 
-color:
-rgba(255,255,255,.55);
+            font-size:
+                clamp(58px,10vw,130px);
 
-}
+            line-height: 0.84;
 
+            letter-spacing: -5px;
 
-/* FOOTER */
+            font-weight: 900;
 
-footer{
+            margin-bottom: 28px;
 
-padding:
-50px 7%;
+        }
 
-border-top:
-1px solid
-rgba(255,255,255,.08);
 
-display:flex;
+        .hero-title span {
 
-justify-content:space-between;
+            color:
+                rgba(255,255,255,0.18);
 
-gap:20px;
+        }
 
-flex-wrap:wrap;
 
-}
+        .hero-description {
 
-footer p{
+            max-width: 620px;
 
-font-size:10px;
+            color:
+                rgba(255,255,255,0.5);
 
-letter-spacing:1px;
+            font-size: 14px;
 
-color:
-rgba(255,255,255,.4);
+            line-height: 1.8;
 
-}
+        }
 
 
-/* MOBILE */
+        /* =====================================================
+           DATABASE
+        ====================================================== */
 
-@media(max-width:800px){
+        .database {
 
-.team-grid{
-grid-template-columns:1fr;
-}
+            padding:
+                70px
+                clamp(20px,7vw,100px)
+                120px;
 
-.card{
-min-height:560px;
-}
+        }
 
-}
 
-</style>
+        .database-header {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .section-title {
+
+            font-size:
+                clamp(30px,4vw,48px);
+
+            letter-spacing: -2px;
+
+        }
+
+
+        .section-note {
+
+            max-width: 430px;
+
+            color:
+                rgba(255,255,255,0.36);
+
+            font-size: 11px;
+
+            line-height: 1.7;
+
+            text-align: right;
+
+        }
+
+
+        /* =====================================================
+           CHARACTER CARDS
+        ====================================================== */
+
+        .character-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+
+        }
+
+
+        .character-card {
+
+            position: relative;
+
+            min-height: 520px;
+
+            overflow: hidden;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.09);
+
+            background:
+                rgba(255,255,255,0.02);
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease;
+
+        }
+
+
+        .character-card:hover {
+
+            transform:
+                translateY(-5px);
+
+        }
+
+
+        .character-card.blue:hover {
+
+            border-color:
+                rgba(0,119,255,0.5);
+
+        }
+
+
+        .character-card.pink:hover {
+
+            border-color:
+                rgba(255,60,157,0.5);
+
+        }
+
+
+        .character-card.red:hover {
+
+            border-color:
+                rgba(255,70,70,0.5);
+
+        }
+
+
+        .character-card.green:hover {
+
+            border-color:
+                rgba(50,220,140,0.5);
+
+        }
+
+
+        .character-visual {
+
+            position: relative;
+
+            height: 270px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .blue .character-visual {
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(0,119,255,0.18),
+                    transparent 60%
+                );
+
+        }
+
+
+        .pink .character-visual {
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,60,157,0.15),
+                    transparent 60%
+                );
+
+        }
+
+
+        .red .character-visual {
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,60,60,0.14),
+                    transparent 60%
+                );
+
+        }
+
+
+        .green .character-visual {
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(50,220,140,0.14),
+                    transparent 60%
+                );
+
+        }
+
+
+        .character-symbol {
+
+            width: 145px;
+
+            height: 145px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.25);
+
+            transform:
+                rotate(45deg);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+            box-shadow:
+                0 0 80px
+                rgba(255,255,255,0.04);
+
+        }
+
+
+        .character-symbol::before {
+
+            content: "";
+
+            width: 75px;
+
+            height: 75px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.25);
+
+        }
+
+
+        .character-symbol span {
+
+            position: absolute;
+
+            transform:
+                rotate(-45deg);
+
+            font-size: 9px;
+
+            letter-spacing: 3px;
+
+            opacity: 0.7;
+
+        }
+
+
+        .character-number {
+
+            position: absolute;
+
+            right: 20px;
+
+            bottom: 10px;
+
+            font-size: 110px;
+
+            line-height: 1;
+
+            font-weight: 900;
+
+            color:
+                rgba(255,255,255,0.025);
+
+        }
+
+
+        .character-info {
+
+            padding:
+                30px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.07);
+
+        }
+
+
+        .character-class {
+
+            font-size: 8px;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .blue .character-class {
+
+            color:
+                rgba(0,150,255,0.8);
+
+        }
+
+
+        .pink .character-class {
+
+            color:
+                rgba(255,100,180,0.8);
+
+        }
+
+
+        .red .character-class {
+
+            color:
+                rgba(255,100,100,0.8);
+
+        }
+
+
+        .green .character-class {
+
+            color:
+                rgba(80,230,160,0.8);
+
+        }
+
+
+        .character-name {
+
+            font-size:
+                clamp(35px,5vw,55px);
+
+            letter-spacing: -2px;
+
+            margin-bottom: 4px;
+
+        }
+
+
+        .character-alias {
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            color:
+                rgba(255,255,255,0.35);
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .ability-list {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .ability {
+
+            padding:
+                8px 10px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            background:
+                rgba(255,255,255,0.025);
+
+            font-size: 8px;
+
+            letter-spacing: 1.5px;
+
+            color:
+                rgba(255,255,255,0.55);
+
+        }
+
+
+        .character-description {
+
+            color:
+                rgba(255,255,255,0.4);
+
+            font-size: 12px;
+
+            line-height: 1.8;
+
+        }
+
+
+        /* =====================================================
+           CLASSIFIED SECTION
+        ====================================================== */
+
+        .classified {
+
+            margin-top: 18px;
+
+            padding:
+                35px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            background:
+                rgba(255,255,255,0.018);
+
+        }
+
+
+        .classified-label {
+
+            font-size: 8px;
+
+            letter-spacing: 4px;
+
+            color:
+                rgba(255,255,255,0.3);
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .classified h2 {
+
+            font-size:
+                clamp(25px,4vw,40px);
+
+            letter-spacing: -1px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .classified p {
+
+            color:
+                rgba(255,255,255,0.35);
+
+            font-size: 11px;
+
+            line-height: 1.7;
+
+            max-width: 600px;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        footer {
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            padding:
+                45px
+                clamp(20px,7vw,100px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .footer-logo {
+
+            font-size: 16px;
+
+            font-weight: 900;
+
+            letter-spacing: 4px;
+
+        }
+
+
+        footer p {
+
+            color:
+                rgba(255,255,255,0.3);
+
+            font-size: 9px;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+
+                height: 62px;
+
+            }
+
+
+            .nav-right {
+
+                gap: 14px;
+
+            }
+
+
+            .nav-link {
+
+                display: none;
+
+            }
+
+
+            .database-hero {
+
+                min-height: 410px;
+
+                padding:
+                    95px 20px 60px;
+
+            }
+
+
+            .hero-line {
+
+                left: 20px;
+
+            }
+
+
+            .database {
+
+                padding:
+                    55px 15px 90px;
+
+            }
+
+
+            .database-header {
+
+                display: block;
+
+                margin-bottom: 25px;
+
+            }
+
+
+            .section-note {
+
+                text-align: left;
+
+                margin-top: 12px;
+
+            }
+
+
+            .character-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .character-card {
+
+                min-height: auto;
+
+            }
+
+
+            .character-visual {
+
+                height: 240px;
+
+            }
+
+
+            footer {
+
+                padding:
+                    35px 20px;
+
+            }
+
+        }
+
+
+        @media (max-width: 420px) {
+
+            .logo {
+
+                font-size: 16px;
+
+                letter-spacing: 4px;
+
+            }
+
+
+            .hero-title {
+
+                font-size: 58px;
+
+            }
+
+
+            .character-info {
+
+                padding: 25px;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -402,219 +1054,537 @@ min-height:560px;
 <body>
 
 
-<nav>
+    <!-- =====================================================
+         BACKGROUND
+    ====================================================== -->
 
-<a
-href="index.html"
-class="logo"
->
-SENTINELS
-</a>
+    <div
+        class="space"
+        aria-hidden="true"
+    >
 
-<a
-href="index.html"
-class="back"
->
-← BACK HOME
-</a>
+        <div class="stars"></div>
 
-</nav>
+        <div class="glow"></div>
 
+    </div>
 
-<header class="hero">
 
-<div class="kicker">
-THE SENTINELS
-</div>
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
 
-<h1>
-FOUR<br>
-SENTINELS.
-</h1>
+    <header class="navbar">
 
-<p>
+        <a
+            href="index.html"
+            class="logo"
+        >
+            SENTINELS
+        </a>
 
-Four people.
 
-Four powers.
+        <div class="nav-right">
 
-One universe.
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+                HOME
+            </a>
 
-Meet the Sentinels.
 
-</p>
+            <a
+                href="sentinels.html"
+                class="nav-link active"
+            >
+                SENTINELS
+            </a>
 
-</header>
 
+            <a
+                href="archive.html"
+                class="nav-link"
+            >
+                ARCHIVE
+            </a>
 
-<main class="team">
 
-<div class="team-grid">
+            <a
+                href="quiz.html"
+                class="nav-link"
+            >
+                QUIZ
+            </a>
 
 
-<!-- WANDILE -->
+            <a
+                href="hub.html"
+                class="nav-link"
+            >
+                HUB
+            </a>
 
-<article class="card wandile">
+        </div>
 
-<div class="character-art">
-W
-</div>
+    </header>
 
-<div class="card-content">
 
-<div class="number">
-THE FOURTH SENTINEL
-</div>
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-<h2>
-WANDILE
-</h2>
+    <header class="database-hero">
 
-<div class="power">
-STRENGTH • SPEED • FLIGHT
-</div>
+        <div class="hero-line"></div>
 
-<p class="description">
+        <div class="hero-orbit"></div>
 
-The fourth Sentinel.
 
-His armour provides a balanced combination
-of strength, speed and flight, supported by
-advanced Sentinel technology.
+        <div class="hero-content">
 
-</p>
+            <div class="eyebrow">
+                SENTINELS // PERSONNEL DATABASE
+            </div>
 
-</div>
 
-</article>
+            <h1 class="hero-title">
 
+                KNOW<br>
 
-<!-- XAVIER -->
+                <span>THEM.</span>
 
-<article class="card xavier">
+            </h1>
 
-<div class="character-art">
-X
-</div>
 
-<div class="card-content">
+            <p class="hero-description">
 
-<div class="number">
-THE FIRST SENTINEL
-</div>
+                The people behind the armor.
 
-<h2>
-XAVIER
-</h2>
+                Their identities, abilities and place
+                within the Sentinels formation.
 
-<div class="power">
-STRENGTH
-</div>
+                Personnel files are continuously updated
+                as new information becomes available.
 
-<p class="description">
+            </p>
 
-The powerhouse of the team.
+        </div>
 
-Xavier's Sentinel armour amplifies his
-physical strength, making him the team's
-front-line force.
+    </header>
 
-</p>
 
-</div>
+    <!-- =====================================================
+         DATABASE
+    ====================================================== -->
 
-</article>
+    <main class="database">
 
 
-<!-- KYLA -->
+        <div class="database-header">
 
-<article class="card kyla">
+            <div>
 
-<div class="character-art">
-K
-</div>
+                <div class="eyebrow">
+                    ACTIVE PERSONNEL
+                </div>
 
-<div class="card-content">
+                <h2 class="section-title">
+                    THE SENTINELS
+                </h2>
 
-<div class="number">
-THE SECOND SENTINEL
-</div>
+            </div>
 
-<h2>
-KYLA
-</h2>
 
-<div class="power">
-SPEED
-</div>
+            <p class="section-note">
 
-<p class="description">
+                Four individuals.
+                Four Sentinel signatures.
 
-The fastest Sentinel.
+                Their story has only begun.
 
-Kyla's armour gives her extraordinary
-speed and allows her to move faster
-than the others can react.
+            </p>
 
-</p>
+        </div>
 
-</div>
 
-</article>
+        <section class="character-grid">
 
 
-<!-- CEE -->
+            <!-- =================================================
+                 WANDILE
+            ================================================== -->
 
-<article class="card cee">
+            <article class="character-card blue">
 
-<div class="character-art">
-C
-</div>
 
-<div class="card-content">
+                <div class="character-visual">
 
-<div class="number">
-THE THIRD SENTINEL
-</div>
+                    <div class="character-symbol">
 
-<h2>
-CEE
-</h2>
+                        <span>
+                            BLUE
+                        </span>
 
-<div class="power">
-FLIGHT • ENERGY BLASTS
-</div>
+                    </div>
 
-<p class="description">
 
-Cee takes to the sky with retractable wings
-and can unleash powerful energy blasts
-from her hands both in the air and on
-the ground.
+                    <div class="character-number">
+                        01
+                    </div>
 
-</p>
+                </div>
 
-</div>
 
-</article>
+                <div class="character-info">
 
 
-</div>
+                    <div class="character-class">
+                        SENTINEL // BLUE
+                    </div>
 
-</main>
 
+                    <h2 class="character-name">
+                        WANDILE
+                    </h2>
 
-<footer>
 
-<div class="logo">
-SENTINELS
-</div>
+                    <div class="character-alias">
+                        THE FIRST
+                    </div>
 
-<p>
-THE SENTINELS UNIVERSE
-</p>
 
-</footer>
+                    <div class="ability-list">
+
+                        <span class="ability">
+                            STRENGTH
+                        </span>
+
+                        <span class="ability">
+                            SPEED
+                        </span>
+
+                        <span class="ability">
+                            FLIGHT
+                        </span>
+
+                        <span class="ability">
+                            SHIELD
+                        </span>
+
+                        <span class="ability">
+                            RETRACTABLE WINGS
+                        </span>
+
+                    </div>
+
+
+                    <p class="character-description">
+
+                        The blue Sentinel.
+
+                        Initially defined by overwhelming
+                        physical strength, Wandile's abilities
+                        continue to develop as he learns to
+                        control speed and flight.
+
+                        His armor can deploy defensive
+                        systems including a retractable shield
+                        and wings.
+
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================================
+                 KYLA
+            ================================================== -->
+
+            <article class="character-card pink">
+
+
+                <div class="character-visual">
+
+                    <div class="character-symbol">
+
+                        <span>
+                            PINK
+                        </span>
+
+                    </div>
+
+
+                    <div class="character-number">
+                        02
+                    </div>
+
+                </div>
+
+
+                <div class="character-info">
+
+
+                    <div class="character-class">
+                        SENTINEL // PINK
+                    </div>
+
+
+                    <h2 class="character-name">
+                        KYLA
+                    </h2>
+
+
+                    <div class="character-alias">
+                        THE SPEEDSTER
+                    </div>
+
+
+                    <div class="ability-list">
+
+                        <span class="ability">
+                            SUPER SPEED
+                        </span>
+
+                        <span class="ability">
+                            AGILITY
+                        </span>
+
+                        <span class="ability">
+                            RAPID MOVEMENT
+                        </span>
+
+                    </div>
+
+
+                    <p class="character-description">
+
+                        The pink and white Sentinel.
+
+                        Kyla's greatest advantage is speed.
+                        Her movement allows her to react,
+                        evade and strike before opponents
+                        can properly respond.
+
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================================
+                 XAVIER
+            ================================================== -->
+
+            <article class="character-card red">
+
+
+                <div class="character-visual">
+
+                    <div class="character-symbol">
+
+                        <span>
+                            RED
+                        </span>
+
+                    </div>
+
+
+                    <div class="character-number">
+                        03
+                    </div>
+
+                </div>
+
+
+                <div class="character-info">
+
+
+                    <div class="character-class">
+                        SENTINEL // RED
+                    </div>
+
+
+                    <h2 class="character-name">
+                        XAVIER
+                    </h2>
+
+
+                    <div class="character-alias">
+                        THE POWERHOUSE
+                    </div>
+
+
+                    <div class="ability-list">
+
+                        <span class="ability">
+                            SUPER STRENGTH
+                        </span>
+
+                        <span class="ability">
+                            POWER
+                        </span>
+
+                        <span class="ability">
+                            CLOSE COMBAT
+                        </span>
+
+                    </div>
+
+
+                    <p class="character-description">
+
+                        The red Sentinel.
+
+                        Xavier brings raw physical power
+                        to the team, making him one of the
+                        Sentinels' strongest close-range
+                        fighters.
+
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================================
+                 CEE
+            ================================================== -->
+
+            <article class="character-card green">
+
+
+                <div class="character-visual">
+
+                    <div class="character-symbol">
+
+                        <span>
+                            GREEN
+                        </span>
+
+                    </div>
+
+
+                    <div class="character-number">
+                        04
+                    </div>
+
+                </div>
+
+
+                <div class="character-info">
+
+
+                    <div class="character-class">
+                        SENTINEL // GREEN
+                    </div>
+
+
+                    <h2 class="character-name">
+                        CEE
+                    </h2>
+
+
+                    <div class="character-alias">
+                        THE AERIAL UNIT
+                    </div>
+
+
+                    <div class="ability-list">
+
+                        <span class="ability">
+                            FLIGHT
+                        </span>
+
+                        <span class="ability">
+                            RETRACTABLE WINGS
+                        </span>
+
+                        <span class="ability">
+                            ENERGY BLASTS
+                        </span>
+
+                        <span class="ability">
+                            AERIAL COMBAT
+                        </span>
+
+                    </div>
+
+
+                    <p class="character-description">
+
+                        The green Sentinel.
+
+                        Cee's armor deploys retractable wings
+                        for flight and aerial maneuvering.
+
+                        She can also project powerful energy
+                        blasts directly from her hands, both
+                        while airborne and on the ground.
+
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+        <!-- =====================================================
+             CLASSIFIED
+        ====================================================== -->
+
+        <section class="classified">
+
+            <div class="classified-label">
+                DATABASE // RESTRICTED
+            </div>
+
+
+            <h2>
+                MORE FILES WILL OPEN.
+            </h2>
+
+
+            <p>
+
+                The Sentinels are not the only forces
+                shaping this story.
+
+                Additional personnel, allies, enemies
+                and entities will be documented as the
+                universe expands.
+
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+            SENTINELS
+        </div>
+
+
+        <p>
+            © 2026 SENTINELS • CREATED BY WANDILE SHAW
+        </p>
+
+    </footer>
 
 
 </body>
