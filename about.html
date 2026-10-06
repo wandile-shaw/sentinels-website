@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sentinels — About</title>
+
+    <meta
+        name="description"
+        content="About the Sentinels project and official archive."
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================================================
+           ABOUT PAGE
+           SPACE / ARCHIVE TRANSMISSION
+        ========================================================= */
+
+        body.about-page {
+            background: #02050a;
+            overflow-x: hidden;
+        }
+
+        .about-page {
+            position: relative;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    ellipse at 50% 5%,
+                    rgba(28, 76, 125, 0.17),
+                    transparent 42%
+                ),
+                radial-gradient(
+                    ellipse at 85% 45%,
+                    rgba(24, 91, 125, 0.06),
+                    transparent 34%
+                ),
+                radial-gradient(
+                    ellipse at 10% 80%,
+                    rgba(31, 59, 112, 0.06),
+                    transparent 34%
+                ),
+                #02050a;
+        }
+
+
+        /* =========================================================
+           SPACE FIELD
+        ========================================================= */
+
+        .about-space {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .about-space::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background-image:
+                radial-gradient(
+                    1px 1px at 7% 19%,
+                    rgba(255,255,255,0.65),
+                    transparent
+                ),
+                radial-gradient(
+                    1px 1px at 15% 62%,
+                    rgba(125,195,255,0.5),
+                    transparent
+                ),
+                radial-gradient(
+                    1px 1px at 24% 34%,
+                    rgba(255,255,255,0.5),
+                    transparent
+                ),
+                radial-gradient(
+                    1px 1px at 33% 79%,
+                    rgba(130,205,255,0.42),
+                    transparent
+                ),
+                radial-gradient(
+                    1px 1px at 45% 15%,
+                    rgba(255,255,255,0.55),
+                    transparent
+                ),
+                radial-gradient(
+                    1px 1px at 56% 69%,
+                    rgba(135,205,255,0.45),
+                    transparent
+                ),
+                radial-gradient(
+                    1px 1px at 68% 27%,
+                    rgba(255,255,255,0.55),
+                    transparent
+                ),
+                radial-gradient(
+                    1px 1px at 79% 83%,
+                    rgba(120,195,255,0.45),
+                    transparent
+                ),
+                radial-gradient(
+                    1px 1px at 89% 48%,
+                    rgba(255,255,255,0.5),
+                    transparent
+                ),
+                radial-gradient(
+                    1px 1px at 96% 17%,
+                    rgba(130,195,255,0.4),
+                    transparent
+                );
+
+            background-size:
+                230px 210px,
+                310px 280px,
+                270px 240px,
+                360px 330px,
+                290px 260px,
+                400px 360px,
+                250px 230px,
+                370px 340px,
+                320px 290px,
+                440px 390px;
+
+            opacity: 0.72;
+        }
+
+        .about-space::after {
+            content: "";
+
+            position: absolute;
+
+            width: 900px;
+            height: 480px;
+
+            top: 8%;
+            left: 50%;
+
+            transform:
+                translateX(-50%)
+                rotate(-9deg);
+
+            background:
+                radial-gradient(
+                    ellipse,
+                    rgba(30,105,165,0.11),
+                    transparent 66%
+                );
+
+            filter: blur(25px);
+        }
+
+
+        /* =========================================================
+           ORBITS
+        ========================================================= */
+
+        .about-orbit {
+            position: absolute;
+
+            border:
+                1px solid
+                rgba(80,165,220,0.055);
+
+            border-radius: 50%;
+        }
+
+        .about-orbit.one {
+            width: 920px;
+            height: 350px;
+
+            top: 110px;
+            left: 50%;
+
+            transform:
+                translateX(-50%)
+                rotate(-13deg);
+        }
+
+        .about-orbit.two {
+            width: 1250px;
+            height: 470px;
+
+            top: 210px;
+            left: 50%;
+
+            transform:
+                translateX(-50%)
+                rotate(12deg);
+
+            border-color:
+                rgba(90,165,220,0.035);
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .about-hero {
+            position: relative;
+            z-index: 2;
+
+            min-height: 62vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding:
+                130px
+                24px
+                70px;
+
+            text-align: center;
+        }
+
+        .about-hero-content {
+            max-width: 850px;
+        }
+
+        .about-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 24px;
+
+            color:
+                rgba(
+                    125,
+                    195,
+                    240,
+                    0.58
+                );
+
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 0.27em;
+
+            text-transform: uppercase;
+        }
+
+        .about-kicker::before,
+        .about-kicker::after {
+            content: "";
+
+            width: 28px;
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    rgba(100,190,240,0.45)
+                );
+        }
+
+        .about-kicker::after {
+            background:
+                linear-gradient(
+                    to left,
+                    transparent,
+                    rgba(100,190,240,0.45)
+                );
+        }
+
+        .about-title {
+            margin: 0;
+
+            color: #edf7ff;
+
+            font-size:
+                clamp(
+                    3.8rem,
+                    10vw,
+                    7.5rem
+                );
+
+            line-height: 0.86;
+
+            letter-spacing: -0.065em;
+
+            font-weight: 900;
+
+            text-shadow:
+                0 0 40px
+                rgba(55,155,225,0.1);
+        }
+
+        .about-intro {
+            max-width: 650px;
+
+            margin:
+                30px
+                auto
+                0;
+
+            color:
+                rgba(
+                    185,
+                    210,
+                    230,
+                    0.55
+                );
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           STATUS
+        ========================================================= */
+
+        .about-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-top: 30px;
+
+            padding:
+                10px
+                15px;
+
+            border:
+                1px solid
+                rgba(90,175,230,0.14);
+
+            background:
+                rgba(7,20,32,0.72);
+
+            color:
+                rgba(
+                    145,
+                    200,
+                    235,
+                    0.58
+                );
+
+            font-size: 0.62rem;
+            letter-spacing: 0.17em;
+
+            text-transform: uppercase;
+        }
+
+        .about-status-dot {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: #66c8ff;
+
+            box-shadow:
+                0 0 8px
+                rgba(75,190,255,0.8);
+        }
+
+
+        /* =========================================================
+           CONTENT
+        ========================================================= */
+
+        .about-content {
+            position: relative;
+            z-index: 3;
+
+            width:
+                min(
+                    1060px,
+                    calc(100% - 40px)
+                );
+
+            margin: 0 auto;
+
+            padding:
+                25px
+                0
+                110px;
+        }
+
+        .about-section {
+            margin-bottom: 90px;
+        }
+
+        .about-section-label {
+            margin: 0 0 10px;
+
+            color:
+                rgba(
+                    105,
+                    185,
+                    235,
+                    0.52
+                );
+
+            font-size: 0.64rem;
+            font-weight: 700;
+            letter-spacing: 0.21em;
+
+            text-transform: uppercase;
+        }
+
+        .about-section-title {
+            margin: 0;
+
+            color: #edf6fc;
+
+            font-size:
+                clamp(
+                    1.9rem,
+                    4vw,
+                    3rem
+                );
+
+            letter-spacing: -0.04em;
+        }
+
+
+        /* =========================================================
+           MAIN TRANSMISSION
+        ========================================================= */
+
+        .about-transmission {
+            display: grid;
+
+            grid-template-columns:
+                0.75fr
+                1.25fr;
+
+            gap: 60px;
+
+            padding:
+                45px
+                0;
+
+            border-top:
+                1px solid
+                rgba(90,170,220,0.1);
+
+            border-bottom:
+                1px solid
+                rgba(90,170,220,0.1);
+        }
+
+        .about-transmission-title {
+            margin: 0;
+
+            color:
+                rgba(
+                    190,
+                    220,
+                    240,
+                    0.75
+                );
+
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.19em;
+
+            text-transform: uppercase;
+        }
+
+        .about-transmission-text {
+            margin: 0;
+
+            color:
+                rgba(
+                    185,
+                    210,
+                    230,
+                    0.52
+                );
+
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+
+        .about-transmission-text strong {
+            color:
+                rgba(
+                    225,
+                    240,
+                    250,
+                    0.82
+                );
+
+            font-weight: 600;
+        }
+
+
+        /* =========================================================
+           PROJECT DATA
+        ========================================================= */
+
+        .about-data {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    1fr
+                );
+
+            gap: 14px;
+
+            margin-top: 30px;
+        }
+
+        .about-data-card {
+            padding: 25px;
+
+            min-height: 145px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(8,20,32,0.96),
+                    rgba(3,7,12,0.99)
+                );
+
+            border:
+                1px solid
+                rgba(100,175,220,0.11);
+
+            box-shadow:
+                inset 0 1px 0
+                rgba(255,255,255,0.025);
+        }
+
+        .about-data-label {
+            color:
+                rgba(
+                    105,
+                    185,
+                    235,
+                    0.48
+                );
+
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.17em;
+
+            text-transform: uppercase;
+        }
+
+        .about-data-value {
+            margin: 13px 0 0;
+
+            color:
+                rgba(
+                    230,
+                    242,
+                    250,
+                    0.85
+                );
+
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+        }
+
+
+        /* =========================================================
+           CREATOR FILE
+        ========================================================= */
+
+        .creator-file {
+            position: relative;
+
+            padding: 45px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    115deg,
+                    rgba(8,25,40,0.98),
+                    rgba(3,8,14,0.99)
+                );
+
+            border:
+                1px solid
+                rgba(90,175,225,0.14);
+        }
+
+        .creator-file::before {
+            content: "";
+
+            position: absolute;
+
+            width: 430px;
+            height: 430px;
+
+            right: -190px;
+            top: -190px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(80,175,230,0.07);
+
+            box-shadow:
+                0 0 0 30px
+                rgba(70,160,220,0.015),
+
+                0 0 0 60px
+                rgba(70,160,220,0.01);
+        }
+
+        .creator-file-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 720px;
+        }
+
+        .creator-file-label {
+            color:
+                rgba(
+                    105,
+                    190,
+                    240,
+                    0.5
+                );
+
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+
+            text-transform: uppercase;
+        }
+
+        .creator-file-name {
+            margin:
+                12px
+                0
+                0;
+
+            color: #eef8ff;
+
+            font-size:
+                clamp(
+                    2rem,
+                    5vw,
+                    3.5rem
+                );
+
+            line-height: 1;
+
+            letter-spacing: -0.045em;
+        }
+
+        .creator-file-role {
+            margin:
+                12px
+                0
+                0;
+
+            color:
+                rgba(
+                    130,
+                    195,
+                    235,
+                    0.58
+                );
+
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+
+            text-transform: uppercase;
+        }
+
+        .creator-file-text {
+            margin:
+                24px
+                0
+                0;
+
+            color:
+                rgba(
+                    185,
+                    210,
+                    230,
+                    0.52
+                );
+
+            line-height: 1.85;
+        }
+
+
+        /* =========================================================
+           ARCHIVE NOTE
+        ========================================================= */
+
+        .about-note {
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                2fr;
+
+            gap: 40px;
+
+            padding:
+                35px
+                0;
+
+            border-top:
+                1px solid
+                rgba(90,170,220,0.09);
+
+            border-bottom:
+                1px solid
+                rgba(90,170,220,0.09);
+        }
+
+        .about-note-label {
+            color:
+                rgba(
+                    105,
+                    185,
+                    235,
+                    0.45
+                );
+
+            font-size: 0.61rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+
+            text-transform: uppercase;
+        }
+
+        .about-note-text {
+            margin: 0;
+
+            color:
+                rgba(
+                    180,
+                    205,
+                    225,
+                    0.46
+                );
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .about-footer {
+            position: relative;
+            z-index: 3;
+
+            padding:
+                32px
+                20px
+                40px;
+
+            border-top:
+                1px solid
+                rgba(90,170,220,0.08);
+
+            background:
+                rgba(1,4,8,0.7);
+
+            text-align: center;
+        }
+
+        .about-footer-brand {
+            margin: 0;
+
+            color:
+                rgba(
+                    180,
+                    220,
+                    245,
+                    0.72
+                );
+
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+        }
+
+        .about-footer-text {
+            margin: 9px 0 0;
+
+            color:
+                rgba(
+                    160,
+                    190,
+                    210,
+                    0.27
+                );
+
+            font-size: 0.63rem;
+            letter-spacing: 0.08em;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 800px) {
+
+            .about-transmission {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .about-data {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .about-note {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .about-hero {
+                min-height: 58vh;
+
+                padding:
+                    110px
+                    20px
+                    60px;
+            }
+
+            .about-title {
+                font-size:
+                    clamp(
+                        3.5rem,
+                        17vw,
+                        5.5rem
+                    );
+            }
+
+            .about-intro {
+                font-size: 0.88rem;
+            }
+
+            .about-content {
+                width:
+                    calc(100% - 28px);
+
+                padding-bottom: 80px;
+            }
+
+            .about-section {
+                margin-bottom: 70px;
+            }
+
+            .about-transmission {
+                padding:
+                    32px
+                    0;
+            }
+
+            .about-data {
+                grid-template-columns: 1fr;
+            }
+
+            .creator-file {
+                padding: 32px 25px;
+            }
+
+            .about-orbit.one {
+                width: 650px;
+            }
+
+            .about-orbit.two {
+                width: 850px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="about-page">
+
+
+    <!-- =========================================================
+         SPACE ATMOSPHERE
+    ========================================================== -->
+
+    <div class="about-space" aria-hidden="true">
+
+        <div class="about-orbit one"></div>
+
+        <div class="about-orbit two"></div>
+
+    </div>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header class="site-header">
+
+        <div class="site-header-inner">
+
+            <a
+                href="index.html"
+                class="site-brand"
+            >
+                <span>SENTINELS</span>
+                <small>OFFICIAL ARCHIVE</small>
+            </a>
+
+
+            <button
+                class="mobile-menu-toggle"
+                type="button"
+                aria-label="Open navigation"
+                aria-expanded="false"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+
+            <nav
+                class="site-nav"
+                aria-label="Main navigation"
+            >
+
+                <a href="index.html">
+                    HOME
+                </a>
+
+                <a href="archive.html">
+                    VOLUMES
+                </a>
+
+                <a href="sentinels.html">
+                    CHARACTERS
+                </a>
+
+                <a href="quiz.html">
+                    QUIZ
+                </a>
+
+                <a href="predictions.html">
+                    PREDICTIONS
+                </a>
+
+                <a href="hub.html">
+                    HUB
+                </a>
+
+                <a
+                    href="about.html"
+                    class="active"
+                >
+                    ABOUT
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main>
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section class="about-hero">
+
+            <div class="about-hero-content">
+
+                <div class="about-kicker">
+                    SENTINELS // PROJECT FILE
+                </div>
+
+
+                <h1 class="about-title">
+                    ABOUT
+                </h1>
+
+
+                <p class="about-intro">
+                    A growing comic universe presented through
+                    its own digital archive — built around the
+                    story, characters and world of the Sentinels.
+                </p>
+
+
+                <div class="about-status">
+
+                    <span class="about-status-dot"></span>
+
+                    PROJECT FILE // ACTIVE
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CONTENT
+        ====================================================== -->
+
+        <div class="about-content">
+
+
+            <!-- =================================================
+                 PROJECT
+            ================================================== -->
+
+            <section class="about-section">
+
+                <div class="about-transmission">
+
+                    <h2 class="about-transmission-title">
+                        THE PROJECT
+                    </h2>
+
+
+                    <p class="about-transmission-text">
+                        <strong>Sentinels</strong> is an original
+                        comic project built around four characters
+                        who become something greater than they
+                        expected.
+
+                        <br><br>
+
+                        The website serves as the project's official
+                        digital archive — a place to read the story,
+                        explore the characters and interact with
+                        different parts of the world surrounding it.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ARCHIVE DATA
+            ================================================== -->
+
+            <section class="about-section">
+
+                <p class="about-section-label">
+                    PROJECT DATA
+                </p>
+
+
+                <h2 class="about-section-title">
+                    Archive information.
+                </h2>
+
+
+                <div class="about-data">
+
+                    <div class="about-data-card">
+
+                        <div class="about-data-label">
+                            PROJECT
+                        </div>
+
+                        <div class="about-data-value">
+                            SENTINELS
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-data-card">
+
+                        <div class="about-data-label">
+                            FORMAT
+                        </div>
+
+                        <div class="about-data-value">
+                            ORIGINAL COMIC
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-data-card">
+
+                        <div class="about-data-label">
+                            ARCHIVE
+                        </div>
+
+                        <div class="about-data-value">
+                            DIGITAL
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-data-card">
+
+                        <div class="about-data-label">
+                            CURRENT VOLUME
+                        </div>
+
+                        <div class="about-data-value">
+                            THE BEGINNING
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-data-card">
+
+                        <div class="about-data-label">
+                            SENTINELS
+                        </div>
+
+                        <div class="about-data-value">
+                            FOUR
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-data-card">
+
+                        <div class="about-data-label">
+                            STATUS
+                        </div>
+
+                        <div class="about-data-value">
+                            IN DEVELOPMENT
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CREATOR
+            ================================================== -->
+
+            <section class="about-section">
+
+                <div class="creator-file">
+
+                    <div class="creator-file-content">
+
+                        <div class="creator-file-label">
+                            CREATOR FILE // 001
+                        </div>
+
+
+                        <h2 class="creator-file-name">
+                            WANDILE SHAW
+                        </h2>
+
+
+                        <div class="creator-file-role">
+                            CREATOR // WRITER // WORLD BUILDER
+                        </div>
+
+
+                        <p class="creator-file-text">
+                            Sentinels began as an idea and grew into
+                            a world of its own. The project is being
+                            developed as an ongoing comic universe,
+                            with the archive evolving alongside the
+                            story.
+
+                            <br><br>
+
+                            This website is part of that process —
+                            a home for the story as it continues to
+                            take shape.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ARCHIVE NOTE
+            ================================================== -->
+
+            <section class="about-section">
+
+                <div class="about-note">
+
+                    <div class="about-note-label">
+                        ARCHIVE NOTE
+                    </div>
+
+
+                    <p class="about-note-text">
+                        Not every part of the Sentinels world is
+                        available yet. Some files remain classified,
+                        some stories are still being developed,
+                        and future volumes will open as the project
+                        progresses.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="about-footer">
+
+        <p class="about-footer-brand">
+            SENTINELS
+        </p>
+
+        <p class="about-footer-text">
+            OFFICIAL ARCHIVE • CREATED BY WANDILE SHAW
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
