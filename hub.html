@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="UTF-8">
@@ -10,1048 +9,962 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta
-        name="theme-color"
-        content="#03050a"
-    >
+    <title>Sentinels — Hub</title>
 
     <meta
         name="description"
-        content="The Sentinels Hub — theories, reviews, questions and community."
+        content="Enter the Sentinels Command Hub."
     >
-
-    <title>Sentinels — Hub</title>
-
 
     <style>
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
+        :root {
+            --blue: #38a8ff;
+            --blue-bright: #8bd3ff;
+            --dark: #02050a;
+            --panel: rgba(9, 18, 30, 0.72);
+            --line: rgba(120, 190, 255, 0.18);
+        }
 
         html {
             scroll-behavior: smooth;
         }
 
-
         body {
-
-            background: #03050a;
-
-            color: #ffffff;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            min-height: 100vh;
-
-            overflow-x: hidden;
-
-        }
-
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-
-        /* =====================================
-           SPACE BACKGROUND
-        ===================================== */
-
-        .space {
-
-            position: fixed;
-
-            inset: 0;
-
-            z-index: -1;
-
-            overflow: hidden;
-
+            font-family: Arial, Helvetica, sans-serif;
             background:
-
                 radial-gradient(
-                    circle at 50% 20%,
-                    rgba(0,80,180,.18),
-                    transparent 45%
+                    circle at 50% -10%,
+                    rgba(37, 125, 205, 0.28),
+                    transparent 35%
                 ),
-
-                #03050a;
-
+                radial-gradient(
+                    circle at 85% 40%,
+                    rgba(18, 80, 130, 0.12),
+                    transparent 30%
+                ),
+                #02050a;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
+        /* BACKGROUND */
 
-        .space::before {
-
+        body::before {
             content: "";
-
-            position: absolute;
-
+            position: fixed;
             inset: 0;
+            pointer-events: none;
 
             background-image:
-
-                radial-gradient(
-                    circle,
-                    rgba(255,255,255,.7) 1px,
-                    transparent 1.5px
+                linear-gradient(
+                    rgba(80, 170, 255, 0.035) 1px,
+                    transparent 1px
                 ),
-
-                radial-gradient(
-                    circle,
-                    rgba(255,255,255,.3) 1px,
-                    transparent 1.5px
+                linear-gradient(
+                    90deg,
+                    rgba(80, 170, 255, 0.035) 1px,
+                    transparent 1px
                 );
 
-            background-size:
-                95px 95px,
-                150px 150px;
+            background-size: 45px 45px;
 
-            opacity: .35;
+            mask-image: linear-gradient(
+                to bottom,
+                black,
+                transparent 85%
+            );
+        }
 
+        body::after {
+            content: "";
+
+            position: fixed;
+            width: 500px;
+            height: 500px;
+
+            left: 50%;
+            top: 5%;
+
+            transform: translateX(-50%);
+
+            background: rgba(40, 160, 255, 0.07);
+
+            filter: blur(100px);
+
+            pointer-events: none;
         }
 
 
-        .orb {
-
-            position: absolute;
-
-            border-radius: 50%;
-
-            opacity: .7;
-
-            box-shadow:
-                0 0 25px currentColor;
-
-            animation:
-                drift 30s linear infinite;
-
-        }
-
-
-        .orb.blue {
-
-            width: 20px;
-            height: 20px;
-
-            background: #1687ff;
-
-            color: #1687ff;
-
-            left: 8%;
-            top: 22%;
-
-        }
-
-
-        .orb.red {
-
-            width: 32px;
-            height: 32px;
-
-            background: #ff3045;
-
-            color: #ff3045;
-
-            left: 82%;
-            top: 18%;
-
-            animation-duration: 38s;
-
-        }
-
-
-        .orb.green {
-
-            width: 22px;
-            height: 22px;
-
-            background: #25e879;
-
-            color: #25e879;
-
-            left: 88%;
-            top: 65%;
-
-            animation-duration: 34s;
-
-        }
-
-
-        .orb.pink {
-
-            width: 17px;
-            height: 17px;
-
-            background: #ff6eb5;
-
-            color: #ff6eb5;
-
-            left: 20%;
-            top: 76%;
-
-            animation-duration: 27s;
-
-        }
-
-
-        @keyframes drift {
-
-            0% {
-                transform:
-                    translate3d(-30px, 20px, 0);
-            }
-
-            50% {
-                transform:
-                    translate3d(100px, -70px, 0);
-            }
-
-            100% {
-                transform:
-                    translate3d(-30px, 20px, 0);
-            }
-
-        }
-
-
-        /* =====================================
-           NAVIGATION
-        ===================================== */
+        /* NAV */
 
         nav {
-
             position: sticky;
-
             top: 0;
+            z-index: 1000;
 
-            z-index: 50;
-
-            height: 76px;
+            height: 70px;
 
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
 
-            padding:
-                0 6%;
+            padding: 0 7%;
 
-            background:
-                rgba(3,5,10,.88);
+            background: rgba(1, 4, 8, 0.78);
 
-            backdrop-filter:
-                blur(16px);
+            backdrop-filter: blur(18px);
 
-            border-bottom:
-                1px solid
-                rgba(255,255,255,.08);
-
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
-
 
         .logo {
+            text-decoration: none;
+            color: white;
 
-            font-size: 21px;
+            font-size: 17px;
+            font-weight: 1000;
 
-            font-weight: 900;
-
-            letter-spacing: 4px;
-
+            letter-spacing: 5px;
         }
 
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
 
-        .back {
+        .nav-links a {
+            color: #68798d;
+
+            text-decoration: none;
 
             font-size: 10px;
+            font-weight: 900;
 
             letter-spacing: 2px;
 
-            opacity: .5;
+            transition: 0.25s ease;
+        }
 
-            transition: .25s ease;
-
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: white;
         }
 
 
-        .back:hover {
-            opacity: 1;
-        }
-
-
-        /* =====================================
-           HERO
-        ===================================== */
+        /* HERO */
 
         .hero {
+            position: relative;
 
-            min-height:
-                72vh;
+            min-height: 72vh;
 
             display: flex;
+            flex-direction: column;
 
             align-items: center;
-
             justify-content: center;
 
             text-align: center;
 
-            padding:
-                100px 7%;
+            padding: 90px 6% 80px;
+
+            overflow: hidden;
+        }
+
+        /* scanning beam */
+
+        .scan-line {
+            position: absolute;
+
+            left: 0;
+            right: 0;
+
+            top: 0;
+
+            height: 1px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(70,190,255,0.8),
+                transparent
+            );
+
+            box-shadow:
+                0 0 25px rgba(60,180,255,0.7);
+
+            animation: scan 5s linear infinite;
+
+            opacity: 0.5;
+        }
+
+        @keyframes scan {
+
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(72vh);
+            }
 
         }
 
+        .system-label {
+            display: flex;
+            align-items: center;
+            gap: 9px;
 
-        .hero-inner {
-            max-width: 850px;
-        }
-
-
-        .eyebrow {
+            color: var(--blue-bright);
 
             font-size: 9px;
-
-            letter-spacing: 5px;
-
-            opacity: .4;
-
-            margin-bottom: 20px;
-
-        }
-
-
-        .hero h1 {
-
-            font-size:
-                clamp(
-                    60px,
-                    11vw,
-                    135px
-                );
-
-            line-height: .88;
+            font-weight: 900;
 
             letter-spacing: 4px;
 
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+        }
+
+        .system-dot {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: var(--blue);
+
+            box-shadow:
+                0 0 8px var(--blue),
+                0 0 20px var(--blue);
+
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%, 100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
 
         }
 
+        .hero h1 {
+            position: relative;
 
-        .hero p {
+            font-size: clamp(65px, 15vw, 170px);
+
+            line-height: 0.75;
+
+            letter-spacing: -8px;
+
+            font-weight: 1000;
+
+            text-transform: uppercase;
+
+            text-shadow:
+                0 0 35px rgba(30,160,255,0.12);
+        }
+
+        .hero h1 .outline {
+            color: transparent;
+
+            -webkit-text-stroke:
+                1px rgba(145,210,255,0.5);
+        }
+
+        .hero h1 .solid {
+            color: white;
+        }
+
+        .hero-subtitle {
+            margin-top: 38px;
 
             max-width: 600px;
 
-            margin:
-                0 auto;
+            color: #7f90a4;
 
-            color:
-                rgba(255,255,255,.5);
+            font-size: 13px;
 
             line-height: 1.8;
-
         }
 
+        .hero-button {
+            margin-top: 30px;
 
-        /* =====================================
-           HUB CONTENT
-        ===================================== */
+            padding: 14px 23px;
 
-        .hub-section {
+            color: #00101d;
 
-            padding:
-                40px 7% 110px;
+            background: var(--blue-bright);
 
-        }
+            text-decoration: none;
 
-
-        .section-heading {
-            margin-bottom: 40px;
-        }
-
-
-        .section-heading .eyebrow {
-            margin-bottom: 12px;
-        }
-
-
-        .section-heading h2 {
-
-            font-size:
-                clamp(
-                    35px,
-                    6vw,
-                    65px
-                );
+            font-size: 10px;
+            font-weight: 1000;
 
             letter-spacing: 2px;
 
+            box-shadow:
+                0 0 30px rgba(50,170,255,0.16);
+
+            transition: 0.25s ease;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 0 35px rgba(50,170,255,0.3);
         }
 
 
-        /* =====================================
-           CARDS
-        ===================================== */
+        /* MAIN */
 
-        .hub-grid {
+        main {
+            width: min(1150px, 88%);
 
+            margin: auto;
+
+            padding-bottom: 100px;
+        }
+
+        .section-title {
+            margin-bottom: 25px;
+        }
+
+        .section-title .mini {
+            color: var(--blue);
+
+            font-size: 9px;
+            font-weight: 1000;
+
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            margin-top: 8px;
+
+            font-size: 28px;
+
+            letter-spacing: -1px;
+        }
+
+        .section-title p {
+            margin-top: 8px;
+
+            color: #66768a;
+
+            font-size: 12px;
+        }
+
+
+        /* COMMAND GRID */
+
+        .command-grid {
             display: grid;
 
             grid-template-columns:
-                repeat(2, 1fr);
+                1.25fr
+                0.75fr;
 
-            gap: 18px;
-
+            gap: 16px;
         }
 
-
-        .hub-card {
-
+        .command-card {
             position: relative;
 
             min-height: 270px;
 
-            padding: 35px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.10);
-
-            background:
-                rgba(255,255,255,.025);
-
-            transition:
-                transform .3s ease,
-                border-color .3s ease,
-                background .3s ease;
+            padding: 30px;
 
             overflow: hidden;
 
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(20, 43, 66, 0.72),
+                    rgba(5, 11, 18, 0.88)
+                );
+
+            border: 1px solid var(--line);
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease;
         }
 
-
-        .hub-card:hover {
-
-            transform:
-                translateY(-6px);
+        .command-card:hover {
+            transform: translateY(-5px);
 
             border-color:
-                rgba(255,255,255,.28);
+                rgba(100,200,255,0.45);
+        }
+
+        .command-card.large {
+            grid-row: span 2;
+            min-height: 556px;
+        }
+
+        .command-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            right: -90px;
+            bottom: -100px;
+
+            border: 1px solid
+                rgba(70,180,255,0.16);
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 0 25px rgba(70,180,255,0.025),
+                0 0 0 50px rgba(70,180,255,0.018);
+        }
+
+        .command-card::after {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 2px;
 
             background:
-                rgba(255,255,255,.045);
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(75,190,255,0.7),
+                    transparent
+                );
 
+            opacity: 0.7;
         }
-
 
         .card-number {
+            color: #49667f;
 
-            font-size: 10px;
+            font-size: 9px;
+            font-weight: 900;
 
-            letter-spacing: 4px;
-
-            opacity: .3;
-
-            margin-bottom: 35px;
-
+            letter-spacing: 3px;
         }
 
+        .card-icon {
+            width: 55px;
+            height: 55px;
 
-        .hub-card h3 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            font-size: 28px;
+            margin-top: 28px;
+            margin-bottom: 25px;
 
-            letter-spacing: 1px;
+            border: 1px solid
+                rgba(100,190,255,0.3);
+
+            color: var(--blue-bright);
+
+            font-size: 22px;
+
+            box-shadow:
+                inset 0 0 20px rgba(30,150,255,0.04);
+        }
+
+        .command-card h3 {
+            font-size: 25px;
+
+            letter-spacing: -0.5px;
 
             margin-bottom: 12px;
-
         }
 
+        .command-card p {
+            max-width: 450px;
 
-        .hub-card p {
+            color: #728398;
 
-            max-width: 440px;
+            font-size: 12px;
 
-            color:
-                rgba(255,255,255,.45);
-
-            line-height: 1.7;
-
-            font-size: 14px;
-
+            line-height: 1.8;
         }
 
-
-        /* =====================================
-           BUTTONS
-        ===================================== */
-
-        .hub-button {
-
+        .command-link {
             display: inline-block;
 
             margin-top: 25px;
 
-            padding:
-                12px 18px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.22);
-
-            background:
-                transparent;
-
-            color: white;
-
-            font-size: 10px;
-
-            font-weight: bold;
-
-            letter-spacing: 2px;
-
-            cursor: pointer;
-
-            transition:
-                .25s ease;
-
-        }
-
-
-        .hub-button:hover {
+            padding: 11px 15px;
 
             background: white;
 
-            color: #03050a;
+            color: #02050a;
 
-            border-color: white;
-
-        }
-
-
-        /* =====================================
-           FORMS
-        ===================================== */
-
-        .form-panel {
-
-            display: none;
-
-            margin-top: 25px;
-
-            padding-top: 25px;
-
-            border-top:
-                1px solid
-                rgba(255,255,255,.08);
-
-        }
-
-
-        .form-panel.open {
-            display: block;
-        }
-
-
-        .form-panel label {
-
-            display: block;
-
-            margin-bottom: 7px;
+            text-decoration: none;
 
             font-size: 9px;
+            font-weight: 1000;
 
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
 
-            opacity: .5;
+            transition: 0.2s ease;
+        }
 
+        .command-link:hover {
+            background: var(--blue-bright);
+
+            transform: translateX(3px);
         }
 
 
-        .form-panel input,
-        .form-panel textarea,
-        .form-panel select {
+        /* STATUS PANEL */
 
-            width: 100%;
+        .status-panel {
+            margin-top: 16px;
 
-            margin-bottom: 16px;
+            padding: 23px;
 
-            padding: 13px 14px;
+            background: rgba(7,15,24,0.72);
 
-            border:
-                1px solid
-                rgba(255,255,255,.12);
+            border: 1px solid
+                rgba(255,255,255,0.08);
+        }
+
+        .status-top {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 18px;
+        }
+
+        .status-top span:first-child {
+            color: #6f8196;
+
+            font-size: 9px;
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+        .online {
+            color: #73d2ff;
+
+            font-size: 8px;
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+        }
+
+        .status-bar {
+            height: 3px;
+
+            background: #122333;
+
+            overflow: hidden;
+        }
+
+        .status-fill {
+            height: 100%;
+
+            width: 82%;
 
             background:
-                rgba(0,0,0,.35);
+                linear-gradient(
+                    90deg,
+                    #247eb8,
+                    #7dd5ff
+                );
 
-            color: white;
-
-            font-family: inherit;
-
-            outline: none;
-
+            box-shadow:
+                0 0 12px rgba(70,190,255,0.5);
         }
 
 
-        .form-panel input:focus,
-        .form-panel textarea:focus,
-        .form-panel select:focus {
+        /* PREDICTIONS */
 
-            border-color:
-                rgba(255,255,255,.4);
-
+        .prediction-section {
+            margin-top: 90px;
         }
 
+        .prediction-box {
+            position: relative;
 
-        .form-panel textarea {
+            padding: 35px;
 
-            min-height: 120px;
+            background:
+                radial-gradient(
+                    circle at 100% 0%,
+                    rgba(40,150,240,0.13),
+                    transparent 35%
+                ),
+                rgba(8,16,26,0.8);
 
-            resize: vertical;
+            border: 1px solid var(--line);
 
-            line-height: 1.6;
-
+            overflow: hidden;
         }
 
-
-        .form-panel option {
-
-            background: #090c15;
-
-            color: white;
-
-        }
-
-
-        .submit-button {
-
-            width: 100%;
-
-            padding: 13px;
-
-            border: 1px solid white;
-
-            background: white;
-
-            color: #03050a;
-
-            font-size: 10px;
-
-            font-weight: bold;
-
-            letter-spacing: 2px;
-
-            cursor: pointer;
-
-        }
-
-
-        .submit-button:hover {
-            opacity: .85;
-        }
-
-
-        .form-message {
-
-            margin-top: 12px;
-
-            font-size: 11px;
-
-            line-height: 1.5;
-
-            color:
-                rgba(255,255,255,.55);
-
-        }
-
-
-        .card-status {
+        .prediction-box::before {
+            content: "THEORY";
 
             position: absolute;
 
-            right: 25px;
+            right: -25px;
+            top: 20px;
 
-            top: 25px;
+            color: rgba(255,255,255,0.025);
 
-            font-size: 8px;
+            font-size: 90px;
 
-            letter-spacing: 3px;
-
-            opacity: .3;
-
+            font-weight: 1000;
         }
 
-
-        /* =====================================
-           COMMUNITY FEED
-        ===================================== */
-
-        .community-feed {
-
-            margin-top: 70px;
-
-        }
-
-
-        .feed-heading {
-
-            margin-bottom: 25px;
-
-        }
-
-
-        .feed-heading h2 {
-
-            font-size:
-                clamp(
-                    30px,
-                    5vw,
-                    55px
-                );
-
-            letter-spacing: 1px;
-
-        }
-
-
-        .feed-tabs {
-
-            display: flex;
-
-            gap: 8px;
-
-            flex-wrap: wrap;
-
-            margin-bottom: 25px;
-
-        }
-
-
-        .feed-tab {
-
-            padding:
-                10px 14px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.15);
-
-            background:
-                transparent;
-
-            color: white;
+        .prediction-label {
+            color: var(--blue);
 
             font-size: 9px;
+            font-weight: 1000;
 
-            letter-spacing: 2px;
-
-            cursor: pointer;
-
+            letter-spacing: 3px;
         }
 
+        .prediction-question {
+            position: relative;
 
-        .feed-tab.active {
+            max-width: 720px;
 
-            background: white;
+            margin-top: 15px;
+            margin-bottom: 25px;
 
-            color: #03050a;
+            font-size: 24px;
 
+            line-height: 1.35;
+
+            font-weight: 900;
         }
 
-
-        .feed-list {
+        .prediction-options {
+            position: relative;
 
             display: grid;
 
-            gap: 12px;
+            grid-template-columns:
+                repeat(3, 1fr);
 
+            gap: 10px;
+        }
+
+        .prediction-option {
+            padding: 17px;
+
+            border: 1px solid
+                rgba(255,255,255,0.1);
+
+            background:
+                rgba(255,255,255,0.025);
+
+            color: #dcecff;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+        }
+
+        .prediction-option:hover {
+            border-color:
+                rgba(70,190,255,0.5);
+
+            background:
+                rgba(50,160,255,0.08);
+        }
+
+        .prediction-option.selected {
+            border-color: var(--blue);
+
+            background:
+                rgba(50,160,255,0.13);
+
+            box-shadow:
+                0 0 20px rgba(40,160,255,0.08);
+        }
+
+        .prediction-result {
+            display: none;
+
+            position: relative;
+
+            margin-top: 20px;
+
+            padding: 17px;
+
+            border-left:
+                2px solid var(--blue);
+
+            background:
+                rgba(40,160,255,0.05);
+
+            color: #91a5ba;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+        .prediction-result.show {
+            display: block;
         }
 
 
-        .feed-item {
+        /* TIMELINE */
+
+        .timeline-section {
+            margin-top: 90px;
+        }
+
+        .timeline {
+            position: relative;
+
+            border-left:
+                1px solid rgba(100,180,255,0.2);
+
+            margin-left: 10px;
+        }
+
+        .timeline-item {
+            position: relative;
+
+            padding:
+                0 0 42px 30px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: "";
+
+            position: absolute;
+
+            left: -5px;
+            top: 2px;
+
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: var(--blue);
+
+            box-shadow:
+                0 0 15px rgba(50,170,255,0.8);
+        }
+
+        .timeline-label {
+            color: var(--blue);
+
+            font-size: 8px;
+            font-weight: 1000;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 8px;
+        }
+
+        .timeline-item h3 {
+            font-size: 17px;
+
+            margin-bottom: 7px;
+        }
+
+        .timeline-item p {
+            max-width: 650px;
+
+            color: #65768a;
+
+            font-size: 11px;
+
+            line-height: 1.8;
+        }
+
+
+        /* FINAL ACCESS */
+
+        .access-section {
+            margin-top: 90px;
+        }
+
+        .access-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+        }
+
+        .access-card {
+            position: relative;
 
             padding: 25px;
 
-            border:
-                1px solid
-                rgba(255,255,255,.08);
-
             background:
-                rgba(255,255,255,.025);
+                rgba(255,255,255,0.025);
 
+            border: 1px solid
+                rgba(255,255,255,0.08);
+
+            text-decoration: none;
+
+            color: white;
+
+            transition: 0.25s ease;
+        }
+
+        .access-card:hover {
+            transform: translateY(-4px);
+
+            border-color:
+                rgba(100,190,255,0.35);
+        }
+
+        .access-card span {
+            color: var(--blue);
+
+            font-size: 8px;
+
+            font-weight: 1000;
+
+            letter-spacing: 2px;
+        }
+
+        .access-card h3 {
+            margin-top: 12px;
+
+            font-size: 15px;
+        }
+
+        .access-card p {
+            margin-top: 8px;
+
+            color: #627287;
+
+            font-size: 10px;
+
+            line-height: 1.7;
         }
 
 
-        .feed-meta {
+        /* FOOTER */
 
-            display: flex;
+        footer {
+            padding: 30px 7%;
 
-            justify-content:
-                space-between;
+            border-top:
+                1px solid rgba(255,255,255,0.07);
 
-            gap: 15px;
+            text-align: center;
 
-            flex-wrap: wrap;
-
-            margin-bottom: 12px;
+            color: #3f5062;
 
             font-size: 9px;
 
             letter-spacing: 2px;
-
-            opacity: .4;
-
         }
 
 
-        .feed-item p {
+        /* MOBILE */
 
-            color:
-                rgba(255,255,255,.65);
-
-            line-height: 1.7;
-
-            font-size: 14px;
-
-            white-space: pre-wrap;
-
-        }
-
-
-        .empty-feed {
-
-            padding:
-                35px 20px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.08);
-
-            text-align: center;
-
-            color:
-                rgba(255,255,255,.35);
-
-            font-size: 12px;
-
-            letter-spacing: 1px;
-
-        }
-
-
-        /* =====================================
-           THEORY FEATURE
-        ===================================== */
-
-        .theory-feature {
-
-            margin-top: 70px;
-
-            padding:
-                50px 35px;
-
-            border:
-                1px solid
-                rgba(0,120,255,.20);
-
-            background:
-
-                linear-gradient(
-                    120deg,
-                    rgba(0,100,255,.08),
-                    rgba(255,255,255,.025)
-                );
-
-        }
-
-
-        .theory-feature h3 {
-
-            font-size:
-                clamp(
-                    28px,
-                    5vw,
-                    50px
-                );
-
-            margin-bottom: 12px;
-
-        }
-
-
-        .theory-feature p {
-
-            max-width: 650px;
-
-            color:
-                rgba(255,255,255,.5);
-
-            line-height: 1.8;
-
-        }
-
-
-        /* =====================================
-           COMMUNITY NOTE
-        ===================================== */
-
-        .community-note {
-
-            margin-top: 70px;
-
-            padding:
-                45px 30px;
-
-            text-align: center;
-
-            border-top:
-                1px solid
-                rgba(255,255,255,.08);
-
-            border-bottom:
-                1px solid
-                rgba(255,255,255,.08);
-
-        }
-
-
-        .community-note h2 {
-
-            font-size:
-                clamp(
-                    30px,
-                    5vw,
-                    55px
-                );
-
-            margin-bottom: 15px;
-
-        }
-
-
-        .community-note p {
-
-            max-width: 600px;
-
-            margin:
-                0 auto;
-
-            color:
-                rgba(255,255,255,.45);
-
-            line-height: 1.8;
-
-        }
-
-
-        /* =====================================
-           FOOTER
-        ===================================== */
-
-        footer {
-
-            padding:
-                50px 7%;
-
-            display: flex;
-
-            justify-content:
-                space-between;
-
-            align-items: center;
-
-            gap: 20px;
-
-            flex-wrap: wrap;
-
-            border-top:
-                1px solid
-                rgba(255,255,255,.08);
-
-        }
-
-
-        footer p {
-
-            font-size: 10px;
-
-            letter-spacing: 1px;
-
-            color:
-                rgba(255,255,255,.35);
-
-        }
-
-
-        /* =====================================
-           MOBILE
-        ===================================== */
-
-        @media (max-width: 700px) {
+        @media (max-width: 760px) {
 
             nav {
-                height: 65px;
+                height: 64px;
+
+                padding: 0 6%;
             }
 
+            .nav-links {
+                display: none;
+            }
 
             .hero {
-
-                min-height:
-                    65vh;
+                min-height: 65vh;
 
                 padding:
-                    80px 6%;
-
+                    80px 7% 65px;
             }
 
+            .hero h1 {
+                font-size:
+                    clamp(65px, 21vw, 115px);
 
-            .hub-grid {
-
-                grid-template-columns:
-                    1fr;
-
+                letter-spacing: -5px;
             }
 
-
-            .hub-card {
-
-                min-height:
-                    240px;
-
-                padding:
-                    28px;
-
+            .hero-subtitle {
+                font-size: 12px;
             }
 
-
-            .theory-feature {
-
-                padding:
-                    35px 25px;
-
+            .command-grid {
+                grid-template-columns: 1fr;
             }
 
-        }
+            .command-card.large {
+                grid-row: auto;
 
-
-        @media (prefers-reduced-motion: reduce) {
-
-            .orb {
-                animation: none;
+                min-height: 300px;
             }
 
+            .command-card {
+                min-height: 240px;
+            }
 
-            .hub-card {
-                transition: none;
+            .prediction-options {
+                grid-template-columns: 1fr;
+            }
+
+            .prediction-box {
+                padding: 25px;
+            }
+
+            .prediction-question {
+                font-size: 19px;
+            }
+
+            .access-grid {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                width: 88%;
             }
 
         }
@@ -1060,27 +973,10 @@
 
 </head>
 
-
 <body>
 
 
-    <!-- SPACE -->
-
-    <div
-        class="space"
-        aria-hidden="true"
-    >
-
-        <div class="orb blue"></div>
-        <div class="orb red"></div>
-        <div class="orb green"></div>
-        <div class="orb pink"></div>
-
-    </div>
-
-
-
-    <!-- NAV -->
+    <!-- NAVIGATION -->
 
     <nav>
 
@@ -1091,506 +987,512 @@
             SENTINELS
         </a>
 
+        <div class="nav-links">
 
-        <a
-            href="index.html"
-            class="back"
-        >
-            ← BACK HOME
-        </a>
+            <a href="index.html">
+                HOME
+            </a>
+
+            <a href="sentinels.html">
+                SENTINELS
+            </a>
+
+            <a href="archive.html">
+                ARCHIVE
+            </a>
+
+            <a href="quiz.html">
+                QUIZ
+            </a>
+
+            <a
+                href="hub.html"
+                class="active"
+            >
+                HUB
+            </a>
+
+        </div>
 
     </nav>
 
 
-
     <!-- HERO -->
 
-    <header class="hero">
+    <section class="hero">
 
-        <div class="hero-inner">
+        <div class="scan-line"></div>
 
-            <div class="eyebrow">
-                THE SENTINELS COMMUNITY
-            </div>
+        <div class="system-label">
 
+            <span class="system-dot"></span>
 
-            <h1>
-                THE HUB.
-            </h1>
-
-
-            <p>
-
-                Welcome to the place where readers
-                step beyond the pages.
-
-                Discover theories, share reactions,
-                ask questions and explore the
-                Sentinels universe together.
-
-            </p>
-
-        </div>
-
-    </header>
-
-
-
-    <!-- HUB -->
-
-    <main class="hub-section">
-
-
-        <div class="section-heading">
-
-            <div class="eyebrow">
-                EXPLORE
-            </div>
-
-            <h2>
-                JOIN THE CONVERSATION.
-            </h2>
+            SENTINEL NETWORK // ONLINE
 
         </div>
 
 
+        <h1>
 
-        <div class="hub-grid">
+            <span class="outline">
+                SENTINEL
+            </span>
 
+            <span class="solid">
+                HUB
+            </span>
 
-            <!-- REVIEWS -->
+        </h1>
 
-            <article class="hub-card">
 
-                <div class="card-number">
-                    01
-                </div>
+        <p class="hero-subtitle">
 
-                <div class="card-status">
-                    LIVE
-                </div>
+            The place where the story expands.
+            Explore the known. Question the unknown.
+            Follow the universe beyond the pages.
 
+        </p>
 
-                <h3>
-                    REVIEWS
-                </h3>
 
+        <a
+            href="#command"
+            class="hero-button"
+        >
+            ENTER COMMAND
+        </a>
 
-                <p>
+    </section>
 
-                    Tell us what you thought
-                    about the latest volume,
-                    character or moment.
 
-                </p>
+    <!-- MAIN -->
 
+    <main id="command">
 
-                <button
-                    class="hub-button"
-                    onclick="toggleForm('reviewForm')"
-                >
-                    WRITE A REVIEW
-                </button>
 
+        <!-- COMMAND -->
 
-                <form
-                    id="reviewForm"
-                    class="form-panel"
-                    onsubmit="submitReview(event)"
-                >
+        <section>
 
-                    <label for="reviewName">
-                        YOUR NAME
-                    </label>
+            <div class="section-title">
 
-                    <input
-                        id="reviewName"
-                        type="text"
-                        maxlength="80"
-                        required
-                        placeholder="Your name"
-                    >
-
-
-                    <label for="reviewVolume">
-                        VOLUME
-                    </label>
-
-                    <select
-                        id="reviewVolume"
-                        required
-                    >
-
-                        <option value="">
-                            Select a volume
-                        </option>
-
-                        <option value="Volume 1">
-                            Volume 1
-                        </option>
-
-                        <option value="Volume 2">
-                            Volume 2
-                        </option>
-
-                        <option value="Volume 3">
-                            Volume 3
-                        </option>
-
-                    </select>
-
-
-                    <label for="reviewText">
-                        YOUR REVIEW
-                    </label>
-
-                    <textarea
-                        id="reviewText"
-                        maxlength="2000"
-                        required
-                        placeholder="Tell us what you thought..."
-                    ></textarea>
-
-
-                    <button
-                        type="submit"
-                        class="submit-button"
-                    >
-                        POST REVIEW
-                    </button>
-
-
-                    <div
-                        id="reviewMessage"
-                        class="form-message"
-                    ></div>
-
-                </form>
-
-            </article>
-
-
-
-            <!-- QUESTIONS -->
-
-            <article class="hub-card">
-
-                <div class="card-number">
-                    02
-                </div>
-
-                <div class="card-status">
-                    LIVE
-                </div>
-
-
-                <h3>
-                    QUESTIONS
-                </h3>
-
-
-                <p>
-
-                    Got a question about the
-                    story, characters or the
-                    Sentinel universe?
-
-                </p>
-
-
-                <button
-                    class="hub-button"
-                    onclick="toggleForm('questionForm')"
-                >
-                    ASK A QUESTION
-                </button>
-
-
-                <form
-                    id="questionForm"
-                    class="form-panel"
-                    onsubmit="submitQuestion(event)"
-                >
-
-                    <label for="questionName">
-                        YOUR NAME
-                    </label>
-
-                    <input
-                        id="questionName"
-                        type="text"
-                        maxlength="80"
-                        required
-                        placeholder="Your name"
-                    >
-
-
-                    <label for="questionText">
-                        YOUR QUESTION
-                    </label>
-
-                    <textarea
-                        id="questionText"
-                        maxlength="2000"
-                        required
-                        placeholder="Ask your question..."
-                    ></textarea>
-
-
-                    <button
-                        type="submit"
-                        class="submit-button"
-                    >
-                        SUBMIT QUESTION
-                    </button>
-
-
-                    <div
-                        id="questionMessage"
-                        class="form-message"
-                    ></div>
-
-                </form>
-
-            </article>
-
-
-
-            <!-- THEORIES -->
-
-            <article class="hub-card">
-
-                <div class="card-number">
-                    03
-                </div>
-
-                <div class="card-status">
-                    LIVE
-                </div>
-
-
-                <h3>
-                    THEORIES
-                </h3>
-
-
-                <p>
-
-                    Think you've figured out
-                    what's really happening?
-
-                    Put your theory to the test.
-
-                </p>
-
-
-                <button
-                    class="hub-button"
-                    onclick="toggleForm('theoryForm')"
-                >
-                    SHARE YOUR THEORY
-                </button>
-
-
-                <form
-                    id="theoryForm"
-                    class="form-panel"
-                    onsubmit="submitTheory(event)"
-                >
-
-                    <label for="theoryName">
-                        YOUR NAME
-                    </label>
-
-                    <input
-                        id="theoryName"
-                        type="text"
-                        maxlength="80"
-                        required
-                        placeholder="Your name"
-                    >
-
-
-                    <label for="theoryText">
-                        YOUR THEORY
-                    </label>
-
-                    <textarea
-                        id="theoryText"
-                        maxlength="3000"
-                        required
-                        placeholder="Tell us what you think is really happening..."
-                    ></textarea>
-
-
-                    <button
-                        type="submit"
-                        class="submit-button"
-                    >
-                        POST THEORY
-                    </button>
-
-
-                    <div
-                        id="theoryMessage"
-                        class="form-message"
-                    ></div>
-
-                </form>
-
-            </article>
-
-
-
-            <!-- ANNOUNCEMENTS -->
-
-            <article class="hub-card">
-
-                <div class="card-number">
-                    04
-                </div>
-
-                <div class="card-status">
-                    OFFICIAL
-                </div>
-
-
-                <h3>
-                    ANNOUNCEMENTS
-                </h3>
-
-
-                <p>
-
-                    New volumes, trailers,
-                    artwork, news and updates
-                    from the Sentinels project.
-
-                </p>
-
-                <a
-                    href="index.html#story"
-                    class="hub-button"
-                >
-                    EXPLORE SENTINELS
-                </a>
-
-            </article>
-
-
-        </div>
-
-
-
-        <!-- COMMUNITY FEED -->
-
-        <section class="community-feed">
-
-            <div class="feed-heading">
-
-                <div class="eyebrow">
-                    THE COMMUNITY
+                <div class="mini">
+                    COMMAND NETWORK
                 </div>
 
                 <h2>
-                    RECENT TRANSMISSIONS.
+                    Choose Your File.
+                </h2>
+
+                <p>
+                    Every section leads somewhere deeper.
+                </p>
+
+            </div>
+
+
+            <div class="command-grid">
+
+
+                <!-- LARGE -->
+
+                <article class="command-card large">
+
+                    <div class="card-number">
+                        01 // PRIMARY ACCESS
+                    </div>
+
+                    <div class="card-icon">
+                        ◈
+                    </div>
+
+                    <h3>
+                        THE STORY
+                    </h3>
+
+                    <p>
+
+                        Enter the Sentinel archive and
+                        follow the events that started it all.
+
+                        Read the volumes, discover the team,
+                        and see where the story takes you.
+
+                    </p>
+
+                    <a
+                        href="archive.html"
+                        class="command-link"
+                    >
+                        ENTER ARCHIVE →
+                    </a>
+
+                </article>
+
+
+                <!-- PREDICTIONS -->
+
+                <article class="command-card">
+
+                    <div class="card-number">
+                        02 // CLASSIFIED
+                    </div>
+
+                    <div class="card-icon">
+                        ?
+                    </div>
+
+                    <h3>
+                        PREDICTIONS
+                    </h3>
+
+                    <p>
+                        Think you've figured out what comes next?
+                        Put your theory on record.
+                    </p>
+
+                    <a
+                        href="#predictions"
+                        class="command-link"
+                    >
+                        MAKE A THEORY →
+                    </a>
+
+                </article>
+
+
+                <!-- DATABASE -->
+
+                <article class="command-card">
+
+                    <div class="card-number">
+                        03 // PERSONNEL
+                    </div>
+
+                    <div class="card-icon">
+                        +
+                    </div>
+
+                    <h3>
+                        SENTINEL FILES
+                    </h3>
+
+                    <p>
+                        Access the known personnel,
+                        abilities and Sentinel information.
+                    </p>
+
+                    <a
+                        href="sentinels.html"
+                        class="command-link"
+                    >
+                        OPEN FILES →
+                    </a>
+
+                </article>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="status-panel">
+
+                <div class="status-top">
+
+                    <span>
+                        SENTINEL NETWORK STATUS
+                    </span>
+
+                    <span class="online">
+                        ● ONLINE
+                    </span>
+
+                </div>
+
+                <div class="status-bar">
+
+                    <div class="status-fill"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PREDICTIONS -->
+
+        <section
+            class="prediction-section"
+            id="predictions"
+        >
+
+            <div class="section-title">
+
+                <div class="mini">
+                    THEORY TERMINAL
+                </div>
+
+                <h2>
+                    Make Your Prediction.
+                </h2>
+
+                <p>
+                    The story hasn't revealed everything yet.
+                </p>
+
+            </div>
+
+
+            <div class="prediction-box">
+
+                <div class="prediction-label">
+                    TRANSMISSION // QUESTION 001
+                </div>
+
+                <div class="prediction-question">
+
+                    What do you think will become
+                    the biggest threat to the Sentinels?
+
+                </div>
+
+
+                <div class="prediction-options">
+
+                    <button
+                        class="prediction-option"
+                        onclick="
+                            choosePrediction(
+                                this,
+                                'Vorax'
+                            )
+                        "
+                    >
+                        VORAX
+                    </button>
+
+
+                    <button
+                        class="prediction-option"
+                        onclick="
+                            choosePrediction(
+                                this,
+                                'Their own powers'
+                            )
+                        "
+                    >
+                        THEIR OWN POWERS
+                    </button>
+
+
+                    <button
+                        class="prediction-option"
+                        onclick="
+                            choosePrediction(
+                                this,
+                                'Something unknown'
+                            )
+                        "
+                    >
+                        SOMETHING UNKNOWN
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="prediction-result"
+                    id="predictionResult"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TIMELINE -->
+
+        <section class="timeline-section">
+
+            <div class="section-title">
+
+                <div class="mini">
+                    ARCHIVED EVENTS
+                </div>
+
+                <h2>
+                    The Timeline.
+                </h2>
+
+                <p>
+                    Confirmed events only. Classified information stays classified.
+                </p>
+
+            </div>
+
+
+            <div class="timeline">
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-label">
+                        ORIGIN
+                    </div>
+
+                    <h3>
+                        Four Become Sentinels
+                    </h3>
+
+                    <p>
+                        Wandile, Kyla, Xavier and Cee
+                        are drawn into a world far beyond
+                        ordinary life.
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-label">
+                        VOLUME 01
+                    </div>
+
+                    <h3>
+                        The Beginning
+                    </h3>
+
+                    <p>
+                        The first chapter introduces the
+                        team and the forces surrounding them.
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-label">
+                        VOLUME 02
+                    </div>
+
+                    <h3>
+                        The Fourth
+                    </h3>
+
+                    <p>
+                        The Sentinel story continues as
+                        the mystery deepens.
+                    </p>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-label">
+                        CURRENT
+                    </div>
+
+                    <h3>
+                        The Story Continues.
+                    </h3>
+
+                    <p>
+                        Volume 3 is currently in development.
+                        Further events remain unknown.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACCESS -->
+
+        <section class="access-section">
+
+            <div class="section-title">
+
+                <div class="mini">
+                    QUICK ACCESS
+                </div>
+
+                <h2>
+                    Continue Exploring.
                 </h2>
 
             </div>
 
 
-            <div class="feed-tabs">
+            <div class="access-grid">
 
-                <button
-                    class="feed-tab active"
-                    onclick="loadFeed('reviews', this)"
+
+                <a
+                    href="quiz.html"
+                    class="access-card"
                 >
-                    REVIEWS
-                </button>
 
-                <button
-                    class="feed-tab"
-                    onclick="loadFeed('questions', this)"
+                    <span>
+                        01 // TEST
+                    </span>
+
+                    <h3>
+                        Knowledge Test
+                    </h3>
+
+                    <p>
+                        Find out whether you're actually
+                        paying attention.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="archive.html"
+                    class="access-card"
                 >
-                    QUESTIONS
-                </button>
 
-                <button
-                    class="feed-tab"
-                    onclick="loadFeed('theories', this)"
+                    <span>
+                        02 // STORY
+                    </span>
+
+                    <h3>
+                        Story Archive
+                    </h3>
+
+                    <p>
+                        Return to the volumes.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="sentinels.html"
+                    class="access-card"
                 >
-                    THEORIES
-                </button>
+
+                    <span>
+                        03 // DATABASE
+                    </span>
+
+                    <h3>
+                        Sentinel Database
+                    </h3>
+
+                    <p>
+                        Study the team.
+                    </p>
+
+                </a>
 
             </div>
-
-
-            <div
-                id="feedList"
-                class="feed-list"
-            >
-
-                <div class="empty-feed">
-                    LOADING COMMUNITY TRANSMISSIONS...
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- THEORY FEATURE -->
-
-        <section class="theory-feature">
-
-            <div class="eyebrow">
-                YOUR THEORY COULD CHANGE EVERYTHING
-            </div>
-
-
-            <h3>
-                WHAT DO YOU THINK IS COMING?
-            </h3>
-
-
-            <p>
-
-                The Sentinels universe is still expanding.
-                As new volumes arrive, this space will
-                become a place for readers to connect
-                the clues, debate what happens next
-                and build theories together.
-
-            </p>
-
-        </section>
-
-
-
-        <!-- COMMUNITY NOTE -->
-
-        <section class="community-note">
-
-            <div class="eyebrow">
-                THE UNIVERSE IS BIGGER THAN ONE STORY
-            </div>
-
-
-            <h2>
-                READ. THINK. DISCUSS.
-            </h2>
-
-
-            <p>
-
-                The Hub will grow alongside Sentinels.
-                For now, the doors are open.
-
-                More community features will be added
-                as the universe grows.
-
-            </p>
 
         </section>
 
@@ -1598,494 +1500,53 @@
     </main>
 
 
-
-    <!-- FOOTER -->
-
     <footer>
 
-        <div class="logo">
-            SENTINELS
-        </div>
-
-
-        <p>
-            ©️ 2026 Sentinels. All rights reserved.
-        </p>
+        © 2026 SENTINELS • CREATED BY WANDILE SHAW
 
     </footer>
 
 
-    <!-- =====================================
-         SUPABASE
-    ===================================== -->
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
     <script>
 
-        /* =====================================
-           SENTINELS SUPABASE CONNECTION
-        ===================================== */
+        function choosePrediction(button, answer) {
 
-        const SUPABASE_URL =
-            "https://xoalbbgonrdcurcqnhrg.supabase.co";
+            const buttons =
+                document.querySelectorAll(
+                    ".prediction-option"
+                );
 
+            buttons.forEach(function(item) {
 
-        /*
-         * PASTE YOUR SUPABASE PUBLISHABLE KEY
-         * BETWEEN THE QUOTATION MARKS BELOW.
-         *
-         * DO NOT USE A SECRET / SERVICE ROLE KEY.
-         */
+                item.classList.remove(
+                    "selected"
+                );
 
-        const SUPABASE_KEY =
-            "sb_publishable_oVi0PtSGcSOJQcKDRDOgTQ_LRqu3jLb";
+            });
 
 
-        const supabaseClient =
-            window.supabase.createClient(
-                SUPABASE_URL,
-                SUPABASE_KEY
-            );
+            button.classList.add("selected");
 
 
-
-        /* =====================================
-           FORM TOGGLE
-        ===================================== */
-
-        function toggleForm(id) {
-
-            const form =
-                document.getElementById(id);
-
-            form.classList.toggle("open");
-
-        }
-
-
-
-        /* =====================================
-           SUBMIT REVIEW
-        ===================================== */
-
-        async function submitReview(event) {
-
-            event.preventDefault();
-
-
-            const message =
+            const result =
                 document.getElementById(
-                    "reviewMessage"
+                    "predictionResult"
                 );
 
 
-            message.textContent =
-                "TRANSMITTING REVIEW...";
+            result.innerHTML =
+                "<strong>THEORY RECORDED.</strong><br>" +
+                "You selected <strong>" +
+                answer +
+                "</strong>. The Sentinel Network has logged your prediction. " +
+                "Now we wait to see whether the story proves you right.";
 
-
-            const name =
-                document.getElementById(
-                    "reviewName"
-                ).value.trim();
-
-
-            const volume =
-                document.getElementById(
-                    "reviewVolume"
-                ).value;
-
-
-            const review =
-                document.getElementById(
-                    "reviewText"
-                ).value.trim();
-
-
-            const { error } =
-                await supabaseClient
-                    .from("reviews")
-                    .insert([
-                        {
-                            name: name,
-                            volume: volume,
-                            review: review
-                        }
-                    ]);
-
-
-            if (error) {
-
-                console.error(error);
-
-                message.textContent =
-                    "TRANSMISSION FAILED. PLEASE TRY AGAIN.";
-
-                return;
-
-            }
-
-
-            message.textContent =
-                "REVIEW TRANSMITTED. THANK YOU.";
-
-
-            document
-                .getElementById("reviewForm")
-                .reset();
-
-
-            loadFeed("reviews");
+            result.classList.add("show");
 
         }
-
-
-
-        /* =====================================
-           SUBMIT QUESTION
-        ===================================== */
-
-        async function submitQuestion(event) {
-
-            event.preventDefault();
-
-
-            const message =
-                document.getElementById(
-                    "questionMessage"
-                );
-
-
-            message.textContent =
-                "TRANSMITTING QUESTION...";
-
-
-            const name =
-                document.getElementById(
-                    "questionName"
-                ).value.trim();
-
-
-            const question =
-                document.getElementById(
-                    "questionText"
-                ).value.trim();
-
-
-            const { error } =
-                await supabaseClient
-                    .from("questions")
-                    .insert([
-                        {
-                            name: name,
-                            question: question
-                        }
-                    ]);
-
-
-            if (error) {
-
-                console.error(error);
-
-                message.textContent =
-                    "TRANSMISSION FAILED. PLEASE TRY AGAIN.";
-
-                return;
-
-            }
-
-
-            message.textContent =
-                "QUESTION TRANSMITTED. THANK YOU.";
-
-
-            document
-                .getElementById("questionForm")
-                .reset();
-
-
-            loadFeed("questions");
-
-        }
-
-
-
-        /* =====================================
-           SUBMIT THEORY
-        ===================================== */
-
-        async function submitTheory(event) {
-
-            event.preventDefault();
-
-
-            const message =
-                document.getElementById(
-                    "theoryMessage"
-                );
-
-
-            message.textContent =
-                "TRANSMITTING THEORY...";
-
-
-            const name =
-                document.getElementById(
-                    "theoryName"
-                ).value.trim();
-
-
-            const theory =
-                document.getElementById(
-                    "theoryText"
-                ).value.trim();
-
-
-            const { error } =
-                await supabaseClient
-                    .from("theories")
-                    .insert([
-                        {
-                            name: name,
-                            theory: theory
-                        }
-                    ]);
-
-
-            if (error) {
-
-                console.error(error);
-
-                message.textContent =
-                    "TRANSMISSION FAILED. PLEASE TRY AGAIN.";
-
-                return;
-
-            }
-
-
-            message.textContent =
-                "THEORY TRANSMITTED. THANK YOU.";
-
-
-            document
-                .getElementById("theoryForm")
-                .reset();
-
-
-            loadFeed("theories");
-
-        }
-
-
-
-        /* =====================================
-           COMMUNITY FEED
-        ===================================== */
-
-        async function loadFeed(
-            table,
-            clickedButton = null
-        ) {
-
-
-            if (clickedButton) {
-
-                document
-                    .querySelectorAll(".feed-tab")
-                    .forEach(
-                        button =>
-                            button.classList
-                                .remove("active")
-                    );
-
-
-                clickedButton.classList
-                    .add("active");
-
-            }
-
-
-            const feed =
-                document.getElementById(
-                    "feedList"
-                );
-
-
-            feed.innerHTML = `
-                <div class="empty-feed">
-                    SCANNING TRANSMISSIONS...
-                </div>
-            `;
-
-
-            const { data, error } =
-                await supabaseClient
-                    .from(table)
-                    .select("*")
-                    .order(
-                        "created_at",
-                        {
-                            ascending: false
-                        }
-                    )
-                    .limit(20);
-
-
-            if (error) {
-
-                console.error(error);
-
-                feed.innerHTML = `
-                    <div class="empty-feed">
-                        UNABLE TO ACCESS TRANSMISSIONS.
-                    </div>
-                `;
-
-                return;
-
-            }
-
-
-            if (!data || data.length === 0) {
-
-                feed.innerHTML = `
-                    <div class="empty-feed">
-                        NO TRANSMISSIONS YET.
-                        BE THE FIRST.
-                    </div>
-                `;
-
-                return;
-
-            }
-
-
-            feed.innerHTML =
-                data
-                    .map(item => {
-
-                        let text = "";
-                        let extra = "";
-
-
-                        if (table === "reviews") {
-
-                            text =
-                                item.review || "";
-
-                            extra =
-                                item.volume || "";
-
-                        }
-
-
-                        if (table === "questions") {
-
-                            text =
-                                item.question || "";
-
-                        }
-
-
-                        if (table === "theories") {
-
-                            text =
-                                item.theory || "";
-
-                        }
-
-
-                        const date =
-                            item.created_at
-                                ? new Date(
-                                    item.created_at
-                                ).toLocaleDateString()
-                                : "";
-
-
-                        return `
-
-                            <article class="feed-item">
-
-                                <div class="feed-meta">
-
-                                    <span>
-                                        ${escapeHtml(
-                                            item.name || "Anonymous"
-                                        )}
-                                    </span>
-
-                                    <span>
-                                        ${
-                                            escapeHtml(extra)
-                                        }
-                                    </span>
-
-                                    <span>
-                                        ${date}
-                                    </span>
-
-                                </div>
-
-
-                                <p>
-                                    ${escapeHtml(text)}
-                                </p>
-
-                            </article>
-
-                        `;
-
-                    })
-                    .join("");
-
-        }
-
-
-
-        /* =====================================
-           BASIC HTML ESCAPING
-        ===================================== */
-
-        function escapeHtml(value) {
-
-            return String(value)
-                .replace(
-                    /&/g,
-                    "&amp;"
-                )
-                .replace(
-                    /</g,
-                    "&lt;"
-                )
-                .replace(
-                    />/g,
-                    "&gt;"
-                )
-                .replace(
-                    /"/g,
-                    "&quot;"
-                )
-                .replace(
-                    /'/g,
-                    "&#039;"
-                );
-
-        }
-
-
-
-        /* =====================================
-           INITIAL FEED
-        ===================================== */
-
-        loadFeed("reviews");
 
     </script>
 
 
 </body>
-
 </html>
