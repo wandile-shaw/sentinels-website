@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sentinels — Predictions</title>
+
+    <meta
+        name="description"
+        content="What do you think happens next in the Sentinels story?"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="site-header">
+
+        <a href="index.html" class="brand">
+            <span class="brand-main">SENTINELS</span>
+            <span class="brand-sub">OFFICIAL ARCHIVE</span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="main-nav" aria-label="Main navigation">
+
+            <a href="index.html">
+                HOME
+            </a>
+
+            <a href="archive.html">
+                VOLUMES
+            </a>
+
+            <a href="sentinels.html">
+                CHARACTERS
+            </a>
+
+            <a href="quiz.html">
+                QUIZ
+            </a>
+
+            <a
+                href="predictions.html"
+                class="active"
+                aria-current="page"
+            >
+                PREDICTIONS
+            </a>
+
+            <a href="hub.html">
+                HUB
+            </a>
+
+            <a href="about.html">
+                ABOUT
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="page-hero predictions-hero">
+
+            <div class="page-hero-inner">
+
+                <p class="eyebrow">
+                    SENTINELS // THEORY BOARD
+                </p>
+
+                <h1>
+                    WHAT HAPPENS NEXT?
+                </h1>
+
+                <p class="page-hero-description">
+                    The story isn't finished.
+                    Until the next volume arrives,
+                    make your prediction.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PREDICTION SECTION -->
+
+        <section class="section predictions-section">
+
+            <div class="prediction-intro">
+
+                <p class="eyebrow">
+                    YOUR THEORY
+                </p>
+
+                <h2>
+                    PICK A FUTURE.
+                </h2>
+
+                <p>
+                    There are no wrong answers here.
+                    Choose the outcome you think is most likely
+                    based on what you've seen so far.
+                </p>
+
+            </div>
+
+
+            <div
+                class="prediction-grid"
+                id="predictionGrid"
+            >
+
+                <!-- =====================
+                     OPTION 01
+                ====================== -->
+
+                <button
+                    type="button"
+                    class="prediction-card"
+                    data-prediction="stay"
+                >
+
+                    <span class="prediction-number">
+                        01
+                    </span>
+
+                    <span class="prediction-content">
+
+                        <span class="prediction-title">
+                            THE SENTINELS
+                            STAY ON EARTH
+                        </span>
+
+                        <span class="prediction-description">
+                            The team remains on Earth and
+                            continues protecting it as the threat grows.
+                        </span>
+
+                    </span>
+
+                    <span class="prediction-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- =====================
+                     OPTION 02
+                ====================== -->
+
+                <button
+                    type="button"
+                    class="prediction-card"
+                    data-prediction="leave"
+                >
+
+                    <span class="prediction-number">
+                        02
+                    </span>
+
+                    <span class="prediction-content">
+
+                        <span class="prediction-title">
+                            THEY LEAVE EARTH
+                        </span>
+
+                        <span class="prediction-description">
+                            The Sentinels eventually leave Earth
+                            to discover where their powers came from.
+                        </span>
+
+                    </span>
+
+                    <span class="prediction-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- =====================
+                     OPTION 03
+                ====================== -->
+
+                <button
+                    type="button"
+                    class="prediction-card"
+                    data-prediction="vorax"
+                >
+
+                    <span class="prediction-number">
+                        03
+                    </span>
+
+                    <span class="prediction-content">
+
+                        <span class="prediction-title">
+                            VORAX WINS
+                        </span>
+
+                        <span class="prediction-description">
+                            The unknown threat becomes too powerful,
+                            and Vorax gets what he wants.
+                        </span>
+
+                    </span>
+
+                    <span class="prediction-arrow">
+                        →
+                    </span>
+
+                </button>
+
+
+                <!-- =====================
+                     OPTION 04
+                ====================== -->
+
+                <button
+                    type="button"
+                    class="prediction-card"
+                    data-prediction="split"
+                >
+
+                    <span class="prediction-number">
+                        04
+                    </span>
+
+                    <span class="prediction-content">
+
+                        <span class="prediction-title">
+                            THE SENTINELS
+                            SPLIT UP
+                        </span>
+
+                        <span class="prediction-description">
+                            Something forces the four Sentinels
+                            to go their separate ways.
+                        </span>
+
+                    </span>
+
+                    <span class="prediction-arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 SELECTION RESULT
+            ========================== -->
+
+            <div
+                id="predictionResult"
+                class="prediction-result"
+                hidden
+            >
+
+                <div class="prediction-result-mark">
+                    ✓
+                </div>
+
+                <div>
+
+                    <p class="eyebrow">
+                        PREDICTION RECORDED
+                    </p>
+
+                    <h3 id="selectedPrediction">
+                        YOUR THEORY
+                    </h3>
+
+                    <p>
+                        Your prediction is stored on this device.
+                        Change your mind anytime by selecting
+                        another theory.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 RESET
+            ========================== -->
+
+            <button
+                type="button"
+                id="clearPrediction"
+                class="clear-prediction"
+                hidden
+            >
+                CLEAR MY PREDICTION
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             THEORY NOTE
+        ========================== -->
+
+        <section class="section theory-section">
+
+            <div class="theory-box">
+
+                <div class="theory-mark">
+                    ?
+                </div>
+
+                <div>
+
+                    <p class="eyebrow">
+                        ARCHIVE THEORY BOARD
+                    </p>
+
+                    <h2>
+                        NOTHING IS CONFIRMED.
+                    </h2>
+
+                    <p>
+                        These are predictions, not canon.
+                        The actual story will decide what happens next.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             EXPLORE
+        ========================== -->
+
+        <section class="section predictions-explore">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        CONTINUE EXPLORING
+                    </p>
+
+                    <h2>
+                        BACK TO THE ARCHIVE.
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="explore-grid">
+
+                <a
+                    href="archive.html"
+                    class="explore-card"
+                >
+
+                    <span class="explore-index">
+                        01
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            VOLUMES
+                        </h3>
+
+                        <p>
+                            Read the story and look for clues.
+                        </p>
+
+                    </div>
+
+                    <span class="explore-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="quiz.html"
+                    class="explore-card"
+                >
+
+                    <span class="explore-index">
+                        02
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            QUIZ
+                        </h3>
+
+                        <p>
+                            Test your Sentinels knowledge.
+                        </p>
+
+                    </div>
+
+                    <span class="explore-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="sentinels.html"
+                    class="explore-card"
+                >
+
+                    <span class="explore-index">
+                        03
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            CHARACTERS
+                        </h3>
+
+                        <p>
+                            Review the Sentinel personnel files.
+                        </p>
+
+                    </div>
+
+                    <span class="explore-arrow">
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <div>
+
+                <div class="footer-brand">
+                    SENTINELS
+                </div>
+
+                <p>
+                    The official archive.
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+
+                <a href="index.html">
+                    HOME
+                </a>
+
+                <a href="archive.html">
+                    VOLUMES
+                </a>
+
+                <a href="sentinels.html">
+                    CHARACTERS
+                </a>
+
+                <a href="quiz.html">
+                    QUIZ
+                </a>
+
+                <a href="predictions.html">
+                    PREDICTIONS
+                </a>
+
+                <a href="hub.html">
+                    HUB
+                </a>
+
+                <a href="about.html">
+                    ABOUT
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <span>
+                © <span data-current-year>2026</span> SENTINELS
+            </span>
+
+            <span>
+                CREATED BY WANDILE SHAW
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         PAGE STYLES
+    ========================== -->
+
+    <style>
+
+        .predictions-hero {
+            min-height: 54vh;
+        }
+
+        .predictions-section {
+            padding-top: 90px;
+        }
+
+        .prediction-intro {
+            max-width: 700px;
+            margin-bottom: 45px;
+        }
+
+        .prediction-intro h2 {
+            margin: 7px 0 16px;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 0.95;
+            letter-spacing: -0.055em;
+        }
+
+        .prediction-intro p:last-child {
+            max-width: 600px;
+            margin: 0;
+            color: rgba(255,255,255,0.56);
+            line-height: 1.75;
+        }
+
+        .prediction-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .prediction-card {
+            position: relative;
+            display: grid;
+            grid-template-columns: 55px 1fr 25px;
+            align-items: center;
+            gap: 20px;
+            min-height: 190px;
+            padding: 30px;
+            overflow: hidden;
+            border: 1px solid rgba(215,220,228,0.15);
+            background: #05070a;
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            font: inherit;
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease;
+        }
+
+        .prediction-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(255,255,255,0.045),
+                    transparent 55%
+                );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .prediction-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.34);
+            background: #07090c;
+        }
+
+        .prediction-card:hover::before {
+            opacity: 1;
+        }
+
+        .prediction-card.selected {
+            border-color: rgba(255,255,255,0.62);
+            background: #090c10;
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .prediction-number,
+        .prediction-content,
+        .prediction-arrow {
+            position: relative;
+            z-index: 1;
+        }
+
+        .prediction-number {
+            align-self: start;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.35);
+        }
+
+        .prediction-content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .prediction-title {
+            max-width: 400px;
+            font-size: clamp(1.2rem, 2.7vw, 2rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.025em;
+        }
+
+        .prediction-description {
+            max-width: 460px;
+            color: rgba(255,255,255,0.48);
+            font-size: 0.84rem;
+            line-height: 1.6;
+        }
+
+        .prediction-arrow {
+            align-self: center;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.38);
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease;
+        }
+
+        .prediction-card:hover .prediction-arrow,
+        .prediction-card.selected .prediction-arrow {
+            transform: translateX(4px);
+            color: rgba(255,255,255,0.8);
+        }
+
+        .prediction-result {
+            display: grid;
+            grid-template-columns: 64px 1fr;
+            align-items: center;
+            gap: 24px;
+            margin-top: 35px;
+            padding: 28px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: #040609;
+        }
+
+        .prediction-result[hidden] {
+            display: none;
+        }
+
+        .prediction-result-mark {
+            display: grid;
+            place-items: center;
+            width: 58px;
+            height: 58px;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.7);
+            font-size: 1.3rem;
+        }
+
+        .prediction-result h3 {
+            margin: 5px 0 8px;
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            letter-spacing: -0.035em;
+        }
+
+        .prediction-result p:last-child {
+            margin: 0;
+            color: rgba(255,255,255,0.45);
+            font-size: 0.82rem;
+            line-height: 1.6;
+        }
+
+        .clear-prediction {
+            margin-top: 18px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: rgba(255,255,255,0.35);
+            font: inherit;
+            font-size: 0.62rem;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+        }
+
+        .clear-prediction:hover {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .theory-section {
+            padding-top: 80px;
+        }
+
+        .theory-box {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 28px;
+            align-items: center;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: #040609;
+        }
+
+        .theory-mark {
+            display: grid;
+            place-items: center;
+            width: 62px;
+            height: 62px;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.55);
+        }
+
+        .theory-box h2 {
+            margin: 5px 0 12px;
+            font-size: clamp(1.7rem, 4vw, 2.8rem);
+            letter-spacing: -0.04em;
+        }
+
+        .theory-box p:last-child {
+            max-width: 650px;
+            margin: 0;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.7;
+        }
+
+        .predictions-explore {
+            padding-top: 80px;
+        }
+
+        @media (max-width: 760px) {
+
+            .predictions-hero {
+                min-height: 46vh;
+            }
+
+            .predictions-section {
+                padding-top: 65px;
+            }
+
+            .prediction-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .prediction-card {
+                grid-template-columns: 38px 1fr 20px;
+                min-height: 165px;
+                padding: 24px;
+                gap: 15px;
+            }
+
+            .prediction-title {
+                font-size: 1.3rem;
+            }
+
+            .prediction-description {
+                font-size: 0.78rem;
+            }
+
+            .prediction-result {
+                grid-template-columns: 1fr;
+                padding: 25px;
+            }
+
+            .theory-box {
+                grid-template-columns: 1fr;
+                padding: 28px;
+            }
+
+        }
+
+    </style>
+
+
+    <!-- =========================
+         PREDICTION LOGIC
+    ========================== -->
+
+    <script>
+
+        const predictionCards =
+            document.querySelectorAll(".prediction-card");
+
+        const predictionResult =
+            document.getElementById("predictionResult");
+
+        const selectedPrediction =
+            document.getElementById("selectedPrediction");
+
+        const clearPrediction =
+            document.getElementById("clearPrediction");
+
+
+        const predictionNames = {
+
+            stay:
+                "THE SENTINELS STAY ON EARTH",
+
+            leave:
+                "THEY LEAVE EARTH",
+
+            vorax:
+                "VORAX WINS",
+
+            split:
+                "THE SENTINELS SPLIT UP"
+
+        };
+
+
+        function selectPrediction(value) {
+
+            predictionCards.forEach(card => {
+
+                card.classList.toggle(
+                    "selected",
+                    card.dataset.prediction === value
+                );
+
+            });
+
+
+            selectedPrediction.textContent =
+                predictionNames[value];
+
+
+            predictionResult.hidden = false;
+            clearPrediction.hidden = false;
+
+
+            localStorage.setItem(
+                "sentinelsPrediction",
+                value
+            );
+
+        }
+
+
+        predictionCards.forEach(card => {
+
+            card.addEventListener(
+                "click",
+                () => {
+                    selectPrediction(
+                        card.dataset.prediction
+                    );
+                }
+            );
+
+        });
+
+
+        clearPrediction.addEventListener(
+            "click",
+            () => {
+
+                localStorage.removeItem(
+                    "sentinelsPrediction"
+                );
+
+                predictionCards.forEach(card => {
+                    card.classList.remove("selected");
+                });
+
+                predictionResult.hidden = true;
+                clearPrediction.hidden = true;
+
+            }
+        );
+
+
+        const savedPrediction =
+            localStorage.getItem(
+                "sentinelsPrediction"
+            );
+
+
+        if (savedPrediction &&
+            predictionNames[savedPrediction]) {
+
+            selectPrediction(
+                savedPrediction
+            );
+
+        }
+
+    </script>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
