@@ -1,1978 +1,1104 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#03050a">
 
-    <title>SENTINELS — Official Universe</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="SENTINELS — Four ordinary people. One extraordinary story."
+    >
+
+    <title>SENTINELS — Official Archive</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* =====================================================
-           SENTINELS UNIVERSE HOMEPAGE
-           Interactive additions for index.html
-        ====================================================== */
-
-        .intel-strip {
-            width: min(1200px, calc(100% - 40px));
-            margin: 0 auto 90px;
-            padding: 18px 22px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            border: 1px solid rgba(255,255,255,0.10);
-            background: rgba(255,255,255,0.025);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-        }
-
-        .intel-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 10px;
-            letter-spacing: 2px;
-            opacity: 0.65;
-        }
-
-        .intel-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #4cff9a;
-            box-shadow: 0 0 12px #4cff9a;
-        }
-
-        .intel-link {
-            color: white;
-            text-decoration: none;
-            font-size: 10px;
-            letter-spacing: 2px;
-            opacity: 0.7;
-        }
-
-        .intel-link:hover {
-            opacity: 1;
-        }
-
-        /* INTERACTIVE CHARACTER CARDS */
-
-        .character {
-            position: relative;
-            cursor: pointer;
-            transition:
-                transform 0.35s ease,
-                border-color 0.35s ease,
-                box-shadow 0.35s ease;
-        }
-
-        .character::after {
-            content: "VIEW DOSSIER →";
-            position: absolute;
-            left: 20px;
-            bottom: 18px;
-            font-size: 9px;
-            letter-spacing: 2px;
-            opacity: 0;
-            transform: translateY(8px);
-            transition: 0.3s ease;
-            z-index: 5;
-        }
-
-        .character:hover {
-            transform: translateY(-8px);
-        }
-
-        .character:hover::after {
-            opacity: 0.9;
-            transform: translateY(0);
-        }
-
-        .character:focus-visible {
-            outline: 2px solid white;
-            outline-offset: 4px;
-        }
-
-        /* DOSSIER MODAL */
-
-        .dossier-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 25px;
-            background: rgba(0,0,0,0.78);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-        }
-
-        .dossier-overlay.active {
-            display: flex;
-        }
-
-        .dossier {
-            position: relative;
-            width: min(1050px, 100%);
-            max-height: 92vh;
-            overflow-y: auto;
-            display: grid;
-            grid-template-columns: 42% 58%;
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(13,18,30,0.98),
-                    rgba(3,5,10,0.99)
-                );
-            border: 1px solid rgba(255,255,255,0.15);
-            box-shadow: 0 30px 100px rgba(0,0,0,0.75);
-        }
-
-        .dossier-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            z-index: 10;
-            width: 42px;
-            height: 42px;
-            border: 1px solid rgba(255,255,255,0.18);
-            background: rgba(0,0,0,0.45);
-            color: white;
-            cursor: pointer;
-            font-size: 22px;
-        }
-
-        .dossier-close:hover {
-            background: rgba(255,255,255,0.10);
-        }
-
-        .dossier-image-area {
-            min-height: 600px;
-            position: relative;
-            overflow: hidden;
-            background: #070a11;
-        }
-
-        .dossier-image-area::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(3,5,10,0.9),
-                    transparent 45%
-                );
-            pointer-events: none;
-        }
-
-        .dossier-image {
-            width: 100%;
-            height: 100%;
-            min-height: 600px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .dossier-number {
-            position: absolute;
-            left: 25px;
-            bottom: 22px;
-            z-index: 2;
-            font-size: 10px;
-            letter-spacing: 3px;
-            opacity: 0.55;
-        }
-
-        .dossier-content {
-            padding: 55px 50px 45px;
-        }
-
-        .dossier-eyebrow {
-            font-size: 10px;
-            letter-spacing: 4px;
-            opacity: 0.45;
-            margin-bottom: 14px;
-        }
-
-        .dossier-title {
-            font-size: clamp(38px, 5vw, 70px);
-            line-height: 0.95;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        .dossier-subtitle {
-            font-size: 11px;
-            letter-spacing: 3px;
-            opacity: 0.6;
-            margin-bottom: 30px;
-        }
-
-        .dossier-description {
-            color: rgba(255,255,255,0.68);
-            line-height: 1.8;
-            max-width: 600px;
-            margin-bottom: 32px;
-        }
-
-        .dossier-section {
-            margin-top: 30px;
-        }
-
-        .dossier-section-title {
-            font-size: 9px;
-            letter-spacing: 3px;
-            opacity: 0.4;
-            margin-bottom: 15px;
-        }
-
-        .ability-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .ability {
-            padding: 9px 12px;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.035);
-            font-size: 9px;
-            letter-spacing: 1px;
-        }
-
-        .stat-row {
-            margin-bottom: 13px;
-        }
-
-        .stat-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 6px;
-            font-size: 9px;
-            letter-spacing: 1px;
-            opacity: 0.65;
-        }
-
-        .stat-track {
-            height: 4px;
-            background: rgba(255,255,255,0.08);
-            overflow: hidden;
-        }
-
-        .stat-fill {
-            height: 100%;
-            background: white;
-        }
-
-        .dossier-meta {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 28px;
-        }
-
-        .meta-box {
-            padding: 15px;
-            border: 1px solid rgba(255,255,255,0.08);
-            background: rgba(255,255,255,0.025);
-        }
-
-        .meta-label {
-            font-size: 8px;
-            letter-spacing: 2px;
-            opacity: 0.35;
-            margin-bottom: 6px;
-        }
-
-        .meta-value {
-            font-size: 11px;
-            letter-spacing: 1px;
-        }
-
-        /* LORE CARDS */
-
-        .lore-card {
-            cursor: pointer;
-            transition:
-                transform 0.3s ease,
-                border-color 0.3s ease;
-        }
-
-        .lore-card:hover {
-            transform: translateY(-6px);
-        }
-
-        /* PREDICTION SECTION */
-
-        .prediction-section {
-            width: min(1200px, calc(100% - 40px));
-            margin: 0 auto 110px;
-            padding: 70px 45px;
-            border: 1px solid rgba(255,255,255,0.10);
-            background:
-                radial-gradient(
-                    circle at 80% 20%,
-                    rgba(70,90,255,0.10),
-                    transparent 40%
-                ),
-                rgba(255,255,255,0.02);
-        }
-
-        .prediction-heading {
-            max-width: 650px;
-            margin-bottom: 40px;
-        }
-
-        .prediction-heading .eyebrow {
-            margin-bottom: 12px;
-        }
-
-        .prediction-heading h2 {
-            margin-bottom: 15px;
-        }
-
-        .prediction-heading p {
-            color: rgba(255,255,255,0.55);
-            line-height: 1.7;
-        }
-
-        .prediction-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .prediction-option {
-            position: relative;
-            padding: 22px;
-            border: 1px solid rgba(255,255,255,0.10);
-            background: rgba(0,0,0,0.20);
-            cursor: pointer;
-            transition:
-                background 0.25s ease,
-                border-color 0.25s ease,
-                transform 0.25s ease;
-        }
-
-        .prediction-option:hover {
-            transform: translateY(-3px);
-            border-color: rgba(255,255,255,0.35);
-            background: rgba(255,255,255,0.055);
-        }
-
-        .prediction-option.selected {
-            border-color: white;
-            background: rgba(255,255,255,0.09);
-        }
-
-        .prediction-letter {
-            display: block;
-            font-size: 9px;
-            letter-spacing: 2px;
-            opacity: 0.4;
-            margin-bottom: 9px;
-        }
-
-        .prediction-option strong {
-            display: block;
-            font-size: 13px;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-        }
-
-        .prediction-option span {
-            color: rgba(255,255,255,0.5);
-            font-size: 11px;
-            line-height: 1.5;
-        }
-
-        .prediction-submit {
-            margin-top: 25px;
-            padding: 14px 24px;
-            border: 1px solid rgba(255,255,255,0.25);
-            background: white;
-            color: #030407;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            cursor: pointer;
-        }
-
-        .prediction-submit:hover {
-            background: #dfe5ff;
-        }
-
-        .prediction-result {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            border-left: 2px solid white;
-            background: rgba(255,255,255,0.04);
-            color: rgba(255,255,255,0.7);
-            font-size: 11px;
-            line-height: 1.6;
-        }
-
-        .prediction-result.visible {
-            display: block;
-        }
-
-        /* QUIZ CTA */
-
-        .quiz-preview {
-            width: min(1200px, calc(100% - 40px));
-            margin: 0 auto 110px;
-            padding: 70px 45px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            border: 1px solid rgba(255,255,255,0.10);
-            background:
-                linear-gradient(
-                    110deg,
-                    rgba(255,255,255,0.045),
-                    rgba(255,255,255,0.015)
-                );
-        }
-
-        .quiz-preview-text {
-            max-width: 650px;
-        }
-
-        .quiz-preview-text h2 {
-            margin: 8px 0 15px;
-        }
-
-        .quiz-preview-text p {
-            color: rgba(255,255,255,0.55);
-            line-height: 1.7;
-        }
-
-        .quiz-button {
-            flex-shrink: 0;
-            display: inline-block;
-            padding: 16px 24px;
-            border: 1px solid rgba(255,255,255,0.25);
-            color: white;
-            text-decoration: none;
-            font-size: 10px;
-            letter-spacing: 2px;
-            transition: 0.25s ease;
-        }
-
-        .quiz-button:hover {
-            background: white;
-            color: #030407;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 800px) {
-
-            .dossier {
-                grid-template-columns: 1fr;
-                max-height: 94vh;
-            }
-
-            .dossier-image-area {
-                min-height: 300px;
-                height: 42vh;
-            }
-
-            .dossier-image {
-                min-height: 300px;
-            }
-
-            .dossier-content {
-                padding: 35px 25px 30px;
-            }
-
-            .prediction-section,
-            .quiz-preview {
-                padding: 45px 25px;
-            }
-
-            .prediction-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .quiz-preview {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        @media (max-width: 600px) {
-
-            .intel-strip {
-                width: calc(100% - 24px);
-                margin-bottom: 65px;
-                padding: 14px;
-            }
-
-            .intel-link {
-                display: none;
-            }
-
-            .dossier-overlay {
-                padding: 10px;
-            }
-
-            .dossier-close {
-                top: 10px;
-                right: 10px;
-            }
-
-            .dossier-title {
-                font-size: 42px;
-            }
-
-            .dossier-meta {
-                grid-template-columns: 1fr;
-            }
-
-            .prediction-section,
-            .quiz-preview {
-                width: calc(100% - 24px);
-            }
-        }
-    </style>
 </head>
-
 
 <body>
 
-    <!-- =====================================================
-         SPACE BACKGROUND
-    ====================================================== -->
-
-    <div class="space-background" aria-hidden="true">
-
-        <div class="asteroid blue one"></div>
-        <div class="asteroid red two"></div>
-        <div class="asteroid green three"></div>
-        <div class="asteroid white four"></div>
-        <div class="asteroid pink five"></div>
-
-    </div>
-
-
-    <!-- =====================================================
-         NAVIGATION
-    ====================================================== -->
-
-    <header class="navbar">
-
-        <div class="logo">
-            SENTINELS
-        </div>
-
-        <nav>
-            <a href="#story">STORY</a>
-            <a href="#sentinels">DATABASE</a>
-            <a href="archive.html">READ</a>
-            <a href="universe.html">UNIVERSE</a>
-            <a href="quiz.html">QUIZ</a>
-            <a href="hub.html">HUB</a>
-            <a href="#about">ABOUT</a>
-        </nav>
-
-    </header>
-
-
-    <main>
-
-        <!-- =================================================
-             HERO
-        ================================================== -->
-
-        <section id="home" class="hero">
-
-            <div class="hero-content">
-
-                <p class="eyebrow">
-                    THE OFFICIAL COMIC UNIVERSE
-                </p>
-
-                <img
-                    src="Logo final.jpeg"
-                    alt="SENTINELS"
-                    class="hero-logo"
-                >
-
-                <p class="tagline">
-                    FOUR. ONE MISSION.
-                </p>
-
-                <a
-                    href="archive.html"
-                    class="universe-button"
-                >
-                    ENTER THE UNIVERSE
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             LIVE INTEL STRIP
-        ================================================== -->
-
-        <div class="intel-strip">
-
-            <div class="intel-status">
-                <span class="intel-dot"></span>
-                SENTINELS DATABASE ONLINE
-            </div>
-
-            <a
-                href="universe.html"
-                class="intel-link"
-            >
-                ACCESS UNIVERSE DATABASE →
-            </a>
-
-        </div>
-
-
-        <!-- =================================================
-             STORY
-        ================================================== -->
-
-        <section id="story" class="section story">
-
-            <p class="eyebrow">
-                THE STORY
-            </p>
-
-            <h2>
-                THEY WERE CHOSEN.
-            </h2>
-
-            <p>
-                Four ordinary people.
-                Four extraordinary powers.
-                One enemy that has been waiting for them.
-            </p>
-
-            <a
-                href="universe.html"
-                class="text-link"
-            >
-                EXPLORE THE STORY →
-            </a>
-
-        </section>
-
-
-        <!-- =================================================
-             SENTINEL DATABASE
-        ================================================== -->
-
-        <section id="sentinels" class="section">
-
-            <p class="eyebrow">
-                SENTINEL DATABASE
-            </p>
-
-            <h2>
-                KNOW YOUR SENTINELS.
-            </h2>
-
-            <p style="max-width:650px;color:rgba(255,255,255,0.55);line-height:1.7;">
-                Select a Sentinel to access their current combat profile,
-                abilities and known information.
-            </p>
-
-
-            <div class="character-grid">
-
-                <!-- WANDILE -->
-
-                <article
-                    class="character wandile"
-                    tabindex="0"
-                    role="button"
-                    onclick="openDossier('wandile')"
-                    onkeydown="handleCardKey(event, 'wandile')"
-                >
-
-                    <img
-                        src="Wandile character art.jpeg"
-                        alt="Wandile"
-                        class="character-image"
-                    >
-
-                    <span>01</span>
-
-                    <h3>
-                        WANDILE
-                    </h3>
-
-                    <p>
-                        FOURTH SENTINEL
-                    </p>
-
-                    <small>
-                        BLUE • STRENGTH • SPEED • FLIGHT
-                    </small>
-
-                </article>
-
-
-                <!-- XAVIER -->
-
-                <article
-                    class="character xavier"
-                    tabindex="0"
-                    role="button"
-                    onclick="openDossier('xavier')"
-                    onkeydown="handleCardKey(event, 'xavier')"
-                >
-
-                    <img
-                        src="Xavier character art final.jpeg"
-                        alt="Xavier"
-                        class="character-image"
-                    >
-
-                    <span>02</span>
-
-                    <h3>
-                        XAVIER
-                    </h3>
-
-                    <p>
-                        THE POWERHOUSE
-                    </p>
-
-                    <small>
-                        RED • STRENGTH
-                    </small>
-
-                </article>
-
-
-                <!-- KYLA -->
-
-                <article
-                    class="character kyla"
-                    tabindex="0"
-                    role="button"
-                    onclick="openDossier('kyla')"
-                    onkeydown="handleCardKey(event, 'kyla')"
-                >
-
-                    <img
-                        src="Kyla character art final 1.jpeg"
-                        alt="Kyla"
-                        class="character-image"
-                    >
-
-                    <span>03</span>
-
-                    <h3>
-                        KYLA
-                    </h3>
-
-                    <p>
-                        THE SPEEDSTER
-                    </p>
-
-                    <small>
-                        PINK + WHITE • SPEED
-                    </small>
-
-                </article>
-
-
-                <!-- CEE -->
-
-                <article
-                    class="character cee"
-                    tabindex="0"
-                    role="button"
-                    onclick="openDossier('cee')"
-                    onkeydown="handleCardKey(event, 'cee')"
-                >
-
-                    <img
-                        src="Cee character art.jpeg"
-                        alt="Cee"
-                        class="character-image"
-                    >
-
-                    <span>04</span>
-
-                    <h3>
-                        CEE
-                    </h3>
-
-                    <p>
-                        THE AERIAL SENTINEL
-                    </p>
-
-                    <small>
-                        GREEN • FLIGHT • ENERGY BLASTS
-                    </small>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             UNIVERSE
-        ================================================== -->
-
-        <section id="universe" class="section universe">
-
-            <p class="eyebrow">
-                THE WORLD
-            </p>
-
-            <h2>
-                THERE IS MORE TO THE STORY.
-            </h2>
-
-            <p>
-                Discover the characters, enemies and mysteries
-                surrounding the Sentinels.
-            </p>
-
-
-            <div class="lore-grid">
-
-                <!-- VAELOR -->
-
-                <article
-                    class="lore-card"
-                    tabindex="0"
-                    role="button"
-                    onclick="openDossier('vaelor')"
-                    onkeydown="handleCardKey(event, 'vaelor')"
-                >
-
-                    <img
-                        src="Vaelor character art final.jpeg"
-                        alt="Vaelor"
-                        class="lore-card-image"
-                    >
-
-                    <div class="lore-card-content">
-
-                        <span class="lore-card-number">
-                            01 • THE SURVIVORS
-                        </span>
-
-                        <h3>
-                            VAELOR
-                        </h3>
-
-                        <p>
-                            Keeper of ancient Sentinel knowledge.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <!-- ZYRON -->
-
-                <article
-                    class="lore-card"
-                    tabindex="0"
-                    role="button"
-                    onclick="openDossier('zyron')"
-                    onkeydown="handleCardKey(event, 'zyron')"
-                >
-
-                    <img
-                        src="Zyron character art final.jpeg"
-                        alt="Zyron"
-                        class="lore-card-image"
-                    >
-
-                    <div class="lore-card-content">
-
-                        <span class="lore-card-number">
-                            02 • THE SURVIVORS
-                        </span>
-
-                        <h3>
-                            ZYRON
-                        </h3>
-
-                        <p>
-                            Guardian, mentor and survivor.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <!-- COMMANDER VORAX -->
-
-                <article
-                    class="lore-card"
-                    tabindex="0"
-                    role="button"
-                    onclick="openDossier('commander-vorax')"
-                    onkeydown="handleCardKey(event, 'commander-vorax')"
-                >
-
-                    <img
-                        src="Commander vorax character art final.jpeg"
-                        alt="Commander Vorax"
-                        class="lore-card-image"
-                    >
-
-                    <div class="lore-card-content">
-
-                        <span class="lore-card-number">
-                            03 • THE ENEMY
-                        </span>
-
-                        <h3>
-                            COMMANDER VORAX
-                        </h3>
-
-                        <p>
-                            The enemy hunting the Sentinels.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <!-- VORAX -->
-
-                <article
-                    class="lore-card"
-                    tabindex="0"
-                    role="button"
-                    onclick="openDossier('vorax')"
-                    onkeydown="handleCardKey(event, 'vorax')"
-                >
-
-                    <img
-                        src="Vorax character art final 1.jpeg"
-                        alt="Vorax mutant"
-                        class="lore-card-image"
-                    >
-
-                    <div class="lore-card-content">
-
-                        <span class="lore-card-number">
-                            04 • THE MUTATED
-                        </span>
-
-                        <h3>
-                            VORAX
-                        </h3>
-
-                        <p>
-                            A mutated force created by the enemy.
-                        </p>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             PREDICTIONS
-        ================================================== -->
-
-        <section class="prediction-section">
-
-            <div class="prediction-heading">
-
-                <p class="eyebrow">
-                    YOUR THEORY
-                </p>
-
-                <h2>
-                    WHAT DO YOU THINK HAPPENS NEXT?
-                </h2>
-
-                <p>
-                    The story is moving forward. Before the next volume
-                    arrives, make your prediction.
-                </p>
-
-            </div>
-
-
-            <div class="prediction-grid">
-
-                <button
-                    class="prediction-option"
-                    type="button"
-                    onclick="selectPrediction(this)"
-                >
-
-                    <span class="prediction-letter">
-                        THEORY 01
-                    </span>
-
-                    <strong>
-                        THE SENTINELS STAY ON EARTH
-                    </strong>
-
-                    <span>
-                        The team builds a resistance and fights
-                        Vorax from within the infected world.
-                    </span>
-
-                </button>
-
-
-                <button
-                    class="prediction-option"
-                    type="button"
-                    onclick="selectPrediction(this)"
-                >
-
-                    <span class="prediction-letter">
-                        THEORY 02
-                    </span>
-
-                    <strong>
-                        THEY LEAVE EARTH
-                    </strong>
-
-                    <span>
-                        The team escapes and discovers a much
-                        larger universe beyond their planet.
-                    </span>
-
-                </button>
-
-
-                <button
-                    class="prediction-option"
-                    type="button"
-                    onclick="selectPrediction(this)"
-                >
-
-                    <span class="prediction-letter">
-                        THEORY 03
-                    </span>
-
-                    <strong>
-                        VORAX WINS
-                    </strong>
-
-                    <span>
-                        The Sentinels lose the battle and are
-                        forced into hiding.
-                    </span>
-
-                </button>
-
-
-                <button
-                    class="prediction-option"
-                    type="button"
-                    onclick="selectPrediction(this)"
-                >
-
-                    <span class="prediction-letter">
-                        THEORY 04
-                    </span>
-
-                    <strong>
-                        THE SENTINELS SPLIT UP
-                    </strong>
-
-                    <span>
-                        The four heroes are separated and forced
-                        to find their own way forward.
-                    </span>
-
-                </button>
-
-            </div>
-
-
-            <button
-                class="prediction-submit"
-                type="button"
-                onclick="submitPrediction()"
-            >
-                LOCK IN MY PREDICTION
-            </button>
-
-
-            <div
-                class="prediction-result"
-                id="predictionResult"
-            ></div>
-
-        </section>
-
-
-        <!-- =================================================
-             QUIZ
-        ================================================== -->
-
-        <section class="quiz-preview">
-
-            <div class="quiz-preview-text">
-
-                <div class="eyebrow">
-                    SENTINELS KNOWLEDGE TEST
-                </div>
-
-                <h2>
-                    THINK YOU WERE PAYING ATTENTION?
-                </h2>
-
-                <p>
-                    Ten questions. One score.
-                    Find out how well you actually remember
-                    the story.
-                </p>
-
-            </div>
-
-
-            <a
-                href="quiz.html"
-                class="quiz-button"
-            >
-                TAKE THE QUIZ →
-            </a>
-
-        </section>
-
-
-        <!-- =================================================
-             GALLERY
-        ================================================== -->
-
-        <section id="gallery" class="section gallery">
-
-            <p class="eyebrow">
-                VISUAL ARCHIVE
-            </p>
-
-            <h2>
-                THE GALLERY
-            </h2>
-
-
-            <div class="gallery-placeholder">
-
-                <!-- COMIC ART -->
-
-                <a
-                    href="gallery.html"
-                    class="gallery-card comic"
-                >
-
-                    <img
-                        src="Comic art.PNG"
-                        alt="Sentinels Comic Art"
-                        class="gallery-card-image"
-                    >
-
-                    <div class="gallery-card-symbol">
-                        ▣
-                    </div>
-
-                    <div class="gallery-card-content">
-
-                        <div class="gallery-card-label">
-                            THE FINISHED STORY
-                        </div>
-
-                        <h3>
-                            COMIC ART
-                        </h3>
-
-                        <p>
-                            Finished pages, memorable scenes
-                            and artwork taken directly from
-                            the Sentinels story.
-                        </p>
-
-                        <span class="gallery-card-link">
-                            EXPLORE COMIC ART →
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- CHARACTER ART -->
-
-                <a
-                    href="characters.html"
-                    class="gallery-card character-art"
-                >
-
-                    <img
-                        src="Character art.PNG"
-                        alt="Sentinels Character Art"
-                        class="gallery-card-image"
-                    >
-
-                    <div class="gallery-card-symbol">
-                        ◈
-                    </div>
-
-                    <div class="gallery-card-content">
-
-                        <div class="gallery-card-label">
-                            THE FACES OF THE UNIVERSE
-                        </div>
-
-                        <h3>
-                            CHARACTER ART
-                        </h3>
-
-                        <p>
-                            Character portraits, Sentinel
-                            designs, villains and the people
-                            who bring the universe to life.
-                        </p>
-
-                        <span class="gallery-card-link">
-                            EXPLORE CHARACTER ART →
-                        </span>
-
-                    </div>
-
-                </a>
-
-
-                <!-- CONCEPT ART -->
-
-                <a
-                    href="concept-art.html"
-                    class="gallery-card concept-art"
-                >
-
-                    <img
-                        src="Concept art.PNG"
-                        alt="Sentinels Concept Art"
-                        class="gallery-card-image"
-                    >
-
-                    <div class="gallery-card-symbol">
-                        ✦
-                    </div>
-
-                    <div class="gallery-card-content">
-
-                        <div class="gallery-card-label">
-                            THE MAKING OF SENTINELS
-                        </div>
-
-                        <h3>
-                            CONCEPT ART
-                        </h3>
-
-                        <p>
-                            Early sketches, first designs,
-                            logo ideas and the evolution
-                            behind the final universe.
-                        </p>
-
-                        <span class="gallery-card-link">
-                            EXPLORE CONCEPT ART →
-                        </span>
-
-                    </div>
-
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             HUB
-        ================================================== -->
-
-        <section class="hub-preview">
-
-            <div class="hub-preview-label">
-                THE COMMUNITY
-            </div>
-
-            <h2>
-                SENTINELS HUB
-            </h2>
-
-            <p>
-                The story doesn't end when the page does.
-                Share theories, discuss the universe,
-                leave reviews and talk about the Sentinels.
-            </p>
-
-            <a
-                href="hub.html"
-                class="hub-button"
-            >
-                ENTER THE HUB →
-            </a>
-
-        </section>
-
-
-        <!-- =================================================
-             ABOUT
-        ================================================== -->
-
-        <section id="about" class="section about">
-
-            <p class="eyebrow">
-                THE PROJECT
-            </p>
-
-            <h2>
-                THE STORY HAS ONLY JUST BEGUN.
-            </h2>
-
-            <p>
-                Sentinels is an original comic universe
-                created by Wandile Shaw.
-            </p>
-
-
-            <div class="creator-credit">
-
-                <div class="creator-label">
-                    CREATED BY
-                </div>
-
-                <div class="creator-name">
-                    WANDILE SHAW
-                </div>
-
-                <div class="creator-role">
-                    CREATOR • WRITER • WORLD BUILDER
-                </div>
-
-
-                <div class="apprentice-credit">
-
-                    <div class="apprentice-label">
-                        SENTINELS APPRENTICE
-                    </div>
-
-                    <div class="apprentice-name">
-                        LILLIAN
-                    </div>
-
-                    <div class="apprentice-role">
-                        CREATIVE APPRENTICE
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- =====================================================
-         CHARACTER DOSSIER
-    ====================================================== -->
-
-    <div
-        class="dossier-overlay"
-        id="dossierOverlay"
-        onclick="closeDossierFromBackground(event)"
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<header class="site-header">
+
+    <a href="index.html" class="brand">
+        <span class="brand-main">SENTINELS</span>
+        <span class="brand-sub">OFFICIAL ARCHIVE</span>
+    </a>
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation"
+        aria-expanded="false"
     >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-        <div
-            class="dossier"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="dossierTitle"
-        >
+    <nav class="main-nav" id="mainNav">
 
-            <button
-                class="dossier-close"
-                type="button"
-                onclick="closeDossier()"
-                aria-label="Close character dossier"
-            >
-                ×
-            </button>
+        <a href="index.html" class="active">
+            HOME
+        </a>
 
+        <a href="archive.html">
+            VOLUMES
+        </a>
 
-            <div class="dossier-image-area">
+        <a href="sentinels.html">
+            CHARACTERS
+        </a>
 
-                <img
-                    id="dossierImage"
-                    class="dossier-image"
-                    src=""
-                    alt=""
-                >
+        <a href="quiz.html">
+            QUIZ
+        </a>
 
-                <div
-                    class="dossier-number"
-                    id="dossierNumber"
-                >
-                </div>
+        <a href="predictions.html">
+            PREDICTIONS
+        </a>
 
-            </div>
+        <a href="hub.html">
+            HUB
+        </a>
 
+        <a href="about.html">
+            ABOUT
+        </a>
 
-            <div class="dossier-content">
+    </nav>
 
-                <div
-                    class="dossier-eyebrow"
-                    id="dossierEyebrow"
-                >
-                </div>
-
-                <h2
-                    class="dossier-title"
-                    id="dossierTitle"
-                >
-                </h2>
-
-                <div
-                    class="dossier-subtitle"
-                    id="dossierSubtitle"
-                >
-                </div>
-
-                <p
-                    class="dossier-description"
-                    id="dossierDescription"
-                >
-                </p>
+</header>
 
 
-                <div class="dossier-section">
+<!-- =========================================================
+     HERO
+========================================================= -->
 
-                    <div class="dossier-section-title">
-                        KNOWN ABILITIES
-                    </div>
+<main>
 
-                    <div
-                        class="ability-list"
-                        id="dossierAbilities"
-                    >
-                    </div>
+<section class="hero-section">
 
-                </div>
+    <div class="hero-space"></div>
 
+    <div class="hero-content">
 
-                <div class="dossier-section">
-
-                    <div class="dossier-section-title">
-                        COMBAT PROFILE
-                    </div>
-
-                    <div id="dossierStats">
-                    </div>
-
-                </div>
-
-
-                <div class="dossier-meta">
-
-                    <div class="meta-box">
-
-                        <div class="meta-label">
-                            STATUS
-                        </div>
-
-                        <div
-                            class="meta-value"
-                            id="dossierStatus"
-                        >
-                        </div>
-
-                    </div>
-
-
-                    <div class="meta-box">
-
-                        <div class="meta-label">
-                            FIRST APPEARANCE
-                        </div>
-
-                        <div
-                            class="meta-value"
-                            id="dossierAppearance"
-                        >
-                        </div>
-
-                    </div>
-
-
-                    <div class="meta-box">
-
-                        <div class="meta-label">
-                            ROLE
-                        </div>
-
-                        <div
-                            class="meta-value"
-                            id="dossierRole"
-                        >
-                        </div>
-
-                    </div>
-
-
-                    <div class="meta-box">
-
-                        <div class="meta-label">
-                            THREAT LEVEL
-                        </div>
-
-                        <div
-                            class="meta-value"
-                            id="dossierThreat"
-                        >
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
-    <footer>
-
-        <div class="logo">
-            SENTINELS
-        </div>
-
-        <p>
-            © 2026 Sentinels. All rights reserved.
+        <p class="eyebrow">
+            SENTINELS // OFFICIAL ARCHIVE
         </p>
 
-    </footer>
+        <img
+            src="Logo final.jpeg"
+            alt="Sentinels"
+            class="hero-logo"
+        >
+
+        <h1>
+            FOUR.<br>
+            ONE MISSION.
+        </h1>
+
+        <p class="hero-description">
+            Four ordinary people are pulled into something far
+            bigger than themselves. What begins as discovery
+            becomes a fight for survival.
+        </p>
+
+        <div class="hero-actions">
+
+            <a href="archive.html" class="btn btn-primary">
+                ENTER THE ARCHIVE
+            </a>
+
+            <a href="#sentinels" class="btn btn-secondary">
+                MEET THE SENTINELS
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-bottom-line">
+        <span>STATUS: ACTIVE</span>
+        <span>ARCHIVE: ONLINE</span>
+        <span>YEAR: 2026</span>
+    </div>
+
+</section>
 
 
-    <!-- =====================================================
-         PAGE SCRIPT
-    ====================================================== -->
+<!-- =========================================================
+     STORY
+========================================================= -->
 
-    <script src="script.js"></script>
+<section class="section story-section">
 
+    <div class="section-heading">
 
-    <script>
+        <p class="eyebrow">
+            THE STORY
+        </p>
 
-        /* =====================================================
-           CHARACTER DATABASE
-        ====================================================== */
+        <h2>
+            SOMETHING<br>
+            HAS CHOSEN THEM.
+        </h2>
 
-        const dossierData = {
+    </div>
 
-            wandile: {
-                image: "Wandile character art.jpeg",
-                number: "01 • SENTINEL DATABASE",
-                eyebrow: "BLUE SENTINEL",
-                title: "WANDILE",
-                subtitle: "THE FOURTH SENTINEL",
-                description:
-                    "The newest member of the Sentinel team. Wandile is still learning what his armor can do, but his adaptability and determination make him one of the team's most unpredictable fighters.",
-                abilities: [
-                    "SUPER STRENGTH",
-                    "ENHANCED SPEED",
-                    "FLIGHT",
-                    "ENERGY SHIELD",
-                    "SENTINEL ADAPTATION"
-                ],
-                stats: {
-                    "STRENGTH": 91,
-                    "SPEED": 82,
-                    "DEFENSE": 86,
-                    "COMBAT": 74,
-                    "MOBILITY": 88,
-                    "ENERGY": 79
-                },
-                status: "ACTIVE",
-                appearance: "VOLUME 1",
-                role: "FRONTLINE",
-                threat: "HIGH"
-            },
+    <div class="story-grid">
 
+        <div class="story-copy">
 
-            xavier: {
-                image: "Xavier character art final.jpeg",
-                number: "02 • SENTINEL DATABASE",
-                eyebrow: "RED SENTINEL",
-                title: "XAVIER",
-                subtitle: "THE POWERHOUSE",
-                description:
-                    "The team's heavy hitter. Xavier relies on overwhelming physical strength and direct combat, making him especially dangerous when the fight becomes close-range.",
-                abilities: [
-                    "SUPER STRENGTH",
-                    "HEAVY STRIKES",
-                    "IMPACT RESISTANCE",
-                    "POWER SURGE"
-                ],
-                stats: {
-                    "STRENGTH": 96,
-                    "SPEED": 65,
-                    "DEFENSE": 91,
-                    "COMBAT": 84,
-                    "MOBILITY": 60,
-                    "ENERGY": 72
-                },
-                status: "ACTIVE",
-                appearance: "VOLUME 1",
-                role: "POWERHOUSE",
-                threat: "HIGH"
-            },
+            <p class="lead">
+                The Sentinels are not soldiers. They weren't
+                searching for power. And they certainly weren't
+                prepared for what was coming.
+            </p>
 
+            <p>
+                Four people. Four colours. Four different
+                abilities. Together, they become something
+                neither they nor the world fully understands.
+            </p>
 
-            kyla: {
-                image: "Kyla character art final 1.jpeg",
-                number: "03 • SENTINEL DATABASE",
-                eyebrow: "PINK + WHITE SENTINEL",
-                title: "KYLA",
-                subtitle: "THE SPEEDSTER",
-                description:
-                    "The fastest member of the team. Kyla uses speed and precision rather than brute force, allowing her to strike before opponents can react.",
-                abilities: [
-                    "SUPER SPEED",
-                    "RAPID STRIKES",
-                    "REFLEX ENHANCEMENT",
-                    "HIGH-SPEED MOVEMENT"
-                ],
-                stats: {
-                    "STRENGTH": 68,
-                    "SPEED": 98,
-                    "DEFENSE": 70,
-                    "COMBAT": 88,
-                    "MOBILITY": 99,
-                    "ENERGY": 76
-                },
-                status: "ACTIVE",
-                appearance: "VOLUME 1",
-                role: "SPEEDSTER",
-                threat: "HIGH"
-            },
+            <p>
+                As their abilities begin to develop, so do the
+                questions surrounding them. Who chose them?
+                Why them? And what happens when something from
+                beyond Earth comes looking for them?
+            </p>
+
+            <a href="archive.html" class="text-link">
+                READ THE STORY →
+            </a>
+
+        </div>
+
+        <div class="story-panel">
+
+            <div class="intel-line">
+                <span>FILE</span>
+                <strong>SN-001</strong>
+            </div>
+
+            <div class="intel-line">
+                <span>SUBJECTS</span>
+                <strong>04</strong>
+            </div>
+
+            <div class="intel-line">
+                <span>STATUS</span>
+                <strong>ACTIVE</strong>
+            </div>
+
+            <div class="intel-line">
+                <span>THREAT LEVEL</span>
+                <strong>UNKNOWN</strong>
+            </div>
+
+            <div class="intel-line">
+                <span>LOCATION</span>
+                <strong>EARTH</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-            cee: {
-                image: "Cee character art.jpeg",
-                number: "04 • SENTINEL DATABASE",
-                eyebrow: "GREEN SENTINEL",
-                title: "CEE",
-                subtitle: "THE AERIAL SENTINEL",
-                description:
-                    "An aerial combat specialist capable of flight and energy projection. Cee can control the battlefield from above while supporting the rest of the team.",
-                abilities: [
-                    "FLIGHT",
-                    "ENERGY BLASTS",
-                    "AERIAL COMBAT",
-                    "ENERGY PROJECTION"
-                ],
-                stats: {
-                    "STRENGTH": 74,
-                    "SPEED": 87,
-                    "DEFENSE": 72,
-                    "COMBAT": 81,
-                    "MOBILITY": 94,
-                    "ENERGY": 92
-                },
-                status: "ACTIVE",
-                appearance: "VOLUME 1",
-                role: "AERIAL SUPPORT",
-                threat: "HIGH"
-            },
+<!-- =========================================================
+     THE SENTINELS
+========================================================= -->
+
+<section
+    class="section sentinels-section"
+    id="sentinels"
+>
+
+    <div class="section-heading centered">
+
+        <p class="eyebrow">
+            THE SENTINELS
+        </p>
+
+        <h2>
+            FOUR.<br>
+            FOUR DIFFERENT POWERS.
+        </h2>
+
+        <p>
+            Get to know the people behind the Sentinels.
+        </p>
+
+    </div>
 
 
-            vaelor: {
-                image: "Vaelor character art final.jpeg",
-                number: "01 • THE SURVIVORS",
-                eyebrow: "SENTINEL ARCHIVE",
-                title: "VAELOR",
-                subtitle: "KEEPER OF ANCIENT KNOWLEDGE",
-                description:
-                    "A survivor carrying knowledge of the Sentinels and the forces surrounding them. Vaelor acts as a guide and source of information for the team.",
-                abilities: [
-                    "SENTINEL KNOWLEDGE",
-                    "TACTICAL GUIDANCE",
-                    "ALIEN TECHNOLOGY",
-                    "ANCIENT ARCHIVES"
-                ],
-                stats: {
-                    "STRENGTH": 64,
-                    "SPEED": 61,
-                    "DEFENSE": 69,
-                    "COMBAT": 72,
-                    "KNOWLEDGE": 98,
-                    "TECHNOLOGY": 95
-                },
-                status: "ACTIVE",
-                appearance: "VOLUME 1",
-                role: "MENTOR",
-                threat: "UNKNOWN"
-            },
+    <div class="sentinel-grid">
 
 
-            zyron: {
-                image: "Zyron character art final.jpeg",
-                number: "02 • THE SURVIVORS",
-                eyebrow: "SENTINEL ARCHIVE",
-                title: "ZYRON",
-                subtitle: "GUARDIAN & MENTOR",
-                description:
-                    "A seasoned survivor and guardian who helps prepare the Sentinels for threats they do not yet understand.",
-                abilities: [
-                    "TACTICAL KNOWLEDGE",
-                    "ALIEN TECHNOLOGY",
-                    "COMBAT EXPERIENCE",
-                    "SENTINEL LORE"
-                ],
-                stats: {
-                    "STRENGTH": 78,
-                    "SPEED": 70,
-                    "DEFENSE": 83,
-                    "COMBAT": 91,
-                    "KNOWLEDGE": 91,
-                    "TECHNOLOGY": 88
-                },
-                status: "ACTIVE",
-                appearance: "VOLUME 1",
-                role: "GUARDIAN",
-                threat: "UNKNOWN"
-            },
+        <!-- WANDILE -->
+
+        <article
+            class="sentinel-card sentinel-blue"
+            data-character="wandile"
+            tabindex="0"
+        >
+
+            <div class="card-top">
+
+                <span class="card-number">
+                    01
+                </span>
+
+                <span class="card-status">
+                    ACTIVE
+                </span>
+
+            </div>
+
+            <div class="character-image-wrap">
+
+                <img
+                    src="Wandile character art.jpeg"
+                    alt="Wandile — Blue Sentinel"
+                    class="character-image"
+                >
+
+            </div>
+
+            <div class="character-info">
+
+                <p class="character-colour">
+                    BLUE SENTINEL
+                </p>
+
+                <h3>
+                    WANDILE
+                </h3>
+
+                <p>
+                    Strength. Speed. Flight.
+                </p>
+
+                <span class="view-dossier">
+                    VIEW DOSSIER →
+                </span>
+
+            </div>
+
+        </article>
 
 
-            "commander-vorax": {
-                image: "Commander vorax character art final.jpeg",
-                number: "03 • THE ENEMY",
-                eyebrow: "THREAT DATABASE",
-                title: "COMMANDER VORAX",
-                subtitle: "THE HUNTER",
-                description:
-                    "A dangerous enemy pursuing the Sentinels. His connection to the larger threat surrounding them remains one of the universe's central mysteries.",
-                abilities: [
-                    "TACTICAL COMMAND",
-                    "ALIEN TECHNOLOGY",
-                    "COMBAT EXPERIENCE",
-                    "STRATEGIC PLANNING"
-                ],
-                stats: {
-                    "STRENGTH": 88,
-                    "SPEED": 76,
-                    "DEFENSE": 86,
-                    "COMBAT": 94,
-                    "KNOWLEDGE": 90,
-                    "THREAT": 97
-                },
-                status: "HOSTILE",
-                appearance: "VOLUME 1",
-                role: "COMMANDER",
-                threat: "EXTREME"
-            },
+        <!-- XAVIER -->
+
+        <article
+            class="sentinel-card sentinel-red"
+            data-character="xavier"
+            tabindex="0"
+        >
+
+            <div class="card-top">
+
+                <span class="card-number">
+                    02
+                </span>
+
+                <span class="card-status">
+                    ACTIVE
+                </span>
+
+            </div>
+
+            <div class="character-image-wrap">
+
+                <img
+                    src="Xavier character art final.jpeg"
+                    alt="Xavier — Red Sentinel"
+                    class="character-image"
+                >
+
+            </div>
+
+            <div class="character-info">
+
+                <p class="character-colour">
+                    RED SENTINEL
+                </p>
+
+                <h3>
+                    XAVIER
+                </h3>
+
+                <p>
+                    Strength. Power. Close combat.
+                </p>
+
+                <span class="view-dossier">
+                    VIEW DOSSIER →
+                </span>
+
+            </div>
+
+        </article>
 
 
-            vorax: {
-                image: "Vorax character art final 1.jpeg",
-                number: "04 • THE MUTATED",
-                eyebrow: "THREAT DATABASE",
-                title: "VORAX",
-                subtitle: "MUTATED FORCE",
-                description:
-                    "A terrifying mutated force connected to the enemy. Much about its origin and purpose remains unknown.",
-                abilities: [
-                    "MUTATION",
-                    "ENHANCED STRENGTH",
-                    "EXTREME RESILIENCE",
-                    "UNKNOWN ABILITY"
-                ],
-                stats: {
-                    "STRENGTH": 94,
-                    "SPEED": 78,
-                    "DEFENSE": 96,
-                    "COMBAT": 89,
-                    "MOBILITY": 70,
-                    "THREAT": 99
-                },
-                status: "HOSTILE",
-                appearance: "VOLUME 1",
-                role: "UNKNOWN",
-                threat: "EXTREME"
-            }
+        <!-- KYLA -->
 
-        };
+        <article
+            class="sentinel-card sentinel-pink"
+            data-character="kyla"
+            tabindex="0"
+        >
 
+            <div class="card-top">
 
-        /* =====================================================
-           OPEN DOSSIER
-        ====================================================== */
+                <span class="card-number">
+                    03
+                </span>
 
-        function openDossier(character) {
+                <span class="card-status">
+                    ACTIVE
+                </span>
 
-            const data = dossierData[character];
+            </div>
 
-            if (!data) {
-                return;
-            }
+            <div class="character-image-wrap">
 
-            document.getElementById("dossierImage").src =
-                data.image;
+                <img
+                    src="Kyla character art final 1.jpeg"
+                    alt="Kyla — Pink and White Sentinel"
+                    class="character-image"
+                >
 
-            document.getElementById("dossierImage").alt =
-                data.title;
+            </div>
 
-            document.getElementById("dossierNumber").textContent =
-                data.number;
+            <div class="character-info">
 
-            document.getElementById("dossierEyebrow").textContent =
-                data.eyebrow;
+                <p class="character-colour">
+                    PINK / WHITE SENTINEL
+                </p>
 
-            document.getElementById("dossierTitle").textContent =
-                data.title;
+                <h3>
+                    KYLA
+                </h3>
 
-            document.getElementById("dossierSubtitle").textContent =
-                data.subtitle;
+                <p>
+                    Speed. Agility. Rapid movement.
+                </p>
 
-            document.getElementById("dossierDescription").textContent =
-                data.description;
+                <span class="view-dossier">
+                    VIEW DOSSIER →
+                </span>
 
-            document.getElementById("dossierStatus").textContent =
-                data.status;
+            </div>
 
-            document.getElementById("dossierAppearance").textContent =
-                data.appearance;
-
-            document.getElementById("dossierRole").textContent =
-                data.role;
-
-            document.getElementById("dossierThreat").textContent =
-                data.threat;
+        </article>
 
 
-            const abilities =
-                document.getElementById("dossierAbilities");
+        <!-- CEE -->
 
-            abilities.innerHTML = "";
+        <article
+            class="sentinel-card sentinel-green"
+            data-character="cee"
+            tabindex="0"
+        >
 
-            data.abilities.forEach(function (ability) {
+            <div class="card-top">
 
-                const item =
-                    document.createElement("div");
+                <span class="card-number">
+                    04
+                </span>
 
-                item.className = "ability";
-                item.textContent = ability;
+                <span class="card-status">
+                    ACTIVE
+                </span>
 
-                abilities.appendChild(item);
+            </div>
 
-            });
+            <div class="character-image-wrap">
+
+                <img
+                    src="Cee character art.jpeg"
+                    alt="Cee — Green Sentinel"
+                    class="character-image"
+                >
+
+            </div>
+
+            <div class="character-info">
+
+                <p class="character-colour">
+                    GREEN SENTINEL
+                </p>
+
+                <h3>
+                    CEE
+                </h3>
+
+                <p>
+                    Flight. Energy blasts. Aerial combat.
+                </p>
+
+                <span class="view-dossier">
+                    VIEW DOSSIER →
+                </span>
+
+            </div>
+
+        </article>
+
+    </div>
 
 
-            const stats =
-                document.getElementById("dossierStats");
+    <div class="section-footer-link">
 
-            stats.innerHTML = "";
+        <a href="sentinels.html" class="btn btn-secondary">
+            OPEN PERSONNEL DATABASE
+        </a>
 
-            Object.entries(data.stats).forEach(function ([name, value]) {
+    </div>
 
-                const row =
-                    document.createElement("div");
-
-                row.className = "stat-row";
-
-                row.innerHTML = `
-                    <div class="stat-header">
-                        <span>${name}</span>
-                        <span>${value}</span>
-                    </div>
-
-                    <div class="stat-track">
-                        <div
-                            class="stat-fill"
-                            style="width:${value}%"
-                        ></div>
-                    </div>
-                `;
-
-                stats.appendChild(row);
-
-            });
+</section>
 
 
-            document
-                .getElementById("dossierOverlay")
-                .classList.add("active");
+<!-- =========================================================
+     LATEST VOLUME
+========================================================= -->
 
-            document.body.style.overflow = "hidden";
+<section class="section latest-section">
+
+    <div class="section-heading">
+
+        <p class="eyebrow">
+            LATEST ARCHIVE
+        </p>
+
+        <h2>
+            THE STORY<br>
+            BEGINS HERE.
+        </h2>
+
+    </div>
+
+
+    <div class="volume-feature">
+
+        <div class="volume-number">
+            01
+        </div>
+
+        <div class="volume-main">
+
+            <p class="volume-label">
+                VOLUME ONE
+            </p>
+
+            <h3>
+                THE BEGINNING
+            </h3>
+
+            <p>
+                The first chapter of the Sentinels story.
+                Discover how four ordinary people become
+                something extraordinary.
+            </p>
+
+            <div class="volume-meta">
+
+                <span>
+                    25 PAGES
+                </span>
+
+                <span>
+                    COMPLETE
+                </span>
+
+                <span>
+                    AVAILABLE NOW
+                </span>
+
+            </div>
+
+            <a
+                href="reader.html?volume=1"
+                class="btn btn-primary"
+            >
+                READ VOLUME 01
+            </a>
+
+        </div>
+
+        <div class="volume-side">
+
+            <span>
+                ARCHIVE
+            </span>
+
+            <strong>
+                SN / V01
+            </strong>
+
+            <small>
+                THE BEGINNING
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     EXPLORE
+========================================================= -->
+
+<section class="section explore-section">
+
+    <div class="section-heading centered">
+
+        <p class="eyebrow">
+            EXPLORE
+        </p>
+
+        <h2>
+            GO DEEPER.
+        </h2>
+
+        <p>
+            Read. Test your knowledge. Make your predictions.
+        </p>
+
+    </div>
+
+
+    <div class="explore-grid">
+
+
+        <a href="archive.html" class="explore-card">
+
+            <span class="explore-number">
+                01
+            </span>
+
+            <div>
+
+                <p>
+                    ARCHIVE
+                </p>
+
+                <h3>
+                    VOLUMES
+                </h3>
+
+                <span>
+                    Read the story →
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <a href="quiz.html" class="explore-card">
+
+            <span class="explore-number">
+                02
+            </span>
+
+            <div>
+
+                <p>
+                    KNOWLEDGE TEST
+                </p>
+
+                <h3>
+                    QUIZ
+                </h3>
+
+                <span>
+                    How well do you know them? →
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <a href="predictions.html" class="explore-card">
+
+            <span class="explore-number">
+                03
+            </span>
+
+            <div>
+
+                <p>
+                    COMMUNITY THEORIES
+                </p>
+
+                <h3>
+                    PREDICTIONS
+                </h3>
+
+                <span>
+                    What happens next? →
+                </span>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     HUB
+========================================================= -->
+
+<section class="section hub-preview-section">
+
+    <div class="hub-preview">
+
+        <div class="hub-copy">
+
+            <p class="eyebrow">
+                SENTINELS HUB
+            </p>
+
+            <h2>
+                THIS IS ONLY<br>
+                THE BEGINNING.
+            </h2>
+
+            <p>
+                Enter the wider Sentinels universe. Explore the
+                archive, characters, theories and everything
+                still to come.
+            </p>
+
+            <a href="hub.html" class="btn btn-secondary">
+                ENTER THE HUB
+            </a>
+
+        </div>
+
+        <div class="hub-mark">
+
+            <span>
+                S
+            </span>
+
+            <small>
+                SENTINELS
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section class="section about-preview-section">
+
+    <div class="about-preview">
+
+        <div>
+
+            <p class="eyebrow">
+                ABOUT THE PROJECT
+            </p>
+
+            <h2>
+                A STORY BUILT<br>
+                ONE CHAPTER AT A TIME.
+            </h2>
+
+        </div>
+
+        <div class="about-copy">
+
+            <p>
+                Sentinels is an original comic project created
+                by Wandile Shaw.
+            </p>
+
+            <p>
+                The archive will continue to grow as new volumes,
+                characters and stories are developed.
+            </p>
+
+            <a href="about.html" class="text-link">
+                ABOUT SENTINELS →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-brand">
+        SENTINELS
+    </div>
+
+    <div class="footer-info">
+        <span>OFFICIAL ARCHIVE</span>
+        <span>© 2026 SENTINELS</span>
+        <span>CREATED BY WANDILE SHAW</span>
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     CHARACTER DOSSIER
+========================================================= -->
+
+<div
+    class="dossier-overlay"
+    id="dossierOverlay"
+    aria-hidden="true"
+>
+
+    <div class="dossier-backdrop"></div>
+
+    <div
+        class="dossier-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dossierName"
+    >
+
+        <button
+            class="dossier-close"
+            id="dossierClose"
+            aria-label="Close dossier"
+        >
+            ×
+        </button>
+
+
+        <div class="dossier-visual">
+
+            <div class="dossier-grid"></div>
+
+            <img
+                id="dossierImage"
+                src=""
+                alt=""
+                class="dossier-image"
+            >
+
+        </div>
+
+
+        <div class="dossier-content">
+
+            <p
+                class="dossier-classification"
+                id="dossierClassification"
+            >
+                SENTINEL
+            </p>
+
+            <h2 id="dossierName">
+                WANDILE
+            </h2>
+
+            <p
+                class="dossier-role"
+                id="dossierRole"
+            >
+                BLUE SENTINEL
+            </p>
+
+            <p
+                class="dossier-description"
+                id="dossierDescription"
+            ></p>
+
+
+            <div class="dossier-abilities">
+
+                <p class="dossier-label">
+                    ABILITIES
+                </p>
+
+                <ul id="dossierAbilities"></ul>
+
+            </div>
+
+
+            <div class="dossier-status">
+
+                <div>
+                    <span>STATUS</span>
+                    <strong>ACTIVE</strong>
+                </div>
+
+                <div>
+                    <span>FILE</span>
+                    <strong id="dossierFile">
+                        SN-001
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+<script>
+
+/* =========================================================
+   HOME PAGE CHARACTER DOSSIERS
+========================================================= */
+
+const dossierData = {
+
+    wandile: {
+        name: "WANDILE",
+        role: "BLUE SENTINEL",
+        classification: "SENTINEL // SUBJECT 01",
+        file: "SN-001",
+        image: "Wandile character art.jpeg",
+        description:
+            "The blue Sentinel. Wandile begins with immense strength and gradually develops speed and flight as his abilities evolve.",
+        abilities: [
+            "Enhanced strength",
+            "Enhanced speed",
+            "Flight",
+            "Energy shield",
+            "Retractable wings"
+        ]
+    },
+
+    xavier: {
+        name: "XAVIER",
+        role: "RED SENTINEL",
+        classification: "SENTINEL // SUBJECT 02",
+        file: "SN-002",
+        image: "Xavier character art final.jpeg",
+        description:
+            "The red Sentinel. Xavier's abilities centre around strength and raw power, making him a formidable close-combat fighter.",
+        abilities: [
+            "Enhanced strength",
+            "Enhanced power",
+            "Close-combat ability"
+        ]
+    },
+
+    kyla: {
+        name: "KYLA",
+        role: "PINK / WHITE SENTINEL",
+        classification: "SENTINEL // SUBJECT 03",
+        file: "SN-003",
+        image: "Kyla character art final 1.jpeg",
+        description:
+            "The pink and white Sentinel. Kyla's abilities are built around speed, agility and rapid movement.",
+        abilities: [
+            "Enhanced speed",
+            "Enhanced agility",
+            "Rapid movement"
+        ]
+    },
+
+    cee: {
+        name: "CEE",
+        role: "GREEN SENTINEL",
+        classification: "SENTINEL // SUBJECT 04",
+        file: "SN-004",
+        image: "Cee character art.jpeg",
+        description:
+            "The green Sentinel. Cee can take to the air using retractable wings and project powerful energy blasts from her hands.",
+        abilities: [
+            "Flight",
+            "Retractable wings",
+            "Hand-projected energy blasts",
+            "Aerial combat"
+        ]
+    }
+
+};
+
+
+const characterCards =
+    document.querySelectorAll(".sentinel-card");
+
+const dossierOverlay =
+    document.getElementById("dossierOverlay");
+
+const dossierClose =
+    document.getElementById("dossierClose");
+
+const dossierImage =
+    document.getElementById("dossierImage");
+
+const dossierName =
+    document.getElementById("dossierName");
+
+const dossierRole =
+    document.getElementById("dossierRole");
+
+const dossierClassification =
+    document.getElementById("dossierClassification");
+
+const dossierDescription =
+    document.getElementById("dossierDescription");
+
+const dossierAbilities =
+    document.getElementById("dossierAbilities");
+
+const dossierFile =
+    document.getElementById("dossierFile");
+
+
+function openDossier(characterKey) {
+
+    const character =
+        dossierData[characterKey];
+
+    if (!character) {
+        return;
+    }
+
+
+    dossierImage.src = character.image;
+    dossierImage.alt = character.name;
+
+    dossierName.textContent =
+        character.name;
+
+    dossierRole.textContent =
+        character.role;
+
+    dossierClassification.textContent =
+        character.classification;
+
+    dossierDescription.textContent =
+        character.description;
+
+    dossierFile.textContent =
+        character.file;
+
+
+    dossierAbilities.innerHTML = "";
+
+    character.abilities.forEach(
+        ability => {
+
+            const li =
+                document.createElement("li");
+
+            li.textContent =
+                ability;
+
+            dossierAbilities.appendChild(li);
 
         }
+    );
 
 
-        /* =====================================================
-           CLOSE DOSSIER
-        ====================================================== */
+    dossierOverlay.classList.add("is-opening");
 
-        function closeDossier() {
+    requestAnimationFrame(() => {
 
-            document
-                .getElementById("dossierOverlay")
-                .classList.remove("active");
+        dossierOverlay.classList.add("is-open");
 
-            document.body.style.overflow = "";
+    });
+
+    dossierOverlay.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.classList.add(
+        "dossier-open"
+    );
+
+}
+
+
+function closeDossier() {
+
+    dossierOverlay.classList.remove(
+        "is-open"
+    );
+
+    dossierOverlay.classList.add(
+        "is-closing"
+    );
+
+    setTimeout(() => {
+
+        dossierOverlay.classList.remove(
+            "is-opening",
+            "is-closing"
+        );
+
+        dossierOverlay.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        document.body.classList.remove(
+            "dossier-open"
+        );
+
+    }, 450);
+
+}
+
+
+characterCards.forEach(card => {
+
+    card.addEventListener(
+        "click",
+        () => {
+
+            openDossier(
+                card.dataset.character
+            );
 
         }
+    );
 
 
-        function closeDossierFromBackground(event) {
-
-            if (
-                event.target ===
-                document.getElementById("dossierOverlay")
-            ) {
-                closeDossier();
-            }
-
-        }
-
-
-        /* =====================================================
-           KEYBOARD ACCESS
-        ====================================================== */
-
-        function handleCardKey(event, character) {
+    card.addEventListener(
+        "keydown",
+        event => {
 
             if (
                 event.key === "Enter" ||
@@ -1981,108 +1107,51 @@
 
                 event.preventDefault();
 
-                openDossier(character);
+                openDossier(
+                    card.dataset.character
+                );
 
             }
 
         }
+    );
+
+});
 
 
-        document.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (event.key === "Escape") {
-
-                    const overlay =
-                        document.getElementById("dossierOverlay");
-
-                    if (
-                        overlay.classList.contains("active")
-                    ) {
-                        closeDossier();
-                    }
-
-                }
-
-            }
-        );
+dossierClose.addEventListener(
+    "click",
+    closeDossier
+);
 
 
-        /* =====================================================
-           PREDICTION SYSTEM
-        ====================================================== */
-
-        let selectedPrediction = null;
-
-
-        function selectPrediction(button) {
-
-            document
-                .querySelectorAll(".prediction-option")
-                .forEach(function (option) {
-
-                    option.classList.remove("selected");
-
-                });
+document.querySelector(
+    ".dossier-backdrop"
+).addEventListener(
+    "click",
+    closeDossier
+);
 
 
-            button.classList.add("selected");
+document.addEventListener(
+    "keydown",
+    event => {
 
-            selectedPrediction = button
-                .querySelector("strong")
-                .textContent;
+        if (
+            event.key === "Escape" &&
+            dossierOverlay.classList.contains(
+                "is-open"
+            )
+        ) {
+
+            closeDossier();
 
         }
 
+    }
+);
 
-        function submitPrediction() {
-
-            const result =
-                document.getElementById("predictionResult");
-
-
-            if (!selectedPrediction) {
-
-                result.textContent =
-                    "Choose a theory first. Your prediction is waiting.";
-
-                result.classList.add("visible");
-
-                return;
-
-            }
-
-
-            result.innerHTML =
-                "<strong>PREDICTION LOCKED.</strong><br>" +
-                "Your theory has been recorded for this session. " +
-                "When the next chapter arrives, we'll see how close you were.";
-
-            result.classList.add("visible");
-
-        }
-
-
-        /* =====================================================
-           ESCAPE KEY
-        ====================================================== */
-
-        document.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (event.key === "Escape") {
-
-                    closeDossier();
-
-                }
-
-            }
-        );
-
-    </script>
+</script>
 
 </body>
-
 </html>
