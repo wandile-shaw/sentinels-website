@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -10,1786 +8,877 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta
-        name="theme-color"
-        content="#03050a"
-    >
+    <title>Sentinels — Quiz</title>
 
     <meta
         name="description"
-        content="Test your knowledge of the Sentinels universe."
+        content="Test your knowledge of the Sentinels."
     >
 
-    <title>SENTINELS — QUIZ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="site-header">
+
+        <a href="index.html" class="brand">
+            <span class="brand-main">SENTINELS</span>
+            <span class="brand-sub">OFFICIAL ARCHIVE</span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="main-nav" aria-label="Main navigation">
+
+            <a href="index.html">
+                HOME
+            </a>
+
+            <a href="archive.html">
+                VOLUMES
+            </a>
+
+            <a href="sentinels.html">
+                CHARACTERS
+            </a>
+
+            <a
+                href="quiz.html"
+                class="active"
+                aria-current="page"
+            >
+                QUIZ
+            </a>
+
+            <a href="predictions.html">
+                PREDICTIONS
+            </a>
+
+            <a href="hub.html">
+                HUB
+            </a>
+
+            <a href="about.html">
+                ABOUT
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="page-hero quiz-hero">
+
+            <div class="page-hero-inner">
+
+                <p class="eyebrow">
+                    SENTINELS // KNOWLEDGE TEST
+                </p>
+
+                <h1>
+                    HOW WELL DO YOU KNOW THEM?
+                </h1>
+
+                <p class="page-hero-description">
+                    Think you've been paying attention?
+                    Test your knowledge of the Sentinels,
+                    their abilities, and the world surrounding them.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUIZ -->
+
+        <section class="section quiz-section">
+
+            <div class="quiz-shell">
+
+                <!-- START SCREEN -->
+
+                <div
+                    id="quizStart"
+                    class="quiz-screen"
+                >
+
+                    <div class="quiz-start-mark">
+                        ?
+                    </div>
+
+                    <p class="eyebrow">
+                        SENTINEL KNOWLEDGE TEST
+                    </p>
+
+                    <h2>
+                        ENTER THE TEST.
+                    </h2>
+
+                    <p class="quiz-intro">
+                        Ten questions. One score.
+                        No second chances.
+                    </p>
+
+                    <div class="quiz-rules">
+
+                        <div>
+                            <span>10</span>
+                            <small>QUESTIONS</small>
+                        </div>
+
+                        <div>
+                            <span>1</span>
+                            <small>ANSWER EACH</small>
+                        </div>
+
+                        <div>
+                            <span>∞</span>
+                            <small>RETRIES</small>
+                        </div>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="startQuiz"
+                    >
+                        BEGIN TEST
+                    </button>
+
+                </div>
+
+
+                <!-- QUESTION SCREEN -->
+
+                <div
+                    id="quizGame"
+                    class="quiz-screen"
+                    hidden
+                >
+
+                    <div class="quiz-topline">
+
+                        <span id="questionNumber">
+                            QUESTION 01 / 10
+                        </span>
+
+                        <span id="scoreDisplay">
+                            SCORE 00
+                        </span>
+
+                    </div>
+
+
+                    <div class="quiz-progress">
+
+                        <div
+                            id="quizProgress"
+                            class="quiz-progress-bar"
+                        ></div>
+
+                    </div>
+
+
+                    <div class="question-block">
+
+                        <p class="eyebrow">
+                            SENTINEL DATABASE
+                        </p>
+
+                        <h2 id="questionText">
+                            Question
+                        </h2>
+
+                    </div>
+
+
+                    <div
+                        id="answers"
+                        class="answer-grid"
+                    ></div>
+
+
+                    <div
+                        id="answerFeedback"
+                        class="answer-feedback"
+                        aria-live="polite"
+                    ></div>
+
+                </div>
+
+
+                <!-- RESULT SCREEN -->
+
+                <div
+                    id="quizResult"
+                    class="quiz-screen"
+                    hidden
+                >
+
+                    <div class="result-mark">
+                        ✓
+                    </div>
+
+                    <p class="eyebrow">
+                        TEST COMPLETE
+                    </p>
+
+                    <h2 id="resultTitle">
+                        SENTINEL
+                    </h2>
+
+                    <div class="final-score">
+
+                        <span id="finalScore">
+                            10
+                        </span>
+
+                        <small>
+                            / 10
+                        </small>
+
+                    </div>
+
+                    <p
+                        id="resultDescription"
+                        class="result-description"
+                    >
+                        You know your Sentinels.
+                    </p>
+
+
+                    <div class="result-actions">
+
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            id="restartQuiz"
+                        >
+                            TRY AGAIN
+                        </button>
+
+                        <a
+                            href="predictions.html"
+                            class="btn btn-secondary"
+                        >
+                            MAKE A PREDICTION
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EXPLORE -->
+
+        <section class="section quiz-explore">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        AFTER THE TEST
+                    </p>
+
+                    <h2>
+                        WHAT HAPPENS NEXT?
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="explore-grid">
+
+                <a
+                    href="archive.html"
+                    class="explore-card"
+                >
+
+                    <span class="explore-index">
+                        01
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            VOLUMES
+                        </h3>
+
+                        <p>
+                            Return to the story.
+                        </p>
+
+                    </div>
+
+                    <span class="explore-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="sentinels.html"
+                    class="explore-card"
+                >
+
+                    <span class="explore-index">
+                        02
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            CHARACTERS
+                        </h3>
+
+                        <p>
+                            Study the Sentinel files.
+                        </p>
+
+                    </div>
+
+                    <span class="explore-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="predictions.html"
+                    class="explore-card"
+                >
+
+                    <span class="explore-index">
+                        03
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            PREDICTIONS
+                        </h3>
+
+                        <p>
+                            Tell us what you think happens next.
+                        </p>
+
+                    </div>
+
+                    <span class="explore-arrow">
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <div>
+
+                <div class="footer-brand">
+                    SENTINELS
+                </div>
+
+                <p>
+                    The official archive.
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+
+                <a href="index.html">
+                    HOME
+                </a>
+
+                <a href="archive.html">
+                    VOLUMES
+                </a>
+
+                <a href="sentinels.html">
+                    CHARACTERS
+                </a>
+
+                <a href="quiz.html">
+                    QUIZ
+                </a>
+
+                <a href="predictions.html">
+                    PREDICTIONS
+                </a>
+
+                <a href="hub.html">
+                    HUB
+                </a>
+
+                <a href="about.html">
+                    ABOUT
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <span>
+                © <span data-current-year>2026</span> SENTINELS
+            </span>
+
+            <span>
+                CREATED BY WANDILE SHAW
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         QUIZ STYLES
+    ========================== -->
 
     <style>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-
-        body {
-
-            background: #03050a;
-
-            color: #ffffff;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            min-height: 100vh;
-
-            overflow-x: hidden;
-
-        }
-
-
-        a {
-
-            color: inherit;
-
-            text-decoration: none;
-
-        }
-
-
-        button {
-
-            font-family: inherit;
-
-        }
-
-
-        /* =====================================================
-           BACKGROUND
-        ====================================================== */
-
-        .space {
-
-            position: fixed;
-
-            inset: 0;
-
-            z-index: -10;
-
-            overflow: hidden;
-
-            background:
-
-                radial-gradient(
-                    circle at 50% 10%,
-                    rgba(0,94,255,0.13),
-                    transparent 32%
-                ),
-
-                radial-gradient(
-                    circle at 10% 70%,
-                    rgba(0,119,255,0.06),
-                    transparent 30%
-                ),
-
-                radial-gradient(
-                    circle at 90% 80%,
-                    rgba(255,60,157,0.04),
-                    transparent 30%
-                ),
-
-                #03050a;
-
-        }
-
-
-        .stars {
-
-            position: absolute;
-
-            inset: 0;
-
-            opacity: 0.65;
-
-            background-image:
-
-                radial-gradient(
-                    1px 1px at 15% 20%,
-                    rgba(255,255,255,0.7),
-                    transparent
-                ),
-
-                radial-gradient(
-                    1px 1px at 80% 15%,
-                    rgba(255,255,255,0.5),
-                    transparent
-                ),
-
-                radial-gradient(
-                    1px 1px at 65% 35%,
-                    rgba(255,255,255,0.55),
-                    transparent
-                ),
-
-                radial-gradient(
-                    1px 1px at 30% 60%,
-                    rgba(255,255,255,0.4),
-                    transparent
-                ),
-
-                radial-gradient(
-                    1px 1px at 90% 65%,
-                    rgba(255,255,255,0.45),
-                    transparent
-                ),
-
-                radial-gradient(
-                    1px 1px at 45% 85%,
-                    rgba(255,255,255,0.4),
-                    transparent
-                );
-
-        }
-
-
-        .glow {
-
-            position: absolute;
-
-            width: 500px;
-
-            height: 500px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(0,119,255,0.08);
-
-            filter: blur(100px);
-
-            top: 200px;
-
-            left: 50%;
-
-            transform:
-                translateX(-50%);
-
-        }
-
-
-        /* =====================================================
-           NAVIGATION
-        ====================================================== */
-
-        .navbar {
-
-            position: sticky;
-
-            top: 0;
-
-            z-index: 100;
-
-            height: 72px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            padding:
-                0 clamp(18px,5vw,70px);
-
-            background:
-                rgba(3,5,10,0.82);
-
-            backdrop-filter:
-                blur(18px);
-
-            -webkit-backdrop-filter:
-                blur(18px);
-
-            border-bottom:
-                1px solid
-                rgba(255,255,255,0.08);
-
-        }
-
-
-        .logo {
-
-            font-size: 19px;
-
-            font-weight: 900;
-
-            letter-spacing: 5px;
-
-        }
-
-
-        .nav-right {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 25px;
-
-        }
-
-
-        .nav-link {
-
-            font-size: 10px;
-
-            letter-spacing: 2px;
-
-            opacity: 0.55;
-
-            transition:
-                opacity 0.25s ease;
-
-        }
-
-
-        .nav-link:hover,
-        .nav-link.active {
-
-            opacity: 1;
-
-        }
-
-
-        /* =====================================================
-           HERO
-        ====================================================== */
-
         .quiz-hero {
-
-            position: relative;
-
-            min-height: 430px;
-
-            padding:
-                110px
-                clamp(20px,7vw,100px)
-                75px;
-
-            display: flex;
-
-            align-items: flex-end;
-
-            overflow: hidden;
-
-            border-bottom:
-                1px solid
-                rgba(255,255,255,0.07);
-
+            min-height: 54vh;
         }
-
-
-        .hero-line {
-
-            position: absolute;
-
-            top: 0;
-
-            left: 7%;
-
-            width: 1px;
-
-            height: 100%;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    transparent,
-                    rgba(0,119,255,0.45),
-                    transparent
-                );
-
-        }
-
-
-        .hero-orbit {
-
-            position: absolute;
-
-            width: 600px;
-
-            height: 600px;
-
-            border:
-                1px solid
-                rgba(0,119,255,0.12);
-
-            border-radius: 50%;
-
-            right: -230px;
-
-            top: -210px;
-
-        }
-
-
-        .hero-orbit::before {
-
-            content: "";
-
-            position: absolute;
-
-            inset: 75px;
-
-            border:
-                1px solid
-                rgba(0,119,255,0.08);
-
-            border-radius: 50%;
-
-        }
-
-
-        .hero-content {
-
-            position: relative;
-
-            z-index: 2;
-
-            max-width: 850px;
-
-        }
-
-
-        .eyebrow {
-
-            font-size: 10px;
-
-            letter-spacing: 5px;
-
-            color:
-                rgba(255,255,255,0.45);
-
-            margin-bottom: 22px;
-
-        }
-
-
-        .quiz-title {
-
-            font-size:
-                clamp(65px,10vw,135px);
-
-            line-height: 0.83;
-
-            letter-spacing: -5px;
-
-            font-weight: 900;
-
-            margin-bottom: 28px;
-
-        }
-
-
-        .quiz-title span {
-
-            color:
-                rgba(255,255,255,0.18);
-
-        }
-
-
-        .hero-description {
-
-            max-width: 600px;
-
-            color:
-                rgba(255,255,255,0.52);
-
-            font-size: 14px;
-
-            line-height: 1.8;
-
-        }
-
-
-        /* =====================================================
-           QUIZ AREA
-        ====================================================== */
 
         .quiz-section {
-
-            padding:
-                70px
-                clamp(20px,7vw,100px)
-                120px;
-
+            padding-top: 80px;
         }
 
-
-        .quiz-container {
-
-            max-width: 900px;
-
+        .quiz-shell {
+            width: min(900px, 100%);
             margin: 0 auto;
-
         }
-
-
-        /* =====================================================
-           START SCREEN
-        ====================================================== */
-
-        .start-screen {
-
-            border:
-                1px solid
-                rgba(255,255,255,0.1);
-
-            background:
-
-                radial-gradient(
-                    circle at 50% 0%,
-                    rgba(0,119,255,0.12),
-                    transparent 45%
-                ),
-
-                rgba(255,255,255,0.02);
-
-            padding:
-                clamp(35px,7vw,75px);
-
-            text-align: center;
-
-        }
-
-
-        .system-icon {
-
-            width: 95px;
-
-            height: 95px;
-
-            margin:
-                0 auto 35px;
-
-            border:
-                1px solid
-                rgba(0,119,255,0.45);
-
-            transform:
-                rotate(45deg);
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            box-shadow:
-                0 0 70px
-                rgba(0,119,255,0.1);
-
-        }
-
-
-        .system-icon span {
-
-            transform:
-                rotate(-45deg);
-
-            font-size: 10px;
-
-            letter-spacing: 3px;
-
-            color:
-                rgba(255,255,255,0.65);
-
-        }
-
-
-        .start-screen h2 {
-
-            font-size:
-                clamp(32px,5vw,55px);
-
-            letter-spacing: -2px;
-
-            margin-bottom: 15px;
-
-        }
-
-
-        .start-screen p {
-
-            max-width: 560px;
-
-            margin:
-                0 auto 35px;
-
-            color:
-                rgba(255,255,255,0.43);
-
-            font-size: 13px;
-
-            line-height: 1.8;
-
-        }
-
-
-        .quiz-info {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3,1fr);
-
-            gap: 10px;
-
-            margin-bottom: 30px;
-
-        }
-
-
-        .info-box {
-
-            padding: 18px 12px;
-
-            border:
-                1px solid
-                rgba(255,255,255,0.08);
-
-            background:
-                rgba(255,255,255,0.025);
-
-        }
-
-
-        .info-label {
-
-            display: block;
-
-            font-size: 8px;
-
-            letter-spacing: 2px;
-
-            opacity: 0.35;
-
-            margin-bottom: 8px;
-
-        }
-
-
-        .info-value {
-
-            font-size: 12px;
-
-            letter-spacing: 1px;
-
-        }
-
-
-        .start-button {
-
-            border: none;
-
-            cursor: pointer;
-
-            padding:
-                16px 30px;
-
-            background: #ffffff;
-
-            color: #03050a;
-
-            font-size: 10px;
-
-            font-weight: 900;
-
-            letter-spacing: 2px;
-
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
-
-        }
-
-
-        .start-button:hover {
-
-            transform:
-                translateY(-3px);
-
-            box-shadow:
-                0 12px 35px
-                rgba(255,255,255,0.12);
-
-        }
-
-
-        /* =====================================================
-           QUIZ SCREEN
-        ====================================================== */
 
         .quiz-screen {
-
-            display: none;
-
-        }
-
-
-        .quiz-top {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 20px;
-
-            margin-bottom: 18px;
-
-        }
-
-
-        .question-number {
-
-            font-size: 9px;
-
-            letter-spacing: 3px;
-
-            color:
-                rgba(255,255,255,0.4);
-
-        }
-
-
-        .score-display {
-
-            font-size: 9px;
-
-            letter-spacing: 2px;
-
-            color:
-                rgba(255,255,255,0.4);
-
-        }
-
-
-        .progress {
-
-            width: 100%;
-
-            height: 2px;
-
+            padding: clamp(28px, 6vw, 65px);
+            border: 1px solid rgba(215, 220, 228, 0.18);
             background:
-                rgba(255,255,255,0.08);
-
-            margin-bottom: 35px;
-
-            overflow: hidden;
-
-        }
-
-
-        .progress-bar {
-
-            width: 0%;
-
-            height: 100%;
-
-            background: #1685ff;
-
-            transition:
-                width 0.35s ease;
-
-        }
-
-
-        .question-card {
-
-            border:
-                1px solid
-                rgba(255,255,255,0.1);
-
-            background:
-                rgba(255,255,255,0.025);
-
-            padding:
-                clamp(30px,6vw,60px);
-
-        }
-
-
-        .question-category {
-
-            font-size: 8px;
-
-            letter-spacing: 4px;
-
-            color:
-                rgba(0,119,255,0.75);
-
-            margin-bottom: 20px;
-
-        }
-
-
-        .question {
-
-            font-size:
-                clamp(26px,4vw,45px);
-
-            line-height: 1.1;
-
-            letter-spacing: -1px;
-
-            margin-bottom: 35px;
-
-        }
-
-
-        .answers {
-
-            display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap: 10px;
-
-        }
-
-
-        .answer {
-
-            border:
-                1px solid
-                rgba(255,255,255,0.1);
-
-            background:
-                rgba(255,255,255,0.025);
-
-            color: #ffffff;
-
-            padding:
-                18px 20px;
-
-            text-align: left;
-
-            cursor: pointer;
-
-            font-size: 11px;
-
-            line-height: 1.5;
-
-            transition:
-                border-color 0.2s ease,
-                background 0.2s ease,
-                transform 0.2s ease;
-
-        }
-
-
-        .answer:hover {
-
-            border-color:
-                rgba(0,119,255,0.5);
-
-            background:
-                rgba(0,119,255,0.05);
-
-            transform:
-                translateY(-2px);
-
-        }
-
-
-        .answer.correct {
-
-            border-color:
-                rgba(60,220,140,0.7);
-
-            background:
-                rgba(60,220,140,0.08);
-
-        }
-
-
-        .answer.wrong {
-
-            border-color:
-                rgba(255,70,100,0.7);
-
-            background:
-                rgba(255,70,100,0.08);
-
-        }
-
-
-        .answer.disabled {
-
-            pointer-events: none;
-
-        }
-
-
-        .answer-letter {
-
-            display: inline-block;
-
-            width: 24px;
-
-            height: 24px;
-
-            line-height: 22px;
-
-            text-align: center;
-
-            border:
-                1px solid
-                rgba(255,255,255,0.2);
-
-            margin-right: 10px;
-
-            font-size: 9px;
-
-        }
-
-
-        .feedback {
-
-            min-height: 25px;
-
-            margin-top: 25px;
-
-            color:
-                rgba(255,255,255,0.45);
-
-            font-size: 11px;
-
-            line-height: 1.6;
-
-        }
-
-
-        .next-button {
-
-            display: none;
-
-            border: none;
-
-            cursor: pointer;
-
-            margin-top: 10px;
-
-            padding:
-                15px 24px;
-
-            background: #ffffff;
-
-            color: #03050a;
-
-            font-size: 9px;
-
-            font-weight: 900;
-
-            letter-spacing: 2px;
-
-        }
-
-
-        /* =====================================================
-           RESULTS
-        ====================================================== */
-
-        .results-screen {
-
-            display: none;
-
-            text-align: center;
-
-            border:
-                1px solid
-                rgba(255,255,255,0.1);
-
-            background:
-
-                radial-gradient(
-                    circle at 50% 0%,
-                    rgba(0,119,255,0.12),
-                    transparent 45%
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.045),
+                    rgba(255,255,255,0.012)
                 ),
-
-                rgba(255,255,255,0.02);
-
-            padding:
-                clamp(35px,7vw,75px);
-
+                #05070a;
+            box-shadow:
+                0 30px 90px rgba(0,0,0,0.4);
         }
 
-
-        .result-eyebrow {
-
-            font-size: 9px;
-
-            letter-spacing: 4px;
-
-            color:
-                rgba(255,255,255,0.35);
-
-            margin-bottom: 20px;
-
+        .quiz-screen[hidden] {
+            display: none;
         }
 
-
-        .result-score {
-
-            font-size:
-                clamp(75px,13vw,145px);
-
-            line-height: 0.9;
-
-            font-weight: 900;
-
-            letter-spacing: -5px;
-
-            margin-bottom: 15px;
-
+        .quiz-start-mark,
+        .result-mark {
+            display: grid;
+            place-items: center;
+            width: 72px;
+            height: 72px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.25);
+            font-size: 2rem;
+            color: rgba(255,255,255,0.7);
         }
 
-
-        .result-score span {
-
-            font-size: 30px;
-
-            letter-spacing: 0;
-
-            opacity: 0.3;
-
+        .quiz-screen h2 {
+            max-width: 750px;
+            margin: 8px 0 15px;
+            font-size: clamp(2.3rem, 6vw, 4.8rem);
+            line-height: 0.95;
+            letter-spacing: -0.055em;
         }
 
-
-        .result-rank {
-
-            font-size:
-                clamp(28px,5vw,55px);
-
-            letter-spacing: -2px;
-
-            margin-bottom: 18px;
-
-        }
-
-
-        .result-message {
-
+        .quiz-intro {
             max-width: 550px;
-
-            margin:
-                0 auto 35px;
-
-            color:
-                rgba(255,255,255,0.43);
-
-            font-size: 13px;
-
-            line-height: 1.8;
-
+            margin: 0 0 35px;
+            color: rgba(255,255,255,0.56);
+            line-height: 1.7;
         }
 
+        .quiz-rules {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin: 35px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .quiz-rules div {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 20px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .quiz-rules div:last-child {
+            border-right: 0;
+        }
+
+        .quiz-rules span {
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+
+        .quiz-rules small {
+            font-size: 0.58rem;
+            letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .quiz-topline {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 13px;
+            font-size: 0.64rem;
+            letter-spacing: 0.16em;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .quiz-progress {
+            width: 100%;
+            height: 2px;
+            margin-bottom: 55px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .quiz-progress-bar {
+            width: 10%;
+            height: 100%;
+            background: rgba(255,255,255,0.75);
+            transition: width 0.3s ease;
+        }
+
+        .question-block {
+            margin-bottom: 35px;
+        }
+
+        .question-block h2 {
+            font-size: clamp(1.8rem, 4vw, 3.2rem);
+            line-height: 1.05;
+        }
+
+        .answer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .answer-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: 72px;
+            padding: 18px 20px;
+            border: 1px solid rgba(255,255,255,0.13);
+            background: #080a0d;
+            color: rgba(255,255,255,0.78);
+            font: inherit;
+            font-size: 0.78rem;
+            letter-spacing: 0.05em;
+            text-align: left;
+            cursor: pointer;
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .answer-button:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255,255,255,0.35);
+            background: #0c0f13;
+        }
+
+        .answer-button:disabled {
+            cursor: default;
+        }
+
+        .answer-button.correct {
+            border-color: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.09);
+        }
+
+        .answer-button.wrong {
+            border-color: rgba(255,255,255,0.16);
+            background: rgba(255,255,255,0.025);
+            opacity: 0.55;
+        }
+
+        .answer-feedback {
+            min-height: 24px;
+            margin-top: 18px;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.52);
+        }
+
+        .result-mark {
+            font-size: 1.6rem;
+        }
+
+        .final-score {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            margin: 30px 0 20px;
+        }
+
+        .final-score span {
+            font-size: clamp(4rem, 10vw, 7rem);
+            font-weight: 800;
+            line-height: 0.8;
+            letter-spacing: -0.08em;
+        }
+
+        .final-score small {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        .result-description {
+            max-width: 600px;
+            margin-bottom: 30px;
+            color: rgba(255,255,255,0.56);
+            line-height: 1.7;
+        }
 
         .result-actions {
-
             display: flex;
-
-            justify-content: center;
-
-            gap: 10px;
-
             flex-wrap: wrap;
-
+            gap: 12px;
         }
 
-
-        .restart-button,
-        .home-button {
-
-            padding:
-                15px 22px;
-
-            font-size: 9px;
-
-            letter-spacing: 2px;
-
-            font-weight: 900;
-
-            cursor: pointer;
-
+        .quiz-explore {
+            padding-top: 80px;
         }
 
-
-        .restart-button {
-
-            border: none;
-
-            background: #ffffff;
-
-            color: #03050a;
-
-        }
-
-
-        .home-button {
-
-            border:
-                1px solid
-                rgba(255,255,255,0.2);
-
-            background:
-                transparent;
-
-            color: #ffffff;
-
-        }
-
-
-        /* =====================================================
-           FOOTER
-        ====================================================== */
-
-        footer {
-
-            border-top:
-                1px solid
-                rgba(255,255,255,0.08);
-
-            padding:
-                45px
-                clamp(20px,7vw,100px);
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 20px;
-
-            flex-wrap: wrap;
-
-        }
-
-
-        .footer-logo {
-
-            font-size: 16px;
-
-            font-weight: 900;
-
-            letter-spacing: 4px;
-
-        }
-
-
-        footer p {
-
-            color:
-                rgba(255,255,255,0.3);
-
-            font-size: 9px;
-
-            letter-spacing: 1px;
-
-        }
-
-
-        /* =====================================================
-           MOBILE
-        ====================================================== */
-
-        @media (max-width: 800px) {
-
-            .navbar {
-
-                height: 62px;
-
-            }
-
-
-            .nav-right {
-
-                gap: 14px;
-
-            }
-
-
-            .nav-link {
-
-                display: none;
-
-            }
-
+        @media (max-width: 700px) {
 
             .quiz-hero {
-
-                min-height: 400px;
-
-                padding:
-                    95px 20px 60px;
-
+                min-height: 46vh;
             }
-
-
-            .hero-line {
-
-                left: 20px;
-
-            }
-
 
             .quiz-section {
-
-                padding:
-                    55px 15px 90px;
-
+                padding-top: 60px;
             }
 
-
-            .quiz-info {
-
-                grid-template-columns:
-                    1fr;
-
+            .quiz-rules {
+                grid-template-columns: 1fr;
             }
 
-
-            .answers {
-
-                grid-template-columns:
-                    1fr;
-
+            .quiz-rules div {
+                border-right: 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
             }
 
-
-            .question-card {
-
-                padding:
-                    30px 22px;
-
+            .quiz-rules div:last-child {
+                border-bottom: 0;
             }
 
-
-            footer {
-
-                padding:
-                    35px 20px;
-
+            .answer-grid {
+                grid-template-columns: 1fr;
             }
 
-        }
-
-
-        @media (max-width: 420px) {
-
-            .logo {
-
-                font-size: 16px;
-
-                letter-spacing: 4px;
-
-            }
-
-
-            .quiz-title {
-
-                font-size: 58px;
-
-            }
-
-
-            .start-screen,
-            .results-screen {
-
-                padding:
-                    35px 22px;
-
+            .quiz-topline {
+                font-size: 0.57rem;
             }
 
         }
 
     </style>
 
-</head>
 
-
-<body>
-
-
-    <!-- =====================================================
-         BACKGROUND
-    ====================================================== -->
-
-    <div
-        class="space"
-        aria-hidden="true"
-    >
-
-        <div class="stars"></div>
-
-        <div class="glow"></div>
-
-    </div>
-
-
-    <!-- =====================================================
-         NAVIGATION
-    ====================================================== -->
-
-    <header class="navbar">
-
-        <a
-            href="index.html"
-            class="logo"
-        >
-            SENTINELS
-        </a>
-
-
-        <div class="nav-right">
-
-            <a
-                href="index.html"
-                class="nav-link"
-            >
-                HOME
-            </a>
-
-
-            <a
-                href="sentinels.html"
-                class="nav-link"
-            >
-                SENTINELS
-            </a>
-
-
-            <a
-                href="archive.html"
-                class="nav-link"
-            >
-                ARCHIVE
-            </a>
-
-
-            <a
-                href="quiz.html"
-                class="nav-link active"
-            >
-                QUIZ
-            </a>
-
-
-            <a
-                href="hub.html"
-                class="nav-link"
-            >
-                HUB
-            </a>
-
-        </div>
-
-    </header>
-
-
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
-
-    <header class="quiz-hero">
-
-        <div class="hero-line"></div>
-
-        <div class="hero-orbit"></div>
-
-
-        <div class="hero-content">
-
-            <div class="eyebrow">
-                SENTINELS // KNOWLEDGE SYSTEM
-            </div>
-
-
-            <h1 class="quiz-title">
-
-                HOW WELL<br>
-
-                <span>DO YOU KNOW THEM?</span>
-
-            </h1>
-
-
-            <p class="hero-description">
-
-                The archive tells the story.
-
-                The Sentinels database tells you who
-                they are.
-
-                This is where we find out whether
-                you were actually paying attention.
-
-            </p>
-
-        </div>
-
-    </header>
-
-
-    <!-- =====================================================
-         QUIZ
-    ====================================================== -->
-
-    <main class="quiz-section">
-
-        <div class="quiz-container">
-
-
-            <!-- START -->
-
-            <section
-                class="start-screen"
-                id="startScreen"
-            >
-
-                <div class="system-icon">
-
-                    <span>
-                        TEST
-                    </span>
-
-                </div>
-
-
-                <h2>
-                    SENTINELS
-                    <br>
-                    KNOWLEDGE TEST
-                </h2>
-
-
-                <p>
-
-                    Ten questions.
-
-                    One score.
-
-                    No second chances.
-
-                    Test your knowledge of the Sentinels
-                    universe and discover your rank.
-
-                </p>
-
-
-                <div class="quiz-info">
-
-
-                    <div class="info-box">
-
-                        <span class="info-label">
-                            QUESTIONS
-                        </span>
-
-                        <span class="info-value">
-                            10
-                        </span>
-
-                    </div>
-
-
-                    <div class="info-box">
-
-                        <span class="info-label">
-                            DIFFICULTY
-                        </span>
-
-                        <span class="info-value">
-                            CLASSIFIED
-                        </span>
-
-                    </div>
-
-
-                    <div class="info-box">
-
-                        <span class="info-label">
-                            MODE
-                        </span>
-
-                        <span class="info-value">
-                            CANON
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <button
-                    class="start-button"
-                    id="startButton"
-                >
-
-                    BEGIN TEST
-                    &nbsp; →
-
-                </button>
-
-            </section>
-
-
-            <!-- QUIZ -->
-
-            <section
-                class="quiz-screen"
-                id="quizScreen"
-            >
-
-                <div class="quiz-top">
-
-                    <div
-                        class="question-number"
-                        id="questionNumber"
-                    >
-                        QUESTION 01 / 10
-                    </div>
-
-
-                    <div
-                        class="score-display"
-                        id="scoreDisplay"
-                    >
-                        SCORE: 00
-                    </div>
-
-                </div>
-
-
-                <div class="progress">
-
-                    <div
-                        class="progress-bar"
-                        id="progressBar"
-                    ></div>
-
-                </div>
-
-
-                <div class="question-card">
-
-
-                    <div
-                        class="question-category"
-                        id="questionCategory"
-                    >
-                        SENTINELS // ARCHIVE
-                    </div>
-
-
-                    <h2
-                        class="question"
-                        id="question"
-                    >
-                    </h2>
-
-
-                    <div
-                        class="answers"
-                        id="answers"
-                    ></div>
-
-
-                    <div
-                        class="feedback"
-                        id="feedback"
-                    ></div>
-
-
-                    <button
-                        class="next-button"
-                        id="nextButton"
-                    >
-
-                        NEXT QUESTION
-                        &nbsp; →
-
-                    </button>
-
-                </div>
-
-            </section>
-
-
-            <!-- RESULTS -->
-
-            <section
-                class="results-screen"
-                id="resultsScreen"
-            >
-
-                <div class="result-eyebrow">
-                    TEST COMPLETE
-                </div>
-
-
-                <div
-                    class="result-score"
-                    id="resultScore"
-                >
-                    0
-                    <span>/ 10</span>
-                </div>
-
-
-                <div
-                    class="result-rank"
-                    id="resultRank"
-                >
-                    UNKNOWN
-                </div>
-
-
-                <p
-                    class="result-message"
-                    id="resultMessage"
-                >
-                </p>
-
-
-                <div class="result-actions">
-
-
-                    <button
-                        class="restart-button"
-                        id="restartButton"
-                    >
-
-                        RETAKE TEST
-
-                    </button>
-
-
-                    <a
-                        href="index.html"
-                        class="home-button"
-                    >
-
-                        RETURN HOME
-
-                    </a>
-
-                </div>
-
-            </section>
-
-
-        </div>
-
-    </main>
-
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
-    <footer>
-
-        <div class="footer-logo">
-            SENTINELS
-        </div>
-
-
-        <p>
-            © 2026 SENTINELS • CREATED BY WANDILE SHAW
-        </p>
-
-    </footer>
-
-
-    <!-- =====================================================
-         QUIZ SYSTEM
-    ====================================================== -->
+    <!-- =========================
+         QUIZ LOGIC
+    ========================== -->
 
     <script>
 
         const questions = [
 
             {
-                category: "SENTINELS // TEAM",
-                question:
-                    "How many members make up the main Sentinels team?",
+                question: "How many members make up the main Sentinel team?",
                 answers: [
+                    "Two",
                     "Three",
                     "Four",
-                    "Five",
-                    "Six"
+                    "Five"
                 ],
-                correct: 1
+                correct: 2
             },
 
-
             {
-                category: "SENTINELS // WANDILE",
-                question:
-                    "Which colour is associated with Wandile's Sentinel?",
+                question: "Which colour identifies Wandile's Sentinel?",
                 answers: [
                     "Red",
-                    "Green",
                     "Blue",
+                    "Green",
                     "Pink"
                 ],
-                correct: 2
-            },
-
-
-            {
-                category: "SENTINELS // KYLA",
-                question:
-                    "What is Kyla's primary Sentinel ability?",
-                answers: [
-                    "Super strength",
-                    "Speed",
-                    "Energy blasts",
-                    "Teleportation"
-                ],
                 correct: 1
             },
 
-
             {
-                category: "SENTINELS // XAVIER",
-                question:
-                    "Which ability is most associated with Xavier's Sentinel?",
+                question: "What is Kyla's primary ability?",
                 answers: [
+                    "Strength",
                     "Flight",
                     "Speed",
-                    "Strength",
-                    "Invisibility"
+                    "Energy blasts"
                 ],
                 correct: 2
             },
 
-
             {
-                category: "SENTINELS // CEE",
-                question:
-                    "What allows Cee's Sentinel to fly?",
+                question: "What is Xavier primarily known for?",
                 answers: [
-                    "Energy propulsion",
-                    "Retractable wings",
-                    "Gravity control",
-                    "Teleportation"
-                ],
-                correct: 1
-            },
-
-
-            {
-                category: "SENTINELS // CEE",
-                question:
-                    "Where does Cee project her energy blasts from?",
-                answers: [
-                    "Her eyes",
-                    "Her chest",
-                    "Her hands",
-                    "Her wings"
-                ],
-                correct: 2
-            },
-
-
-            {
-                category: "SENTINELS // ALLIES",
-                question:
-                    "Which two characters are the wise aliens connected to the Sentinels?",
-                answers: [
-                    "Vaelor and Zyron",
-                    "Vorax and Zyron",
-                    "Vaelor and Vorax",
-                    "Xavier and Vaelor"
+                    "Strength and power",
+                    "Flight and speed",
+                    "Healing",
+                    "Energy shields"
                 ],
                 correct: 0
             },
 
+            {
+                question: "How does Cee achieve flight?",
+                answers: [
+                    "Energy propulsion",
+                    "Retractable wings",
+                    "Teleportation",
+                    "She cannot fly"
+                ],
+                correct: 1
+            },
 
             {
-                category: "SENTINELS // THREAT",
-                question:
-                    "Who wants the Sentinels?",
+                question: "Where does Cee project her energy blasts from?",
                 answers: [
-                    "Zyron",
+                    "Her eyes",
+                    "Her wings",
+                    "Her hands",
+                    "Her chest"
+                ],
+                correct: 2
+            },
+
+            {
+                question: "Who are the two wise aliens connected to the Sentinels?",
+                answers: [
+                    "Vaelor and Zyron",
+                    "Vorax and Vaelor",
+                    "Zyron and Vorax",
+                    "Kyla and Vaelor"
+                ],
+                correct: 0
+            },
+
+            {
+                question: "Who wants the Sentinels?",
+                answers: [
                     "Vaelor",
+                    "Zyron",
                     "Vorax",
                     "Xavier"
                 ],
                 correct: 2
             },
 
-
             {
-                category: "SENTINELS // ORIGIN",
-                question:
-                    "What best describes the beginning of the Sentinels story?",
+                question: "Which Sentinel develops speed and flight in addition to his strength?",
                 answers: [
-                    "Four ordinary people facing an extraordinary invasion",
-                    "A team that was already famous",
-                    "A competition between alien kingdoms",
-                    "A group of soldiers sent to another planet"
+                    "Xavier",
+                    "Wandile",
+                    "Cee",
+                    "Kyla"
                 ],
-                correct: 0
+                correct: 1
             },
 
-
             {
-                category: "SENTINELS // WANDILE",
-                question:
-                    "Which combination best describes Wandile's developing abilities?",
+                question: "Which combination correctly describes Cee?",
                 answers: [
-                    "Strength, speed and flight",
-                    "Invisibility, teleportation and healing",
-                    "Speed, mind control and fire",
-                    "Flight, ice and teleportation"
+                    "Speed, agility and rapid movement",
+                    "Strength, power and close combat",
+                    "Flight, retractable wings and hand energy blasts",
+                    "Strength, speed and energy shields"
                 ],
-                correct: 0
+                correct: 2
             }
 
         ];
 
 
         let currentQuestion = 0;
-
         let score = 0;
+        let answering = false;
 
 
         const startScreen =
-            document.getElementById("startScreen");
+            document.getElementById("quizStart");
 
-        const quizScreen =
-            document.getElementById("quizScreen");
+        const gameScreen =
+            document.getElementById("quizGame");
 
-        const resultsScreen =
-            document.getElementById("resultsScreen");
+        const resultScreen =
+            document.getElementById("quizResult");
 
         const startButton =
-            document.getElementById("startButton");
+            document.getElementById("startQuiz");
+
+        const restartButton =
+            document.getElementById("restartQuiz");
 
         const questionNumber =
             document.getElementById("questionNumber");
@@ -1798,47 +887,35 @@
             document.getElementById("scoreDisplay");
 
         const progressBar =
-            document.getElementById("progressBar");
+            document.getElementById("quizProgress");
 
-        const questionCategory =
-            document.getElementById("questionCategory");
+        const questionText =
+            document.getElementById("questionText");
 
-        const questionElement =
-            document.getElementById("question");
-
-        const answersElement =
+        const answersContainer =
             document.getElementById("answers");
 
         const feedback =
-            document.getElementById("feedback");
+            document.getElementById("answerFeedback");
 
-        const nextButton =
-            document.getElementById("nextButton");
+        const finalScore =
+            document.getElementById("finalScore");
 
-        const resultScore =
-            document.getElementById("resultScore");
+        const resultTitle =
+            document.getElementById("resultTitle");
 
-        const resultRank =
-            document.getElementById("resultRank");
-
-        const resultMessage =
-            document.getElementById("resultMessage");
-
-        const restartButton =
-            document.getElementById("restartButton");
+        const resultDescription =
+            document.getElementById("resultDescription");
 
 
         function startQuiz() {
 
             currentQuestion = 0;
-
             score = 0;
 
-            startScreen.style.display = "none";
-
-            resultsScreen.style.display = "none";
-
-            quizScreen.style.display = "block";
+            startScreen.hidden = true;
+            resultScreen.hidden = true;
+            gameScreen.hidden = false;
 
             loadQuestion();
 
@@ -1847,267 +924,196 @@
 
         function loadQuestion() {
 
-            const data =
+            answering = false;
+
+            const question =
                 questions[currentQuestion];
 
-
             questionNumber.textContent =
-                "QUESTION " +
-                String(currentQuestion + 1).padStart(2,"0") +
-                " / " +
-                questions.length;
-
+                `QUESTION ${String(currentQuestion + 1).padStart(2, "0")} / ${questions.length}`;
 
             scoreDisplay.textContent =
-                "SCORE: " +
-                String(score).padStart(2,"0");
-
+                `SCORE ${String(score).padStart(2, "0")}`;
 
             progressBar.style.width =
-                ((currentQuestion) / questions.length * 100) +
-                "%";
+                `${((currentQuestion + 1) / questions.length) * 100}%`;
 
-
-            questionCategory.textContent =
-                data.category;
-
-
-            questionElement.textContent =
-                data.question;
-
-
-            answersElement.innerHTML = "";
+            questionText.textContent =
+                question.question;
 
             feedback.textContent = "";
 
-            nextButton.style.display = "none";
+            answersContainer.innerHTML = "";
 
 
-            data.answers.forEach(
-                function(answer,index) {
+            question.answers.forEach((answer, index) => {
 
-                    const button =
-                        document.createElement("button");
+                const button =
+                    document.createElement("button");
 
-                    button.className = "answer";
+                button.type = "button";
 
+                button.className =
+                    "answer-button";
 
-                    const letter =
-                        document.createElement("span");
+                button.textContent =
+                    answer;
 
-                    letter.className =
-                        "answer-letter";
+                button.addEventListener(
+                    "click",
+                    () => selectAnswer(index, button)
+                );
 
-                    letter.textContent =
-                        String.fromCharCode(65 + index);
+                answersContainer.appendChild(button);
 
-
-                    button.appendChild(letter);
-
-                    button.appendChild(
-                        document.createTextNode(answer)
-                    );
-
-
-                    button.addEventListener(
-                        "click",
-                        function() {
-
-                            selectAnswer(
-                                index,
-                                button
-                            );
-
-                        }
-                    );
-
-
-                    answersElement.appendChild(button);
-
-                }
-            );
+            });
 
         }
 
 
-        function selectAnswer(
-            selected,
-            selectedButton
-        ) {
+        function selectAnswer(index, selectedButton) {
 
-            const data =
+            if (answering) {
+                return;
+            }
+
+            answering = true;
+
+            const question =
                 questions[currentQuestion];
 
-
             const buttons =
-                document.querySelectorAll(".answer");
+                answersContainer.querySelectorAll(
+                    ".answer-button"
+                );
 
 
-            buttons.forEach(
-                function(button) {
+            buttons.forEach((button, buttonIndex) => {
 
-                    button.classList.add("disabled");
+                button.disabled = true;
 
+                if (
+                    buttonIndex === question.correct
+                ) {
+                    button.classList.add("correct");
                 }
-            );
+
+            });
 
 
-            if (
-                selected === data.correct
-            ) {
+            if (index === question.correct) {
 
                 score++;
 
                 selectedButton.classList.add("correct");
 
                 feedback.textContent =
-                    "CORRECT. The archive confirms your answer.";
+                    "CORRECT // SENTINEL DATABASE VERIFIED.";
 
-            }
-
-            else {
+            } else {
 
                 selectedButton.classList.add("wrong");
 
-                buttons[data.correct]
-                    .classList.add("correct");
-
                 feedback.textContent =
-                    "INCORRECT. The correct answer has been revealed.";
+                    "INCORRECT // DATABASE ENTRY DOES NOT MATCH.";
 
             }
 
 
             scoreDisplay.textContent =
-                "SCORE: " +
-                String(score).padStart(2,"0");
+                `SCORE ${String(score).padStart(2, "0")}`;
 
 
-            progressBar.style.width =
-                ((currentQuestion + 1) /
-                questions.length * 100) +
-                "%";
-
-
-            nextButton.style.display =
-                "inline-block";
-
-        }
-
-
-        nextButton.addEventListener(
-            "click",
-            function() {
+            setTimeout(() => {
 
                 currentQuestion++;
 
-
                 if (
-                    currentQuestion >=
-                    questions.length
+                    currentQuestion >= questions.length
                 ) {
 
-                    showResults();
+                    finishQuiz();
 
-                }
-
-                else {
+                } else {
 
                     loadQuestion();
 
                 }
 
-            }
-        );
-
-
-        function showResults() {
-
-            quizScreen.style.display = "none";
-
-            resultsScreen.style.display = "block";
-
-
-            resultScore.innerHTML =
-                score +
-                ' <span>/ 10</span>';
-
-
-            let rank = "";
-
-            let message = "";
-
-
-            if (score === 10) {
-
-                rank =
-                    "SENTINEL";
-
-                message =
-                    "Perfect score. You don't just know the story — you know the universe.";
-
-            }
-
-            else if (score >= 8) {
-
-                rank =
-                    "FIELD OPERATIVE";
-
-                message =
-                    "Excellent work. You clearly know your way around the Sentinels universe.";
-
-            }
-
-            else if (score >= 6) {
-
-                rank =
-                    "RECRUIT";
-
-                message =
-                    "Not bad. You know the important pieces, but there is still more of the archive to uncover.";
-
-            }
-
-            else if (score >= 4) {
-
-                rank =
-                    "OBSERVER";
-
-                message =
-                    "You have seen the story, but you haven't been paying enough attention. Time for a re-read.";
-
-            }
-
-            else {
-
-                rank =
-                    "UNKNOWN";
-
-                message =
-                    "The Sentinels would like a word. Go back to the archive and study the universe.";
-
-            }
-
-
-            resultRank.textContent =
-                rank;
-
-            resultMessage.textContent =
-                message;
+            }, 850);
 
         }
 
 
-        restartButton.addEventListener(
-            "click",
-            function() {
+        function finishQuiz() {
 
-                resultsScreen.style.display = "none";
+            gameScreen.hidden = true;
+            resultScreen.hidden = false;
 
-                startScreen.style.display = "block";
+            finalScore.textContent =
+                score;
+
+            if (score === 10) {
+
+                resultTitle.textContent =
+                    "SENTINEL";
+
+                resultDescription.textContent =
+                    "Perfect score. You know the Sentinels inside and out.";
+
+            } else if (score >= 8) {
+
+                resultTitle.textContent =
+                    "FIELD OPERATIVE";
+
+                resultDescription.textContent =
+                    "You know the story well. Only a few details escaped you.";
+
+            } else if (score >= 6) {
+
+                resultTitle.textContent =
+                    "RECRUIT";
+
+                resultDescription.textContent =
+                    "You've got the basics. Time to study the archive a little closer.";
+
+            } else if (score >= 4) {
+
+                resultTitle.textContent =
+                    "OBSERVER";
+
+                resultDescription.textContent =
+                    "You've seen the story, but you haven't been paying enough attention.";
+
+            } else {
+
+                resultTitle.textContent =
+                    "UNKNOWN";
+
+                resultDescription.textContent =
+                    "The archive barely recognises you. Back to the files.";
 
             }
-        );
+
+            window.scrollTo({
+                top: document.querySelector(".quiz-section").offsetTop - 80,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        function restartQuiz() {
+
+            resultScreen.hidden = true;
+            startScreen.hidden = false;
+
+            window.scrollTo({
+                top: document.querySelector(".quiz-section").offsetTop - 80,
+                behavior: "smooth"
+            });
+
+        }
 
 
         startButton.addEventListener(
@@ -2115,9 +1121,15 @@
             startQuiz
         );
 
+        restartButton.addEventListener(
+            "click",
+            restartQuiz
+        );
+
     </script>
 
 
-</body>
+    <script src="script.js"></script>
 
+</body>
 </html>
