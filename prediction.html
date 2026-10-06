@@ -12,495 +12,1034 @@
 
     <meta
         name="description"
-        content="What do you think happens next in the Sentinels story?"
+        content="Make your predictions about the Sentinels universe."
     >
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --black: #020305;
+            --black-soft: #07090d;
+            --panel: #0c1016;
+            --panel-2: #11161d;
+
+            --white: #ffffff;
+            --silver: #d8dce2;
+            --grey: #969da8;
+            --dark-grey: #646b76;
+
+            --blue: #3e9cff;
+            --pink: #ff5fa8;
+            --red: #ff4d4d;
+            --green: #42e88a;
+
+            --border: rgba(255,255,255,.11);
+            --max-width: 1250px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--black);
+        }
+
+        body {
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+            color: var(--white);
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(44,68,105,.14),
+                    transparent 38%
+                ),
+                radial-gradient(
+                    circle at 12% 60%,
+                    rgba(25,76,120,.07),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 88% 75%,
+                    rgba(105,30,75,.06),
+                    transparent 30%
+                ),
+                #020305;
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* =====================================================
+           SPACE
+           ===================================================== */
+
+        .space {
+            position: fixed;
+            inset: 0;
+
+            z-index: -5;
+
+            overflow: hidden;
+
+            pointer-events: none;
+
+            background: #010204;
+        }
+
+        .space::before {
+            content: "";
+
+            position: absolute;
+            inset: -20%;
+
+            background-image:
+                radial-gradient(
+                    circle,
+                    rgba(255,255,255,.9) 0 1px,
+                    transparent 1.5px
+                ),
+                radial-gradient(
+                    circle,
+                    rgba(255,255,255,.55) 0 1px,
+                    transparent 1.5px
+                ),
+                radial-gradient(
+                    circle,
+                    rgba(160,200,255,.45) 0 1px,
+                    transparent 1.5px
+                );
+
+            background-size:
+                170px 170px,
+                290px 290px,
+                410px 410px;
+
+            background-position:
+                20px 30px,
+                90px 130px,
+                210px 80px;
+
+            opacity: .55;
+
+            animation:
+                starDrift 90s linear infinite;
+        }
+
+        .space::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 15% 18%,
+                    rgba(255,255,255,.8) 0 1px,
+                    transparent 1.5px
+                ),
+                radial-gradient(
+                    circle at 38% 72%,
+                    rgba(255,255,255,.75) 0 1px,
+                    transparent 1.5px
+                ),
+                radial-gradient(
+                    circle at 66% 24%,
+                    rgba(255,255,255,.8) 0 1px,
+                    transparent 1.5px
+                ),
+                radial-gradient(
+                    circle at 87% 65%,
+                    rgba(255,255,255,.7) 0 1px,
+                    transparent 1.5px
+                );
+
+            opacity: .75;
+        }
+
+        @keyframes starDrift {
+            from {
+                transform: translate3d(0,0,0);
+            }
+
+            to {
+                transform: translate3d(-100px,70px,0);
+            }
+        }
+
+        .orb {
+            position: absolute;
+
+            width: 18px;
+            height: 18px;
+
+            border-radius: 50%;
+
+            opacity: .7;
+
+            animation:
+                floatOrb 7s ease-in-out infinite alternate,
+                pulseOrb 3s ease-in-out infinite alternate;
+        }
+
+        .orb.blue {
+            top: 19%;
+            left: 9%;
+
+            background:
+                radial-gradient(
+                    circle at 35% 30%,
+                    #e0f3ff,
+                    var(--blue) 40%,
+                    #164e99
+                );
+
+            box-shadow:
+                0 0 12px rgba(62,156,255,.85),
+                0 0 35px rgba(62,156,255,.3);
+        }
+
+        .orb.pink {
+            top: 63%;
+            right: 10%;
+
+            background:
+                radial-gradient(
+                    circle at 35% 30%,
+                    #ffe4ef,
+                    var(--pink) 40%,
+                    #9a275e
+                );
+
+            box-shadow:
+                0 0 12px rgba(255,95,168,.8),
+                0 0 35px rgba(255,95,168,.25);
+        }
+
+        .orb.green {
+            bottom: 12%;
+            left: 18%;
+
+            background:
+                radial-gradient(
+                    circle at 35% 30%,
+                    #e4ffef,
+                    var(--green) 40%,
+                    #168448
+                );
+
+            box-shadow:
+                0 0 12px rgba(66,232,138,.8),
+                0 0 35px rgba(66,232,138,.25);
+        }
+
+        @keyframes floatOrb {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-25px);
+            }
+        }
+
+        @keyframes pulseOrb {
+            from {
+                opacity: .35;
+            }
+
+            to {
+                opacity: .9;
+            }
+        }
+
+        .asteroid {
+            position: absolute;
+
+            width: 45px;
+            height: 35px;
+
+            border-radius:
+                44% 56% 52% 43% /
+                54% 43% 57% 46%;
+
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    #858c97 0 7%,
+                    transparent 8%
+                ),
+                radial-gradient(
+                    circle at 68% 62%,
+                    #343a43 0 10%,
+                    transparent 11%
+                ),
+                linear-gradient(
+                    135deg,
+                    #6c747f,
+                    #20252c
+                );
+
+            box-shadow:
+                inset -8px -8px 12px rgba(0,0,0,.75),
+                0 0 18px rgba(255,255,255,.04);
+
+            opacity: .62;
+
+            animation: asteroidFloat 18s ease-in-out infinite alternate;
+        }
+
+        .asteroid.one {
+            top: 27%;
+            right: 8%;
+        }
+
+        .asteroid.two {
+            top: 72%;
+            left: 6%;
+
+            transform: scale(.65);
+        }
+
+        .asteroid.three {
+            top: 48%;
+            right: 23%;
+
+            transform: scale(.45);
+        }
+
+        @keyframes asteroidFloat {
+            from {
+                transform:
+                    translate3d(0,0,0)
+                    rotate(0deg);
+            }
+
+            to {
+                transform:
+                    translate3d(30px,-22px,0)
+                    rotate(140deg);
+            }
+        }
+
+        /* =====================================================
+           HEADER
+           ===================================================== */
+
+        .site-header {
+            position: sticky;
+            top: 0;
+
+            z-index: 50;
+
+            width: 100%;
+
+            padding: 14px 22px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(2,3,5,.95),
+                    rgba(2,3,5,.78)
+                );
+
+            border-bottom:
+                1px solid rgba(255,255,255,.08);
+
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .header-inner {
+            max-width: var(--max-width);
+
+            margin: 0 auto;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .brand img {
+            display: block;
+
+            width: 125px;
+            height: auto;
+        }
+
+        .main-nav {
+            display: flex;
+
+            align-items: center;
+
+            gap: 23px;
+        }
+
+        .main-nav a {
+            position: relative;
+
+            color: #aeb4be;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: .13em;
+
+            text-transform: uppercase;
+
+            transition:
+                color .25s ease;
+        }
+
+        .main-nav a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: -7px;
+
+            height: 1px;
+
+            background: white;
+
+            transform:
+                scaleX(0);
+
+            transition:
+                transform .25s ease;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: white;
+        }
+
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            transform: scaleX(1);
+        }
+
+        .menu-toggle {
+            display: none;
+
+            width: 42px;
+            height: 42px;
+
+            border:
+                1px solid rgba(255,255,255,.13);
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.05);
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+        /* =====================================================
+           MAIN
+           ===================================================== */
+
+        main {
+            position: relative;
+
+            z-index: 1;
+        }
+
+        .page {
+            width:
+                min(
+                    calc(100% - 40px),
+                    var(--max-width)
+                );
+
+            margin: 0 auto;
+
+            padding:
+                100px 0
+                130px;
+        }
+
+        .hero {
+            max-width: 900px;
+
+            margin: 0 auto 80px;
+
+            text-align: center;
+        }
+
+        .kicker {
+            display: block;
+
+            margin-bottom: 15px;
+
+            color: #777f8b;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: .28em;
+
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size:
+                clamp(
+                    46px,
+                    8vw,
+                    88px
+                );
+
+            line-height: .88;
+
+            font-weight: 950;
+
+            letter-spacing: -.055em;
+
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: #9ba2ad;
+        }
+
+        .hero p {
+            max-width: 650px;
+
+            margin: 27px auto 0;
+
+            color: #9299a5;
+
+            font-size: 15px;
+        }
+
+        /* =====================================================
+           PREDICTION QUESTIONS
+           ===================================================== */
+
+        .prediction-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 18px;
+
+            margin-bottom: 90px;
+        }
+
+        .prediction-card {
+            position: relative;
+
+            padding: 34px;
+
+            min-height: 235px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #11161d,
+                    #07090d
+                );
+
+            border:
+                1px solid rgba(255,255,255,.10);
+
+            box-shadow:
+                0 20px 55px rgba(0,0,0,.5);
+
+            transition:
+                transform .3s ease,
+                border-color .3s ease;
+        }
+
+        .prediction-card:hover {
+            transform: translateY(-6px);
+
+            border-color:
+                rgba(255,255,255,.22);
+        }
+
+        .prediction-number {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            width: 32px;
+            height: 32px;
+
+            margin-bottom: 20px;
+
+            border:
+                1px solid rgba(255,255,255,.14);
+
+            border-radius: 50%;
+
+            color: #9299a5;
+
+            font-size: 10px;
+            font-weight: 900;
+        }
+
+        .prediction-card h2 {
+            font-size: 23px;
+
+            line-height: 1.15;
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+        }
+
+        .prediction-card p {
+            margin-top: 12px;
+
+            color: #858d98;
+
+            font-size: 13px;
+        }
+
+        /* =====================================================
+           MAKE YOUR OWN PREDICTION
+           ===================================================== */
+
+        .submit-section {
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            padding: 48px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #11161d,
+                    #07090d
+                );
+
+            border:
+                1px solid rgba(255,255,255,.11);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,.58);
+        }
+
+        .submit-heading {
+            margin-bottom: 32px;
+
+            text-align: center;
+        }
+
+        .submit-heading h2 {
+            font-size:
+                clamp(30px, 5vw, 48px);
+
+            line-height: .95;
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+        }
+
+        .submit-heading p {
+            margin-top: 12px;
+
+            color: #858d98;
+
+            font-size: 13px;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .field label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #9299a5;
+
+            font-size: 9px;
+            font-weight: 900;
+
+            letter-spacing: .16em;
+
+            text-transform: uppercase;
+        }
+
+        .field input,
+        .field textarea {
+            width: 100%;
+
+            padding: 14px 15px;
+
+            border:
+                1px solid rgba(255,255,255,.11);
+
+            outline: none;
+
+            background:
+                rgba(255,255,255,.035);
+
+            color: white;
+
+            border-radius: 0;
+
+            transition:
+                border-color .25s ease,
+                background .25s ease;
+        }
+
+        .field textarea {
+            min-height: 145px;
+
+            resize: vertical;
+        }
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: #555d68;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+            border-color:
+                rgba(255,255,255,.35);
+
+            background:
+                rgba(255,255,255,.055);
+        }
+
+        .submit-button {
+            width: 100%;
+
+            padding: 16px 20px;
+
+            border:
+                1px solid rgba(255,255,255,.2);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(255,255,255,.12),
+                    rgba(255,255,255,.05)
+                );
+
+            color: white;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: .17em;
+
+            text-transform: uppercase;
+
+            cursor: pointer;
+
+            transition:
+                background .25s ease,
+                transform .25s ease,
+                border-color .25s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+
+            background:
+                rgba(255,255,255,.13);
+
+            border-color:
+                rgba(255,255,255,.4);
+        }
+
+        .form-note {
+            margin-top: 13px;
+
+            color: #5e6671;
+
+            font-size: 10px;
+
+            text-align: center;
+        }
+
+        /* =====================================================
+           SUCCESS MESSAGE
+           ===================================================== */
+
+        .success-message {
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            border:
+                1px solid rgba(66,232,138,.25);
+
+            background:
+                rgba(66,232,138,.05);
+
+            color: #a7eac2;
+
+            font-size: 12px;
+
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        footer {
+            padding:
+                45px 20px;
+
+            border-top:
+                1px solid rgba(255,255,255,.08);
+
+            background:
+                rgba(2,3,5,.75);
+
+            text-align: center;
+        }
+
+        footer p {
+            color: #626a75;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: .12em;
+        }
+
+        /* =====================================================
+           MOBILE
+           ===================================================== */
+
+        @media (max-width: 800px) {
+
+            .site-header {
+                padding:
+                    13px 16px;
+            }
+
+            .brand img {
+                width: 108px;
+            }
+
+            .menu-toggle {
+                display: flex;
+
+                align-items: center;
+                justify-content: center;
+            }
+
+            .main-nav {
+                position: absolute;
+
+                top: 100%;
+                left: 0;
+                right: 0;
+
+                display: none;
+
+                flex-direction: column;
+                align-items: stretch;
+
+                gap: 0;
+
+                padding:
+                    8px 16px 18px;
+
+                background:
+                    rgba(3,4,6,.97);
+
+                border-bottom:
+                    1px solid rgba(255,255,255,.09);
+
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+            }
+
+            .main-nav.open {
+                display: flex;
+            }
+
+            .main-nav a {
+                padding:
+                    15px 5px;
+
+                border-bottom:
+                    1px solid rgba(255,255,255,.06);
+            }
+
+            .main-nav a::after {
+                display: none;
+            }
+
+            .page {
+                width:
+                    calc(100% - 28px);
+
+                padding:
+                    75px 0
+                    90px;
+            }
+
+            .hero {
+                margin-bottom: 55px;
+            }
+
+            .hero h1 {
+                font-size:
+                    clamp(
+                        45px,
+                        15vw,
+                        70px
+                    );
+            }
+
+            .prediction-grid {
+                grid-template-columns: 1fr;
+
+                gap: 14px;
+
+                margin-bottom: 60px;
+            }
+
+            .prediction-card {
+                min-height: 205px;
+
+                padding: 27px;
+            }
+
+            .submit-section {
+                padding:
+                    32px 22px;
+            }
+
+            .asteroid {
+                opacity: .4;
+            }
+
+            .orb {
+                opacity: .5;
+            }
+        }
+
+        @media (max-width: 430px) {
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .prediction-card h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
+    <!-- =====================================================
+         SPACE
+         ===================================================== -->
+
+    <div class="space" aria-hidden="true">
+
+        <div class="orb blue"></div>
+        <div class="orb pink"></div>
+        <div class="orb green"></div>
+
+        <div class="asteroid one"></div>
+        <div class="asteroid two"></div>
+        <div class="asteroid three"></div>
+
+    </div>
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
 
     <header class="site-header">
 
-        <a href="index.html" class="brand">
-            <span class="brand-main">SENTINELS</span>
-            <span class="brand-sub">OFFICIAL ARCHIVE</span>
-        </a>
-
-        <button
-            class="menu-toggle"
-            type="button"
-            aria-label="Open navigation"
-            aria-expanded="false"
-        >
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-        <nav class="main-nav" aria-label="Main navigation">
-
-            <a href="index.html">
-                HOME
-            </a>
-
-            <a href="archive.html">
-                VOLUMES
-            </a>
-
-            <a href="sentinels.html">
-                CHARACTERS
-            </a>
-
-            <a href="quiz.html">
-                QUIZ
-            </a>
+        <div class="header-inner">
 
             <a
-                href="predictions.html"
-                class="active"
-                aria-current="page"
+                href="index.html"
+                class="brand"
+                aria-label="Sentinels Home"
             >
-                PREDICTIONS
+                <img
+                    src="Logo final.jpeg"
+                    alt="Sentinels"
+                >
             </a>
-
-            <a href="hub.html">
-                HUB
-            </a>
-
-            <a href="about.html">
-                ABOUT
-            </a>
-
-        </nav>
-
-    </header>
-
-
-    <!-- =========================
-         MAIN
-    ========================== -->
-
-    <main>
-
-        <!-- HERO -->
-
-        <section class="page-hero predictions-hero">
-
-            <div class="page-hero-inner">
-
-                <p class="eyebrow">
-                    SENTINELS // THEORY BOARD
-                </p>
-
-                <h1>
-                    WHAT HAPPENS NEXT?
-                </h1>
-
-                <p class="page-hero-description">
-                    The story isn't finished.
-                    Until the next volume arrives,
-                    make your prediction.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- PREDICTION SECTION -->
-
-        <section class="section predictions-section">
-
-            <div class="prediction-intro">
-
-                <p class="eyebrow">
-                    YOUR THEORY
-                </p>
-
-                <h2>
-                    PICK A FUTURE.
-                </h2>
-
-                <p>
-                    There are no wrong answers here.
-                    Choose the outcome you think is most likely
-                    based on what you've seen so far.
-                </p>
-
-            </div>
-
-
-            <div
-                class="prediction-grid"
-                id="predictionGrid"
-            >
-
-                <!-- =====================
-                     OPTION 01
-                ====================== -->
-
-                <button
-                    type="button"
-                    class="prediction-card"
-                    data-prediction="stay"
-                >
-
-                    <span class="prediction-number">
-                        01
-                    </span>
-
-                    <span class="prediction-content">
-
-                        <span class="prediction-title">
-                            THE SENTINELS
-                            STAY ON EARTH
-                        </span>
-
-                        <span class="prediction-description">
-                            The team remains on Earth and
-                            continues protecting it as the threat grows.
-                        </span>
-
-                    </span>
-
-                    <span class="prediction-arrow">
-                        →
-                    </span>
-
-                </button>
-
-
-                <!-- =====================
-                     OPTION 02
-                ====================== -->
-
-                <button
-                    type="button"
-                    class="prediction-card"
-                    data-prediction="leave"
-                >
-
-                    <span class="prediction-number">
-                        02
-                    </span>
-
-                    <span class="prediction-content">
-
-                        <span class="prediction-title">
-                            THEY LEAVE EARTH
-                        </span>
-
-                        <span class="prediction-description">
-                            The Sentinels eventually leave Earth
-                            to discover where their powers came from.
-                        </span>
-
-                    </span>
-
-                    <span class="prediction-arrow">
-                        →
-                    </span>
-
-                </button>
-
-
-                <!-- =====================
-                     OPTION 03
-                ====================== -->
-
-                <button
-                    type="button"
-                    class="prediction-card"
-                    data-prediction="vorax"
-                >
-
-                    <span class="prediction-number">
-                        03
-                    </span>
-
-                    <span class="prediction-content">
-
-                        <span class="prediction-title">
-                            VORAX WINS
-                        </span>
-
-                        <span class="prediction-description">
-                            The unknown threat becomes too powerful,
-                            and Vorax gets what he wants.
-                        </span>
-
-                    </span>
-
-                    <span class="prediction-arrow">
-                        →
-                    </span>
-
-                </button>
-
-
-                <!-- =====================
-                     OPTION 04
-                ====================== -->
-
-                <button
-                    type="button"
-                    class="prediction-card"
-                    data-prediction="split"
-                >
-
-                    <span class="prediction-number">
-                        04
-                    </span>
-
-                    <span class="prediction-content">
-
-                        <span class="prediction-title">
-                            THE SENTINELS
-                            SPLIT UP
-                        </span>
-
-                        <span class="prediction-description">
-                            Something forces the four Sentinels
-                            to go their separate ways.
-                        </span>
-
-                    </span>
-
-                    <span class="prediction-arrow">
-                        →
-                    </span>
-
-                </button>
-
-            </div>
-
-
-            <!-- =========================
-                 SELECTION RESULT
-            ========================== -->
-
-            <div
-                id="predictionResult"
-                class="prediction-result"
-                hidden
-            >
-
-                <div class="prediction-result-mark">
-                    ✓
-                </div>
-
-                <div>
-
-                    <p class="eyebrow">
-                        PREDICTION RECORDED
-                    </p>
-
-                    <h3 id="selectedPrediction">
-                        YOUR THEORY
-                    </h3>
-
-                    <p>
-                        Your prediction is stored on this device.
-                        Change your mind anytime by selecting
-                        another theory.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- =========================
-                 RESET
-            ========================== -->
 
             <button
+                class="menu-toggle"
+                id="menuToggle"
                 type="button"
-                id="clearPrediction"
-                class="clear-prediction"
-                hidden
+                aria-label="Open navigation"
+                aria-expanded="false"
             >
-                CLEAR MY PREDICTION
+                ☰
             </button>
 
-        </section>
-
-
-        <!-- =========================
-             THEORY NOTE
-        ========================== -->
-
-        <section class="section theory-section">
-
-            <div class="theory-box">
-
-                <div class="theory-mark">
-                    ?
-                </div>
-
-                <div>
-
-                    <p class="eyebrow">
-                        ARCHIVE THEORY BOARD
-                    </p>
-
-                    <h2>
-                        NOTHING IS CONFIRMED.
-                    </h2>
-
-                    <p>
-                        These are predictions, not canon.
-                        The actual story will decide what happens next.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             EXPLORE
-        ========================== -->
-
-        <section class="section predictions-explore">
-
-            <div class="section-heading">
-
-                <div>
-
-                    <p class="eyebrow">
-                        CONTINUE EXPLORING
-                    </p>
-
-                    <h2>
-                        BACK TO THE ARCHIVE.
-                    </h2>
-
-                </div>
-
-            </div>
-
-
-            <div class="explore-grid">
-
-                <a
-                    href="archive.html"
-                    class="explore-card"
-                >
-
-                    <span class="explore-index">
-                        01
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            VOLUMES
-                        </h3>
-
-                        <p>
-                            Read the story and look for clues.
-                        </p>
-
-                    </div>
-
-                    <span class="explore-arrow">
-                        →
-                    </span>
-
-                </a>
-
-
-                <a
-                    href="quiz.html"
-                    class="explore-card"
-                >
-
-                    <span class="explore-index">
-                        02
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            QUIZ
-                        </h3>
-
-                        <p>
-                            Test your Sentinels knowledge.
-                        </p>
-
-                    </div>
-
-                    <span class="explore-arrow">
-                        →
-                    </span>
-
-                </a>
-
-
-                <a
-                    href="sentinels.html"
-                    class="explore-card"
-                >
-
-                    <span class="explore-index">
-                        03
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            CHARACTERS
-                        </h3>
-
-                        <p>
-                            Review the Sentinel personnel files.
-                        </p>
-
-                    </div>
-
-                    <span class="explore-arrow">
-                        →
-                    </span>
-
-                </a>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer class="site-footer">
-
-        <div class="footer-inner">
-
-            <div>
-
-                <div class="footer-brand">
-                    SENTINELS
-                </div>
-
-                <p>
-                    The official archive.
-                </p>
-
-            </div>
-
-            <div class="footer-links">
+            <nav
+                class="main-nav"
+                id="mainNav"
+                aria-label="Main navigation"
+            >
 
                 <a href="index.html">
                     HOME
@@ -510,7 +1049,7 @@
                     VOLUMES
                 </a>
 
-                <a href="sentinels.html">
+                <a href="characters.html">
                     CHARACTERS
                 </a>
 
@@ -518,7 +1057,10 @@
                     QUIZ
                 </a>
 
-                <a href="predictions.html">
+                <a
+                    href="predictions.html"
+                    class="active"
+                >
                     PREDICTIONS
                 </a>
 
@@ -530,422 +1072,367 @@
                     ABOUT
                 </a>
 
-            </div>
+            </nav>
 
         </div>
 
-        <div class="footer-bottom">
+    </header>
 
-            <span>
-                © <span data-current-year>2026</span> SENTINELS
-            </span>
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
 
-            <span>
-                CREATED BY WANDILE SHAW
-            </span>
+    <main>
+
+        <div class="page">
+
+            <!-- HERO -->
+
+            <section class="hero">
+
+                <span class="kicker">
+                    SENTINELS — COMMUNITY
+                </span>
+
+                <h1>
+                    WHAT DO YOU
+                    <span>THINK HAPPENS NEXT?</span>
+                </h1>
+
+                <p>
+                    The story has only begun.
+                    Make your prediction, build your theory,
+                    and see how close you are to what comes next.
+                </p>
+
+            </section>
+
+            <!-- PREDICTION QUESTIONS -->
+
+            <section
+                class="prediction-grid"
+                aria-label="Prediction prompts"
+            >
+
+                <article class="prediction-card">
+
+                    <span class="prediction-number">
+                        01
+                    </span>
+
+                    <h2>
+                        Who is the Fourth?
+                    </h2>
+
+                    <p>
+                        The Sentinels were four.
+                        But what do you think the truth behind
+                        the fourth member really is?
+                    </p>
+
+                </article>
+
+                <article class="prediction-card">
+
+                    <span class="prediction-number">
+                        02
+                    </span>
+
+                    <h2>
+                        What does Vorax want?
+                    </h2>
+
+                    <p>
+                        Vorax is searching for the Sentinels.
+                        But what do you think his real objective is?
+                    </p>
+
+                </article>
+
+                <article class="prediction-card">
+
+                    <span class="prediction-number">
+                        03
+                    </span>
+
+                    <h2>
+                        Will the team stay together?
+                    </h2>
+
+                    <p>
+                        Four people. Four powers.
+                        One mission. Do you think something will
+                        eventually split the team apart?
+                    </p>
+
+                </article>
+
+                <article class="prediction-card">
+
+                    <span class="prediction-number">
+                        04
+                    </span>
+
+                    <h2>
+                        Who will unlock more power?
+                    </h2>
+
+                    <p>
+                        The Sentinels are still discovering
+                        what they can do. Who do you think
+                        will surprise everyone next?
+                    </p>
+
+                </article>
+
+            </section>
+
+            <!-- USER SUBMISSION -->
+
+            <section class="submit-section">
+
+                <div class="submit-heading">
+
+                    <span class="kicker">
+                        YOUR THEORY
+                    </span>
+
+                    <h2>
+                        MAKE YOUR PREDICTION
+                    </h2>
+
+                    <p>
+                        Think you've figured something out?
+                        Put it on record.
+                    </p>
+
+                </div>
+
+                <form id="predictionForm">
+
+                    <div class="field">
+
+                        <label for="predictionName">
+                            Your Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="predictionName"
+                            name="name"
+                            placeholder="Enter your name"
+                            maxlength="60"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="field">
+
+                        <label for="predictionText">
+                            Your Prediction
+                        </label>
+
+                        <textarea
+                            id="predictionText"
+                            name="prediction"
+                            placeholder="What do you think happens next?"
+                            maxlength="1000"
+                            required
+                        ></textarea>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                    >
+                        SUBMIT PREDICTION →
+                    </button>
+
+                    <p class="form-note">
+                        Predictions are fan theories and do not
+                        automatically become Sentinels canon.
+                    </p>
+
+                    <div
+                        class="success-message"
+                        id="successMessage"
+                        role="status"
+                    >
+                        Prediction recorded locally. 🔮
+                        Your theory is on the board for this device.
+                    </div>
+
+                </form>
+
+            </section>
 
         </div>
+
+    </main>
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        <p>
+            SENTINELS ©
+            <span id="currentYear"></span>
+            — THE STORY CONTINUES.
+        </p>
 
     </footer>
 
-
-    <!-- =========================
-         PAGE STYLES
-    ========================== -->
-
-    <style>
-
-        .predictions-hero {
-            min-height: 54vh;
-        }
-
-        .predictions-section {
-            padding-top: 90px;
-        }
-
-        .prediction-intro {
-            max-width: 700px;
-            margin-bottom: 45px;
-        }
-
-        .prediction-intro h2 {
-            margin: 7px 0 16px;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            line-height: 0.95;
-            letter-spacing: -0.055em;
-        }
-
-        .prediction-intro p:last-child {
-            max-width: 600px;
-            margin: 0;
-            color: rgba(255,255,255,0.56);
-            line-height: 1.75;
-        }
-
-        .prediction-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
-        }
-
-        .prediction-card {
-            position: relative;
-            display: grid;
-            grid-template-columns: 55px 1fr 25px;
-            align-items: center;
-            gap: 20px;
-            min-height: 190px;
-            padding: 30px;
-            overflow: hidden;
-            border: 1px solid rgba(215,220,228,0.15);
-            background: #05070a;
-            color: white;
-            text-align: left;
-            cursor: pointer;
-            font: inherit;
-            transition:
-                transform 0.3s ease,
-                border-color 0.3s ease,
-                background 0.3s ease;
-        }
-
-        .prediction-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background:
-                linear-gradient(
-                    120deg,
-                    rgba(255,255,255,0.045),
-                    transparent 55%
-                );
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .prediction-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255,255,255,0.34);
-            background: #07090c;
-        }
-
-        .prediction-card:hover::before {
-            opacity: 1;
-        }
-
-        .prediction-card.selected {
-            border-color: rgba(255,255,255,0.62);
-            background: #090c10;
-            box-shadow:
-                0 20px 60px rgba(0,0,0,0.4);
-        }
-
-        .prediction-number,
-        .prediction-content,
-        .prediction-arrow {
-            position: relative;
-            z-index: 1;
-        }
-
-        .prediction-number {
-            align-self: start;
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            color: rgba(255,255,255,0.35);
-        }
-
-        .prediction-content {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .prediction-title {
-            max-width: 400px;
-            font-size: clamp(1.2rem, 2.7vw, 2rem);
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: -0.025em;
-        }
-
-        .prediction-description {
-            max-width: 460px;
-            color: rgba(255,255,255,0.48);
-            font-size: 0.84rem;
-            line-height: 1.6;
-        }
-
-        .prediction-arrow {
-            align-self: center;
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.38);
-            transition:
-                transform 0.25s ease,
-                color 0.25s ease;
-        }
-
-        .prediction-card:hover .prediction-arrow,
-        .prediction-card.selected .prediction-arrow {
-            transform: translateX(4px);
-            color: rgba(255,255,255,0.8);
-        }
-
-        .prediction-result {
-            display: grid;
-            grid-template-columns: 64px 1fr;
-            align-items: center;
-            gap: 24px;
-            margin-top: 35px;
-            padding: 28px;
-            border: 1px solid rgba(255,255,255,0.15);
-            background: #040609;
-        }
-
-        .prediction-result[hidden] {
-            display: none;
-        }
-
-        .prediction-result-mark {
-            display: grid;
-            place-items: center;
-            width: 58px;
-            height: 58px;
-            border: 1px solid rgba(255,255,255,0.25);
-            color: rgba(255,255,255,0.7);
-            font-size: 1.3rem;
-        }
-
-        .prediction-result h3 {
-            margin: 5px 0 8px;
-            font-size: clamp(1.4rem, 3vw, 2.2rem);
-            letter-spacing: -0.035em;
-        }
-
-        .prediction-result p:last-child {
-            margin: 0;
-            color: rgba(255,255,255,0.45);
-            font-size: 0.82rem;
-            line-height: 1.6;
-        }
-
-        .clear-prediction {
-            margin-top: 18px;
-            padding: 0;
-            border: 0;
-            background: transparent;
-            color: rgba(255,255,255,0.35);
-            font: inherit;
-            font-size: 0.62rem;
-            letter-spacing: 0.15em;
-            cursor: pointer;
-        }
-
-        .clear-prediction:hover {
-            color: rgba(255,255,255,0.7);
-        }
-
-        .theory-section {
-            padding-top: 80px;
-        }
-
-        .theory-box {
-            display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: 28px;
-            align-items: center;
-            padding: 40px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: #040609;
-        }
-
-        .theory-mark {
-            display: grid;
-            place-items: center;
-            width: 62px;
-            height: 62px;
-            border: 1px solid rgba(255,255,255,0.2);
-            font-size: 1.5rem;
-            color: rgba(255,255,255,0.55);
-        }
-
-        .theory-box h2 {
-            margin: 5px 0 12px;
-            font-size: clamp(1.7rem, 4vw, 2.8rem);
-            letter-spacing: -0.04em;
-        }
-
-        .theory-box p:last-child {
-            max-width: 650px;
-            margin: 0;
-            color: rgba(255,255,255,0.5);
-            line-height: 1.7;
-        }
-
-        .predictions-explore {
-            padding-top: 80px;
-        }
-
-        @media (max-width: 760px) {
-
-            .predictions-hero {
-                min-height: 46vh;
-            }
-
-            .predictions-section {
-                padding-top: 65px;
-            }
-
-            .prediction-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .prediction-card {
-                grid-template-columns: 38px 1fr 20px;
-                min-height: 165px;
-                padding: 24px;
-                gap: 15px;
-            }
-
-            .prediction-title {
-                font-size: 1.3rem;
-            }
-
-            .prediction-description {
-                font-size: 0.78rem;
-            }
-
-            .prediction-result {
-                grid-template-columns: 1fr;
-                padding: 25px;
-            }
-
-            .theory-box {
-                grid-template-columns: 1fr;
-                padding: 28px;
-            }
-
-        }
-
-    </style>
-
-
-    <!-- =========================
-         PREDICTION LOGIC
-    ========================== -->
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
 
     <script>
 
-        const predictionCards =
-            document.querySelectorAll(".prediction-card");
+        /* =====================================================
+           MOBILE MENU
+           ===================================================== */
 
-        const predictionResult =
-            document.getElementById("predictionResult");
+        const menuToggle =
+            document.getElementById("menuToggle");
 
-        const selectedPrediction =
-            document.getElementById("selectedPrediction");
+        const mainNav =
+            document.getElementById("mainNav");
 
-        const clearPrediction =
-            document.getElementById("clearPrediction");
+        if (menuToggle && mainNav) {
 
-
-        const predictionNames = {
-
-            stay:
-                "THE SENTINELS STAY ON EARTH",
-
-            leave:
-                "THEY LEAVE EARTH",
-
-            vorax:
-                "VORAX WINS",
-
-            split:
-                "THE SENTINELS SPLIT UP"
-
-        };
-
-
-        function selectPrediction(value) {
-
-            predictionCards.forEach(card => {
-
-                card.classList.toggle(
-                    "selected",
-                    card.dataset.prediction === value
-                );
-
-            });
-
-
-            selectedPrediction.textContent =
-                predictionNames[value];
-
-
-            predictionResult.hidden = false;
-            clearPrediction.hidden = false;
-
-
-            localStorage.setItem(
-                "sentinelsPrediction",
-                value
-            );
-
-        }
-
-
-        predictionCards.forEach(card => {
-
-            card.addEventListener(
+            menuToggle.addEventListener(
                 "click",
                 () => {
-                    selectPrediction(
-                        card.dataset.prediction
+
+                    const open =
+                        mainNav.classList.toggle("open");
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        String(open)
                     );
+
                 }
             );
 
-        });
+            mainNav
+                .querySelectorAll("a")
+                .forEach(link => {
 
+                    link.addEventListener(
+                        "click",
+                        () => {
 
-        clearPrediction.addEventListener(
-            "click",
-            () => {
+                            mainNav.classList.remove("open");
 
-                localStorage.removeItem(
-                    "sentinelsPrediction"
-                );
+                            menuToggle.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
 
-                predictionCards.forEach(card => {
-                    card.classList.remove("selected");
+                        }
+                    );
+
                 });
 
-                predictionResult.hidden = true;
-                clearPrediction.hidden = true;
+        }
 
-            }
-        );
+        /* =====================================================
+           CURRENT YEAR
+           ===================================================== */
 
+        const currentYear =
+            document.getElementById("currentYear");
 
-        const savedPrediction =
-            localStorage.getItem(
-                "sentinelsPrediction"
-            );
+        if (currentYear) {
+            currentYear.textContent =
+                new Date().getFullYear();
+        }
 
+        /* =====================================================
+           LOCAL PREDICTION SAVE
+           ===================================================== */
 
-        if (savedPrediction &&
-            predictionNames[savedPrediction]) {
+        const predictionForm =
+            document.getElementById("predictionForm");
 
-            selectPrediction(
-                savedPrediction
+        const successMessage =
+            document.getElementById("successMessage");
+
+        if (predictionForm) {
+
+            predictionForm.addEventListener(
+                "submit",
+                event => {
+
+                    event.preventDefault();
+
+                    const name =
+                        document
+                            .getElementById("predictionName")
+                            .value
+                            .trim();
+
+                    const prediction =
+                        document
+                            .getElementById("predictionText")
+                            .value
+                            .trim();
+
+                    if (!name || !prediction) {
+                        return;
+                    }
+
+                    const existing =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "sentinelsPredictions"
+                            ) || "[]"
+                        );
+
+                    existing.push({
+                        name,
+                        prediction,
+                        date:
+                            new Date().toISOString()
+                    });
+
+                    localStorage.setItem(
+                        "sentinelsPredictions",
+                        JSON.stringify(existing)
+                    );
+
+                    predictionForm.reset();
+
+                    if (successMessage) {
+
+                        successMessage.classList.add(
+                            "show"
+                        );
+
+                        setTimeout(
+                            () => {
+
+                                successMessage.classList.remove(
+                                    "show"
+                                );
+
+                            },
+                            5000
+                        );
+
+                    }
+
+                }
             );
 
         }
 
     </script>
-
-
-    <script src="script.js"></script>
 
 </body>
 </html>
