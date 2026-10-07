@@ -84,3 +84,29 @@ a.vol:hover{transform:translateY(-4px)}
 .about{max-width:680px;margin:50px auto;text-align:center}
 .about p{color:#c5c9d0;margin-bottom:20px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---- quiz + prediction ---- */
+.panel{max-width:720px;margin:30px auto;padding:34px;border:1px solid var(--line);border-radius:16px;background:rgba(10,13,19,.85);text-align:center}
+.panel h2{letter-spacing:.14em;margin-bottom:10px}
+.panel p{color:#aab0ba;margin-bottom:22px}
+.panel[hidden]{display:none}
+.top2{display:flex;justify-content:space-between;color:var(--g);font-size:.78rem;letter-spacing:.14em;margin-bottom:10px}
+.prog{height:5px;background:#1a1f28;border-radius:4px;overflow:hidden;margin-bottom:26px}
+.prog i{display:block;height:100%;width:0;background:#42a5ff;transition:width .4s}
+.answers{display:grid;gap:10px;margin-top:22px}
+.ans{background:none;border:1px solid var(--line);color:#fff;padding:14px;font:inherit;border-radius:10px;cursor:pointer;text-align:left}
+.ans:hover:enabled{border-color:#fff}
+.ans.ok{border-color:#42e38b;background:rgba(66,227,139,.15)}
+.ans.no{border-color:#ff4d55;background:rgba(255,77,85,.15)}
+.fb{min-height:1.4em;margin:16px 0 0!important;font-size:.85rem;letter-spacing:.1em}
+.score{font-size:3.5rem;font-weight:800;margin-bottom:6px}
+.btn.sm{margin:6px;cursor:pointer;background:none;font:inherit;font-weight:700;letter-spacing:.2em}
+.btn.sm:hover{background:#fff;color:#000}
+form{max-width:640px;margin:0 auto;display:grid;gap:16px;text-align:left}
+label{font-size:.78rem;letter-spacing:.14em;color:var(--g)}
+input,textarea{width:100%;margin-top:6px;padding:13px;background:rgba(10,13,19,.9);border:1px solid var(--line);border-radius:8px;color:#fff;font:inherit}
+input:focus,textarea:focus{outline:none;border-color:#fff}
+textarea{min-height:130px;resize:vertical}
+.saved{max-width:640px;margin:26px auto 0;display:grid;gap:12px}
+.saved div{padding:16px;border:1px solid var(--line);border-radius:10px;background:rgba(10,13,19,.8)}
+.saved b{letter-spacing:.1em;font-size:.85rem}.saved p{color:#c5c9d0;margin-top:4px;font-size:.92rem}
