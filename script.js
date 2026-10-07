@@ -55,12 +55,17 @@ document.addEventListener("DOMContentLoaded",()=>{
 
  /* reader */
  const st=document.getElementById("pgimg");
- if(st){const v=+(new URLSearchParams(location.search).get("v")||1),N={1:25}[v]||1;let p=1,z=0;const Z=[100,150,200];
-  const show=()=>{st.src=`volume${v}/Page-${String(p).padStart(2,"0")}.jpeg`;document.getElementById("pg").textContent=`Volume ${v} - Page ${p} / ${N}`;
-   st.style.maxWidth=z?"none":"900px";st.style.width=Z[z]+"%";document.getElementById("zm").textContent="Zoom "+Z[z]+"%";
-   if(p<N)new Image().src=`volume${v}/Page-${String(p+1).padStart(2,"0")}.jpeg`};
-  const go=d=>{p=Math.min(N,Math.max(1,p+d));show();window.scrollTo(0,0)};
-  document.getElementById("pv").onclick=()=>go(-1);document.getElementById("nx").onclick=()=>go(1);
-  document.getElementById("zm").onclick=()=>{z=(z+1)%3;show()};
-  document.onkeydown=e=>{if(e.key==="ArrowLeft")go(-1);if(e.key==="ArrowRight")go(1)};show()}
+ if(st){const v=+(new URLSearchParams(location.search).get("v")||1),N={1:25}[v]||1;let p=1;
+  const $=id=>document.getElementById(id),src=n=>`volume${v}/Page-${String(n).padStart(2,"0")}.jpeg`;
+  const size=()=>{document.body.style.setProperty("--bh",$("rbar").offsetHeight+"px");document.body.style.setProperty("--nh",$("rnav").offsetHeight+"px")};
+  const show=()=>{st.src=src(p);$("pg").textContent="Page "+p+" / "+N;$("pv").disabled=p<=1;$("nx").disabled=p>=N;if(p<N)new Image().src=src(p+1);size()};
+  const go=d=>{const n=Math.min(N,Math.max(1,p+d));if(n===p)return;p=n;show();window.scrollTo(0,0)};
+  const zoom=f=>{const z=document.body.classList.toggle("zoomed",f);$("zm").textContent=z?"[ ] Unzoom":"[ ] Zoom";window.scrollTo(0,0);size()};
+  $("pv").onclick=()=>go(-1);$("nx").onclick=()=>go(1);$("zm").onclick=()=>zoom();
+  document.onkeydown=e=>{if(e.key==="ArrowLeft")go(-1);if(e.key==="ArrowRight")go(1);if(e.key==="Escape")zoom(false)};
+  /* swipe left = next page, swipe right = previous page */
+  let sx=0,sy=0;const area=st.parentElement;
+  area.addEventListener("touchstart",e=>{sx=e.changedTouches[0].clientX;sy=e.changedTouches[0].clientY},{passive:true});
+  area.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)go(dx<0?1:-1)},{passive:true});
+  window.addEventListener("resize",size);show()}
 });
