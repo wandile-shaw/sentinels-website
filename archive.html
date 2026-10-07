@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -8,43 +10,184 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Sentinels — Volumes</title>
+    <meta
+        name="theme-color"
+        content="#010204"
+    >
 
     <meta
         name="description"
-        content="The official Sentinels comic archive. Read available volumes and follow the story."
+        content="The official SENTINELS comic archive. Read available volumes and follow the story."
     >
 
-    <link rel="stylesheet" href="style.css">
+    <title>SENTINELS — Volumes</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <!-- =========================
+
+    <!-- =====================================================
+         SPACE ENVIRONMENT
+         ===================================================== -->
+
+    <div
+        class="space-background"
+        aria-hidden="true"
+    >
+
+        <div class="extra-stars">
+
+            <span class="extra-star" style="top:8%;left:6%"></span>
+            <span class="extra-star" style="top:15%;left:18%"></span>
+            <span class="extra-star" style="top:7%;left:37%"></span>
+            <span class="extra-star" style="top:21%;left:58%"></span>
+            <span class="extra-star" style="top:12%;left:79%"></span>
+            <span class="extra-star" style="top:18%;left:94%"></span>
+
+            <span class="extra-star" style="top:36%;left:10%"></span>
+            <span class="extra-star" style="top:43%;left:31%"></span>
+            <span class="extra-star" style="top:34%;left:52%"></span>
+            <span class="extra-star" style="top:47%;left:73%"></span>
+            <span class="extra-star" style="top:39%;left:90%"></span>
+
+            <span class="extra-star" style="top:61%;left:7%"></span>
+            <span class="extra-star" style="top:69%;left:24%"></span>
+            <span class="extra-star" style="top:58%;left:45%"></span>
+            <span class="extra-star" style="top:74%;left:67%"></span>
+            <span class="extra-star" style="top:63%;left:91%"></span>
+
+            <span class="extra-star" style="top:87%;left:15%"></span>
+            <span class="extra-star" style="top:81%;left:39%"></span>
+            <span class="extra-star" style="top:92%;left:60%"></span>
+            <span class="extra-star" style="top:85%;left:82%"></span>
+
+        </div>
+
+
+        <div
+            class="satellite"
+            style="top:12%;left:7%;transform:rotate(-18deg) scale(.7)"
+        ></div>
+
+        <div
+            class="satellite"
+            style="top:37%;left:89%;transform:rotate(25deg) scale(.6)"
+        ></div>
+
+        <div
+            class="satellite"
+            style="top:76%;left:11%;transform:rotate(12deg) scale(.55)"
+        ></div>
+
+
+        <div
+            class="asteroid blue one"
+            style="top:23%;left:23%;transform:scale(.7)"
+        ></div>
+
+        <div
+            class="asteroid pink five"
+            style="top:31%;left:82%;transform:scale(.65)"
+        ></div>
+
+        <div
+            class="asteroid red two"
+            style="top:63%;left:91%;transform:scale(.55)"
+        ></div>
+
+        <div
+            class="asteroid white four"
+            style="top:80%;left:45%;transform:scale(.5)"
+        ></div>
+
+
+        <div
+            class="fire-asteroid"
+            style="top:18%;left:57%;transform:rotate(20deg) scale(.7)"
+        ></div>
+
+        <div
+            class="fire-asteroid"
+            style="top:69%;left:28%;transform:rotate(-22deg) scale(.55)"
+        ></div>
+
+
+        <div
+            class="space-orb blue"
+            style="top:44%;left:12%"
+        ></div>
+
+        <div
+            class="space-orb pink"
+            style="top:52%;left:85%;animation-delay:-2s"
+        ></div>
+
+        <div
+            class="space-orb green"
+            style="top:78%;left:76%;animation-delay:-3s"
+        ></div>
+
+
+        <div
+            class="space-ship ship-one"
+            style="top:22%;left:-5%"
+        ></div>
+
+        <div
+            class="space-ship ship-three"
+            style="top:68%;left:52%"
+        ></div>
+
+    </div>
+
+
+    <!-- =====================================================
          NAVIGATION
-    ========================== -->
+         ===================================================== -->
 
     <header class="site-header">
 
-        <a href="index.html" class="brand">
-            <span class="brand-main">SENTINELS</span>
-            <span class="brand-sub">OFFICIAL ARCHIVE</span>
+        <a
+            href="index.html"
+            class="brand"
+            aria-label="SENTINELS home"
+        >
+            SENTINELS
         </a>
 
+
         <button
+            id="menuToggle"
             class="menu-toggle"
             type="button"
             aria-label="Open navigation"
             aria-expanded="false"
+            aria-controls="mainNav"
         >
+
             <span></span>
             <span></span>
             <span></span>
+
         </button>
 
-        <nav class="main-nav" aria-label="Main navigation">
 
-            <a href="index.html">HOME</a>
+        <nav
+            id="mainNav"
+            class="main-nav"
+            aria-label="Main navigation"
+        >
+
+            <a href="index.html">
+                HOME
+            </a>
 
             <a
                 href="archive.html"
@@ -54,30 +197,45 @@
                 VOLUMES
             </a>
 
-            <a href="sentinels.html">CHARACTERS</a>
+            <a href="sentinels.html">
+                CHARACTERS
+            </a>
 
-            <a href="quiz.html">QUIZ</a>
+            <a href="quiz.html">
+                QUIZ
+            </a>
 
-            <a href="predictions.html">PREDICTIONS</a>
+            <a href="prediction.html">
+                PREDICTIONS
+            </a>
 
-            <a href="hub.html">HUB</a>
+            <a href="hub.html">
+                HUB
+            </a>
 
-            <a href="about.html">ABOUT</a>
+            <a href="about.html">
+                ABOUT
+            </a>
 
         </nav>
 
     </header>
 
 
-    <!-- =========================
-         PAGE HERO
-    ========================== -->
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
 
     <main>
 
-        <section class="page-hero archive-hero">
 
-            <div class="page-hero-inner">
+        <!-- =================================================
+             HERO
+             ================================================= -->
+
+        <section class="archive-page-hero">
+
+            <div class="archive-hero-inner">
 
                 <p class="eyebrow">
                     SENTINELS // ARCHIVE
@@ -87,9 +245,9 @@
                     THE STORY.
                 </h1>
 
-                <p class="page-hero-description">
+                <p>
                     Enter the official Sentinels archive.
-                    Read completed volumes, track what is coming,
+                    Read completed volumes, discover what's next,
                     and follow the story as it unfolds.
                 </p>
 
@@ -98,15 +256,16 @@
         </section>
 
 
-        <!-- =========================
-             VOLUME COLLECTION
-        ========================== -->
+        <!-- =================================================
+             VOLUMES
+             ================================================= -->
 
         <section class="section archive-section">
 
-            <div class="section-heading">
+            <div class="archive-heading">
 
                 <div>
+
                     <p class="eyebrow">
                         ARCHIVE INDEX
                     </p>
@@ -114,62 +273,77 @@
                     <h2>
                         VOLUMES
                     </h2>
+
                 </div>
 
-                <p class="section-heading-note">
+
+                <div class="archive-count">
                     STORYLINE // ACTIVE
-                </p>
+                </div>
 
             </div>
 
 
-            <div class="archive-collection">
+            <div class="archive-grid">
 
 
-                <!-- =====================
+                <!-- =================================================
                      VOLUME 01
-                ====================== -->
+                     ================================================= -->
 
-                <article class="volume-card volume-featured">
+                <article class="archive-volume archive-volume-main">
 
-                    <div class="volume-number">
+                    <div class="archive-volume-number">
                         01
                     </div>
 
-                    <div class="volume-content">
 
-                        <div class="volume-meta">
-                            <span>VOL. 01</span>
-                            <span>COMPLETE</span>
-                            <span>25 PAGES</span>
+                    <div class="archive-volume-content">
+
+                        <div class="archive-volume-meta">
+
+                            <span>
+                                VOLUME 01
+                            </span>
+
+                            <span>
+                                COMPLETE
+                            </span>
+
+                            <span>
+                                25 PAGES
+                            </span>
+
                         </div>
+
 
                         <h3>
                             THE BEGINNING
                         </h3>
 
-                        <p class="volume-description">
-                            The story begins here.
+
+                        <p>
                             Four people. Four powers.
                             One unknown force pulling them
                             toward something much bigger.
                         </p>
 
-                        <div class="volume-status-row">
 
-                            <span class="status-dot"></span>
+                        <div class="archive-status active">
 
-                            <span>
-                                AVAILABLE TO READ
-                            </span>
+                            <span></span>
+
+                            AVAILABLE TO READ
 
                         </div>
 
+
                         <a
                             href="reader.html?volume=1"
-                            class="btn btn-primary"
+                            class="archive-read-button"
                         >
-                            READ VOLUME
+                            READ VOLUME 01
+                            <span>→</span>
                         </a>
 
                     </div>
@@ -177,126 +351,139 @@
                 </article>
 
 
-                <!-- =====================
+                <!-- =================================================
                      VOLUME 02
-                ====================== -->
+                     ================================================= -->
 
-                <article class="volume-card">
+                <article class="archive-volume archive-volume-locked">
 
-                    <div class="volume-number">
+                    <div class="archive-volume-number">
                         02
                     </div>
 
-                    <div class="volume-content">
 
-                        <div class="volume-meta">
-                            <span>VOL. 02</span>
-                            <span>COMING SOON</span>
-                        </div>
+                    <div class="archive-volume-content">
 
-                        <h3>
-                            THE FOURTH
-                        </h3>
-
-                        <p class="volume-description">
-                            The next chapter of the Sentinels story.
-                            The archive file has been created,
-                            but the volume has not yet been released.
-                        </p>
-
-                        <div class="volume-status-row muted">
-
-                            <span class="status-dot"></span>
+                        <div class="archive-volume-meta">
 
                             <span>
-                                ARCHIVE FILE LOCKED
+                                VOLUME 02
+                            </span>
+
+                            <span>
+                                COMING SOON
                             </span>
 
                         </div>
 
-                        <span
-                            class="btn btn-secondary"
-                            aria-disabled="true"
-                            style="opacity:0.45; cursor:default; pointer-events:none;"
-                        >
+
+                        <h3>
+                            THE NEXT CHAPTER
+                        </h3>
+
+
+                        <p>
+                            The story continues.
+                            The archive file exists,
+                            but this volume has not yet been released.
+                        </p>
+
+
+                        <div class="archive-status locked">
+
+                            <span></span>
+
+                            ARCHIVE FILE LOCKED
+
+                        </div>
+
+
+                        <div class="archive-disabled-button">
                             COMING SOON
-                        </span>
+                        </div>
 
                     </div>
 
                 </article>
 
 
-                <!-- =====================
+                <!-- =================================================
                      VOLUME 03
-                ====================== -->
+                     ================================================= -->
 
-                <article class="volume-card">
+                <article class="archive-volume archive-volume-locked">
 
-                    <div class="volume-number">
+                    <div class="archive-volume-number">
                         03
                     </div>
 
-                    <div class="volume-content">
 
-                        <div class="volume-meta">
-                            <span>VOL. 03</span>
-                            <span>IN DEVELOPMENT</span>
+                    <div class="archive-volume-content">
+
+                        <div class="archive-volume-meta">
+
+                            <span>
+                                VOLUME 03
+                            </span>
+
+                            <span>
+                                IN DEVELOPMENT
+                            </span>
+
                         </div>
 
+
                         <h3>
-                            THE STORY CONTINUES.
+                            CLASSIFIED
                         </h3>
 
-                        <p class="volume-description">
+
+                        <p>
                             Another chapter is taking shape.
                             Details remain classified until
                             the story is ready to be revealed.
                         </p>
 
-                        <div class="volume-status-row muted">
 
-                            <span class="status-dot"></span>
+                        <div class="archive-status locked">
 
-                            <span>
-                                DEVELOPMENT FILE
-                            </span>
+                            <span></span>
+
+                            DEVELOPMENT FILE
 
                         </div>
 
-                        <span
-                            class="btn btn-secondary"
-                            aria-disabled="true"
-                            style="opacity:0.45; cursor:default; pointer-events:none;"
-                        >
+
+                        <div class="archive-disabled-button">
                             IN DEVELOPMENT
-                        </span>
+                        </div>
 
                     </div>
 
                 </article>
 
-
             </div>
 
 
-            <!-- =========================
-                 ARCHIVE NOTE
-            ========================== -->
+            <!-- =================================================
+                 ARCHIVE NOTICE
+                 ================================================= -->
 
-            <div class="archive-note">
+            <div class="archive-notice">
 
-                <div class="archive-note-line"></div>
+                <div class="archive-notice-marker">
+                    +
+                </div>
 
-                <div class="archive-note-content">
+                <div>
 
                     <p class="eyebrow">
                         ARCHIVE NOTICE
                     </p>
 
                     <p>
-                        New volumes will become available as the
-                        Sentinels story progresses.
+                        New volumes will become available
+                        as the Sentinels story progresses.
                     </p>
 
                 </div>
@@ -306,82 +493,91 @@
         </section>
 
 
-        <!-- =========================
+        <!-- =================================================
              EXPLORE
-        ========================== -->
+             ================================================= -->
 
         <section class="section archive-explore">
 
-            <div class="section-heading">
+            <p class="eyebrow">
+                CONTINUE EXPLORING
+            </p>
 
-                <div>
-                    <p class="eyebrow">
-                        CONTINUE EXPLORING
-                    </p>
-
-                    <h2>
-                        THE ARCHIVE IS MORE THAN THE STORY.
-                    </h2>
-                </div>
-
-            </div>
+            <h2>
+                THE UNIVERSE IS BIGGER THAN ONE VOLUME.
+            </h2>
 
 
-            <div class="explore-grid">
+            <div class="archive-explore-grid">
 
-                <a href="sentinels.html" class="explore-card">
 
-                    <span class="explore-index">
+                <a
+                    href="sentinels.html"
+                    class="archive-explore-card"
+                >
+
+                    <span>
                         01
                     </span>
 
                     <div>
+
                         <h3>
                             CHARACTERS
                         </h3>
 
                         <p>
-                            Access the Sentinel personnel database.
+                            Explore the Sentinel personnel database.
                         </p>
+
                     </div>
 
-                    <span class="explore-arrow">
+                    <strong>
                         →
-                    </span>
+                    </strong>
 
                 </a>
 
 
-                <a href="quiz.html" class="explore-card">
+                <a
+                    href="quiz.html"
+                    class="archive-explore-card"
+                >
 
-                    <span class="explore-index">
+                    <span>
                         02
                     </span>
 
                     <div>
+
                         <h3>
                             QUIZ
                         </h3>
 
                         <p>
-                            Test how well you know the Sentinels.
+                            Test your knowledge of the universe.
                         </p>
+
                     </div>
 
-                    <span class="explore-arrow">
+                    <strong>
                         →
-                    </span>
+                    </strong>
 
                 </a>
 
 
-                <a href="predictions.html" class="explore-card">
+                <a
+                    href="prediction.html"
+                    class="archive-explore-card"
+                >
 
-                    <span class="explore-index">
+                    <span>
                         03
                     </span>
 
                     <div>
+
                         <h3>
                             PREDICTIONS
                         </h3>
@@ -389,11 +585,12 @@
                         <p>
                             What do you think happens next?
                         </p>
+
                     </div>
 
-                    <span class="explore-arrow">
+                    <strong>
                         →
-                    </span>
+                    </strong>
 
                 </a>
 
@@ -404,9 +601,9 @@
     </main>
 
 
-    <!-- =========================
+    <!-- =====================================================
          FOOTER
-    ========================== -->
+         ===================================================== -->
 
     <footer class="site-footer">
 
@@ -419,10 +616,11 @@
                 </div>
 
                 <p>
-                    The official archive.
+                    The official comic archive.
                 </p>
 
             </div>
+
 
             <div class="footer-links">
 
@@ -442,7 +640,7 @@
                     QUIZ
                 </a>
 
-                <a href="predictions.html">
+                <a href="prediction.html">
                     PREDICTIONS
                 </a>
 
@@ -458,10 +656,12 @@
 
         </div>
 
+
         <div class="footer-bottom">
 
             <span>
-                © <span data-current-year>2026</span> SENTINELS
+                © <span data-current-year>2026</span>
+                SENTINELS
             </span>
 
             <span>
@@ -473,181 +673,1235 @@
     </footer>
 
 
-    <!-- =========================
-         ARCHIVE-SPECIFIC STYLES
-    ========================== -->
+    <!-- =====================================================
+         PAGE-SPECIFIC STYLES
+         ===================================================== -->
 
     <style>
 
-        .archive-hero {
-            min-height: 54vh;
-        }
+        /* ================================================
+           HERO
+           ================================================ */
 
-        .archive-section {
-            padding-top: 90px;
-        }
+        .archive-page-hero {
 
-        .archive-collection {
-            display: grid;
-            gap: 22px;
-            margin-top: 42px;
-        }
+            min-height: 56vh;
 
-        .volume-card {
-            position: relative;
-            display: grid;
-            grid-template-columns: 150px minmax(0, 1fr);
-            gap: 36px;
-            overflow: hidden;
-            padding: 42px;
-            border: 1px solid rgba(210, 216, 224, 0.18);
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255, 255, 255, 0.055),
-                    rgba(255, 255, 255, 0.018)
-                ),
-                #05070a;
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.35);
-        }
-
-        .volume-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    rgba(255,255,255,0.025),
-                    transparent
-                );
-            opacity: 0.7;
-        }
-
-        .volume-featured {
-            border-color: rgba(215, 220, 228, 0.32);
-        }
-
-        .volume-number {
-            position: relative;
-            z-index: 1;
-            font-size: clamp(4.5rem, 10vw, 8rem);
-            line-height: 0.8;
-            font-weight: 800;
-            letter-spacing: -0.08em;
-            color: rgba(255,255,255,0.08);
-            align-self: start;
-        }
-
-        .volume-content {
-            position: relative;
-            z-index: 1;
-            max-width: 760px;
-        }
-
-        .volume-meta {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px 18px;
-            margin-bottom: 14px;
-            font-size: 0.7rem;
-            letter-spacing: 0.18em;
-            color: rgba(255,255,255,0.48);
-        }
 
-        .volume-content h3 {
-            margin: 0;
-            font-size: clamp(2rem, 5vw, 4rem);
-            line-height: 0.95;
-            letter-spacing: -0.045em;
-        }
-
-        .volume-description {
-            max-width: 650px;
-            margin: 22px 0;
-            color: rgba(255,255,255,0.62);
-            line-height: 1.75;
-        }
-
-        .volume-status-row {
-            display: flex;
             align-items: center;
-            gap: 9px;
-            margin-bottom: 24px;
-            font-size: 0.68rem;
-            letter-spacing: 0.15em;
-            color: rgba(255,255,255,0.72);
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding:
+                110px
+                20px
+                70px;
+
         }
 
-        .volume-status-row.muted {
-            color: rgba(255,255,255,0.38);
+
+        .archive-hero-inner {
+
+            width:
+                min(
+                    850px,
+                    92vw
+                );
+
         }
 
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            flex: 0 0 6px;
-            border-radius: 50%;
-            background: currentColor;
+
+        .archive-hero-inner h1 {
+
+            margin:
+                12px
+                0
+                20px;
+
+            font-size:
+                clamp(
+                    3.5rem,
+                    9vw,
+                    8rem
+                );
+
+            line-height: 0.88;
+
+            letter-spacing:
+                -0.06em;
+
         }
 
-        .archive-note {
+
+        .archive-hero-inner > p:last-child {
+
+            max-width:
+                680px;
+
+            margin:
+                0
+                auto;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.55
+                );
+
+            line-height: 1.8;
+
+        }
+
+
+        /* ================================================
+           HEADING
+           ================================================ */
+
+        .archive-heading {
+
             display: flex;
-            gap: 20px;
-            margin-top: 52px;
-            padding: 24px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
         }
 
-        .archive-note-line {
-            width: 2px;
-            flex: 0 0 2px;
-            background: rgba(255,255,255,0.45);
+
+        .archive-count {
+
+            padding-bottom: 8px;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.35
+                );
+
+            font-size:
+                0.62rem;
+
+            font-weight: 900;
+
+            letter-spacing:
+                0.16em;
+
         }
 
-        .archive-note-content p:last-child {
-            margin: 8px 0 0;
-            color: rgba(255,255,255,0.55);
+
+        /* ================================================
+           VOLUME GRID
+           ================================================ */
+
+        .archive-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
+            gap: 22px;
+
+            margin-top: 42px;
+
         }
+
+
+        /* ================================================
+           VOLUME CARD
+           ================================================ */
+
+        .archive-volume {
+
+            position: relative;
+
+            min-width: 0;
+
+            overflow: hidden;
+
+            display: grid;
+
+            grid-template-columns:
+                130px
+                minmax(0, 1fr);
+
+            gap: 28px;
+
+            min-height: 380px;
+
+            padding: 38px;
+
+            border-radius:
+                18px;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.11
+                );
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #171b21,
+                    #0b0e13 55%,
+                    #05070a
+                );
+
+            box-shadow:
+                0
+                28px
+                70px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.6
+                );
+
+            transition:
+                transform
+                0.35s
+                ease,
+
+                border-color
+                0.35s
+                ease,
+
+                box-shadow
+                0.35s
+                ease;
+
+        }
+
+
+        .archive-volume:hover {
+
+            transform:
+                translateY(-7px);
+
+            border-color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.22
+                );
+
+            box-shadow:
+                0
+                38px
+                85px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.72
+                );
+
+        }
+
+
+        .archive-volume-main {
+
+            grid-column:
+                1 / -1;
+
+            min-height:
+                430px;
+
+            border-color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.2
+                );
+
+        }
+
+
+        .archive-volume::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.055
+                    ),
+                    transparent 30%,
+                    transparent 70%,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.015
+                    )
+                );
+
+        }
+
+
+        /* ================================================
+           BIG NUMBER
+           ================================================ */
+
+        .archive-volume-number {
+
+            position: relative;
+
+            z-index: 1;
+
+            font-size:
+                clamp(
+                    5rem,
+                    10vw,
+                    9rem
+                );
+
+            line-height:
+                0.72;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                -0.09em;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.07
+                );
+
+        }
+
+
+        .archive-volume-content {
+
+            position: relative;
+
+            z-index: 1;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+        }
+
+
+        /* ================================================
+           META
+           ================================================ */
+
+        .archive-volume-meta {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap:
+                9px
+                17px;
+
+            margin-bottom:
+                15px;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.42
+                );
+
+            font-size:
+                0.59rem;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                0.16em;
+
+        }
+
+
+        .archive-volume-content h3 {
+
+            margin:
+                0;
+
+            color:
+                #f5f6f8;
+
+            font-size:
+                clamp(
+                    2rem,
+                    5vw,
+                    4.5rem
+                );
+
+            line-height:
+                0.9;
+
+            letter-spacing:
+                -0.05em;
+
+        }
+
+
+        .archive-volume-content > p {
+
+            max-width:
+                650px;
+
+            margin:
+                23px
+                0;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.58
+                );
+
+            font-size:
+                0.9rem;
+
+            line-height:
+                1.75;
+
+        }
+
+
+        /* ================================================
+           STATUS
+           ================================================ */
+
+        .archive-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap:
+                9px;
+
+            margin-bottom:
+                25px;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.68
+                );
+
+            font-size:
+                0.58rem;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                0.15em;
+
+        }
+
+
+        .archive-status span {
+
+            width:
+                7px;
+
+            height:
+                7px;
+
+            flex:
+                0 0 7px;
+
+            border-radius:
+                50%;
+
+            background:
+                currentColor;
+
+        }
+
+
+        .archive-status.active {
+
+            color:
+                #bfc5cd;
+
+        }
+
+
+        .archive-status.locked {
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.3
+                );
+
+        }
+
+
+        /* ================================================
+           READ BUTTON
+           ================================================ */
+
+        .archive-read-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap:
+                25px;
+
+            min-height:
+                50px;
+
+            padding:
+                0
+                20px;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.18
+                );
+
+            border-radius:
+                7px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #20252c,
+                    #0b0e12
+                );
+
+            color:
+                #f0f1f3;
+
+            text-decoration:
+                none;
+
+            font-size:
+                0.59rem;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                0.14em;
+
+            box-shadow:
+                0
+                12px
+                30px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.45
+                );
+
+            transition:
+                transform
+                0.25s
+                ease,
+
+                border-color
+                0.25s
+                ease,
+
+                box-shadow
+                0.25s
+                ease;
+
+        }
+
+
+        .archive-read-button:hover {
+
+            transform:
+                translateY(-3px);
+
+            border-color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.35
+                );
+
+            box-shadow:
+                0
+                18px
+                38px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.65
+                );
+
+        }
+
+
+        .archive-read-button span {
+
+            font-size:
+                1rem;
+
+        }
+
+
+        /* ================================================
+           DISABLED
+           ================================================ */
+
+        .archive-disabled-button {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            min-height:
+                50px;
+
+            padding:
+                0
+                18px;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
+
+            border-radius:
+                7px;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.3
+                );
+
+            font-size:
+                0.56rem;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                0.13em;
+
+        }
+
+
+        /* ================================================
+           ARCHIVE NOTICE
+           ================================================ */
+
+        .archive-notice {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                22px;
+
+            margin-top:
+                50px;
+
+            padding:
+                25px
+                0;
+
+            border-top:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.09
+                );
+
+            border-bottom:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.09
+                );
+
+        }
+
+
+        .archive-notice-marker {
+
+            width:
+                42px;
+
+            height:
+                42px;
+
+            flex:
+                0 0 42px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.16
+                );
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.45
+                );
+
+        }
+
+
+        .archive-notice p:last-child {
+
+            margin:
+                7px
+                0
+                0;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.48
+                );
+
+        }
+
+
+        /* ================================================
+           EXPLORE
+           ================================================ */
 
         .archive-explore {
-            padding-top: 80px;
+
+            padding-top:
+                100px;
+
         }
+
+
+        .archive-explore h2 {
+
+            max-width:
+                850px;
+
+        }
+
+
+        .archive-explore-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
+            gap:
+                18px;
+
+            margin-top:
+                40px;
+
+        }
+
+
+        .archive-explore-card {
+
+            min-height:
+                145px;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                45px
+                1fr
+                25px;
+
+            align-items:
+                center;
+
+            gap:
+                15px;
+
+            padding:
+                24px;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.1
+                );
+
+            border-radius:
+                14px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #15191f,
+                    #080a0d
+                );
+
+            color:
+                #fff;
+
+            text-decoration:
+                none;
+
+            box-shadow:
+                0
+                20px
+                50px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.4
+                );
+
+            transition:
+                transform
+                0.3s
+                ease,
+
+                border-color
+                0.3s
+                ease;
+
+        }
+
+
+        .archive-explore-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.2
+                );
+
+        }
+
+
+        .archive-explore-card > span:first-child {
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.25
+                );
+
+            font-size:
+                0.65rem;
+
+            font-weight:
+                900;
+
+        }
+
+
+        .archive-explore-card h3 {
+
+            margin:
+                0
+                0
+                7px;
+
+            font-size:
+                1rem;
+
+            letter-spacing:
+                0.02em;
+
+        }
+
+
+        .archive-explore-card p {
+
+            margin:
+                0;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.45
+                );
+
+            font-size:
+                0.7rem;
+
+            line-height:
+                1.5;
+
+        }
+
+
+        .archive-explore-card strong {
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.55
+                );
+
+            font-size:
+                1.1rem;
+
+        }
+
+
+        /* ================================================
+           MOBILE
+           ================================================ */
 
         @media (max-width: 760px) {
 
-            .archive-hero {
-                min-height: 46vh;
+            .archive-page-hero {
+
+                min-height:
+                    48vh;
+
+                padding:
+                    105px
+                    18px
+                    55px;
+
             }
 
-            .archive-section {
-                padding-top: 65px;
+
+            .archive-heading {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+                gap:
+                    8px;
+
             }
 
-            .volume-card {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 28px;
+
+            .archive-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(0, 1fr)
+                    );
+
+                gap:
+                    12px;
+
             }
 
-            .volume-number {
-                font-size: 4.5rem;
+
+            .archive-volume {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    12px;
+
+                min-height:
+                    370px;
+
+                padding:
+                    21px;
+
             }
 
-            .volume-content h3 {
-                font-size: 2.3rem;
+
+            .archive-volume-main {
+
+                grid-column:
+                    1 / -1;
+
+                min-height:
+                    400px;
+
             }
 
-            .volume-description {
-                font-size: 0.95rem;
+
+            .archive-volume-number {
+
+                font-size:
+                    4rem;
+
+                line-height:
+                    0.7;
+
             }
 
-            .archive-note {
-                margin-top: 38px;
+
+            .archive-volume-content h3 {
+
+                font-size:
+                    1.65rem;
+
+            }
+
+
+            .archive-volume-content > p {
+
+                font-size:
+                    0.65rem;
+
+                line-height:
+                    1.6;
+
+            }
+
+
+            .archive-volume-meta {
+
+                font-size:
+                    0.42rem;
+
+                gap:
+                    6px
+                    9px;
+
+            }
+
+
+            .archive-status {
+
+                font-size:
+                    0.43rem;
+
+                letter-spacing:
+                    0.08em;
+
+            }
+
+
+            .archive-read-button,
+            .archive-disabled-button {
+
+                min-height:
+                    42px;
+
+                padding:
+                    0
+                    13px;
+
+                font-size:
+                    0.43rem;
+
+            }
+
+
+            .archive-explore-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(0, 1fr)
+                    );
+
+                gap:
+                    10px;
+
+            }
+
+
+            .archive-explore-card {
+
+                min-height:
+                    125px;
+
+                grid-template-columns:
+                    28px
+                    1fr;
+
+                padding:
+                    15px;
+
+            }
+
+
+            .archive-explore-card strong {
+
+                display:
+                    none;
+
+            }
+
+
+            .archive-explore-card h3 {
+
+                font-size:
+                    0.75rem;
+
+            }
+
+
+            .archive-explore-card p {
+
+                font-size:
+                    0.5rem;
+
+            }
+
+
+            .archive-notice {
+
+                align-items:
+                    flex-start;
+
+            }
+
+        }
+
+
+        @media (max-width: 390px) {
+
+            .archive-grid {
+
+                gap:
+                    8px;
+
+            }
+
+
+            .archive-volume {
+
+                padding:
+                    15px;
+
+            }
+
+
+            .archive-volume-content h3 {
+
+                font-size:
+                    1.4rem;
+
+            }
+
+
+            .archive-volume-content > p {
+
+                font-size:
+                    0.58rem;
+
+            }
+
+
+            .archive-explore-grid {
+
+                gap:
+                    8px;
+
+            }
+
+
+            .archive-explore-card {
+
+                padding:
+                    12px;
+
             }
 
         }
@@ -658,4 +1912,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>
