@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -8,41 +9,177 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Sentinels — Characters</title>
-
     <meta
         name="description"
-        content="The official Sentinels personnel database. Meet the four Sentinels and review their abilities."
+        content="The official SENTINELS character database. Meet Wandile, Xavier, Kyla and Cee."
     >
 
-    <link rel="stylesheet" href="style.css">
+    <meta
+        name="theme-color"
+        content="#010204"
+    >
+
+    <title>SENTINELS — Characters</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
+
+    <!-- =====================================================
+         SPACE BACKGROUND
+         ===================================================== -->
+
+    <div
+        class="space-background"
+        aria-hidden="true"
+    >
+
+        <div class="extra-stars">
+
+            <span class="extra-star" style="top:7%;left:8%"></span>
+            <span class="extra-star" style="top:13%;left:23%"></span>
+            <span class="extra-star" style="top:8%;left:43%"></span>
+            <span class="extra-star" style="top:18%;left:68%"></span>
+            <span class="extra-star" style="top:11%;left:91%"></span>
+
+            <span class="extra-star" style="top:34%;left:6%"></span>
+            <span class="extra-star" style="top:42%;left:29%"></span>
+            <span class="extra-star" style="top:38%;left:54%"></span>
+            <span class="extra-star" style="top:47%;left:79%"></span>
+            <span class="extra-star" style="top:31%;left:95%"></span>
+
+            <span class="extra-star" style="top:61%;left:11%"></span>
+            <span class="extra-star" style="top:69%;left:37%"></span>
+            <span class="extra-star" style="top:58%;left:63%"></span>
+            <span class="extra-star" style="top:73%;left:87%"></span>
+
+            <span class="extra-star" style="top:88%;left:17%"></span>
+            <span class="extra-star" style="top:82%;left:48%"></span>
+            <span class="extra-star" style="top:93%;left:74%"></span>
+
+        </div>
+
+
+        <div
+            class="satellite"
+            style="top:12%;left:5%;transform:rotate(-20deg) scale(.75)"
+        ></div>
+
+        <div
+            class="satellite"
+            style="top:36%;left:91%;transform:rotate(22deg) scale(.6)"
+        ></div>
+
+        <div
+            class="satellite"
+            style="top:78%;left:7%;transform:rotate(15deg) scale(.55)"
+        ></div>
+
+
+        <div
+            class="asteroid blue one"
+            style="top:24%;left:20%;transform:scale(.7)"
+        ></div>
+
+        <div
+            class="asteroid pink five"
+            style="top:29%;left:83%;transform:scale(.65)"
+        ></div>
+
+        <div
+            class="asteroid red two"
+            style="top:63%;left:91%;transform:scale(.6)"
+        ></div>
+
+        <div
+            class="asteroid white four"
+            style="top:82%;left:39%;transform:scale(.55)"
+        ></div>
+
+
+        <div
+            class="fire-asteroid"
+            style="top:17%;left:58%;transform:rotate(25deg) scale(.7)"
+        ></div>
+
+        <div
+            class="fire-asteroid"
+            style="top:71%;left:25%;transform:rotate(-20deg) scale(.55)"
+        ></div>
+
+
+        <div
+            class="space-orb blue"
+            style="top:41%;left:13%"
+        ></div>
+
+        <div
+            class="space-orb pink"
+            style="top:52%;left:84%;animation-delay:-2s"
+        ></div>
+
+        <div
+            class="space-orb green"
+            style="top:76%;left:72%;animation-delay:-3s"
+        ></div>
+
+
+        <div
+            class="space-ship ship-one"
+            style="top:22%;left:-4%"
+        ></div>
+
+        <div
+            class="space-ship ship-three"
+            style="top:67%;left:52%"
+        ></div>
+
+    </div>
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
 
     <header class="site-header">
 
-        <a href="index.html" class="brand">
-            <span class="brand-main">SENTINELS</span>
-            <span class="brand-sub">OFFICIAL ARCHIVE</span>
+        <a
+            href="index.html"
+            class="brand"
+            aria-label="SENTINELS home"
+        >
+            SENTINELS
         </a>
 
+
         <button
+            id="menuToggle"
             class="menu-toggle"
             type="button"
             aria-label="Open navigation"
             aria-expanded="false"
+            aria-controls="mainNav"
         >
+
             <span></span>
             <span></span>
             <span></span>
+
         </button>
 
-        <nav class="main-nav" aria-label="Main navigation">
+
+        <nav
+            id="mainNav"
+            class="main-nav"
+            aria-label="Main navigation"
+        >
 
             <a href="index.html">
                 HOME
@@ -64,7 +201,7 @@
                 QUIZ
             </a>
 
-            <a href="predictions.html">
+            <a href="prediction.html">
                 PREDICTIONS
             </a>
 
@@ -80,13 +217,19 @@
 
     </header>
 
-    <!-- =========================
-         PAGE HERO
-    ========================== -->
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
 
     <main>
 
-        <section class="page-hero characters-hero">
+
+        <!-- =================================================
+             HERO
+             ================================================= -->
+
+        <section class="characters-hero">
 
             <div class="page-hero-inner">
 
@@ -108,15 +251,17 @@
 
         </section>
 
-        <!-- =========================
-             PERSONNEL DATABASE
-        ========================== -->
+
+        <!-- =================================================
+             CHARACTER DATABASE
+             ================================================= -->
 
         <section class="section characters-section">
 
             <div class="section-heading">
 
                 <div>
+
                     <p class="eyebrow">
                         ACTIVE PERSONNEL
                     </p>
@@ -124,6 +269,7 @@
                     <h2>
                         THE SENTINELS
                     </h2>
+
                 </div>
 
                 <p class="section-heading-note">
@@ -132,13 +278,29 @@
 
             </div>
 
+
+            <!-- 2 × 2 CHARACTER GRID -->
+
             <div class="personnel-grid">
 
-                <!-- =====================
-                     WANDILE
-                ====================== -->
 
-                <article class="personnel-card personnel-blue">
+                <!-- =================================================
+                     WANDILE
+                     ================================================= -->
+
+                <article
+                    class="personnel-card personnel-blue"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Open Wandile profile"
+                    data-character="wandile"
+                    data-name="WANDILE"
+                    data-role="THE BLUE SENTINEL"
+                    data-colour="BLUE"
+                    data-abilities="STRENGTH • SPEED • FLIGHT • ENERGY SHIELD"
+                    data-description="The blue Sentinel. Wandile's abilities begin with enhanced strength and develop further as he learns to access speed and flight. His Sentinel equipment also includes retractable wings and an energy shield."
+                    data-image="Wandile character art.jpeg"
+                >
 
                     <div class="personnel-image-wrap">
 
@@ -149,11 +311,12 @@
                             loading="lazy"
                         >
 
-                        <div class="personnel-image-label">
+                        <span class="personnel-image-label">
                             SN-001
-                        </div>
+                        </span>
 
                     </div>
+
 
                     <div class="personnel-content">
 
@@ -169,19 +332,23 @@
 
                         </div>
 
+
                         <h3>
                             WANDILE
                         </h3>
 
+
                         <p class="personnel-role">
                             PRIMARY FIELD SUBJECT
                         </p>
+
 
                         <p class="personnel-description">
                             The blue Sentinel. Wandile's abilities
                             begin with enhanced strength and develop
                             further as he learns to access speed and flight.
                         </p>
+
 
                         <div class="ability-list">
 
@@ -212,15 +379,33 @@
 
                         </div>
 
+
+                        <span class="personnel-action">
+                            OPEN PROFILE →
+                        </span>
+
                     </div>
 
                 </article>
 
-                <!-- =====================
-                     XAVIER
-                ====================== -->
 
-                <article class="personnel-card personnel-red">
+                <!-- =================================================
+                     XAVIER
+                     ================================================= -->
+
+                <article
+                    class="personnel-card personnel-red"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Open Xavier profile"
+                    data-character="xavier"
+                    data-name="XAVIER"
+                    data-role="THE RED SENTINEL"
+                    data-colour="RED"
+                    data-abilities="STRENGTH • POWER • CLOSE COMBAT"
+                    data-description="The red Sentinel. Xavier possesses enhanced strength and power, making him a force built for close-range combat."
+                    data-image="Xavier character art final.jpeg"
+                >
 
                     <div class="personnel-image-wrap">
 
@@ -231,11 +416,12 @@
                             loading="lazy"
                         >
 
-                        <div class="personnel-image-label">
+                        <span class="personnel-image-label">
                             SN-002
-                        </div>
+                        </span>
 
                     </div>
+
 
                     <div class="personnel-content">
 
@@ -251,19 +437,23 @@
 
                         </div>
 
+
                         <h3>
                             XAVIER
                         </h3>
 
+
                         <p class="personnel-role">
                             POWER / COMBAT
                         </p>
+
 
                         <p class="personnel-description">
                             The red Sentinel. Xavier possesses
                             enhanced strength and power, making him
                             a force built for close-range combat.
                         </p>
+
 
                         <div class="ability-list">
 
@@ -284,15 +474,33 @@
 
                         </div>
 
+
+                        <span class="personnel-action">
+                            OPEN PROFILE →
+                        </span>
+
                     </div>
 
                 </article>
 
-                <!-- =====================
-                     KYLA
-                ====================== -->
 
-                <article class="personnel-card personnel-pink">
+                <!-- =================================================
+                     KYLA
+                     ================================================= -->
+
+                <article
+                    class="personnel-card personnel-pink"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Open Kyla profile"
+                    data-character="kyla"
+                    data-name="KYLA"
+                    data-role="THE SPEEDSTER"
+                    data-colour="PINK + WHITE"
+                    data-abilities="SPEED • AGILITY • RAPID MOVEMENT"
+                    data-description="The pink and white Sentinel. Kyla's greatest advantage is speed, allowing her to move rapidly and strike before opponents can react."
+                    data-image="Kyla character art final 1.jpeg"
+                >
 
                     <div class="personnel-image-wrap">
 
@@ -303,11 +511,12 @@
                             loading="lazy"
                         >
 
-                        <div class="personnel-image-label">
+                        <span class="personnel-image-label">
                             SN-003
-                        </div>
+                        </span>
 
                     </div>
+
 
                     <div class="personnel-content">
 
@@ -323,13 +532,16 @@
 
                         </div>
 
+
                         <h3>
                             KYLA
                         </h3>
 
+
                         <p class="personnel-role">
                             SPEED / AGILITY
                         </p>
+
 
                         <p class="personnel-description">
                             The pink and white Sentinel.
@@ -337,6 +549,7 @@
                             allowing her to move rapidly and strike
                             before opponents can react.
                         </p>
+
 
                         <div class="ability-list">
 
@@ -357,15 +570,33 @@
 
                         </div>
 
+
+                        <span class="personnel-action">
+                            OPEN PROFILE →
+                        </span>
+
                     </div>
 
                 </article>
 
-                <!-- =====================
-                     CEE
-                ====================== -->
 
-                <article class="personnel-card personnel-green">
+                <!-- =================================================
+                     CEE
+                     ================================================= -->
+
+                <article
+                    class="personnel-card personnel-green"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Open Cee profile"
+                    data-character="cee"
+                    data-name="CEE"
+                    data-role="THE GREEN SENTINEL"
+                    data-colour="GREEN"
+                    data-abilities="FLIGHT • ENERGY BLASTS • AERIAL COMBAT"
+                    data-description="The green Sentinel. Cee can fly using retractable wings and project energy blasts directly from her hands, both on the ground and while airborne."
+                    data-image="Cee character art.jpeg"
+                >
 
                     <div class="personnel-image-wrap">
 
@@ -376,11 +607,12 @@
                             loading="lazy"
                         >
 
-                        <div class="personnel-image-label">
+                        <span class="personnel-image-label">
                             SN-004
-                        </div>
+                        </span>
 
                     </div>
+
 
                     <div class="personnel-content">
 
@@ -396,19 +628,23 @@
 
                         </div>
 
+
                         <h3>
                             CEE
                         </h3>
 
+
                         <p class="personnel-role">
                             FLIGHT / ENERGY
                         </p>
+
 
                         <p class="personnel-description">
                             The green Sentinel. Cee can take to the
                             air using retractable wings and project
                             energy blasts directly from her hands.
                         </p>
+
 
                         <div class="ability-list">
 
@@ -434,17 +670,24 @@
 
                         </div>
 
+
+                        <span class="personnel-action">
+                            OPEN PROFILE →
+                        </span>
+
                     </div>
 
                 </article>
+
 
             </div>
 
         </section>
 
-        <!-- =========================
+
+        <!-- =================================================
              CLASSIFIED FILES
-        ========================== -->
+             ================================================= -->
 
         <section class="section classified-section">
 
@@ -465,9 +708,9 @@
                     </h2>
 
                     <p>
-                        The archive will expand as the Sentinels story
-                        reveals more about its characters, allies,
-                        enemies and the world around them.
+                        The archive will expand as the Sentinels
+                        story reveals more about its characters,
+                        allies, enemies and the world around them.
                     </p>
 
                 </div>
@@ -476,15 +719,17 @@
 
         </section>
 
-        <!-- =========================
-             EXPLORE
-        ========================== -->
+
+        <!-- =================================================
+             CONTINUE EXPLORING
+             ================================================= -->
 
         <section class="section character-explore">
 
             <div class="section-heading">
 
                 <div>
+
                     <p class="eyebrow">
                         CONTINUE EXPLORING
                     </p>
@@ -492,11 +737,14 @@
                     <h2>
                         FOLLOW THE STORY.
                     </h2>
+
                 </div>
 
             </div>
 
+
             <div class="explore-grid">
+
 
                 <a
                     href="archive.html"
@@ -525,6 +773,7 @@
 
                 </a>
 
+
                 <a
                     href="quiz.html"
                     class="explore-card"
@@ -552,8 +801,9 @@
 
                 </a>
 
+
                 <a
-                    href="predictions.html"
+                    href="prediction.html"
                     class="explore-card"
                 >
 
@@ -579,15 +829,17 @@
 
                 </a>
 
+
             </div>
 
         </section>
 
     </main>
 
-    <!-- =========================
+
+    <!-- =====================================================
          FOOTER
-    ========================== -->
+         ===================================================== -->
 
     <footer class="site-footer">
 
@@ -604,6 +856,7 @@
                 </p>
 
             </div>
+
 
             <div class="footer-links">
 
@@ -623,7 +876,7 @@
                     QUIZ
                 </a>
 
-                <a href="predictions.html">
+                <a href="prediction.html">
                     PREDICTIONS
                 </a>
 
@@ -639,6 +892,7 @@
 
         </div>
 
+
         <div class="footer-bottom">
 
             <span>
@@ -653,235 +907,1058 @@
 
     </footer>
 
-    <!-- =========================
-         PAGE-SPECIFIC STYLES
-    ========================== -->
+
+    <!-- =====================================================
+         CHARACTER PROFILE OVERLAY
+         ===================================================== -->
+
+    <div
+        id="dossierOverlay"
+        class="dossier-overlay"
+        aria-hidden="true"
+    >
+
+        <div
+            class="dossier"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="dossierName"
+        >
+
+            <button
+                id="dossierClose"
+                class="dossier-close"
+                type="button"
+                aria-label="Close character profile"
+            >
+                ×
+            </button>
+
+
+            <div class="dossier-image-wrap">
+
+                <img
+                    id="dossierImage"
+                    class="dossier-image"
+                    src=""
+                    alt=""
+                >
+
+            </div>
+
+
+            <div class="dossier-content">
+
+                <span
+                    id="dossierNumber"
+                    class="dossier-number"
+                >
+                    SN-001
+                </span>
+
+
+                <p
+                    id="dossierRole"
+                    class="dossier-role"
+                >
+                    THE BLUE SENTINEL
+                </p>
+
+
+                <h2 id="dossierName">
+                    WANDILE
+                </h2>
+
+
+                <div class="dossier-line"></div>
+
+
+                <div class="dossier-field">
+
+                    <span>
+                        COLOUR
+                    </span>
+
+                    <strong id="dossierColour">
+                        BLUE
+                    </strong>
+
+                </div>
+
+
+                <div class="dossier-field">
+
+                    <span>
+                        ABILITIES
+                    </span>
+
+                    <strong id="dossierAbilities">
+                        STRENGTH • SPEED • FLIGHT
+                    </strong>
+
+                </div>
+
+
+                <div class="dossier-description">
+
+                    <span>
+                        PROFILE
+                    </span>
+
+                    <p id="dossierDescription">
+                        Sentinel profile.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <script src="script.js"></script>
+
 
     <style>
 
+        /* =================================================
+           CHARACTERS PAGE
+           ================================================= */
+
         .characters-hero {
-            min-height: 54vh;
+
+            min-height: 56vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
         }
 
-        .characters-section {
-            padding-top: 90px;
+
+        .characters-hero
+        .page-hero-inner {
+
+            width: min(850px, 90vw);
+
         }
+
+
+        .characters-hero h1 {
+
+            margin: 12px 0 20px;
+
+            font-size:
+                clamp(
+                    3rem,
+                    8vw,
+                    7rem
+                );
+
+            line-height: 0.9;
+
+            letter-spacing: -0.055em;
+
+        }
+
+
+        .characters-hero
+        .page-hero-description {
+
+            max-width: 680px;
+
+            margin: auto;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.55
+                );
+
+            line-height: 1.8;
+
+        }
+
+
+        /* =================================================
+           2 × 2 CHARACTER GRID
+           ================================================= */
 
         .personnel-grid {
+
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 24px;
-            margin-top: 42px;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
+            gap: 26px;
+
+            margin-top: 46px;
+
         }
+
+
+        /* =================================================
+           CHARACTER CARD
+           ================================================= */
 
         .personnel-card {
+
             position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+
             min-width: 0;
-            background: #05070a;
-            border: 1px solid rgba(215, 220, 228, 0.16);
+
+            overflow: hidden;
+
+            display: flex;
+
+            flex-direction: column;
+
+            border-radius: 18px;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.12
+                );
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #1a1e24,
+                    #101319 45%,
+                    #07090c
+                );
+
             box-shadow:
-                0 24px 70px rgba(0, 0, 0, 0.38);
+                0 28px 70px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.65
+                );
+
+            transform-style: preserve-3d;
+
+            cursor: pointer;
+
             transition:
-                transform 0.35s ease,
-                border-color 0.35s ease,
-                box-shadow 0.35s ease;
+                transform
+                0.4s
+                cubic-bezier(
+                    .22,
+                    .61,
+                    .36,
+                    1
+                ),
+
+                border-color
+                0.3s
+                ease,
+
+                box-shadow
+                0.4s
+                ease;
+
         }
+
 
         .personnel-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(215, 220, 228, 0.34);
+
+            transform:
+                translateY(-9px);
+
+            border-color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.25
+                );
+
             box-shadow:
-                0 30px 80px rgba(0, 0, 0, 0.48);
+                0 42px 90px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.78
+                );
+
         }
 
+
+        .personnel-card:focus-visible {
+
+            outline:
+                2px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.65
+                );
+
+            outline-offset: 5px;
+
+        }
+
+
+        /* =================================================
+           IMAGE
+           ================================================= */
+
         .personnel-image-wrap {
+
             position: relative;
-            height: 470px;
+
+            height: 430px;
+
             overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
             background:
                 radial-gradient(
                     circle at 50% 35%,
-                    rgba(255,255,255,0.08),
-                    transparent 55%
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.08
+                    ),
+                    transparent 58%
                 ),
-                #030507;
+                #05070a;
+
         }
+
 
         .personnel-image {
+
             width: 100%;
+
             height: 100%;
+
             display: block;
+
             object-fit: contain;
+
             object-position: center;
-            padding: 22px;
-            transition: transform 0.5s ease;
+
+            padding: 18px;
+
+            filter:
+                saturate(0.95)
+                contrast(1.06);
+
+            transition:
+                transform
+                0.6s
+                cubic-bezier(
+                    .22,
+                    .61,
+                    .36,
+                    1
+                );
+
         }
 
-        .personnel-card:hover .personnel-image {
-            transform: scale(1.025);
+
+        .personnel-card:hover
+        .personnel-image {
+
+            transform:
+                scale(1.04);
+
         }
+
 
         .personnel-image-label {
+
             position: absolute;
-            left: 18px;
-            bottom: 18px;
-            padding: 7px 10px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(0,0,0,0.76);
-            color: rgba(255,255,255,0.7);
-            font-size: 0.62rem;
+
+            left: 17px;
+
+            bottom: 17px;
+
+            padding:
+                7px
+                10px;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.18
+                );
+
+            background:
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.78
+                );
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.68
+                );
+
+            font-size: 0.6rem;
+
+            font-weight: 900;
+
             letter-spacing: 0.18em;
+
         }
+
+
+        /* =================================================
+           CARD CONTENT
+           ================================================= */
 
         .personnel-content {
-            padding: 28px;
+
+            position: relative;
+
+            display: flex;
+
+            flex-direction: column;
+
+            flex: 1;
+
+            padding:
+                25px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #101319,
+                    #07090c
+                );
+
         }
+
 
         .personnel-topline {
+
             display: flex;
+
             justify-content: space-between;
+
             gap: 15px;
-            margin-bottom: 13px;
-            font-size: 0.62rem;
-            letter-spacing: 0.16em;
-            color: rgba(255,255,255,0.42);
+
+            margin-bottom: 12px;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.42
+                );
+
+            font-size: 0.58rem;
+
+            font-weight: 900;
+
+            letter-spacing: 0.15em;
+
         }
+
 
         .personnel-content h3 {
+
             margin: 0;
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
-            line-height: 0.9;
-            letter-spacing: -0.05em;
+
+            color: #f5f6f8;
+
+            font-size:
+                clamp(
+                    2rem,
+                    4vw,
+                    3.1rem
+                );
+
+            line-height: 0.95;
+
+            letter-spacing: -0.045em;
+
         }
+
 
         .personnel-role {
-            margin: 10px 0 18px;
-            font-size: 0.66rem;
-            letter-spacing: 0.17em;
-            color: rgba(255,255,255,0.55);
+
+            margin:
+                9px
+                0
+                17px;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.52
+                );
+
+            font-size: 0.6rem;
+
+            font-weight: 900;
+
+            letter-spacing: 0.16em;
+
         }
+
 
         .personnel-description {
-            margin: 0 0 25px;
-            color: rgba(255,255,255,0.58);
+
+            margin: 0 0 22px;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.58
+                );
+
             line-height: 1.7;
-            font-size: 0.94rem;
+
+            font-size: 0.88rem;
+
         }
+
+
+        /* =================================================
+           ABILITIES
+           ================================================= */
 
         .ability-list {
-            border-top: 1px solid rgba(255,255,255,0.1);
+
+            border-top:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.1
+                );
+
         }
+
 
         .ability-row {
+
+            min-height: 45px;
+
             display: grid;
-            grid-template-columns: 35px 1fr;
+
+            grid-template-columns:
+                35px
+                1fr;
+
             align-items: center;
-            min-height: 48px;
-            border-bottom: 1px solid rgba(255,255,255,0.07);
+
+            border-bottom:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.065
+                );
+
         }
+
 
         .ability-row span {
-            font-size: 0.62rem;
-            letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.3);
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.28
+                );
+
+            font-size: 0.58rem;
+
+            font-weight: 900;
+
         }
+
 
         .ability-row strong {
-            font-size: 0.78rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.78
+                );
+
+            font-size: 0.68rem;
+
+            font-weight: 800;
+
+            letter-spacing: 0.07em;
+
             text-transform: uppercase;
-            color: rgba(255,255,255,0.78);
+
         }
+
+
+        /* =================================================
+           OPEN PROFILE
+           ================================================= */
+
+        .personnel-action {
+
+            display: block;
+
+            margin-top: 20px;
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.58
+                );
+
+            font-size: 0.58rem;
+
+            font-weight: 900;
+
+            letter-spacing: 0.16em;
+
+            transition:
+                color 0.25s ease,
+                transform 0.25s ease;
+
+        }
+
+
+        .personnel-card:hover
+        .personnel-action {
+
+            color: #fff;
+
+            transform:
+                translateX(4px);
+
+        }
+
+
+        /* =================================================
+           CHARACTER ACCENTS
+           ================================================= */
+
+        .personnel-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            right: 0;
+
+            bottom: 0;
+
+            height: 4px;
+
+            opacity: 0.9;
+
+        }
+
+
+        .personnel-blue::after {
+
+            background: #42a5ff;
+
+        }
+
+
+        .personnel-red::after {
+
+            background: #ff4d55;
+
+        }
+
+
+        .personnel-pink::after {
+
+            background: #ff72c7;
+
+        }
+
+
+        .personnel-green::after {
+
+            background: #42e38b;
+
+        }
+
+
+        /* =================================================
+           CLASSIFIED
+           ================================================= */
 
         .classified-section {
-            padding-top: 80px;
+
+            padding-top: 90px;
+
         }
+
 
         .classified-box {
+
             display: grid;
-            grid-template-columns: 90px 1fr;
+
+            grid-template-columns:
+                80px
+                1fr;
+
             align-items: center;
+
             gap: 30px;
-            padding: 40px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: #040609;
+
+            padding: 38px;
+
+            border-radius: 16px;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.1
+                );
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #12161c,
+                    #06080b
+                );
+
+            box-shadow:
+                0 25px 60px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.5
+                );
+
         }
+
 
         .classified-symbol {
+
+            width: 60px;
+
+            height: 60px;
+
             display: grid;
+
             place-items: center;
-            width: 64px;
-            height: 64px;
-            border: 1px solid rgba(255,255,255,0.2);
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.2
+                );
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.5
+                );
+
             font-size: 1.5rem;
-            color: rgba(255,255,255,0.5);
+
         }
+
 
         .classified-box h2 {
-            margin: 5px 0 12px;
-            font-size: clamp(1.6rem, 4vw, 2.8rem);
-            letter-spacing: -0.035em;
+
+            margin:
+                6px
+                0
+                12px;
+
         }
+
 
         .classified-box p:last-child {
-            max-width: 680px;
+
+            max-width: 700px;
+
             margin: 0;
-            color: rgba(255,255,255,0.5);
+
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.5
+                );
+
             line-height: 1.7;
-        }
-
-        .character-explore {
-            padding-top: 80px;
-        }
-
-        @media (max-width: 900px) {
-
-            .personnel-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .personnel-image-wrap {
-                height: 520px;
-            }
 
         }
+
+
+        /* =================================================
+           MOBILE
+           ================================================= */
 
         @media (max-width: 760px) {
 
             .characters-hero {
-                min-height: 46vh;
+
+                min-height: 48vh;
+
+                padding:
+                    100px
+                    20px
+                    60px;
+
             }
 
-            .characters-section {
-                padding-top: 65px;
+
+            .personnel-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(0, 1fr)
+                    );
+
+                gap: 12px;
+
             }
+
 
             .personnel-image-wrap {
-                height: 430px;
+
+                height: 260px;
+
             }
+
+
+            .personnel-image {
+
+                padding: 8px;
+
+            }
+
 
             .personnel-content {
-                padding: 24px;
+
+                padding:
+                    15px
+                    13px
+                    17px;
+
             }
+
+
+            .personnel-topline {
+
+                font-size: 0.43rem;
+
+                letter-spacing:
+                    0.08em;
+
+            }
+
+
+            .personnel-content h3 {
+
+                font-size:
+                    1.35rem;
+
+            }
+
+
+            .personnel-role {
+
+                font-size: 0.43rem;
+
+                letter-spacing:
+                    0.09em;
+
+            }
+
+
+            .personnel-description {
+
+                font-size: 0.6rem;
+
+                line-height: 1.55;
+
+            }
+
+
+            .ability-row {
+
+                min-height: 37px;
+
+                grid-template-columns:
+                    25px
+                    1fr;
+
+            }
+
+
+            .ability-row span {
+
+                font-size: 0.42rem;
+
+            }
+
+
+            .ability-row strong {
+
+                font-size: 0.43rem;
+
+                letter-spacing:
+                    0.04em;
+
+            }
+
+
+            .personnel-action {
+
+                font-size: 0.42rem;
+
+                margin-top: 14px;
+
+            }
+
+
+            .personnel-image-label {
+
+                left: 8px;
+
+                bottom: 8px;
+
+                padding:
+                    5px
+                    7px;
+
+                font-size: 0.42rem;
+
+            }
+
 
             .classified-box {
+
                 grid-template-columns: 1fr;
-                padding: 28px;
-                gap: 20px;
+
+                padding: 26px;
+
+                gap: 18px;
+
             }
 
-            .classified-symbol {
-                width: 52px;
-                height: 52px;
+        }
+
+
+        @media (max-width: 390px) {
+
+            .personnel-grid {
+
+                gap: 8px;
+
+            }
+
+
+            .personnel-image-wrap {
+
+                height: 225px;
+
+            }
+
+
+            .personnel-content {
+
+                padding:
+                    12px
+                    10px
+                    14px;
+
+            }
+
+
+            .personnel-content h3 {
+
+                font-size:
+                    1.15rem;
+
+            }
+
+
+            .personnel-description {
+
+                font-size:
+                    0.54rem;
+
+            }
+
+
+            .ability-row strong {
+
+                font-size:
+                    0.39rem;
+
             }
 
         }
 
     </style>
+
 
     <script src="script.js"></script>
 
