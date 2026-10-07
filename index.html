@@ -11,12 +11,12 @@
 
     <meta
         name="theme-color"
-        content="#000000"
+        content="#010204"
     >
 
     <meta
         name="description"
-        content="SENTINELS — an original comic universe."
+        content="SENTINELS — the official comic universe created by Wandile Shaw."
     >
 
     <title>SENTINELS — The Official Comic Universe</title>
@@ -25,345 +25,6 @@
         rel="stylesheet"
         href="style.css"
     >
-
-    <!--
-        Small scene-specific animation layer.
-        The main visual system remains in style.css.
-    -->
-    <style>
-
-        /* =========================================================
-           SPACE SCENE POSITIONS
-           ========================================================= */
-
-        .space-background .satellite,
-        .space-background .asteroid,
-        .space-background .fire-asteroid,
-        .space-background .space-orb,
-        .space-background .space-ship {
-            pointer-events: none;
-            user-select: none;
-        }
-
-        /* =========================================================
-           EXTRA STARS
-           ========================================================= */
-
-        .extra-stars {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
-
-        .extra-star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 0 7px rgba(255, 255, 255, 0.45);
-            animation: starPulse 4s ease-in-out infinite;
-        }
-
-        @keyframes starPulse {
-
-            0%,
-            100% {
-                opacity: 0.25;
-                transform: scale(0.8);
-            }
-
-            50% {
-                opacity: 0.95;
-                transform: scale(1.25);
-            }
-
-        }
-
-        /* =========================================================
-           SPEEDING SHIPS
-           ========================================================= */
-
-        .space-ship {
-            animation: shipFly 12s linear infinite;
-        }
-
-        .ship-two {
-            animation-duration: 17s;
-            animation-delay: -8s;
-        }
-
-        .ship-three {
-            animation-duration: 21s;
-            animation-delay: -14s;
-        }
-
-        .ship-four {
-            animation-duration: 15s;
-            animation-delay: -4s;
-        }
-
-        @keyframes shipFly {
-
-            0% {
-                transform: translate3d(-120px, 80px, 0) rotate(-8deg);
-                opacity: 0;
-            }
-
-            8% {
-                opacity: 0.8;
-            }
-
-            45% {
-                opacity: 0.5;
-            }
-
-            92% {
-                opacity: 0.8;
-            }
-
-            100% {
-                transform: translate3d(125vw, -120px, 0) rotate(-8deg);
-                opacity: 0;
-            }
-
-        }
-
-        /* =========================================================
-           SECTION-SPECIFIC SUPPORT
-           ========================================================= */
-
-        .volume-feature {
-            display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-            gap: 28px;
-            align-items: stretch;
-        }
-
-        .volume-panel,
-        .explore-card {
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(18, 20, 25, 0.98),
-                    rgba(5, 6, 9, 0.98)
-                );
-            border: 1px solid rgba(255, 255, 255, 0.11);
-            box-shadow:
-                0 24px 80px rgba(0, 0, 0, 0.55),
-                inset 0 1px 0 rgba(255, 255, 255, 0.035);
-        }
-
-        .volume-panel {
-            padding: 42px;
-            min-height: 320px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .volume-panel::before {
-            content: "";
-            position: absolute;
-            width: 260px;
-            height: 260px;
-            right: -100px;
-            top: -110px;
-            border-radius: 50%;
-            background: rgba(67, 118, 255, 0.1);
-            filter: blur(5px);
-        }
-
-        .volume-number {
-            position: relative;
-            color: #7d8490;
-            font-size: 0.72rem;
-            letter-spacing: 0.2em;
-            font-weight: 700;
-        }
-
-        .volume-panel h3 {
-            position: relative;
-            margin: 18px 0 10px;
-            font-size: clamp(2.2rem, 5vw, 4.6rem);
-            letter-spacing: -0.045em;
-            color: #fff;
-        }
-
-        .volume-panel p {
-            position: relative;
-            max-width: 600px;
-            color: #9ea4ad;
-            line-height: 1.75;
-        }
-
-        .volume-meta {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 28px;
-        }
-
-        .volume-meta span {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.025);
-            padding: 9px 12px;
-            color: #c9cdd3;
-            font-size: 0.68rem;
-            letter-spacing: 0.12em;
-            font-weight: 700;
-        }
-
-        .volume-link {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: fit-content;
-            margin-top: 28px;
-            padding: 13px 18px;
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.72rem;
-            letter-spacing: 0.14em;
-            font-weight: 800;
-            transition:
-                background 180ms ease,
-                border-color 180ms ease,
-                transform 180ms ease;
-        }
-
-        .volume-link:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .volume-coming-soon {
-            min-height: 320px;
-            padding: 42px;
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background:
-                radial-gradient(
-                    circle at 70% 30%,
-                    rgba(255, 255, 255, 0.035),
-                    transparent 45%
-                ),
-                rgba(4, 5, 8, 0.82);
-        }
-
-        .volume-coming-soon .eyebrow {
-            margin-bottom: 12px;
-        }
-
-        .volume-coming-soon h3 {
-            color: #e5e7eb;
-            font-size: clamp(1.7rem, 3vw, 2.7rem);
-            margin-bottom: 12px;
-        }
-
-        .volume-coming-soon p {
-            color: #777d86;
-            line-height: 1.7;
-        }
-
-        /* =========================================================
-           EXPLORE CARDS
-           ========================================================= */
-
-        .explore-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .explore-card {
-            display: block;
-            padding: 30px;
-            min-height: 230px;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            transition:
-                transform 220ms ease,
-                border-color 220ms ease,
-                box-shadow 220ms ease;
-        }
-
-        .explore-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.23);
-            box-shadow:
-                0 30px 90px rgba(0, 0, 0, 0.65),
-                inset 0 1px 0 rgba(255, 255, 255, 0.04);
-        }
-
-        .explore-card-number {
-            color: #5f6670;
-            font-size: 0.7rem;
-            letter-spacing: 0.18em;
-            font-weight: 800;
-        }
-
-        .explore-card h3 {
-            color: #f7f7f8;
-            font-size: 1.45rem;
-            margin: 30px 0 10px;
-        }
-
-        .explore-card p {
-            color: #858b94;
-            line-height: 1.65;
-            font-size: 0.92rem;
-        }
-
-        .explore-arrow {
-            position: absolute;
-            right: 26px;
-            bottom: 24px;
-            color: #d4d7dc;
-            font-size: 1.15rem;
-        }
-
-        /* =========================================================
-           MOBILE
-           ========================================================= */
-
-        @media (max-width: 850px) {
-
-            .volume-feature {
-                grid-template-columns: 1fr;
-            }
-
-            .explore-grid {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-        @media (max-width: 600px) {
-
-            .volume-panel,
-            .volume-coming-soon {
-                padding: 28px;
-                min-height: 280px;
-            }
-
-            .explore-card {
-                min-height: 190px;
-                padding: 24px;
-            }
-
-        }
-
-    </style>
 
 </head>
 
@@ -378,35 +39,34 @@
         aria-hidden="true"
     >
 
-        <!-- Star field -->
         <div class="extra-stars">
 
-            <span class="extra-star" style="top: 8%; left: 7%; animation-delay: -1s;"></span>
-            <span class="extra-star" style="top: 14%; left: 19%; animation-delay: -3s;"></span>
-            <span class="extra-star" style="top: 6%; left: 34%; animation-delay: -2s;"></span>
-            <span class="extra-star" style="top: 23%; left: 48%; animation-delay: -4s;"></span>
-            <span class="extra-star" style="top: 11%; left: 63%; animation-delay: -1.5s;"></span>
-            <span class="extra-star" style="top: 18%; left: 82%; animation-delay: -3.5s;"></span>
-            <span class="extra-star" style="top: 31%; left: 91%; animation-delay: -2.5s;"></span>
+            <span class="extra-star" style="top:8%;left:7%;animation-delay:-1s"></span>
+            <span class="extra-star" style="top:14%;left:19%;animation-delay:-3s"></span>
+            <span class="extra-star" style="top:6%;left:34%;animation-delay:-2s"></span>
+            <span class="extra-star" style="top:23%;left:48%;animation-delay:-4s"></span>
+            <span class="extra-star" style="top:11%;left:63%;animation-delay:-1.5s"></span>
+            <span class="extra-star" style="top:18%;left:82%;animation-delay:-3.5s"></span>
+            <span class="extra-star" style="top:31%;left:91%;animation-delay:-2.5s"></span>
 
-            <span class="extra-star" style="top: 38%; left: 5%; animation-delay: -3s;"></span>
-            <span class="extra-star" style="top: 45%; left: 17%; animation-delay: -1s;"></span>
-            <span class="extra-star" style="top: 40%; left: 37%; animation-delay: -2s;"></span>
-            <span class="extra-star" style="top: 53%; left: 56%; animation-delay: -3.5s;"></span>
-            <span class="extra-star" style="top: 43%; left: 73%; animation-delay: -1.5s;"></span>
-            <span class="extra-star" style="top: 57%; left: 94%; animation-delay: -4s;"></span>
+            <span class="extra-star" style="top:38%;left:5%;animation-delay:-3s"></span>
+            <span class="extra-star" style="top:45%;left:17%;animation-delay:-1s"></span>
+            <span class="extra-star" style="top:40%;left:37%;animation-delay:-2s"></span>
+            <span class="extra-star" style="top:53%;left:56%;animation-delay:-3.5s"></span>
+            <span class="extra-star" style="top:43%;left:73%;animation-delay:-1.5s"></span>
+            <span class="extra-star" style="top:57%;left:94%;animation-delay:-4s"></span>
 
-            <span class="extra-star" style="top: 67%; left: 9%; animation-delay: -2s;"></span>
-            <span class="extra-star" style="top: 74%; left: 26%; animation-delay: -3s;"></span>
-            <span class="extra-star" style="top: 65%; left: 44%; animation-delay: -1s;"></span>
-            <span class="extra-star" style="top: 78%; left: 62%; animation-delay: -3.5s;"></span>
-            <span class="extra-star" style="top: 70%; left: 79%; animation-delay: -2.5s;"></span>
-            <span class="extra-star" style="top: 87%; left: 93%; animation-delay: -4s;"></span>
+            <span class="extra-star" style="top:67%;left:9%;animation-delay:-2s"></span>
+            <span class="extra-star" style="top:74%;left:26%;animation-delay:-3s"></span>
+            <span class="extra-star" style="top:65%;left:44%;animation-delay:-1s"></span>
+            <span class="extra-star" style="top:78%;left:62%;animation-delay:-3.5s"></span>
+            <span class="extra-star" style="top:70%;left:79%;animation-delay:-2.5s"></span>
+            <span class="extra-star" style="top:87%;left:93%;animation-delay:-4s"></span>
 
-            <span class="extra-star" style="top: 92%; left: 14%; animation-delay: -1.5s;"></span>
-            <span class="extra-star" style="top: 84%; left: 38%; animation-delay: -2.5s;"></span>
-            <span class="extra-star" style="top: 94%; left: 57%; animation-delay: -3s;"></span>
-            <span class="extra-star" style="top: 88%; left: 76%; animation-delay: -1s;"></span>
+            <span class="extra-star" style="top:92%;left:14%;animation-delay:-1.5s"></span>
+            <span class="extra-star" style="top:84%;left:38%;animation-delay:-2.5s"></span>
+            <span class="extra-star" style="top:94%;left:57%;animation-delay:-3s"></span>
+            <span class="extra-star" style="top:88%;left:76%;animation-delay:-1s"></span>
 
         </div>
 
@@ -415,119 +75,119 @@
 
         <div
             class="satellite"
-            style="top: 13%; left: 8%; transform: rotate(-18deg) scale(0.85);"
+            style="top:13%;left:8%;transform:rotate(-18deg) scale(.85)"
         ></div>
 
         <div
             class="satellite"
-            style="top: 35%; left: 88%; transform: rotate(24deg) scale(0.65);"
+            style="top:35%;left:88%;transform:rotate(24deg) scale(.65)"
         ></div>
 
         <div
             class="satellite"
-            style="top: 73%; left: 13%; transform: rotate(12deg) scale(0.55);"
+            style="top:73%;left:13%;transform:rotate(12deg) scale(.55)"
         ></div>
 
         <div
             class="satellite"
-            style="top: 82%; left: 84%; transform: rotate(-31deg) scale(0.75);"
+            style="top:82%;left:84%;transform:rotate(-31deg) scale(.75)"
         ></div>
 
 
-        <!-- Regular asteroids -->
+        <!-- Asteroids -->
 
         <div
             class="asteroid blue one"
-            style="top: 21%; left: 24%; transform: scale(0.85);"
+            style="top:21%;left:24%;transform:scale(.85)"
         ></div>
 
         <div
             class="asteroid red two"
-            style="top: 48%; left: 7%; transform: scale(0.7);"
+            style="top:48%;left:7%;transform:scale(.7)"
         ></div>
 
         <div
             class="asteroid green three"
-            style="top: 68%; left: 89%; transform: scale(0.65);"
+            style="top:68%;left:89%;transform:scale(.65)"
         ></div>
 
         <div
             class="asteroid white four"
-            style="top: 78%; left: 47%; transform: scale(0.55);"
+            style="top:78%;left:47%;transform:scale(.55)"
         ></div>
 
         <div
             class="asteroid pink five"
-            style="top: 28%; left: 79%; transform: scale(0.8);"
+            style="top:28%;left:79%;transform:scale(.8)"
         ></div>
 
 
-        <!-- Orange / fire-looking rocks -->
+        <!-- Flaming rocks -->
 
         <div
             class="fire-asteroid"
-            style="top: 18%; left: 55%; transform: rotate(18deg) scale(0.9);"
-        ></div>
-
-        <div
-            class="fire-asteroid"
-            style="top: 57%; left: 32%; transform: rotate(-24deg) scale(0.65);"
+            style="top:18%;left:55%;transform:rotate(18deg) scale(.9)"
         ></div>
 
         <div
             class="fire-asteroid"
-            style="top: 88%; left: 70%; transform: rotate(36deg) scale(0.75);"
+            style="top:57%;left:32%;transform:rotate(-24deg) scale(.65)"
+        ></div>
+
+        <div
+            class="fire-asteroid"
+            style="top:88%;left:70%;transform:rotate(36deg) scale(.75)"
         ></div>
 
 
-        <!-- Coloured floating energy orbs -->
+        <!-- Energy orbs -->
 
         <div
             class="space-orb blue"
-            style="top: 27%; left: 15%;"
+            style="top:27%;left:15%"
         ></div>
 
         <div
             class="space-orb pink"
-            style="top: 41%; left: 81%; animation-delay: -2s;"
+            style="top:41%;left:81%;animation-delay:-2s"
         ></div>
 
         <div
             class="space-orb red"
-            style="top: 63%; left: 18%; animation-delay: -4s;"
+            style="top:63%;left:18%;animation-delay:-4s"
         ></div>
 
         <div
             class="space-orb green"
-            style="top: 76%; left: 76%; animation-delay: -1.5s;"
+            style="top:76%;left:76%;animation-delay:-1.5s"
         ></div>
 
         <div
             class="space-orb blue"
-            style="top: 91%; left: 31%; animation-delay: -3s;"
+            style="top:91%;left:31%;animation-delay:-3s"
         ></div>
 
 
-        <!-- Tiny ships -->
+        <!-- Small ships -->
 
         <div
             class="space-ship ship-one"
-            style="top: 22%; left: -5%;"
+            style="top:22%;left:-5%"
         ></div>
 
         <div
             class="space-ship ship-two"
-            style="top: 47%; left: 20%;"
+            style="top:47%;left:20%"
         ></div>
 
         <div
             class="space-ship ship-three"
-            style="top: 69%; left: 52%;"
+            style="top:69%;left:52%"
         ></div>
 
         <div
             class="space-ship ship-four"
-            style="top: 84%; left: 5%;"
+            style="top:84%;left:5%"
         ></div>
 
     </div>
@@ -547,6 +207,7 @@
             SENTINELS
         </a>
 
+
         <button
             id="menuToggle"
             class="menu-toggle"
@@ -559,6 +220,7 @@
             <span></span>
             <span></span>
         </button>
+
 
         <nav
             id="mainNav"
@@ -585,7 +247,7 @@
                 QUIZ
             </a>
 
-            <a href="predictions.html">
+            <a href="prediction.html">
                 PREDICTIONS
             </a>
 
@@ -602,7 +264,12 @@
     </header>
 
 
+    <!-- =========================================================
+         MAIN
+         ========================================================= -->
+
     <main>
+
 
         <!-- =====================================================
              HERO
@@ -610,7 +277,7 @@
 
         <section
             id="home"
-            class="hero-section"
+            class="hero-section hero"
         >
 
             <div class="hero-content">
@@ -619,22 +286,38 @@
                     THE OFFICIAL COMIC UNIVERSE
                 </p>
 
+
+                <!-- ORIGINAL SENTINELS LOGO -->
+
                 <img
                     src="Logo final.jpeg"
                     alt="SENTINELS"
                     class="hero-logo"
                 >
 
+
                 <p class="tagline">
                     FOUR. ONE MISSION.
                 </p>
 
-                <a
-                    href="archive.html"
-                    class="universe-button"
-                >
-                    ENTER THE UNIVERSE
-                </a>
+
+                <div class="hero-actions">
+
+                    <a
+                        href="reader.html?volume=1"
+                        class="universe-button"
+                    >
+                        READ THE BEGINNING
+                    </a>
+
+                    <a
+                        href="#sentinels"
+                        class="text-link"
+                    >
+                        MEET THE SENTINELS ↓
+                    </a>
+
+                </div>
 
             </div>
 
@@ -642,7 +325,7 @@
 
 
         <!-- =====================================================
-             STORY
+             STORY INTRO
              ===================================================== -->
 
         <section
@@ -692,13 +375,16 @@
 
             <p class="section-intro">
                 Four people. Four powers. One mission.
-                Get to know the team behind the story.
+                Explore the heroes at the centre of the story.
             </p>
 
 
             <div class="sentinel-grid">
 
-                <!-- WANDILE -->
+
+                <!-- =================================================
+                     WANDILE
+                     ================================================= -->
 
                 <article
                     class="sentinel-card wandile"
@@ -718,11 +404,13 @@
 
                         <img
                             src="Wandile character art.jpeg"
-                            alt="Wandile"
+                            alt="Wandile, the Blue Sentinel"
                             class="sentinel-card-image character-image"
+                            loading="lazy"
                         >
 
                     </div>
+
 
                     <div class="sentinel-card-content">
 
@@ -751,7 +439,9 @@
                 </article>
 
 
-                <!-- XAVIER -->
+                <!-- =================================================
+                     XAVIER
+                     ================================================= -->
 
                 <article
                     class="sentinel-card xavier"
@@ -771,11 +461,13 @@
 
                         <img
                             src="Xavier character art final.jpeg"
-                            alt="Xavier"
+                            alt="Xavier, the Red Sentinel"
                             class="sentinel-card-image character-image"
+                            loading="lazy"
                         >
 
                     </div>
+
 
                     <div class="sentinel-card-content">
 
@@ -804,7 +496,9 @@
                 </article>
 
 
-                <!-- KYLA -->
+                <!-- =================================================
+                     KYLA
+                     ================================================= -->
 
                 <article
                     class="sentinel-card kyla"
@@ -824,11 +518,13 @@
 
                         <img
                             src="Kyla character art final 1.jpeg"
-                            alt="Kyla"
+                            alt="Kyla, the Pink and White Sentinel"
                             class="sentinel-card-image character-image"
+                            loading="lazy"
                         >
 
                     </div>
+
 
                     <div class="sentinel-card-content">
 
@@ -857,7 +553,9 @@
                 </article>
 
 
-                <!-- CEE -->
+                <!-- =================================================
+                     CEE
+                     ================================================= -->
 
                 <article
                     class="sentinel-card cee"
@@ -877,11 +575,13 @@
 
                         <img
                             src="Cee character art.jpeg"
-                            alt="Cee"
+                            alt="Cee, the Green Sentinel"
                             class="sentinel-card-image character-image"
+                            loading="lazy"
                         >
 
                     </div>
+
 
                     <div class="sentinel-card-content">
 
@@ -931,7 +631,14 @@
                 LATEST VOLUME
             </h2>
 
+            <p class="section-intro">
+                Start at the beginning of the story and discover
+                how the Sentinels first entered the fight.
+            </p>
+
+
             <div class="volume-feature">
+
 
                 <article class="volume-panel">
 
@@ -951,6 +658,7 @@
                             journey begins.
                         </p>
 
+
                         <div class="volume-meta">
 
                             <span>
@@ -964,6 +672,7 @@
                         </div>
 
                     </div>
+
 
                     <a
                         href="reader.html?volume=1"
@@ -982,13 +691,17 @@
                     </p>
 
                     <h3>
-                        THE FOURTH
+                        VOLUME 02
                     </h3>
 
                     <p>
-                        Volume 02 of Sentinels.
-                        Coming soon.
+                        The next chapter of the Sentinels universe
+                        is coming soon.
                     </p>
+
+                    <span class="volume-status">
+                        IN DEVELOPMENT
+                    </span>
 
                 </article>
 
@@ -1021,6 +734,7 @@
 
             <div class="explore-grid">
 
+
                 <a
                     href="archive.html"
                     class="explore-card"
@@ -1047,12 +761,37 @@
 
 
                 <a
+                    href="sentinels.html"
+                    class="explore-card"
+                >
+
+                    <span class="explore-card-number">
+                        02 • DOSSIERS
+                    </span>
+
+                    <h3>
+                        CHARACTERS
+                    </h3>
+
+                    <p>
+                        Discover the heroes, enemies and characters
+                        shaping the Sentinels universe.
+                    </p>
+
+                    <span class="explore-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
                     href="quiz.html"
                     class="explore-card"
                 >
 
                     <span class="explore-card-number">
-                        02 • TEST YOURSELF
+                        03 • TEST YOURSELF
                     </span>
 
                     <h3>
@@ -1072,12 +811,12 @@
 
 
                 <a
-                    href="predictions.html"
+                    href="prediction.html"
                     class="explore-card"
                 >
 
                     <span class="explore-card-number">
-                        03 • YOUR THEORY
+                        04 • YOUR THEORY
                     </span>
 
                     <h3>
@@ -1101,7 +840,7 @@
 
 
         <!-- =====================================================
-             SENTINELS HUB
+             HUB
              ===================================================== -->
 
         <section
@@ -1134,7 +873,7 @@
 
 
         <!-- =====================================================
-             ABOUT
+             ABOUT / CREATOR
              ===================================================== -->
 
         <section
@@ -1242,6 +981,7 @@
                     SENTINEL
                 </span>
 
+
                 <p
                     id="dossierRole"
                     class="dossier-role"
@@ -1249,11 +989,14 @@
                     SENTINEL
                 </p>
 
+
                 <h2 id="dossierName">
                     WANDILE
                 </h2>
 
+
                 <div class="dossier-line"></div>
+
 
                 <div class="dossier-field">
 
