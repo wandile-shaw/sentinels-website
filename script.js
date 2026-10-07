@@ -14,8 +14,8 @@ const CHARACTERS=[
 const EXTRAS=[
  {name:"VAELOR",role:"EXTRA",c:"#b48cff",img:"Vaelor character art final.jpeg",ab:"Unknown",desc:"Details coming soon.",s:{Strength:60,Speed:60,Combat:60,"Ability Level":60}},
  {name:"ZYRON",role:"EXTRA",c:"#ffb35c",img:"Zyron character art final.jpeg",ab:"Unknown",desc:"Details coming soon.",s:{Strength:60,Speed:60,Combat:60,"Ability Level":60}},
- {name:"COMMANDER VORAX",role:"EXTRA",c:"#ff6b3d",img:"Commander vorax character art final.jpeg",ab:"Unknown",desc:"Details coming soon.",s:{Strength:60,Speed:60,Combat:60,"Ability Level":60}},
- {name:"VORAX",role:"EXTRA",c:"#e0e4ea",img:"Vorax character art final 1.jpeg",ab:"Unknown",desc:"Details coming soon.",s:{Strength:60,Speed:60,Combat:60,"Ability Level":60}}
+ {name:"COMMANDER VORAX",role:"THE COMMANDER - A REAL THREAT",c:"#ff6b3d",img:"Commander vorax character art final.jpeg",ab:"Overwhelming power - Command - Combat mastery",desc:"A commanding force and the most dangerous enemy the Sentinels have faced.",s:{Strength:96,Speed:92,Combat:98,"Ability Level":95}},
+ {name:"VORAX",role:"THE HUNTER",c:"#e0e4ea",img:"Vorax character art final 1.jpeg",ab:"Pursuit - Strength - Combat",desc:"Searching for the Sentinels, and a serious danger to them.",s:{Strength:80,Speed:72,Combat:85,"Ability Level":78}}
 ];
 /* ========================================================================= */
 
@@ -53,19 +53,40 @@ document.addEventListener("DOMContentLoaded",()=>{
   g.querySelectorAll(".flip").forEach(c=>{const t=()=>c.classList.toggle("on");c.onclick=t;c.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();t()}}})};
  build(CHARACTERS,"chars");build(EXTRAS,"extras");
 
- /* reader */
+ /* reader: fit whole page, pinch to zoom, drag to pan, swipe to turn page */
  const st=document.getElementById("pgimg");
- if(st){const v=+(new URLSearchParams(location.search).get("v")||1),N={1:25}[v]||1;let p=1;
-  const $=id=>document.getElementById(id),src=n=>`volume${v}/Page-${String(n).padStart(2,"0")}.jpeg`;
+ if(st){document.body.classList.add("reader");
+  const v=+(new URLSearchParams(location.search).get("v")||1),N={1:25}[v]||1;let p=1,sc=1,tx=0,ty=0;
+  const $=id=>document.getElementById(id),src=n=>`volume${v}/Page-${String(n).padStart(2,"0")}.jpeg`,area=st.parentElement;
   const size=()=>{document.body.style.setProperty("--bh",$("rbar").offsetHeight+"px");document.body.style.setProperty("--nh",$("rnav").offsetHeight+"px")};
-  const show=()=>{st.src=src(p);$("pg").textContent="Page "+p+" / "+N;$("pv").disabled=p<=1;$("nx").disabled=p>=N;if(p<N)new Image().src=src(p+1);size()};
-  const go=d=>{const n=Math.min(N,Math.max(1,p+d));if(n===p)return;p=n;show();window.scrollTo(0,0)};
-  const zoom=f=>{const z=document.body.classList.toggle("zoomed",f);$("zm").textContent=z?"[ ] Unzoom":"[ ] Zoom";window.scrollTo(0,0);size()};
-  $("pv").onclick=()=>go(-1);$("nx").onclick=()=>go(1);$("zm").onclick=()=>zoom();
-  document.onkeydown=e=>{if(e.key==="ArrowLeft")go(-1);if(e.key==="ArrowRight")go(1);if(e.key==="Escape")zoom(false)};
-  /* swipe left = next page, swipe right = previous page */
-  let sx=0,sy=0;const area=st.parentElement;
-  area.addEventListener("touchstart",e=>{sx=e.changedTouches[0].clientX;sy=e.changedTouches[0].clientY},{passive:true});
-  area.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)go(dx<0?1:-1)},{passive:true});
-  window.addEventListener("resize",size);show()}
+  const draw=()=>{if(sc<=1.001){sc=1;tx=ty=0}
+   const mx=Math.max(0,(st.offsetWidth*sc-area.clientWidth)/2),my=Math.max(0,(st.offsetHeight*sc-area.clientHeight)/2);
+   tx=Math.min(mx,Math.max(-mx,tx));ty=Math.min(my,Math.max(-my,ty));
+   st.style.transform=`translate(${tx}px,${ty}px) scale(${sc})`;$("zm").textContent=sc>1?"[ ] Unzoom":"[ ] Zoom"};
+  const show=()=>{st.src=src(p);$("pg").textContent="Page "+p+" / "+N;$("pv").disabled=p<=1;$("nx").disabled=p>=N;if(p<N)new Image().src=src(p+1);size();draw()};
+  const go=d=>{const n=Math.min(N,Math.max(1,p+d));if(n===p)return;p=n;sc=1;show()};
+  $("pv").onclick=()=>go(-1);$("nx").onclick=()=>go(1);
+  $("zm").onclick=()=>{sc=sc>1?1:2.2;tx=ty=0;draw()};
+  st.onload=draw;window.addEventListener("resize",()=>{size();draw()});
+  document.onkeydown=e=>{if(e.key==="ArrowLeft")go(-1);if(e.key==="ArrowRight")go(1);if(e.key==="Escape"){sc=1;draw()}};
+  /* gestures (touch + mouse). One finger: pan when zoomed, swipe left/right to turn page when NOT zoomed. Two fingers: pinch. */
+  const P=new Map();let base=null,multi=false,sx=0,sy=0;
+  const pts=()=>[...P.values()],rc=()=>area.getBoundingClientRect();
+  const rebase=()=>{const a=pts(),r=rc();
+   if(a.length===1)base={x:a[0].x,y:a[0].y,tx,ty};
+   else if(a.length>1){const[m,n]=a;base={d:Math.hypot(m.x-n.x,m.y-n.y)||1,mx:(m.x+n.x)/2-r.left-r.width/2,my:(m.y+n.y)/2-r.top-r.height/2,sc,tx,ty}}
+   else base=null};
+  area.addEventListener("pointerdown",e=>{try{area.setPointerCapture(e.pointerId)}catch(x){}
+   P.set(e.pointerId,{x:e.clientX,y:e.clientY});if(P.size===1){multi=false;sx=e.clientX;sy=e.clientY}else multi=true;rebase()});
+  area.addEventListener("pointermove",e=>{if(!P.has(e.pointerId))return;P.set(e.pointerId,{x:e.clientX,y:e.clientY});const a=pts();
+   if(a.length>1&&base&&base.d){const[m,n]=a,r=rc(),d=Math.hypot(m.x-n.x,m.y-n.y),cx=(m.x+n.x)/2-r.left-r.width/2,cy=(m.y+n.y)/2-r.top-r.height/2,s=Math.min(6,Math.max(1,base.sc*d/base.d));
+    tx=cx-((base.mx-base.tx)/base.sc)*s;ty=cy-((base.my-base.ty)/base.sc)*s;sc=s;draw()}
+   else if(a.length===1&&base&&sc>1){tx=base.tx+(a[0].x-base.x);ty=base.ty+(a[0].y-base.y);draw()}});
+  const up=e=>{if(!P.has(e.pointerId))return;const one=P.size===1;P.delete(e.pointerId);
+   if(e.type==="pointerup"&&one&&!multi&&sc<=1){const dx=e.clientX-sx,dy=e.clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)go(dx<0?1:-1)}
+   rebase()};
+  area.addEventListener("pointerup",up);area.addEventListener("pointercancel",up);
+  area.addEventListener("wheel",e=>{e.preventDefault();const r=rc(),cx=e.clientX-r.left-r.width/2,cy=e.clientY-r.top-r.height/2,s=Math.min(6,Math.max(1,sc*(e.deltaY<0?1.15:1/1.15)));
+   tx=cx-((cx-tx)/sc)*s;ty=cy-((cy-ty)/sc)*s;sc=s;draw()},{passive:false});
+  show()}
 });
