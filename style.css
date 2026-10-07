@@ -139,3 +139,12 @@ label[hidden]{display:none}
 .post h3{margin:8px 0 2px;letter-spacing:.06em;font-size:1rem}
 .post .vol-t{font-size:.78rem;color:var(--c);letter-spacing:.08em}
 .post p.c{color:#d5d9df;margin:8px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+
+/* ---- reader v3: whole page fits the screen; zoom is pinch/drag ---- */
+.reader{overflow:hidden}
+.reader .top,.reader .foot{display:none}
+.rbar{position:fixed;top:0;left:0;right:0}
+.reader .stage{position:fixed;left:0;right:0;top:var(--bh,52px);bottom:var(--nh,48px);padding:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;touch-action:none;user-select:none;-webkit-user-select:none}
+.reader .stage img{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;margin:0;transform-origin:center;will-change:transform;pointer-events:none;-webkit-user-drag:none}
+.rnav{gap:8px;padding:6px 12px calc(6px + env(safe-area-inset-bottom))}
+.rnav button{flex:0 1 130px;padding:7px 10px;font-size:.72rem}
