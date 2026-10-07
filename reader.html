@@ -1,3526 +1,2427 @@
-<!DOCTYPEhtml>
-<htmllang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>SENTINELS — Reader</title>
+
+    <meta
+        name="description"
+        content="Read the official SENTINELS comic archive."
+    >
+
+    <style>
+        :root {
+            --bg: #02050a;
+            --panel: #07101a;
+            --panel-2: #0a1622;
+            --border: rgba(110, 190, 235, 0.16);
+            --border-strong: rgba(110, 205, 255, 0.35);
+            --blue: #67c9ff;
+            --blue-soft: rgba(70, 170, 235, 0.12);
+            --text: #edf7ff;
+            --muted: rgba(190, 215, 235, 0.55);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            margin: 0;
+            min-height: 100%;
+            background: var(--bg);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(20, 90, 150, 0.16),
+                    transparent 42%
+                ),
+                radial-gradient(
+                    circle at 10% 75%,
+                    rgba(20, 80, 130, 0.07),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 90% 65%,
+                    rgba(20, 100, 150, 0.06),
+                    transparent 35%
+                ),
+                var(--bg);
+
+            color: var(--text);
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            overflow-x: hidden;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        /* =====================================================
+           SPACE
+        ===================================================== */
+
+        .space {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .space::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background-image:
+                radial-gradient(
+                    circle,
+                    rgba(255, 255, 255, 0.7) 1px,
+                    transparent 1.5px
+                ),
+                radial-gradient(
+                    circle,
+                    rgba(100, 190, 255, 0.45) 1px,
+                    transparent 1.5px
+                ),
+                radial-gradient(
+                    circle,
+                    rgba(255, 255, 255, 0.35) 1px,
+                    transparent 1.5px
+                );
+
+            background-size:
+                120px 120px,
+                190px 190px,
+                270px 270px;
 
-<metacharset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"
->
-
-<title>Sentinels—Reader</title>
-
-<meta
-name="description"
-content="ReadtheofficialSentinelscomicarchive."
->
-
-<style>
-
-/*=========================================================
-ROOT
-=========================================================*/
-
-:root{
---reader-bg:#02050a;
---reader-panel:rgba(5,13,21,0.92);
---reader-border:rgba(100,180,230,0.13);
---reader-blue:#67c9ff;
---reader-blue-soft:rgba(80,175,235,0.12);
---reader-text:#edf7ff;
---reader-muted:rgba(185,210,230,0.5);
-}
-
-*{
-box-sizing:border-box;
-}
-
-html,
-body{
-margin:0;
-width:100%;
-min-height:100%;
-background:var(--reader-bg);
-}
-
-html{
-overflow-x:hidden;
-}
-
-body{
-color:var(--reader-text);
-font-family:
-Inter,
--apple-system,
-BlinkMacSystemFont,
-"SegoeUI",
-sans-serif;
-
-overflow-x:hidden;
-overflow-y:auto;
-
-/*
-*Thebrowserownsnormalverticalscrolling.
-*Thereaderonlytakesoverwhenitneedsto
-*handlezoom/pangestures.
-*/
-touch-action:pan-y;
-}
-
-button,
-a{
--webkit-tap-highlight-color:transparent;
-}
-
-
-/*=========================================================
-READERBACKGROUND
-=========================================================*/
-
-.reader-page{
-position:relative;
-min-height:100vh;
-
-background:
-radial-gradient(
-ellipseat50%0%,
-rgba(25,76,125,0.16),
-transparent38%
-),
-radial-gradient(
-ellipseat10%60%,
-rgba(25,75,125,0.06),
-transparent35%
-),
-radial-gradient(
-ellipseat90%75%,
-rgba(20,90,125,0.05),
-transparent35%
-),
-#02050a;
-}
-
-.reader-space{
-position:fixed;
-inset:0;
-
-z-index:0;
-
-pointer-events:none;
-
-overflow:hidden;
-}
-
-.reader-space::before{
-content:"";
-
-position:absolute;
-inset:0;
-
-background-image:
-radial-gradient(
-1px1pxat8%18%,
-rgba(255,255,255,0.7),
-transparent
-),
-radial-gradient(
-1px1pxat18%72%,
-rgba(110,195,255,0.55),
-transparent
-),
-radial-gradient(
-1px1pxat31%27%,
-rgba(255,255,255,0.55),
-transparent
-),
-radial-gradient(
-1px1pxat43%82%,
-rgba(120,205,255,0.45),
-transparent
-),
-radial-gradient(
-1px1pxat57%14%,
-rgba(255,255,255,0.55),
-transparent
-),
-radial-gradient(
-1px1pxat67%64%,
-rgba(120,200,255,0.45),
-transparent
-),
-radial-gradient(
-1px1pxat78%23%,
-rgba(255,255,255,0.5),
-transparent
-),
-radial-gradient(
-1px1pxat89%79%,
-rgba(120,195,255,0.45),
-transparent
-);
-
-background-size:
-260px230px,
-330px300px,
-300px270px,
-390px350px,
-310px280px,
-420px380px,
-280px250px,
-450px400px;
-
-opacity:0.62;
-}
-
-.reader-space::after{
-content:"";
-
-position:absolute;
-
-width:1000px;
-height:500px;
-
-top:4%;
-left:50%;
-
-transform:
-translateX(-50%)
-rotate(-10deg);
-
-background:
-radial-gradient(
-ellipse,
-rgba(30,105,170,0.09),
-transparent65%
-);
-
-filter:blur(25px);
-}
-
-
-/*=========================================================
-TOPBAR
-=========================================================*/
-
-.reader-topbar{
-position:fixed;
-
-top:0;
-left:0;
-right:0;
-
-height:66px;
-
-z-index:100;
-
-display:flex;
-align-items:center;
-justify-content:space-between;
-
-padding:020px;
-
-background:
-rgba(2,7,12,0.9);
-
-border-bottom:
-1pxsolid
-rgba(90,170,220,0.12);
-
-backdrop-filter:blur(16px);
--webkit-backdrop-filter:blur(16px);
-}
-
-.reader-brand{
-display:flex;
-flex-direction:column;
-
-min-width:180px;
-
-color:var(--reader-text);
-
-text-decoration:none;
-}
-
-.reader-brand-main{
-font-size:0.75rem;
-font-weight:900;
-letter-spacing:0.2em;
-}
-
-.reader-brand-sub{
-margin-top:3px;
-
-color:
-rgba(
-135,
-190,
-225,
-0.45
-);
-
-font-size:0.55rem;
-letter-spacing:0.16em;
-
-text-transform:uppercase;
-}
-
-.reader-volume{
-position:absolute;
-
-left:50%;
-top:50%;
-
-transform:
-translate(
--50%,
--50%
-);
-
-text-align:center;
-
-white-space:nowrap;
-}
-
-.reader-volume-number{
-color:
-rgba(
-105,
-190,
-240,
-0.5
-);
-
-font-size:0.55rem;
-font-weight:700;
-letter-spacing:0.2em;
-
-text-transform:uppercase;
-}
-
-.reader-volume-title{
-margin-top:3px;
-
-color:
-rgba(
-235,
-246,
-253,
-0.85
-);
-
-font-size:0.7rem;
-font-weight:800;
-letter-spacing:0.14em;
-}
-
-.reader-actions{
-display:flex;
-align-items:center;
-gap:8px;
-
-min-width:180px;
-
-justify-content:flex-end;
-}
-
-.reader-action{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-
-min-width:38px;
-height:34px;
-
-padding:010px;
-
-border:
-1pxsolid
-rgba(100,180,230,0.12);
-
-background:
-rgba(10,25,38,0.65);
-
-color:
-rgba(
-180,
-220,
-242,
-0.68
-);
-
-font-size:0.58rem;
-font-weight:700;
-letter-spacing:0.1em;
-
-text-decoration:none;
-cursor:pointer;
-
-transition:
-background0.2sease,
-border-color0.2sease,
-color0.2sease;
-}
-
-.reader-action:hover{
-background:
-rgba(
-40,
-125,
-180,
-0.12
-);
-
-border-color:
-rgba(
-100,
-190,
-240,
-0.3
-);
-
-color:#eaf8ff;
-}
-
-
-/*=========================================================
-READERMAIN
-=========================================================*/
-
-.reader-main{
-position:relative;
-z-index:2;
-
-min-height:100vh;
-
-display:flex;
-flex-direction:column;
-
-padding-top:66px;
-}
-
-.reader-heading{
-flex:00auto;
-
-width:
-min(
-1100px,
-calc(100%-40px)
-);
-
-margin:0auto;
-
-padding:
-34px
-0
-18px;
-
-text-align:center;
-}
-
-.reader-heading-label{
-color:
-rgba(
-105,
-190,
-240,
-0.48
-);
-
-font-size:0.6rem;
-font-weight:700;
-letter-spacing:0.2em;
-
-text-transform:uppercase;
-}
-
-.reader-headingh1{
-margin:
-9px
-0
-0;
-
-color:#eef7ff;
-
-font-size:
-clamp(
-1.6rem,
-4vw,
-2.7rem
-);
-
-line-height:1;
-
-letter-spacing:-0.04em;
-}
-
-.reader-headingp{
-margin:
-10px
-auto
-0;
-
-max-width:600px;
-
-color:
-rgba(
-180,
-205,
-225,
-0.43
-);
-
-font-size:0.8rem;
-line-height:1.6;
-}
-
-
-/*=========================================================
-COMICSTAGE
-=========================================================*/
-
-.comic-stage{
-position:relative;
-
-flex:11auto;
-
-width:
-min(
-1200px,
-calc(100%-32px)
-);
-
-min-height:55vh;
-
-margin:0auto;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-padding:
-10px
-0
-20px;
-}
-
-
-/*=========================================================
-COMICVIEWPORT
-=========================================================*/
-
-.comic-viewport{
-position:relative;
-
-width:100%;
-
-height:
-min(
-70vh,
-900px
-);
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-/*
-*IMPORTANT:
-*
-*Theviewportnolongerownsscrolling.
-*Verticaltouchmovementisallowedtopass
-*throughtothepage.
-*
-*Horizontalgesturesandcustomzoom/panare
-*handledselectivelybyJavaScript.
-*/
-touch-action:pan-y;
-
-user-select:none;
--webkit-user-select:none;
-
-background:
-radial-gradient(
-ellipseatcenter,
-rgba(10,25,38,0.5),
-rgba(1,4,8,0.85)
-);
-
-border:
-1pxsolid
-rgba(90,170,220,0.1);
-
-box-shadow:
-inset0080px
-rgba(20,90,140,0.025);
-}
-
-.comic-viewport::before{
-content:"";
-
-position:absolute;
-inset:0;
-
-pointer-events:none;
-
-background:
-linear-gradient(
-90deg,
-rgba(80,170,230,0.035),
-transparent15%,
-transparent85%,
-rgba(80,170,230,0.035)
-);
-}
-
-.comic-image{
-position:relative;
-z-index:2;
-
-display:block;
-
-width:auto;
-height:auto;
-
-max-width:100%;
-max-height:100%;
-
-object-fit:contain;
-
-transform:
-translate3d(
-0,
-0,
-0
-)
-scale(1);
-
-transform-origin:centercenter;
-
-will-change:transform;
-
-cursor:default;
-
-user-select:none;
--webkit-user-drag:none;
--webkit-user-select:none;
-
-/*
-*Donotdisablebrowserscrollinghere.
-*/
-touch-action:pan-y;
-
-transition:
-opacity0.18sease;
-}
-
-.comic-image.is-dragging{
-transition:none;
-}
-
-.comic-image.is-zoomed{
-cursor:grab;
-}
-
-.comic-image.is-dragging{
-cursor:grabbing;
-}
-
-
-/*=========================================================
-LOADING/ERROR
-=========================================================*/
-
-.reader-message{
-position:absolute;
-
-z-index:10;
-
-left:50%;
-top:50%;
-
-transform:
-translate(
--50%,
--50%
-);
-
-width:
-min(
-420px,
-calc(100%-40px)
-);
-
-padding:30px;
-
-text-align:center;
-
-background:
-rgba(
-3,
-10,
-17,
-0.94
-);
-
-border:
-1pxsolid
-rgba(
-100,
-180,
-230,
-0.13
-);
-
-backdrop-filter:blur(12px);
--webkit-backdrop-filter:blur(12px);
-}
-
-.reader-message[hidden]{
-display:none;
-}
-
-.reader-message-label{
-color:
-rgba(
-105,
-190,
-240,
-0.55
-);
-
-font-size:0.58rem;
-font-weight:700;
-letter-spacing:0.18em;
-
-text-transform:uppercase;
-}
-
-.reader-messageh2{
-margin:
-10px
-0
-0;
-
-color:#edf7ff;
-
-font-size:1.3rem;
-}
-
-.reader-messagep{
-margin:
-10px
-0
-0;
-
-color:
-rgba(
-185,
-210,
-230,
-0.48
-);
-
-font-size:0.8rem;
-line-height:1.65;
-}
-
-
-/*=========================================================
-SIDEARROWS
-=========================================================*/
-
-.reader-side-button{
-position:absolute;
-
-z-index:20;
-
-top:50%;
-
-width:46px;
-height:70px;
-
-transform:
-translateY(-50%);
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-border:
-1pxsolid
-rgba(
-100,
-180,
-230,
-0.14
-);
-
-background:
-rgba(
-3,
-12,
-20,
-0.82
-);
-
-color:
-rgba(
-185,
-225,
-245,
-0.65
-);
-
-font-size:1.25rem;
-
-cursor:pointer;
-
-opacity:0;
-
-pointer-events:none;
-
-transition:
-opacity0.2sease,
-background0.2sease,
-border-color0.2sease;
-}
-
-.reader-side-button.visible{
-opacity:1;
-pointer-events:auto;
-}
-
-.reader-side-button:hover{
-background:
-rgba(
-25,
-95,
-140,
-0.15
-);
-
-border-color:
-rgba(
-100,
-190,
-240,
-0.3
-);
-}
-
-.reader-side-button.previous{
-left:14px;
-}
-
-.reader-side-button.next{
-right:14px;
-}
-
-
-/*=========================================================
-CONTROLS
-=========================================================*/
-
-.reader-controls{
-position:relative;
-z-index:5;
-
-width:
-min(
-900px,
-calc(100%-40px)
-);
-
-margin:0auto;
-
-padding:
-0
-0
-20px;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-gap:14px;
-}
-
-.reader-nav-button{
-min-width:110px;
-
-height:38px;
-
-border:
-1pxsolid
-rgba(
-100,
-180,
-230,
-0.13
-);
-
-background:
-rgba(
-7,
-19,
-30,
-0.8
-);
-
-color:
-rgba(
-185,
-220,
-240,
-0.65
-);
-
-font-size:0.6rem;
-font-weight:700;
-letter-spacing:0.13em;
-
-text-transform:uppercase;
-
-cursor:pointer;
-
-transition:
-background0.2sease,
-border-color0.2sease,
-color0.2sease;
-}
-
-.reader-nav-button:hover:not(:disabled){
-background:
-rgba(
-35,
-120,
-175,
-0.12
-);
-
-border-color:
-rgba(
-100,
-190,
-240,
-0.3
-);
-
-color:#eaf8ff;
-}
-
-.reader-nav-button:disabled{
-opacity:0.25;
-cursor:not-allowed;
-}
-
-.reader-counter{
-min-width:90px;
-
-color:
-rgba(
-190,
-220,
-238,
-0.6
-);
-
-font-size:0.67rem;
-font-weight:700;
-letter-spacing:0.13em;
-
-text-align:center;
-}
-
-
-/*=========================================================
-PROGRESS
-=========================================================*/
-
-.reader-progress-wrap{
-position:relative;
-z-index:5;
-
-width:
-min(
-900px,
-calc(100%-40px)
-);
-
-margin:0auto;
-
-padding-bottom:20px;
-}
-
-.reader-progress{
-width:100%;
-height:2px;
-
-overflow:hidden;
-
-background:
-rgba(
-100,
-170,
-210,
-0.1
-);
-}
-
-.reader-progress-bar{
-width:0%;
-height:100%;
-
-background:
-linear-gradient(
-toright,
-rgba(70,150,210,0.4),
-#67c9ff
-);
-
-box-shadow:
-0010px
-rgba(70,180,240,0.35);
-
-transition:
-width0.25sease;
-}
-
-
-/*=========================================================
-HINT
-=========================================================*/
-
-.reader-hint{
-position:relative;
-z-index:5;
-
-padding:
-0
-20px
-28px;
-
-color:
-rgba(
-160,
-195,
-218,
-0.28
-);
-
-font-size:0.57rem;
-letter-spacing:0.11em;
-
-text-align:center;
-
-text-transform:uppercase;
-}
-
-
-/*=========================================================
-IMMERSIVEMODE
-=========================================================*/
-
-body.reader-fullscreen{
-overflow:hidden;
-}
-
-body.reader-fullscreen.reader-topbar{
-background:
-linear-gradient(
-tobottom,
-rgba(2,6,11,0.72),
-transparent
-);
-
-border-bottom-color:transparent;
-
-pointer-events:none;
-}
-
-body.reader-fullscreen.reader-topbar.reader-action{
-pointer-events:auto;
-}
-
-body.reader-fullscreen.reader-brand,
-body.reader-fullscreen.reader-volume{
-opacity:0;
-pointer-events:none;
-}
-
-body.reader-fullscreen.reader-main{
-padding-top:0;
-min-height:100vh;
-}
-
-body.reader-fullscreen.reader-heading,
-body.reader-fullscreen.reader-controls,
-body.reader-fullscreen.reader-progress-wrap,
-body.reader-fullscreen.reader-hint{
-display:none;
-}
-
-body.reader-fullscreen.comic-stage{
-width:100vw;
-height:100vh;
-min-height:100vh;
-
-padding:0;
-margin:0;
-}
-
-body.reader-fullscreen.comic-viewport{
-width:100vw;
-height:100vh;
-
-border:none;
-
-background:#010307;
-
-touch-action:pan-y;
-}
-
-body.reader-fullscreen.comic-image{
-max-width:100vw;
-max-height:100vh;
-
-touch-action:pan-y;
-}
-
-
-/*=========================================================
-RESPONSIVE
-=========================================================*/
-
-@media(max-width:700px){
-
-.reader-topbar{
-height:58px;
-padding:012px;
-}
-
-.reader-brand{
-min-width:120px;
-}
-
-.reader-brand-main{
-font-size:0.64rem;
-}
-
-.reader-brand-sub{
-font-size:0.46rem;
-}
-
-.reader-volume{
-display:none;
-}
-
-.reader-actions{
-min-width:auto;
-}
-
-.reader-action{
-min-width:34px;
-height:32px;
-padding:08px;
-}
-
-.reader-main{
-padding-top:58px;
-}
-
-.reader-heading{
-width:calc(100%-28px);
-
-padding:
-24px
-0
-12px;
-}
-
-.reader-headingh1{
-font-size:1.45rem;
-}
-
-.reader-headingp{
-font-size:0.72rem;
-}
-
-.comic-stage{
-width:
-calc(100%-18px);
-
-min-height:58vh;
-
-padding:
-4px
-0
-12px;
-}
-
-.comic-viewport{
-height:66vh;
-}
-
-.reader-side-button{
-width:38px;
-height:58px;
-}
-
-.reader-side-button.previous{
-left:7px;
-}
-
-.reader-side-button.next{
-right:7px;
-}
-
-.reader-controls{
-width:
-calc(100%-28px);
-
-gap:8px;
-}
-
-.reader-nav-button{
-min-width:92px;
-height:36px;
-}
-
-.reader-counter{
-min-width:65px;
-font-size:0.6rem;
-}
-
-.reader-hint{
-font-size:0.5rem;
-padding-bottom:20px;
-}
-
-}
-
-</style>
+            background-position:
+                15px 20px,
+                70px 80px,
+                120px 35px;
 
+            opacity: 0.3;
+        }
+
+        .space::after {
+            content: "";
+
+            position: absolute;
+
+            width: 1000px;
+            height: 500px;
+
+            top: -80px;
+            left: 50%;
+
+            transform:
+                translateX(-50%)
+                rotate(-8deg);
+
+            background:
+                radial-gradient(
+                    ellipse,
+                    rgba(40, 130, 200, 0.08),
+                    transparent 68%
+                );
+
+            filter: blur(25px);
+        }
+
+        /* =====================================================
+           TOP BAR
+        ===================================================== */
+
+        .topbar {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 68px;
+
+            z-index: 100;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 24px;
+
+            background:
+                rgba(2, 7, 12, 0.9);
+
+            border-bottom:
+                1px solid var(--border);
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            min-width: 190px;
+
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .brand img {
+            width: 42px;
+            height: 42px;
+
+            object-fit: contain;
+
+            display: block;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+        }
+
+        .brand-subtitle {
+            margin-top: 3px;
+
+            color: rgba(150, 200, 230, 0.45);
+
+            font-size: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+
+            text-transform: uppercase;
+        }
+
+        .volume-info {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            text-align: center;
+
+            white-space: nowrap;
+        }
+
+        .volume-number {
+            color: rgba(105, 190, 240, 0.55);
+
+            font-size: 0.55rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+
+            text-transform: uppercase;
+        }
+
+        .volume-title {
+            margin-top: 3px;
+
+            color: rgba(235, 246, 253, 0.88);
+
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            min-width: 190px;
+
+            justify-content: flex-end;
+        }
+
+        .top-button {
+            min-width: 42px;
+            height: 34px;
+
+            padding: 0 11px;
+
+            border: 1px solid var(--border);
+
+            background: rgba(10, 25, 38, 0.8);
+
+            color: rgba(190, 225, 245, 0.7);
+
+            font-size: 0.56rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .top-button:hover {
+            background: var(--blue-soft);
+
+            border-color: var(--border-strong);
+
+            color: #ffffff;
+        }
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .reader {
+            position: relative;
+
+            z-index: 2;
+
+            min-height: 100vh;
+
+            padding-top: 68px;
+        }
+
+        .heading {
+            width: min(1050px, calc(100% - 40px));
+
+            margin: 0 auto;
+
+            padding: 38px 0 18px;
+
+            text-align: center;
+        }
+
+        .heading-label {
+            color: rgba(105, 190, 240, 0.52);
+
+            font-size: 0.58rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+
+            text-transform: uppercase;
+        }
+
+        .heading h1 {
+            margin: 9px 0 0;
+
+            color: #f1f8ff;
+
+            font-size: clamp(1.65rem, 4vw, 2.7rem);
+
+            line-height: 1;
+
+            letter-spacing: -0.04em;
+        }
+
+        .heading p {
+            max-width: 600px;
+
+            margin: 10px auto 0;
+
+            color: var(--muted);
+
+            font-size: 0.78rem;
+
+            line-height: 1.6;
+        }
+
+        /* =====================================================
+           COMIC STAGE
+        ===================================================== */
+
+        .comic-stage {
+            position: relative;
+
+            width: min(1200px, calc(100% - 32px));
+
+            min-height: 58vh;
+
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 10px 0 20px;
+        }
+
+        .viewport {
+            position: relative;
+
+            width: 100%;
+
+            height: min(72vh, 900px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(10, 30, 45, 0.48),
+                    rgba(1, 4, 8, 0.9)
+                );
+
+            border:
+                1px solid rgba(90, 170, 220, 0.11);
+
+            box-shadow:
+                inset 0 0 90px rgba(20, 90, 140, 0.025);
+
+            touch-action: pan-y;
+
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .viewport::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(80, 170, 230, 0.035),
+                    transparent 15%,
+                    transparent 85%,
+                    rgba(80, 170, 230, 0.035)
+                );
+        }
+
+        .comic-image {
+            position: relative;
+
+            z-index: 2;
+
+            display: block;
+
+            max-width: 100%;
+            max-height: 100%;
+
+            width: auto;
+            height: auto;
+
+            object-fit: contain;
+
+            opacity: 0;
+
+            transform:
+                translate3d(0, 0, 0)
+                scale(1);
+
+            transform-origin: center center;
+
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+
+            will-change: transform;
+
+            transition: opacity 0.18s ease;
+
+            cursor: default;
+        }
+
+        .comic-image.loaded {
+            opacity: 1;
+        }
+
+        .comic-image.zoomed {
+            cursor: grab;
+        }
+
+        .comic-image.dragging {
+            cursor: grabbing;
+            transition: none;
+        }
+
+        /* =====================================================
+           LOADING
+        ===================================================== */
+
+        .loading {
+            position: absolute;
+
+            z-index: 10;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            text-align: center;
+
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 30px;
+            height: 30px;
+
+            margin: 0 auto 14px;
+
+            border:
+                2px solid rgba(110, 200, 245, 0.15);
+
+            border-top-color: var(--blue);
+
+            border-radius: 50%;
+
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            color: rgba(180, 220, 240, 0.45);
+
+            font-size: 0.55rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+
+            text-transform: uppercase;
+        }
+
+        .message {
+            position: absolute;
+
+            z-index: 20;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: min(420px, calc(100% - 40px));
+
+            padding: 30px;
+
+            text-align: center;
+
+            background: rgba(3, 10, 17, 0.96);
+
+            border:
+                1px solid var(--border);
+
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.45);
+        }
+
+        .message[hidden] {
+            display: none;
+        }
+
+        .message-label {
+            color: rgba(105, 190, 240, 0.55);
+
+            font-size: 0.57rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+
+            text-transform: uppercase;
+        }
+
+        .message h2 {
+            margin: 10px 0 0;
+
+            color: #edf7ff;
+
+            font-size: 1.25rem;
+        }
+
+        .message p {
+            margin: 10px 0 0;
+
+            color: rgba(185, 210, 230, 0.5);
+
+            font-size: 0.78rem;
+
+            line-height: 1.65;
+        }
+
+        /* =====================================================
+           SIDE NAVIGATION
+        ===================================================== */
+
+        .side-button {
+            position: absolute;
+
+            z-index: 30;
+
+            top: 50%;
+
+            width: 46px;
+            height: 70px;
+
+            transform: translateY(-50%);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border:
+                1px solid rgba(100, 180, 230, 0.14);
+
+            background:
+                rgba(3, 12, 20, 0.88);
+
+            color: rgba(190, 225, 245, 0.75);
+
+            font-size: 1.25rem;
+
+            cursor: pointer;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition:
+                opacity 0.2s ease,
+                background 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .side-button.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .side-button:hover {
+            background: rgba(30, 115, 170, 0.16);
+
+            border-color: var(--border-strong);
+        }
+
+        .side-button.previous {
+            left: 14px;
+        }
+
+        .side-button.next {
+            right: 14px;
+        }
+
+        /* =====================================================
+           CONTROLS
+        ===================================================== */
+
+        .controls {
+            width: min(900px, calc(100% - 40px));
+
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 14px;
+
+            padding: 0 0 18px;
+        }
+
+        .nav-button {
+            min-width: 112px;
+            height: 40px;
+
+            border:
+                1px solid rgba(100, 180, 230, 0.14);
+
+            background:
+                rgba(7, 19, 30, 0.85);
+
+            color:
+                rgba(190, 225, 245, 0.7);
+
+            font-size: 0.59rem;
+            font-weight: 800;
+            letter-spacing: 0.13em;
+
+            text-transform: uppercase;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: rgba(35, 120, 175, 0.14);
+
+            border-color: var(--border-strong);
+
+            color: #ffffff;
+        }
+
+        .nav-button:disabled {
+            opacity: 0.25;
+
+            cursor: not-allowed;
+        }
+
+        .counter {
+            min-width: 90px;
+
+            color: rgba(195, 225, 240, 0.65);
+
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.13em;
+
+            text-align: center;
+        }
+
+        /* =====================================================
+           PROGRESS
+        ===================================================== */
+
+        .progress-wrap {
+            width: min(900px, calc(100% - 40px));
+
+            margin: 0 auto;
+
+            padding-bottom: 20px;
+        }
+
+        .progress {
+            width: 100%;
+            height: 2px;
+
+            overflow: hidden;
+
+            background: rgba(100, 170, 210, 0.1);
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(70, 150, 210, 0.4),
+                    #67c9ff
+                );
+
+            box-shadow:
+                0 0 10px rgba(70, 180, 240, 0.35);
+
+            transition: width 0.25s ease;
+        }
+
+        /* =====================================================
+           HINT
+        ===================================================== */
+
+        .hint {
+            padding: 0 20px 28px;
+
+            color: rgba(160, 195, 218, 0.28);
+
+            font-size: 0.55rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+
+            text-align: center;
+
+            text-transform: uppercase;
+        }
+
+        /* =====================================================
+           IMMERSIVE MODE
+        ===================================================== */
+
+        body.immersive {
+            overflow: hidden;
+        }
+
+        body.immersive .topbar {
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(2, 6, 11, 0.78),
+                    transparent
+                );
+
+            border-bottom-color: transparent;
+        }
+
+        body.immersive .brand,
+        body.immersive .volume-info {
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+        body.immersive .reader {
+            padding-top: 0;
+
+            min-height: 100vh;
+        }
+
+        body.immersive .heading,
+        body.immersive .controls,
+        body.immersive .progress-wrap,
+        body.immersive .hint {
+            display: none;
+        }
+
+        body.immersive .comic-stage {
+            width: 100vw;
+            height: 100vh;
+
+            min-height: 100vh;
+
+            margin: 0;
+            padding: 0;
+        }
+
+        body.immersive .viewport {
+            width: 100vw;
+            height: 100vh;
+
+            border: none;
+
+            background: #010307;
+        }
+
+        body.immersive .comic-image {
+            max-width: 100vw;
+            max-height: 100vh;
+        }
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .topbar {
+                height: 58px;
+
+                padding: 0 12px;
+            }
+
+            .brand {
+                min-width: auto;
+            }
+
+            .brand img {
+                width: 34px;
+                height: 34px;
+            }
+
+            .brand-title {
+                font-size: 0.6rem;
+            }
+
+            .brand-subtitle {
+                font-size: 0.43rem;
+            }
+
+            .volume-info {
+                display: none;
+            }
+
+            .top-actions {
+                min-width: auto;
+            }
+
+            .top-button {
+                min-width: 34px;
+                height: 32px;
+
+                padding: 0 8px;
+
+                font-size: 0.5rem;
+            }
+
+            .reader {
+                padding-top: 58px;
+            }
+
+            .heading {
+                width: calc(100% - 28px);
+
+                padding: 24px 0 12px;
+            }
+
+            .heading h1 {
+                font-size: 1.45rem;
+            }
+
+            .heading p {
+                font-size: 0.7rem;
+            }
+
+            .comic-stage {
+                width: calc(100% - 18px);
+
+                min-height: 60vh;
+
+                padding: 4px 0 12px;
+            }
+
+            .viewport {
+                height: 68vh;
+            }
+
+            .side-button {
+                width: 38px;
+                height: 58px;
+            }
+
+            .side-button.previous {
+                left: 7px;
+            }
+
+            .side-button.next {
+                right: 7px;
+            }
+
+            .controls {
+                width: calc(100% - 28px);
+
+                gap: 8px;
+            }
+
+            .nav-button {
+                min-width: 90px;
+
+                height: 36px;
+
+                font-size: 0.54rem;
+            }
+
+            .counter {
+                min-width: 60px;
+
+                font-size: 0.58rem;
+            }
+
+            .progress-wrap {
+                width: calc(100% - 28px);
+            }
+
+            .hint {
+                font-size: 0.48rem;
+
+                line-height: 1.6;
+
+                padding-bottom: 20px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
 
+<body>
 
-<bodyclass="reader-page">
+    <div class="space" aria-hidden="true"></div>
 
+    <!-- =====================================================
+         TOP BAR
+    ====================================================== -->
 
-<!--=========================================================
-SPACEBACKGROUND
-==========================================================-->
+    <header class="topbar">
 
-<div
-class="reader-space"
-aria-hidden="true"
-></div>
+        <a
+            href="index.html"
+            class="brand"
+            aria-label="Return to SENTINELS homepage"
+        >
+            <img
+                src="Logo.PNG"
+                alt="SENTINELS"
+            >
 
+            <span class="brand-text">
+                <span class="brand-title">
+                    SENTINELS
+                </span>
 
-<!--=========================================================
-TOPBAR
-==========================================================-->
+                <span class="brand-subtitle">
+                    Archive Reader
+                </span>
+            </span>
+        </a>
 
-<headerclass="reader-topbar">
+        <div class="volume-info">
 
-<a
-href="index.html"
-class="reader-brand"
->
+            <div
+                class="volume-number"
+                id="volumeNumber"
+            >
+                VOLUME 01
+            </div>
+
+            <div
+                class="volume-title"
+                id="volumeTitle"
+            >
+                THE BEGINNING
+            </div>
 
-<spanclass="reader-brand-main">
-SENTINELS
-</span>
+        </div>
 
-<spanclass="reader-brand-sub">
-ArchiveReader
-</span>
+        <div class="top-actions">
+
+            <button
+                type="button"
+                class="top-button"
+                id="fullscreenButton"
+                aria-label="Enter immersive mode"
+            >
+                FULL
+            </button>
+
+            <button
+                type="button"
+                class="top-button"
+                id="archiveButton"
+            >
+                ARCHIVE
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         READER
+    ====================================================== -->
+
+    <main class="reader">
+
+        <section class="heading">
+
+            <div class="heading-label">
+                OFFICIAL ARCHIVE // READER
+            </div>
+
+            <h1 id="readerHeading">
+                THE BEGINNING
+            </h1>
+
+            <p id="readerDescription">
+                Volume 1 of the SENTINELS story.
+            </p>
+
+        </section>
+
 
-</a>
+        <!-- =================================================
+             COMIC
+        ================================================== -->
+
+        <section class="comic-stage">
+
+            <div
+                class="viewport"
+                id="viewport"
+            >
+
+                <div
+                    class="loading"
+                    id="loading"
+                >
+                    <div class="loading-spinner"></div>
+
+                    <div class="loading-text">
+                        Loading archive page
+                    </div>
+                </div>
+
+
+                <img
+                    id="comicImage"
+                    class="comic-image"
+                    alt="SENTINELS comic page"
+                    draggable="false"
+                >
+
+
+                <div
+                    class="message"
+                    id="errorMessage"
+                    hidden
+                >
+                    <div class="message-label">
+                        ARCHIVE STATUS
+                    </div>
+
+                    <h2>
+                        Page unavailable
+                    </h2>
+
+                    <p>
+                        This comic page could not be loaded.
+                    </p>
+                </div>
+
+
+                <div
+                    class="message"
+                    id="comingSoon"
+                    hidden
+                >
+                    <div class="message-label">
+                        ARCHIVE STATUS
+                    </div>
+
+                    <h2 id="comingSoonTitle">
+                        Coming Soon
+                    </h2>
+
+                    <p id="comingSoonText">
+                        This volume has not been opened yet.
+                    </p>
+                </div>
+
+
+                <button
+                    type="button"
+                    class="side-button previous"
+                    id="sidePrevious"
+                    aria-label="Previous page"
+                >
+                    ←
+                </button>
+
+
+                <button
+                    type="button"
+                    class="side-button next"
+                    id="sideNext"
+                    aria-label="Next page"
+                >
+                    →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <div class="controls">
+
+            <button
+                type="button"
+                class="nav-button"
+                id="previousButton"
+            >
+                ← Previous
+            </button>
+
+            <div
+                class="counter"
+                id="pageCounter"
+            >
+                01 / 25
+            </div>
+
+            <button
+                type="button"
+                class="nav-button"
+                id="nextButton"
+            >
+                Next →
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             PROGRESS
+        ================================================== -->
+
+        <div class="progress-wrap">
+
+            <div
+                class="progress"
+                aria-label="Reading progress"
+            >
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="hint">
+            Arrow keys to navigate · Swipe horizontally to change pages · Pinch or double-tap to zoom
+        </div>
+
+    </main>
+
+
+    <script>
+        /* =====================================================
+           SENTINELS READER
+        ===================================================== */
+
+        const volumes = {
+            1: {
+                title: "THE BEGINNING",
+                description: "Volume 1 of the SENTINELS story.",
+                folder: "volume1",
+                pages: 25,
+                available: true
+            },
+
+            2: {
+                title: "VOLUME 2",
+                description: "The next chapter of the SENTINELS story.",
+                folder: "volume2",
+                pages: 0,
+                available: false
+            },
+
+            3: {
+                title: "VOLUME 3",
+                description: "Further SENTINELS archive material.",
+                folder: "volume3",
+                pages: 0,
+                available: false
+            }
+        };
+
+
+        /* =====================================================
+           URL
+        ===================================================== */
 
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
 
-<divclass="reader-volume">
+        let currentVolume =
+            parseInt(
+                params.get("volume"),
+                10
+            );
 
-<div
-class="reader-volume-number"
-id="volumeNumber"
->
-VOLUME01
-</div>
+        if (
+            !Number.isInteger(currentVolume) ||
+            !volumes[currentVolume]
+        ) {
+            currentVolume = 1;
+        }
 
-<div
-class="reader-volume-title"
-id="volumeTitle"
->
-THEBEGINNING
-</div>
+        const volume =
+            volumes[currentVolume];
 
-</div>
 
+        let currentPage =
+            parseInt(
+                params.get("page"),
+                10
+            );
 
-<divclass="reader-actions">
+        if (
+            !Number.isInteger(currentPage) ||
+            currentPage < 1 ||
+            currentPage > volume.pages
+        ) {
+            currentPage = 1;
+        }
 
-<button
-type="button"
-class="reader-action"
-id="fullscreenButton"
-aria-label="Enterimmersivemode"
->
-FULL
-</button>
 
-<button
-type="button"
-class="reader-action"
-id="archiveButton"
->
-ARCHIVE
-</button>
+        /* =====================================================
+           DOM
+        ===================================================== */
 
-</div>
+        const viewport =
+            document.getElementById("viewport");
 
-</header>
+        const comicImage =
+            document.getElementById("comicImage");
 
+        const loading =
+            document.getElementById("loading");
 
-<!--=========================================================
-MAIN
-==========================================================-->
+        const errorMessage =
+            document.getElementById("errorMessage");
 
-<mainclass="reader-main">
+        const comingSoon =
+            document.getElementById("comingSoon");
 
+        const comingSoonTitle =
+            document.getElementById("comingSoonTitle");
 
-<!--=====================================================
-HEADING
-======================================================-->
+        const comingSoonText =
+            document.getElementById("comingSoonText");
 
-<sectionclass="reader-heading">
+        const volumeNumber =
+            document.getElementById("volumeNumber");
 
-<divclass="reader-heading-label">
-OFFICIALARCHIVE//READER
-</div>
+        const volumeTitle =
+            document.getElementById("volumeTitle");
 
-<h1id="readerHeading">
-THEBEGINNING
-</h1>
+        const readerHeading =
+            document.getElementById("readerHeading");
 
-<pid="readerDescription">
-Volume1oftheSentinelsstory.
-</p>
+        const readerDescription =
+            document.getElementById("readerDescription");
 
-</section>
+        const previousButton =
+            document.getElementById("previousButton");
 
+        const nextButton =
+            document.getElementById("nextButton");
 
-<!--=====================================================
-COMICSTAGE
-======================================================-->
+        const sidePrevious =
+            document.getElementById("sidePrevious");
 
-<sectionclass="comic-stage">
+        const sideNext =
+            document.getElementById("sideNext");
 
-<div
-class="comic-viewport"
-id="comicViewport"
->
+        const pageCounter =
+            document.getElementById("pageCounter");
 
-<img
-id="comicImage"
-class="comic-image"
-alt="Sentinelscomicpage"
-draggable="false"
->
+        const progressBar =
+            document.getElementById("progressBar");
 
+        const fullscreenButton =
+            document.getElementById("fullscreenButton");
 
-<!--Loading/error-->
+        const archiveButton =
+            document.getElementById("archiveButton");
 
-<div
-class="reader-message"
-id="pageError"
-hidden
->
 
-<divclass="reader-message-label">
-ARCHIVESTATUS
-</div>
+        /* =====================================================
+           ZOOM STATE
+        ===================================================== */
 
-<h2>
-Pageunavailable
-</h2>
+        let scale = 1;
 
-<p>
-Thispagecouldnotbeloadedfrom
-thecurrentarchive.
-</p>
+        const MIN_SCALE = 1;
+        const MAX_SCALE = 4;
 
-</div>
+        let translateX = 0;
+        let translateY = 0;
 
+        let baseWidth = 0;
+        let baseHeight = 0;
 
-<div
-class="reader-message"
-id="comingSoon"
-hidden
->
 
-<divclass="reader-message-label">
-ARCHIVESTATUS
-</div>
+        /* =====================================================
+           TOUCH STATE
+        ===================================================== */
 
-<h2id="comingSoonTitle">
-ComingSoon
-</h2>
+        let startX = 0;
+        let startY = 0;
 
-<pid="comingSoonText">
-Thisvolumehasnotbeenopenedyet.
-</p>
+        let startTime = 0;
 
-</div>
+        let startTranslateX = 0;
+        let startTranslateY = 0;
 
+        let pinchDistance = 0;
+        let pinchScale = 1;
 
-<!--Sidenavigation-->
+        let touchCount = 0;
 
-<button
-type="button"
-class="reader-side-buttonprevious"
-id="sidePrevious"
-aria-label="Previouspage"
->
-←
-</button>
+        let lastTap = 0;
 
+        let dragging = false;
 
-<button
-type="button"
-class="reader-side-buttonnext"
-id="sideNext"
-aria-label="Nextpage"
->
-→
-</button>
 
-</div>
+        /* =====================================================
+           EXACT PAGE PATH
+        ===================================================== */
 
-</section>
+        function getPagePath(pageNumber) {
 
+            const padded =
+                String(pageNumber).padStart(2, "0");
 
-<!--=====================================================
-CONTROLS
-======================================================-->
+            return `${volume.folder}/Page-${padded}.jpeg`;
+        }
 
-<divclass="reader-controls">
 
-<button
-type="button"
-class="reader-nav-button"
-id="previousButton"
->
-←Previous
-</button>
+        /* =====================================================
+           UPDATE URL
+        ===================================================== */
 
+        function updateURL() {
 
-<div
-class="reader-counter"
-id="pageCounter"
->
-01/25
-</div>
+            const url =
+                `${window.location.pathname}?volume=${currentVolume}&page=${currentPage}`;
 
+            window.history.replaceState(
+                {},
+                "",
+                url
+            );
+        }
 
-<button
-type="button"
-class="reader-nav-button"
-id="nextButton"
->
-Next→
-</button>
 
-</div>
+        /* =====================================================
+           RESET TRANSFORM
+        ===================================================== */
 
+        function resetTransform() {
 
-<!--=====================================================
-PROGRESS
-======================================================-->
+            scale = 1;
 
-<divclass="reader-progress-wrap">
+            translateX = 0;
+            translateY = 0;
 
-<div
-class="reader-progress"
-aria-label="Readingprogress"
->
+            comicImage.classList.remove("dragging");
 
-<div
-class="reader-progress-bar"
-id="progressBar"
-></div>
+            applyTransform();
+        }
 
-</div>
 
-</div>
+        /* =====================================================
+           IMAGE METRICS
+        ===================================================== */
 
+        function updateMetrics() {
 
-<!--=====================================================
-HINT
-======================================================-->
+            if (
+                !comicImage.naturalWidth ||
+                !comicImage.naturalHeight
+            ) {
+                return;
+            }
 
-<divclass="reader-hint">
-Swipeverticallytoscroll·Swipehorizontallytochangepages·Pinchtoinspect·Dragwhilezoomed·Doubletaptozoom·Arrowkeystonavigate
-</div>
+            const viewportWidth =
+                viewport.clientWidth;
 
-</main>
+            const viewportHeight =
+                viewport.clientHeight;
 
+            const widthRatio =
+                viewportWidth /
+                comicImage.naturalWidth;
 
-<script>
+            const heightRatio =
+                viewportHeight /
+                comicImage.naturalHeight;
 
-/*=========================================================
-VOLUMECONFIGURATION
-=========================================================*/
+            const fitRatio =
+                Math.min(
+                    widthRatio,
+                    heightRatio
+                );
 
-constvolumes={
+            baseWidth =
+                comicImage.naturalWidth *
+                fitRatio;
 
-1:{
-title:"THEBEGINNING",
-description:"Volume1oftheSentinelsstory.",
-pages:25,
-folder:"volume1",
-available:true
-},
+            baseHeight =
+                comicImage.naturalHeight *
+                fitRatio;
 
-2:{
-title:"THEFOURTH",
-description:"ThenextchapteroftheSentinelsstory.",
-pages:0,
-folder:"volume2",
-available:false
-},
+            clampTranslation();
 
-3:{
-title:"THESTORYCONTINUES",
-description:"Furtherarchivematerialisindevelopment.",
-pages:0,
-folder:"volume3",
-available:false
-}
+            applyTransform();
+        }
 
-};
 
+        /* =====================================================
+           CLAMP
+        ===================================================== */
 
-/*=========================================================
-GETVOLUME
-=========================================================*/
+        function clampTranslation() {
 
-constparams=
-newURLSearchParams(
-window.location.search
-);
+            if (scale <= 1) {
 
-letcurrentVolume=
-parseInt(
-params.get("volume"),
-10
-);
+                translateX = 0;
+                translateY = 0;
 
-if(
-!Number.isInteger(currentVolume)||
-!volumes[currentVolume]
-){
-currentVolume=1;
-}
+                return;
+            }
 
+            const scaledWidth =
+                baseWidth * scale;
 
-constvolume=
-volumes[currentVolume];
+            const scaledHeight =
+                baseHeight * scale;
 
+            const viewportWidth =
+                viewport.clientWidth;
 
-/*=========================================================
-DOM
-=========================================================*/
+            const viewportHeight =
+                viewport.clientHeight;
 
-constcomicViewport=
-document.getElementById(
-"comicViewport"
-);
+            const maxX =
+                Math.max(
+                    0,
+                    (scaledWidth - viewportWidth) / 2
+                );
 
-constcomicImage=
-document.getElementById(
-"comicImage"
-);
+            const maxY =
+                Math.max(
+                    0,
+                    (scaledHeight - viewportHeight) / 2
+                );
 
-constpageError=
-document.getElementById(
-"pageError"
-);
+            translateX =
+                Math.max(
+                    -maxX,
+                    Math.min(
+                        maxX,
+                        translateX
+                    )
+                );
 
-constcomingSoon=
-document.getElementById(
-"comingSoon"
-);
+            translateY =
+                Math.max(
+                    -maxY,
+                    Math.min(
+                        maxY,
+                        translateY
+                    )
+                );
+        }
 
-constcomingSoonTitle=
-document.getElementById(
-"comingSoonTitle"
-);
 
-constcomingSoonText=
-document.getElementById(
-"comingSoonText"
-);
+        /* =====================================================
+           APPLY TRANSFORM
+        ===================================================== */
 
-constvolumeNumber=
-document.getElementById(
-"volumeNumber"
-);
+        function applyTransform() {
 
-constvolumeTitle=
-document.getElementById(
-"volumeTitle"
-);
+            comicImage.style.transform =
+                `translate3d(
+                    ${translateX}px,
+                    ${translateY}px,
+                    0
+                ) scale(${scale})`;
 
-constreaderHeading=
-document.getElementById(
-"readerHeading"
-);
+            comicImage.classList.toggle(
+                "zoomed",
+                scale > 1.001
+            );
 
-constreaderDescription=
-document.getElementById(
-"readerDescription"
-);
+            updateSideButtons();
+        }
 
-constpreviousButton=
-document.getElementById(
-"previousButton"
-);
 
-constnextButton=
-document.getElementById(
-"nextButton"
-);
+        /* =====================================================
+           ZOOM
+        ===================================================== */
 
-constsidePrevious=
-document.getElementById(
-"sidePrevious"
-);
+        function setScale(
+            requestedScale,
+            focalX,
+            focalY
+        ) {
 
-constsideNext=
-document.getElementById(
-"sideNext"
-);
+            const oldScale = scale;
 
-constpageCounter=
-document.getElementById(
-"pageCounter"
-);
+            const newScale =
+                Math.max(
+                    MIN_SCALE,
+                    Math.min(
+                        MAX_SCALE,
+                        requestedScale
+                    )
+                );
 
-constprogressBar=
-document.getElementById(
-"progressBar"
-);
+            if (
+                newScale === oldScale
+            ) {
+                return;
+            }
 
-constfullscreenButton=
-document.getElementById(
-"fullscreenButton"
-);
+            if (
+                focalX !== undefined &&
+                focalY !== undefined
+            ) {
 
-constarchiveButton=
-document.getElementById(
-"archiveButton"
-);
+                const rect =
+                    viewport.getBoundingClientRect();
 
+                const localX =
+                    focalX -
+                    rect.left -
+                    rect.width / 2;
 
-/*=========================================================
-READERSTATE
-=========================================================*/
+                const localY =
+                    focalY -
+                    rect.top -
+                    rect.height / 2;
 
-letcurrentPage=1;
+                const imagePointX =
+                    (localX - translateX) /
+                    oldScale;
 
-letscale=1;
+                const imagePointY =
+                    (localY - translateY) /
+                    oldScale;
 
-constMIN_SCALE=1;
-constMAX_SCALE=5;
+                translateX =
+                    localX -
+                    imagePointX * newScale;
 
-lettranslateX=0;
-lettranslateY=0;
+                translateY =
+                    localY -
+                    imagePointY * newScale;
+            }
 
-letimageNaturalWidth=0;
-letimageNaturalHeight=0;
+            scale = newScale;
 
-letimageDisplayWidth=0;
-letimageDisplayHeight=0;
+            if (scale <= 1.001) {
 
+                scale = 1;
 
-/*=========================================================
-TOUCH/GESTURESTATE
-=========================================================*/
+                translateX = 0;
+                translateY = 0;
+            }
 
-constactiveTouches=newMap();
+            clampTranslation();
 
-letgestureMode="none";
+            applyTransform();
+        }
 
-letgestureStartX=0;
-letgestureStartY=0;
 
-letgestureStartTime=0;
+        /* =====================================================
+           SIDE BUTTONS
+        ===================================================== */
 
-letgestureStartTranslateX=0;
-letgestureStartTranslateY=0;
+        function updateSideButtons() {
 
-letpinchStartDistance=0;
-letpinchStartScale=1;
+            const zoomed =
+                scale > 1.001;
 
-letsuppressNextTap=false;
+            sidePrevious.classList.toggle(
+                "visible",
+                zoomed && currentPage > 1
+            );
 
-letlastTapTime=0;
+            sideNext.classList.toggle(
+                "visible",
+                zoomed &&
+                currentPage < volume.pages
+            );
+        }
 
-letswipeStartX=0;
-letswipeStartY=0;
 
-/*
-*Usedtodecidewhetheraone-fingergesture
-*shouldremainanormalbrowserscrollor
-*becomeahorizontalpageswipe.
-*/
-letgestureDirection="undecided";
+        /* =====================================================
+           LOADING
+        ===================================================== */
 
-constDIRECTION_THRESHOLD=12;
+        function showLoading() {
 
+            loading.style.display = "block";
 
-/*=========================================================
-FILENAMES
-=========================================================*/
+            errorMessage.hidden = true;
 
-functiongetPageCandidates(pageNumber){
+            comicImage.classList.remove("loaded");
+        }
 
-constpadded=
-String(pageNumber).padStart(2,"0");
 
-return[
+        function hideLoading() {
 
-`${volume.folder}/Page-${padded}.jpeg`,
-`${volume.folder}/Page-${padded}.jpg`,
-`${volume.folder}/Page-${padded}.png`,
+            loading.style.display = "none";
+        }
 
-`${volume.folder}/page-${padded}.jpeg`,
-`${volume.folder}/page-${padded}.jpg`,
-`${volume.folder}/page-${padded}.png`,
 
-`${volume.folder}/Page${padded}.jpeg`,
-`${volume.folder}/Page${padded}.jpg`,
-`${volume.folder}/Page${padded}.png`,
+        /* =====================================================
+           LOAD PAGE
+        ===================================================== */
 
-`${volume.folder}/page${padded}.jpeg`,
-`${volume.folder}/page${padded}.jpg`,
-`${volume.folder}/page${padded}.png`,
+        function loadPage(pageNumber) {
 
-`${volume.folder}/Page-${pageNumber}.jpeg`,
-`${volume.folder}/Page-${pageNumber}.jpg`,
-`${volume.folder}/Page-${pageNumber}.png`
+            if (!volume.available) {
+                return;
+            }
 
-];
+            currentPage =
+                Math.max(
+                    1,
+                    Math.min(
+                        volume.pages,
+                        pageNumber
+                    )
+                );
 
-}
+            resetTransform();
 
+            showLoading();
 
-/*=========================================================
-IMAGELOADING
-=========================================================*/
+            const source =
+                getPagePath(currentPage);
 
-functionloadImageCandidates(
-candidates,
-index=0
-){
+            comicImage.src = source;
 
-if(
-index>=
-candidates.length
-){
+            pageCounter.textContent =
+                `${String(currentPage).padStart(2, "0")} / ${String(volume.pages).padStart(2, "0")}`;
 
-comicImage.style.opacity="0";
+            previousButton.disabled =
+                currentPage <= 1;
 
-pageError.hidden=false;
+            nextButton.disabled =
+                currentPage >= volume.pages;
 
-return;
-}
+            const progress =
+                (currentPage / volume.pages) * 100;
 
+            progressBar.style.width =
+                `${progress}%`;
 
-constsrc=
-candidates[index];
+            updateSideButtons();
 
+            updateURL();
+        }
 
-consttestImage=
-newImage();
 
+        /* =====================================================
+           IMAGE LOADED
+        ===================================================== */
 
-testImage.onload=()=>{
+        comicImage.addEventListener(
+            "load",
+            () => {
 
-comicImage.onload=()=>{
+                hideLoading();
 
-imageNaturalWidth=
-comicImage.naturalWidth;
+                errorMessage.hidden = true;
 
-imageNaturalHeight=
-comicImage.naturalHeight;
+                comicImage.classList.add("loaded");
 
-comicImage.style.opacity="1";
+                updateMetrics();
 
-pageError.hidden=true;
+                preloadPage(currentPage + 1);
+            }
+        );
 
-requestAnimationFrame(
-updateImageMetrics
-);
 
-};
+        /* =====================================================
+           IMAGE ERROR
+        ===================================================== */
 
-comicImage.src=src;
+        comicImage.addEventListener(
+            "error",
+            () => {
 
-};
+                hideLoading();
 
+                comicImage.classList.remove("loaded");
 
-testImage.onerror=()=>{
+                errorMessage.hidden = false;
+            }
+        );
 
-loadImageCandidates(
-candidates,
-index+1
-);
 
-};
+        /* =====================================================
+           PRELOAD
+        ===================================================== */
 
+        function preloadPage(pageNumber) {
 
-testImage.src=src;
+            if (
+                pageNumber < 1 ||
+                pageNumber > volume.pages
+            ) {
+                return;
+            }
 
-}
+            const image =
+                new Image();
 
+            image.src =
+                getPagePath(pageNumber);
+        }
 
-/*=========================================================
-UPDATEPAGE
-=========================================================*/
 
-functionupdatePage(
-pageNumber
-){
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
 
-if(!volume.available){
-return;
-}
+        function nextPage() {
 
+            if (
+                !volume.available ||
+                currentPage >= volume.pages
+            ) {
+                return;
+            }
 
-currentPage=
-Math.max(
-1,
-Math.min(
-volume.pages,
-pageNumber
-)
-);
+            loadPage(
+                currentPage + 1
+            );
+        }
 
 
-resetZoom();
+        function previousPage() {
 
+            if (
+                !volume.available ||
+                currentPage <= 1
+            ) {
+                return;
+            }
 
-pageError.hidden=true;
-comingSoon.hidden=true;
+            loadPage(
+                currentPage - 1
+            );
+        }
 
-comicImage.style.opacity="0";
 
+        previousButton.addEventListener(
+            "click",
+            previousPage
+        );
 
-loadImageCandidates(
-getPageCandidates(
-currentPage
-)
-);
+        nextButton.addEventListener(
+            "click",
+            nextPage
+        );
 
+        sidePrevious.addEventListener(
+            "click",
+            previousPage
+        );
 
-pageCounter.textContent=
-`${String(currentPage).padStart(2,"0")}/${String(volume.pages).padStart(2,"0")}`;
+        sideNext.addEventListener(
+            "click",
+            nextPage
+        );
 
 
-previousButton.disabled=
-currentPage<=1;
+        /* =====================================================
+           KEYBOARD
+        ===================================================== */
 
-nextButton.disabled=
-currentPage>=volume.pages;
+        document.addEventListener(
+            "keydown",
+            (event) => {
 
+                if (
+                    event.key === "ArrowRight"
+                ) {
+                    nextPage();
+                }
 
-constprogress=
-volume.pages>0
-?(
-currentPage/
-volume.pages
-)*100
-:0;
+                if (
+                    event.key === "ArrowLeft"
+                ) {
+                    previousPage();
+                }
 
+                if (
+                    event.key === "Escape"
+                ) {
 
-progressBar.style.width=
-`${progress}%`;
+                    if (scale > 1) {
 
+                        resetTransform();
 
-updateSideButtons();
+                    } else if (
+                        document.body.classList.contains(
+                            "immersive"
+                        )
+                    ) {
 
+                        exitImmersive();
+                    }
+                }
+            }
+        );
 
-constnewUrl=
-`${window.location.pathname}?volume=${currentVolume}&page=${currentPage}`;
 
-window.history.replaceState(
-{},
-"",
-newUrl
-);
+        /* =====================================================
+           DOUBLE TAP
+        ===================================================== */
 
-}
+        viewport.addEventListener(
+            "dblclick",
+            (event) => {
 
+                if (scale > 1) {
 
-/*=========================================================
-VOLUMEUI
-=========================================================*/
+                    resetTransform();
 
-functionupdateVolumeUI(){
+                } else {
 
-volumeNumber.textContent=
-`VOLUME${String(currentVolume).padStart(2,"0")}`;
+                    setScale(
+                        2.2,
+                        event.clientX,
+                        event.clientY
+                    );
+                }
+            }
+        );
 
-volumeTitle.textContent=
-volume.title;
 
-readerHeading.textContent=
-volume.title;
+        /* =====================================================
+           TOUCH START
+        ===================================================== */
 
-readerDescription.textContent=
-volume.description;
+        viewport.addEventListener(
+            "touchstart",
+            (event) => {
 
+                touchCount =
+                    event.touches.length;
 
-if(!volume.available){
+                if (
+                    touchCount === 2
+                ) {
 
-comicImage.style.display=
-"none";
+                    const first =
+                        event.touches[0];
 
-pageError.hidden=true;
+                    const second =
+                        event.touches[1];
 
-comingSoon.hidden=false;
+                    pinchDistance =
+                        Math.hypot(
+                            first.clientX - second.clientX,
+                            first.clientY - second.clientY
+                        );
 
-comingSoonTitle.textContent=
-volume.title;
+                    pinchScale = scale;
 
-comingSoonText.textContent=
-"Thisvolumehasnotbeenopenedyet.";
+                    return;
+                }
 
-previousButton.disabled=
-true;
+                if (
+                    touchCount !== 1
+                ) {
+                    return;
+                }
 
-nextButton.disabled=
-true;
+                const touch =
+                    event.touches[0];
 
-sidePrevious.classList.remove(
-"visible"
-);
+                startX =
+                    touch.clientX;
 
-sideNext.classList.remove(
-"visible"
-);
+                startY =
+                    touch.clientY;
 
-pageCounter.textContent=
-"—";
+                startTime =
+                    Date.now();
 
-progressBar.style.width=
-"0%";
+                startTranslateX =
+                    translateX;
 
-return;
+                startTranslateY =
+                    translateY;
 
-}
+                dragging = false;
+            },
+            {
+                passive: true
+            }
+        );
 
 
-comicImage.style.display=
-"block";
+        /* =====================================================
+           TOUCH MOVE
+        ===================================================== */
 
-comingSoon.hidden=true;
+        viewport.addEventListener(
+            "touchmove",
+            (event) => {
 
-}
+                touchCount =
+                    event.touches.length;
 
+                if (
+                    touchCount === 2
+                ) {
 
-/*=========================================================
-NAVIGATION
-=========================================================*/
+                    event.preventDefault();
 
-functionnextPage(){
+                    const first =
+                        event.touches[0];
 
-if(
-!volume.available||
-currentPage>=volume.pages
-){
-return;
-}
+                    const second =
+                        event.touches[1];
 
-updatePage(
-currentPage+1
-);
+                    const distance =
+                        Math.hypot(
+                            first.clientX - second.clientX,
+                            first.clientY - second.clientY
+                        );
 
-}
+                    if (pinchDistance > 0) {
 
+                        const ratio =
+                            distance /
+                            pinchDistance;
 
-functionpreviousPage(){
+                        const midpointX =
+                            (
+                                first.clientX +
+                                second.clientX
+                            ) / 2;
 
-if(
-!volume.available||
-currentPage<=1
-){
-return;
-}
+                        const midpointY =
+                            (
+                                first.clientY +
+                                second.clientY
+                            ) / 2;
 
-updatePage(
-currentPage-1
-);
+                        setScale(
+                            pinchScale * ratio,
+                            midpointX,
+                            midpointY
+                        );
+                    }
 
-}
+                    return;
+                }
 
+                if (
+                    touchCount !== 1
+                ) {
+                    return;
+                }
 
-functionupdateSideButtons(){
+                if (
+                    scale <= 1.001
+                ) {
+                    return;
+                }
 
-constzoomed=
-scale>1.001;
+                const touch =
+                    event.touches[0];
 
-sidePrevious.classList.toggle(
-"visible",
-zoomed&&
-currentPage>1
-);
+                const dx =
+                    touch.clientX -
+                    startX;
 
-sideNext.classList.toggle(
-"visible",
-zoomed&&
-currentPage<volume.pages
-);
+                const dy =
+                    touch.clientY -
+                    startY;
 
-}
+                if (
+                    Math.abs(dx) >
+                    Math.abs(dy)
+                ) {
 
+                    event.preventDefault();
 
-previousButton.addEventListener(
-"click",
-previousPage
-);
+                    dragging = true;
 
-nextButton.addEventListener(
-"click",
-nextPage
-);
+                    translateX =
+                        startTranslateX + dx;
 
-sidePrevious.addEventListener(
-"click",
-previousPage
-);
+                    translateY =
+                        startTranslateY + dy;
 
-sideNext.addEventListener(
-"click",
-nextPage
-);
+                    clampTranslation();
 
+                    comicImage.classList.add(
+                        "dragging"
+                    );
 
-/*=========================================================
-IMAGEMETRICS
-=========================================================*/
+                    applyTransform();
+                }
+            },
+            {
+                passive: false
+            }
+        );
 
-functionupdateImageMetrics(){
 
-if(
-!comicImage.naturalWidth||
-!comicImage.naturalHeight
-){
-return;
-}
+        /* =====================================================
+           TOUCH END
+        ===================================================== */
 
+        viewport.addEventListener(
+            "touchend",
+            (event) => {
 
-constviewportWidth=
-comicViewport.clientWidth;
+                if (
+                    touchCount === 2
+                ) {
 
-constviewportHeight=
-comicViewport.clientHeight;
+                    touchCount = 1;
 
+                    pinchDistance = 0;
 
-constwidthRatio=
-viewportWidth/
-comicImage.naturalWidth;
+                    comicImage.classList.remove(
+                        "dragging"
+                    );
 
-constheightRatio=
-viewportHeight/
-comicImage.naturalHeight;
+                    return;
+                }
 
+                if (
+                    touchCount !== 1
+                ) {
+                    return;
+                }
 
-constfitRatio=
-Math.min(
-widthRatio,
-heightRatio
-);
+                touchCount = 0;
 
+                comicImage.classList.remove(
+                    "dragging"
+                );
 
-imageDisplayWidth=
-comicImage.naturalWidth*
-fitRatio;
+                if (dragging) {
 
-imageDisplayHeight=
-comicImage.naturalHeight*
-fitRatio;
+                    dragging = false;
 
+                    return;
+                }
 
-clampTranslation();
+                const touch =
+                    event.changedTouches[0];
 
-applyTransform();
+                const dx =
+                    touch.clientX -
+                    startX;
 
-}
+                const dy =
+                    touch.clientY -
+                    startY;
 
+                const elapsed =
+                    Date.now() -
+                    startTime;
 
-/*=========================================================
-TRANSFORM
-=========================================================*/
+                const horizontalSwipe =
+                    Math.abs(dx) > 65 &&
+                    Math.abs(dx) > Math.abs(dy) * 1.2;
 
-functionapplyTransform(){
+                if (
+                    horizontalSwipe &&
+                    elapsed < 650 &&
+                    scale <= 1.001
+                ) {
 
-comicImage.style.transform=
-`translate3d(${translateX}px,${translateY}px,0)scale(${scale})`;
+                    if (dx < 0) {
+                        nextPage();
+                    } else {
+                        previousPage();
+                    }
 
+                    return;
+                }
 
-comicImage.classList.toggle(
-"is-zoomed",
-scale>1.001
-);
+                const now =
+                    Date.now();
 
+                if (
+                    now - lastTap < 320
+                ) {
 
-updateSideButtons();
+                    if (scale > 1) {
 
-}
+                        resetTransform();
 
+                    } else {
 
-/*=========================================================
-TRANSLATIONLIMITS
-=========================================================*/
+                        setScale(
+                            2.2,
+                            touch.clientX,
+                            touch.clientY
+                        );
+                    }
 
-functionclampTranslation(){
+                    lastTap = 0;
 
-if(scale<=1){
+                } else {
 
-translateX=0;
-translateY=0;
+                    lastTap = now;
+                }
+            },
+            {
+                passive: true
+            }
+        );
 
-return;
-}
 
+        /* =====================================================
+           ARCHIVE BUTTON
+        ===================================================== */
 
-constscaledWidth=
-imageDisplayWidth*
-scale;
+        archiveButton.addEventListener(
+            "click",
+            () => {
 
-constscaledHeight=
-imageDisplayHeight*
-scale;
+                window.location.href =
+                    "archive.html";
+            }
+        );
 
 
-constviewportWidth=
-comicViewport.clientWidth;
+        /* =====================================================
+           IMMERSIVE MODE
+        ===================================================== */
 
-constviewportHeight=
-comicViewport.clientHeight;
+        async function enterImmersive() {
 
+            document.body.classList.add(
+                "immersive"
+            );
 
-constmaxX=
-Math.max(
-0,
-(
-scaledWidth-
-viewportWidth
-)/2
-);
+            fullscreenButton.textContent =
+                "EXIT";
 
-constmaxY=
-Math.max(
-0,
-(
-scaledHeight-
-viewportHeight
-)/2
-);
+            requestAnimationFrame(
+                updateMetrics
+            );
 
+            if (
+                !document.fullscreenElement &&
+                document.documentElement.requestFullscreen
+            ) {
 
-translateX=
-Math.max(
--maxX,
-Math.min(
-maxX,
-translateX
-)
-);
+                try {
 
-translateY=
-Math.max(
--maxY,
-Math.min(
-maxY,
-translateY
-)
-);
+                    await document.documentElement.requestFullscreen();
 
-}
+                } catch (error) {
 
+                    /* Browser may block fullscreen.
+                       The visual immersive mode still works. */
+                }
+            }
+        }
 
-/*=========================================================
-ZOOMAROUNDFOCALPOINT
-=========================================================*/
 
-functionsetScale(
-requestedScale,
-focalX,
-focalY
-){
+        async function exitImmersive() {
 
-constoldScale=
-scale;
+            document.body.classList.remove(
+                "immersive"
+            );
 
+            fullscreenButton.textContent =
+                "FULL";
 
-constnewScale=
-Math.max(
-MIN_SCALE,
-Math.min(
-MAX_SCALE,
-requestedScale
-)
-);
+            if (
+                document.fullscreenElement &&
+                document.exitFullscreen
+            ) {
 
+                try {
 
-if(
-newScale===oldScale
-){
-return;
-}
+                    await document.exitFullscreen();
 
+                } catch (error) {
+                    /* Ignore browser fullscreen errors. */
+                }
+            }
 
-if(
-focalX!==undefined&&
-focalY!==undefined
-){
+            requestAnimationFrame(
+                updateMetrics
+            );
+        }
 
-constviewportRect=
-comicViewport.getBoundingClientRect();
 
+        fullscreenButton.addEventListener(
+            "click",
+            () => {
 
-constlocalX=
-focalX-
-viewportRect.left-
-viewportRect.width/2;
+                if (
+                    document.body.classList.contains(
+                        "immersive"
+                    )
+                ) {
 
+                    exitImmersive();
 
-constlocalY=
-focalY-
-viewportRect.top-
-viewportRect.height/2;
+                } else {
 
+                    enterImmersive();
+                }
+            }
+        );
 
-constimagePointX=
-(
-localX-
-translateX
-)/oldScale;
 
+        document.addEventListener(
+            "fullscreenchange",
+            () => {
 
-constimagePointY=
-(
-localY-
-translateY
-)/oldScale;
+                if (
+                    !document.fullscreenElement &&
+                    document.body.classList.contains(
+                        "immersive"
+                    )
+                ) {
 
+                    document.body.classList.remove(
+                        "immersive"
+                    );
 
-translateX=
-localX-
-imagePointX*
-newScale;
+                    fullscreenButton.textContent =
+                        "FULL";
+                }
 
+                requestAnimationFrame(
+                    updateMetrics
+                );
+            }
+        );
 
-translateY=
-localY-
-imagePointY*
-newScale;
 
-}
+        /* =====================================================
+           RESIZE
+        ===================================================== */
 
+        window.addEventListener(
+            "resize",
+            () => {
 
-scale=
-newScale;
+                requestAnimationFrame(
+                    updateMetrics
+                );
+            }
+        );
 
 
-if(scale<=1.001){
+        /* =====================================================
+           VOLUME UI
+        ===================================================== */
 
-scale=1;
+        function updateVolumeUI() {
 
-translateX=0;
-translateY=0;
+            volumeNumber.textContent =
+                `VOLUME ${String(currentVolume).padStart(2, "0")}`;
 
-}
+            volumeTitle.textContent =
+                volume.title;
 
+            readerHeading.textContent =
+                volume.title;
 
-clampTranslation();
+            readerDescription.textContent =
+                volume.description;
 
-applyTransform();
 
-}
+            if (!volume.available) {
 
+                comicImage.style.display =
+                    "none";
 
-/*=========================================================
-RESETZOOM
-=========================================================*/
+                loading.style.display =
+                    "none";
 
-functionresetZoom(){
+                errorMessage.hidden =
+                    true;
 
-scale=1;
+                comingSoon.hidden =
+                    false;
 
-translateX=0;
-translateY=0;
+                comingSoonTitle.textContent =
+                    volume.title;
 
-comicImage.classList.remove(
-"is-dragging"
-);
+                comingSoonText.textContent =
+                    "This volume has not been opened yet.";
 
-applyTransform();
+                previousButton.disabled =
+                    true;
 
-}
+                nextButton.disabled =
+                    true;
 
+                pageCounter.textContent =
+                    "—";
 
-/*=========================================================
-TOUCHHELPERS
-=========================================================*/
+                progressBar.style.width =
+                    "0%";
 
-functiondistanceBetween(
-touchA,
-touchB
-){
+                return;
+            }
 
-constdx=
-touchA.clientX-
-touchB.clientX;
 
-constdy=
-touchA.clientY-
-touchB.clientY;
+            comicImage.style.display =
+                "block";
 
-returnMath.hypot(
-dx,
-dy
-);
+            comingSoon.hidden =
+                true;
+        }
 
-}
 
+        /* =====================================================
+           START READER
+        ===================================================== */
 
-functionmidpoint(
-touchA,
-touchB
-){
+        function initialise() {
 
-return{
-x:
-(
-touchA.clientX+
-touchB.clientX
-)/2,
+            updateVolumeUI();
 
-y:
-(
-touchA.clientY+
-touchB.clientY
-)/2
-};
+            if (
+                !volume.available
+            ) {
+                return;
+            }
 
-}
+            loadPage(
+                currentPage
+            );
+        }
 
 
-functiongetActiveTouchArray(){
-
-returnArray.from(
-activeTouches.values()
-);
-
-}
-
-
-/*=========================================================
-TOUCHSTART
-=========================================================*/
-
-comicViewport.addEventListener(
-"touchstart",
-(event)=>{
-
-for(
-consttouchofevent.changedTouches
-){
-
-activeTouches.set(
-touch.identifier,
-touch
-);
-
-}
-
-
-consttouches=
-getActiveTouchArray();
-
-
-/*
-*TWOFINGERSTART
-*
-*Thisistheonlysituationwherethe
-*readerimmediatelytakesoverthetouch.
-*/
-
-if(touches.length>=2){
-
-event.preventDefault();
-
-
-constfirst=
-touches[0];
-
-constsecond=
-touches[1];
-
-
-pinchStartDistance=
-distanceBetween(
-first,
-second
-);
-
-
-pinchStartScale=
-scale;
-
-
-constmid=
-midpoint(
-first,
-second
-);
-
-
-gestureMode=
-"pinch";
-
-
-suppressNextTap=
-true;
-
-
-comicImage.classList.add(
-"is-dragging"
-);
-
-
-return;
-}
-
-
-/*
-*ONEFINGERSTART
-*/
-
-if(
-touches.length===1
-){
-
-consttouch=
-touches[0];
-
-
-gestureStartX=
-touch.clientX;
-
-gestureStartY=
-touch.clientY;
-
-
-gestureStartTime=
-Date.now();
-
-
-gestureStartTranslateX=
-translateX;
-
-gestureStartTranslateY=
-translateY;
-
-
-swipeStartX=
-touch.clientX;
-
-swipeStartY=
-touch.clientY;
-
-
-gestureDirection=
-"undecided";
-
-
-/*
-*Ifalreadyzoomed,thereaderowns
-*one-fingermovementforpanning.
-*/
-
-if(scale>1.001){
-
-event.preventDefault();
-
-gestureMode=
-"pan";
-
-comicImage.classList.add(
-"is-dragging"
-);
-
-}else{
-
-/*
-*Normalunzoomedstate:
-*allowthebrowsertodecidewhether
-*thisbecomesverticalscrolling.
-*/
-gestureMode=
-"tap";
-
-}
-
-}
-
-},
-{
-passive:false
-}
-);
-
-
-/*=========================================================
-TOUCHMOVE
-=========================================================*/
-
-comicViewport.addEventListener(
-"touchmove",
-(event)=>{
-
-for(
-consttouchofevent.changedTouches
-){
-
-if(
-activeTouches.has(
-touch.identifier
-)
-){
-
-activeTouches.set(
-touch.identifier,
-touch
-);
-
-}
-
-}
-
-
-consttouches=
-getActiveTouchArray();
-
-
-/*
-*PINCH
-*
-*Thebrowsermustnotscrollwhile
-*twofingersarecontrollingzoom.
-*/
-
-if(
-touches.length>=2
-){
-
-event.preventDefault();
-
-
-constfirst=
-touches[0];
-
-constsecond=
-touches[1];
-
-
-if(
-pinchStartDistance<=0
-){
-
-pinchStartDistance=
-distanceBetween(
-first,
-second
-);
-
-pinchStartScale=
-scale;
-
-}
-
-
-constcurrentDistance=
-distanceBetween(
-first,
-second
-);
-
-
-constpinchRatio=
-currentDistance/
-pinchStartDistance;
-
-
-constcurrentMid=
-midpoint(
-first,
-second
-);
-
-
-constrequestedScale=
-pinchStartScale*
-pinchRatio;
-
-
-setScale(
-requestedScale,
-currentMid.x,
-currentMid.y
-);
-
-
-gestureMode=
-"pinch";
-
-
-suppressNextTap=
-true;
-
-
-return;
-
-}
-
-
-/*
-*ONEFINGER
-*/
-
-if(
-touches.length===1
-){
-
-consttouch=
-touches[0];
-
-
-/*
-*Ifwearepanningazoomedimage,
-*thereaderownsthemovement.
-*/
-
-if(
-scale>1.001&&
-(
-gestureMode==="pan"||
-gestureMode==="pinch"
-)
-){
-
-event.preventDefault();
-
-
-if(
-gestureMode==="pinch"
-){
-
-gestureMode=
-"pan";
-
-
-gestureStartX=
-touch.clientX;
-
-gestureStartY=
-touch.clientY;
-
-
-gestureStartTranslateX=
-translateX;
-
-gestureStartTranslateY=
-translateY;
-
-}
-
-
-constdx=
-touch.clientX-
-gestureStartX;
-
-
-constdy=
-touch.clientY-
-gestureStartY;
-
-
-translateX=
-gestureStartTranslateX+
-dx;
-
-translateY=
-gestureStartTranslateY+
-dy;
-
-
-clampTranslation();
-
-applyTransform();
-
-
-suppressNextTap=
-true;
-
-
-return;
-
-}
-
-
-/*
-*Unzoomedimage:
-*
-*WedeliberatelyDONOTpreventDefault()
-*hereatfirst.
-*
-*Thatallowsverticalmovementtobecome
-*nativepagescrolling.
-*/
-
-if(
-scale<=1.001&&
-gestureMode==="tap"
-){
-
-constdx=
-touch.clientX-
-swipeStartX;
-
-constdy=
-touch.clientY-
-swipeStartY;
-
-
-if(
-gestureDirection===
-"undecided"&&
-(
-Math.abs(dx)>
-DIRECTION_THRESHOLD||
-Math.abs(dy)>
-DIRECTION_THRESHOLD
-)
-){
-
-/*
-*Decidethegesturedirection.
-*/
-
-if(
-Math.abs(dx)>
-Math.abs(dy)
-){
-
-gestureDirection=
-"horizontal";
-
-}else{
-
-gestureDirection=
-"vertical";
-
-}
-
-}
-
-
-/*
-*Ahorizontalgestureishandledby
-*thereader.Averticalgestureremains
-*completelynative.
-*/
-
-if(
-gestureDirection===
-"horizontal"
-){
-
-event.preventDefault();
-
-}
-
-}
-
-}
-
-},
-{
-passive:false
-}
-);
-
-
-/*=========================================================
-TOUCHEND
-=========================================================*/
-
-comicViewport.addEventListener(
-"touchend",
-(event)=>{
-
-for(
-consttouchofevent.changedTouches
-){
-
-activeTouches.delete(
-touch.identifier
-);
-
-}
-
-
-consttouches=
-getActiveTouchArray();
-
-
-/*
-*Fingersstillremain.
-*/
-
-if(
-touches.length>0
-){
-
-if(
-gestureMode==="pinch"&&
-touches.length===1
-){
-
-constremaining=
-touches[0];
-
-
-gestureMode=
-scale>1.001
-?"pan"
-:"tap";
-
-
-gestureStartX=
-remaining.clientX;
-
-gestureStartY=
-remaining.clientY;
-
-
-gestureStartTranslateX=
-translateX;
-
-gestureStartTranslateY=
-translateY;
-
-}
-
-
-return;
-
-}
-
-
-comicImage.classList.remove(
-"is-dragging"
-);
-
-
-/*
-*PINCHFINISHED
-*/
-
-if(
-gestureMode==="pinch"
-){
-
-gestureMode=
-"none";
-
-suppressNextTap=
-true;
-
-return;
-
-}
-
-
-/*
-*PANFINISHED
-*/
-
-if(
-gestureMode==="pan"
-){
-
-gestureMode=
-"none";
-
-suppressNextTap=
-true;
-
-return;
-
-}
-
-
-/*
-*NORMALONE-FINGERGESTURE
-*/
-
-if(
-gestureMode==="tap"
-){
-
-consttouch=
-event.changedTouches[0];
-
-
-if(!touch){
-
-gestureMode=
-"none";
-
-return;
-
-}
-
-
-constendX=
-touch.clientX;
-
-constendY=
-touch.clientY;
-
-
-constdeltaX=
-endX-
-swipeStartX;
-
-
-constdeltaY=
-endY-
-swipeStartY;
-
-
-constelapsed=
-Date.now()-
-gestureStartTime;
-
-
-consthorizontalSwipe=
-Math.abs(deltaX)>=60&&
-Math.abs(deltaX)>
-Math.abs(deltaY)*1.25;
-
-
-/*
-*Onlyhorizontalgesturesbecome
-*pagenavigation.
-*
-*Verticalgesturesareignoredhere
-*becausethebrowserhasalreadyhandled
-*themasnormalscrolling.
-*/
-
-if(
-scale<=1.001&&
-gestureDirection===
-"horizontal"&&
-horizontalSwipe&&
-elapsed<900
-){
-
-if(
-deltaX<0
-){
-
-nextPage();
-
-}else{
-
-previousPage();
-
-}
-
-
-suppressNextTap=
-true;
-
-}
-
-}
-
-
-gestureMode=
-"none";
-
-gestureDirection=
-"undecided";
-
-},
-{
-passive:true
-}
-);
-
-
-/*=========================================================
-TOUCHCANCEL
-=========================================================*/
-
-comicViewport.addEventListener(
-"touchcancel",
-()=>{
-
-activeTouches.clear();
-
-gestureMode=
-"none";
-
-gestureDirection=
-"undecided";
-
-suppressNextTap=
-true;
-
-comicImage.classList.remove(
-"is-dragging"
-);
-
-},
-{
-passive:true
-}
-);
-
-
-/*=========================================================
-DOUBLETAP
-=========================================================*/
-
-comicViewport.addEventListener(
-"touchend",
-(event)=>{
-
-if(
-suppressNextTap
-){
-
-suppressNextTap=
-false;
-
-lastTapTime=
-0;
-
-return;
-
-}
-
-
-if(
-!event.changedTouches.length
-){
-return;
-}
-
-
-constnow=
-Date.now();
-
-
-constelapsed=
-now-
-lastTapTime;
-
-
-if(
-elapsed<320
-){
-
-consttouch=
-event.changedTouches[0];
-
-
-if(
-scale<=1.001
-){
-
-setScale(
-2,
-touch.clientX,
-touch.clientY
-);
-
-}else{
-
-resetZoom();
-
-}
-
-
-lastTapTime=
-0;
-
-return;
-
-}
-
-
-lastTapTime=
-now;
-
-},
-{
-passive:true
-}
-);
-
-
-/*=========================================================
-MOUSEDOUBLECLICK
-=========================================================*/
-
-comicViewport.addEventListener(
-"dblclick",
-(event)=>{
-
-if(
-scale<=1.001
-){
-
-setScale(
-2,
-event.clientX,
-event.clientY
-);
-
-}else{
-
-resetZoom();
-
-}
-
-}
-);
-
-
-/*=========================================================
-WHEEL/TRACKPAD
-=========================================================*/
-
-comicViewport.addEventListener(
-"wheel",
-(event)=>{
-
-/*
-*WhentheimageisNOTzoomed:
-*
-*Doabsolutelynothing.
-*
-*Thismeansthebrowserisfreetoscroll
-*thepagenormallywhenthecursor/fingeris
-*overthecomic.
-*/
-
-if(
-scale<=1.001
-){
-
-return;
-
-}
-
-
-/*
-*Oncezoomed,wheelcontrolszoom.
-*/
-
-event.preventDefault();
-
-
-constdirection=
-event.deltaY<0
-?1
-:-1;
-
-
-constzoomStep=
-1.12;
-
-
-constrequestedScale=
-direction>0
-?scale*zoomStep
-:scale/zoomStep;
-
-
-setScale(
-requestedScale,
-event.clientX,
-event.clientY
-);
-
-},
-{
-passive:false
-}
-);
-
-
-/*=========================================================
-KEYBOARD
-=========================================================*/
-
-document.addEventListener(
-"keydown",
-(event)=>{
-
-if(
-event.key==="ArrowRight"
-){
-
-nextPage();
-
-}
-
-
-if(
-event.key==="ArrowLeft"
-){
-
-previousPage();
-
-}
-
-
-if(
-event.key==="Escape"
-){
-
-if(
-scale>1.001
-){
-
-resetZoom();
-
-}elseif(
-document.body.classList.contains(
-"reader-fullscreen"
-)
-){
-
-exitImmersiveMode();
-
-}
-
-}
-
-}
-);
-
-
-/*=========================================================
-ARCHIVE
-=========================================================*/
-
-archiveButton.addEventListener(
-"click",
-()=>{
-
-window.location.href=
-"archive.html";
-
-}
-);
-
-
-/*=========================================================
-IMMERSIVEMODE
-=========================================================*/
-
-functionenterImmersiveMode(){
-
-document.body.classList.add(
-"reader-fullscreen"
-);
-
-
-fullscreenButton.textContent=
-"EXIT";
-
-
-if(
-!document.fullscreenElement&&
-document.documentElement.requestFullscreen
-){
-
-document.documentElement
-.requestFullscreen()
-.catch(
-()=>{}
-);
-
-}
-
-}
-
-
-functionexitImmersiveMode(){
-
-document.body.classList.remove(
-"reader-fullscreen"
-);
-
-
-fullscreenButton.textContent=
-"FULL";
-
-
-if(
-document.fullscreenElement&&
-document.exitFullscreen
-){
-
-document.exitFullscreen()
-.catch(
-()=>{}
-);
-
-}
-
-
-requestAnimationFrame(
-updateImageMetrics
-);
-
-}
-
-
-fullscreenButton.addEventListener(
-"click",
-()=>{
-
-if(
-document.body.classList.contains(
-"reader-fullscreen"
-)
-){
-
-exitImmersiveMode();
-
-}else{
-
-enterImmersiveMode();
-
-}
-
-}
-);
-
-
-document.addEventListener(
-"fullscreenchange",
-()=>{
-
-if(
-!document.fullscreenElement&&
-document.body.classList.contains(
-"reader-fullscreen"
-)
-){
-
-document.body.classList.remove(
-"reader-fullscreen"
-);
-
-fullscreenButton.textContent=
-"FULL";
-
-}
-
-
-requestAnimationFrame(
-updateImageMetrics
-);
-
-}
-);
-
-
-/*=========================================================
-RESIZE
-=========================================================*/
-
-window.addEventListener(
-"resize",
-()=>{
-
-requestAnimationFrame(
-updateImageMetrics
-);
-
-}
-);
-
-
-/*=========================================================
-PRELOADNEXTPAGE
-=========================================================*/
-
-functionpreloadPage(
-pageNumber
-){
-
-if(
-pageNumber<1||
-pageNumber>volume.pages
-){
-return;
-}
-
-
-constcandidates=
-getPageCandidates(
-pageNumber
-);
-
-
-letindex=0;
-
-
-functiontryNext(){
-
-if(
-index>=
-candidates.length
-){
-return;
-}
-
-
-constimg=
-newImage();
-
-
-constsrc=
-candidates[index++];
-
-
-img.onload=
-()=>{};
-
-
-img.onerror=
-tryNext;
-
-
-img.src=
-src;
-
-}
-
-
-tryNext();
-
-}
-
-
-/*=========================================================
-INITIALISE
-=========================================================*/
-
-functioninitialiseReader(){
-
-updateVolumeUI();
-
-
-if(
-!volume.available
-){
-return;
-}
-
-
-constrequestedPage=
-parseInt(
-params.get("page"),
-10
-);
-
-
-if(
-Number.isInteger(
-requestedPage
-)&&
-requestedPage>=1&&
-requestedPage<=volume.pages
-){
-
-currentPage=
-requestedPage;
-
-}
-
-
-updatePage(
-currentPage
-);
-
-
-setTimeout(
-()=>{
-
-preloadPage(
-currentPage+1
-);
-
-},
-500
-);
-
-}
-
-
-comicImage.addEventListener(
-"load",
-()=>{
-
-imageNaturalWidth=
-comicImage.naturalWidth;
-
-imageNaturalHeight=
-comicImage.naturalHeight;
-
-
-updateImageMetrics();
-
-
-preloadPage(
-currentPage+1
-);
-
-}
-);
-
-
-initialiseReader();
-
-</script>
+        initialise();
+    </script>
 
 </body>
 </html>
