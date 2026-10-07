@@ -29,7 +29,7 @@ const TABLE={question:["questions","question"],review:["reviews","review"],theor
 const TEXT={question:["YOUR QUESTION","Ask something about the Sentinels..."],review:["YOUR REVIEW","Tell us what you thought about the volume..."],theory:["YOUR THEORY","What do you think happens next?"]};
 const esc=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
 const norm=(t,r)=>({type:t,name:r.name,content:r[TABLE[t][1]],volume:t==="review"?r.volume:"",at:r.created_at});
-const when=d=>{const x=new Date(d);return isNaN(x)?"":x.toLocaleString(undefined,{dateStyle:"medium",timeStyle:"short"})};
+const when=d=>{const x=new Date(d);return(!d||isNaN(x)||x.getFullYear()<2020)?"":x.toLocaleString(undefined,{dateStyle:"medium",timeStyle:"short"})}; /* hides missing/broken dates instead of showing 1970 */
 const say=(m,k)=>{$("fm").textContent=m;$("fm").style.color=k==="ok"?"#42e38b":k==="err"?"#ff4d55":""};
 
 function render(){
